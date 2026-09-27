@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Achievements{% endblock %}
+{% block content %}
+  <h1>Achievements</h1>
+  <p class="subtitle">{{ unlocked_count }} of {{ total_count }} unlocked
+     {% if streak > 0 %}· <strong>{{ streak }}-day</strong> current streak{% endif %}</p>
+  <p class="subtitle" style="font-size:0.85rem;">Every badge here rewards a constructive habit —
+     logging consistently, taking action, resting, diversifying what you eat. None of them are about
+     having a "good score"; there's no badge for a low exposure reading, and none for a high one either.
+     What you log is awareness data, not a performance to optimize.</p>
+
+  <div class="score-grid">
+    {% for a in catalog %}
+      <div class="score-tile" style="{{ '' if a.unlocked else 'opacity:0.45;' }}">
+        <div style="font-size:1.8rem;">{{ a.icon }}</div>
+        <div class="label" style="margin-top:6px;">{{ a.name }}</div>
+        <div style="font-size:0.85rem;">{{ a.description }}</div>
+        {% if not a.unlocked %}<div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">Locked</div>{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

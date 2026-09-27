@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Log Air Quality{% endblock %}
+{% block content %}
+  <h1>Log Air Quality (PM2.5 / PM10)</h1>
+  <p class="subtitle">Enter a reading from a source you trust — <a href="https://www.airnow.gov" target="_blank" rel="noopener">airnow.gov</a>
+     (free, no signup needed to just look up your area), a personal air quality monitor, or your workplace's
+     posted reading. The value is classified automatically using the EPA's 2024 AQI breakpoints.</p>
+
+  <div class="card">
+    <form method="post">
+      <div class="field">
+        <label for="log_date">Date</label>
+        <input type="date" id="log_date" name="log_date" value="{{ today }}">
+      </div>
+      <div class="field">
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" required placeholder="e.g. Home, Downtown office, ZIP 94110">
+      </div>
+      <div class="field">
+        <label for="pollutant">Pollutant</label>
+        <select id="pollutant" name="pollutant">
+          <option value="PM2.5">PM2.5 (fine particulate — most common reading)</option>
+          <option value="PM10">PM10 (coarse particulate)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="value">Reading (µg/m³)</label>
+        <input type="text" inputmode="decimal" id="value" name="value" required placeholder="e.g. 12.4">
+      </div>
+      <div class="field">
+        <label for="source">Source (optional)</label>
+        <input type="text" id="source" name="source" placeholder="e.g. AirNow, PurpleAir monitor, workplace display">
+      </div>
+      <div class="field">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" name="notes" placeholder="e.g. wildfire smoke day, noticed haze outside"></textarea>
+      </div>
+      <button type="submit">Log reading</button>
+    </form>
+  </div>
+
+  <h2>Recent air quality entries</h2>
+  <div class="card">
+    {% if recent %}
+      <table>
+        <tr><th>Date</th><th>Location</th><th>Pollutant</th><th>Value</th><th></th></tr>
+        {% for e in recent %}
+          <tr>
+            <td>{{ e.log_date }}</td>
+            <td>{{ e.location }}</td>
+            <td>{{ e.pollutant }}</td>
+            <td>{{ e.value }} µg/m³</td>
+            <td>
+              <form class="inline-form" method="post" action="{{ url_for('delete_entry', category='air_quality', log_id=e.id) }}">
+                <button type="submit" class="btn-secondary" style="padding:4px 10px;font-size:0.8rem;">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty-state">No air quality entries yet.</p>
+    {% endif %}
+  </div>
+{% endblock %}

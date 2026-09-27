@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Exposure Awareness — Home{% endblock %}
+{% block content %}
+  <h1>Daily Exposure Awareness</h1>
+  <p class="subtitle">Log what you eat, what you put on your body, and the environments you spend time in.
+     The dashboard fuses these streams into a single awareness picture with practical, non-medical suggestions.
+     {% if streak > 0 %}You're on a <strong>{{ streak }}-day</strong> logging streak.{% endif %}
+     <a href="{{ url_for('achievements_page') }}">{{ unlocked_count }}/{{ total_achievements }} achievements unlocked →</a></p>
+
+  <div class="score-grid">
+    <a class="score-tile" href="{{ url_for('log_food') }}" style="text-decoration:none;color:inherit;">
+      <div class="label">Food</div>
+      <div class="num">+</div>
+      <div>Log breakfast / meals</div>
+    </a>
+    <a class="score-tile" href="{{ url_for('log_product') }}" style="text-decoration:none;color:inherit;">
+      <div class="label">Personal Care</div>
+      <div class="num">+</div>
+      <div>Log shampoo, conditioner, etc.</div>
+    </a>
+    <a class="score-tile" href="{{ url_for('log_environment') }}" style="text-decoration:none;color:inherit;">
+      <div class="label">Environment</div>
+      <div class="num">+</div>
+      <div>Log home / workplace conditions</div>
+    </a>
+    <a class="score-tile" href="{{ url_for('log_air_quality') }}" style="text-decoration:none;color:inherit;">
+      <div class="label">Air Quality</div>
+      <div class="num">+</div>
+      <div>Log a PM2.5/PM10 reading</div>
+    </a>
+    <a class="score-tile" href="{{ url_for('log_practice') }}" style="text-decoration:none;color:inherit;">
+      <div class="label">Resets</div>
+      <div class="num">+</div>
+      <div>Log fasting, exercise, screen-free time</div>
+    </a>
+    <a class="score-tile" href="{{ url_for('log_biomarker') }}" style="text-decoration:none;color:inherit;">
+      <div class="label">Biomarkers</div>
+      <div class="num">+</div>
+      <div>Log wearable/lab metrics (optional)</div>
+    </a>
+    <a class="score-tile" href="{{ url_for('learn') }}" style="text-decoration:none;color:inherit;">
+      <div class="label">Learn</div>
+      <div class="num">→</div>
+      <div>Browse the reference library</div>
+    </a>
+  </div>
+
+  <a class="btn" href="{{ url_for('dashboard') }}">View fused exposure dashboard →</a>
+
+  <h2>Recently logged</h2>
+  <div class="card">
+    <strong>Food</strong>
+    {% if recent.food %}
+      <table>
+        <tr><th>Date</th><th>Meal</th><th>Item</th></tr>
+        {% for e in recent.food %}
+          <tr><td>{{ e.log_date }}</td><td>{{ e.meal }}</td><td>{{ e.food_item }}</td></tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty-state">No food entries yet.</p>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <strong>Personal Care Products</strong>
+    {% if recent.products %}
+      <table>
+        <tr><th>Date</th><th>Type</th><th>Product</th></tr>
+        {% for e in recent.products %}
+          <tr><td>{{ e.log_date }}</td><td>{{ e.product_type }}</td><td>{{ e.product_name }}</td></tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty-state">No product entries yet.</p>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <strong>Environment</strong>
+    {% if recent.environment %}
+      <table>
+        <tr><th>Date</th><th>Location</th><th>Condition</th></tr>
+        {% for e in recent.environment %}
+          <tr><td>{{ e.log_date }}</td><td>{{ e.location }}</td><td>{{ e.condition_type }}</td></tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty-state">No environment entries yet.</p>
+    {% endif %}
+  </div>
+{% endblock %}

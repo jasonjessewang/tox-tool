@@ -1,0 +1,2694 @@
+{
+  "_meta": {
+    "description": "Curated reference list of commonly discussed substances/conditions across diet, personal care, and environment. Educational/awareness use only. concern_level is a coarse 1-3 heuristic reflecting how consistently a substance is flagged as worth-managing in public-health/regulatory guidance, NOT a clinical or regulatory risk rating, and it does NOT account for dose \u2014 the amount in a typical consumer product or serving is almost always far below levels studied in the underlying research. pubchem_name/pubmed_query drive sources/sync_db.py, which fetches live GHS hazard data and real peer-reviewed citations (see references[] and regulatory{} after a sync run, and last_synced for when).",
+    "version": "0.2.0",
+    "last_synced": "2026-09-26"
+  },
+  "substances": [
+    {
+      "id": "parabens",
+      "name": "Parabens",
+      "aliases": [
+        "methylparaben",
+        "propylparaben",
+        "butylparaben",
+        "ethylparaben",
+        "isobutylparaben"
+      ],
+      "category": "personal_care",
+      "concern_level": 2,
+      "summary": "Preservatives used in cosmetics/personal care products; weak estrogen-mimicking activity reported in lab studies. Widely used and considered low-risk by regulators at typical use levels, but frequently flagged by consumers seeking to minimize endocrine-disrupting-chemical (EDC) exposure.",
+      "common_sources": [
+        "shampoo",
+        "conditioner",
+        "lotion",
+        "sunscreen",
+        "makeup"
+      ],
+      "mitigation_tips": [
+        "Look for 'paraben-free' labeling if limiting hormone-disrupting chemicals (EDCs) is a priority.",
+        "Rotate/diversify personal care brands rather than using one product exclusively long-term."
+      ],
+      "pubchem_name": "methylparaben",
+      "pubmed_query": "parabens endocrine disruption exposure humans",
+      "references": [
+        {
+          "pmid": "37743685",
+          "title": "Chemicals in menstrual products: A systematic review",
+          "journal": "BJOG",
+          "year": "2024",
+          "doi": "10.1111/1471-0528.17668",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37743685/"
+        },
+        {
+          "pmid": "33819127",
+          "title": "Endocrine disrupting chemicals and breast cancer: a systematic review of epidemiological studies",
+          "journal": "Crit Rev Food Sci Nutr",
+          "year": "2022",
+          "doi": "10.1080/10408398.2021.1903382",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33819127/"
+        },
+        {
+          "pmid": "37838203",
+          "title": "Endocrine disruptors: Unravelling the link between chemical exposure and Women's reproductive health",
+          "journal": "Environ Res",
+          "year": "2024",
+          "doi": "10.1016/j.envres.2023.117385",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37838203/"
+        }
+      ],
+      "regulatory": {
+        "cid": 7456,
+        "cas": "99-76-3",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/7456",
+        "dtxsid": "DTXSID4022529",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID4022529",
+        "ghs_hazards": [
+          "H315: Causes skin irritation [Warning Skin corrosion/irritation]",
+          "H319: Causes serious eye irritation [Warning Serious eye damage/eye irritation]",
+          "H335: May cause respiratory irritation [Warning Specific target organ toxicity, single exposure; Respiratory tract irritation]",
+          "H336: May cause drowsiness or dizziness [Warning Specific target organ toxicity, single exposure; Narcotic effects]",
+          "H402: Harmful to aquatic life [Hazardous to the aquatic environment, acute hazard]",
+          "H411: Toxic to aquatic life with long lasting effects [Hazardous to the aquatic environment, long-term hazard]",
+          "Not Classified",
+          "H412: Harmful to aquatic life with long lasting effects [Hazardous to the aquatic environment, long-term hazard]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "low",
+      "action_impact": "low",
+      "concept_tags": [
+        "hepatic_metabolism",
+        "renal_clearance",
+        "endocrine_disruption",
+        "aggregate_exposure"
+      ],
+      "technical_note": "Parabens are rapidly hydrolyzed by esterases in skin and liver to para-hydroxybenzoic acid, then conjugated and excreted in urine within hours \u2014 they do not meaningfully bioaccumulate. Their estrogen-receptor binding is several orders of magnitude weaker than estradiol; the more relevant concern is aggregate exposure across the many products a person uses in one day, not any single application.",
+      "known_regrettable_substitutes": [
+        "phenoxyethanol"
+      ],
+      "summary_plain": "Preservatives that keep cosmetics from spoiling. In lab studies they act a little like the hormone estrogen. Regulators say the amounts normally used are not a concern, but some people choose to limit them."
+    },
+    {
+      "id": "phthalates",
+      "name": "Phthalates",
+      "aliases": [
+        "dbp",
+        "dep",
+        "diethyl phthalate",
+        "fragrance",
+        "parfum"
+      ],
+      "category": "personal_care",
+      "concern_level": 3,
+      "summary": "Often hidden inside generic 'fragrance/parfum' listings; used as plasticizers and fragrance carriers. Associated in research with endocrine disruption; classified with higher concern by several advocacy and regulatory bodies compared to parabens.",
+      "common_sources": [
+        "fragranced shampoo",
+        "conditioner",
+        "lotion",
+        "air fresheners",
+        "vinyl shower curtains"
+      ],
+      "mitigation_tips": [
+        "Choose 'fragrance-free' (not just 'unscented') products, since unscented can still use masking fragrance.",
+        "Ventilate bathrooms well when using fragranced products."
+      ],
+      "pubchem_name": "diethyl phthalate",
+      "pubmed_query": "phthalate exposure endocrine disruption health outcomes",
+      "references": [
+        {
+          "pmid": "32707118",
+          "title": "Endocrine-disrupting chemicals: implications for human health",
+          "journal": "Lancet Diabetes Endocrinol",
+          "year": "2020",
+          "doi": "10.1016/S2213-8587(20)30129-7",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/32707118/"
+        },
+        {
+          "pmid": "37838203",
+          "title": "Endocrine disruptors: Unravelling the link between chemical exposure and Women's reproductive health",
+          "journal": "Environ Res",
+          "year": "2024",
+          "doi": "10.1016/j.envres.2023.117385",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37838203/"
+        },
+        {
+          "pmid": "34601394",
+          "title": "Human health impacts of exposure to phthalate plasticizers: An overview of reviews",
+          "journal": "Environ Int",
+          "year": "2022",
+          "doi": "10.1016/j.envint.2021.106903",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34601394/"
+        }
+      ],
+      "regulatory": {
+        "cid": 6781,
+        "cas": "84-66-2",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/6781",
+        "dtxsid": "DTXSID7021780",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID7021780",
+        "ghs_hazards": [
+          "Not Classified",
+          "Reported as not meeting GHS hazard criteria by 1710 of 1769 companies (only 3.3% companies provided GHS information). For more detailed information, please visit  ECHA C&L website.",
+          "H401: Toxic to aquatic life [Hazardous to the aquatic environment, acute hazard]",
+          "H315: Causes skin irritation [Warning Skin corrosion/irritation]",
+          "H317: May cause an allergic skin reaction [Warning Sensitization, Skin]",
+          "H320: Causes eye irritation [Warning Serious eye damage/eye irritation]",
+          "H335: May cause respiratory irritation [Warning Specific target organ toxicity, single exposure; Respiratory tract irritation]",
+          "H336: May cause drowsiness or dizziness [Warning Specific target organ toxicity, single exposure; Narcotic effects]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "medium",
+      "action_impact": "medium",
+      "concept_tags": [
+        "hepatic_metabolism",
+        "renal_clearance",
+        "endocrine_disruption",
+        "aggregate_exposure",
+        "dose_response"
+      ],
+      "technical_note": "Phthalates are rapidly metabolized (hepatic hydrolysis to monoester metabolites, then glucuronidation) and cleared renally with urinary half-lives of hours \u2014 which is why biomonitoring studies use spot urine samples: they reflect very recent exposure, not a stored body burden. Because clearance is fast, same-day aggregate exposure (fragrance across several products at once) matters more than any one product in isolation.",
+      "summary_plain": "Chemicals that make plastic flexible and help scent last. They can hide behind the word 'fragrance' on a label. Research links some of them to effects on hormones, and several groups rate them a higher concern than parabens."
+    },
+    {
+      "id": "sodium_lauryl_sulfate",
+      "name": "Sodium Lauryl Sulfate (SLS) / Sodium Laureth Sulfate (SLES)",
+      "aliases": [
+        "sls",
+        "sles",
+        "sodium lauryl sulfate",
+        "sodium laureth sulfate"
+      ],
+      "category": "personal_care",
+      "concern_level": 1,
+      "summary": "Common surfactants/foaming agents. Primarily associated with skin/eye irritation and stripping natural oils, especially with frequent use or on sensitive skin, rather than systemic toxicity concerns. SLES manufacturing can leave trace 1,4-dioxane contamination.",
+      "common_sources": [
+        "shampoo",
+        "body wash",
+        "toothpaste"
+      ],
+      "mitigation_tips": [
+        "If experiencing scalp/skin irritation or dryness, try sulfate-free formulations.",
+        "Reduce wash frequency or dilute product if irritation is noted."
+      ],
+      "pubchem_name": "sodium lauryl sulfate",
+      "pubmed_query": "sodium lauryl sulfate skin irritation contact dermatitis",
+      "references": [
+        {
+          "pmid": "14524282",
+          "title": "[Allergic contact dermatitis]",
+          "journal": "Pol Merkur Lekarski",
+          "year": "2003",
+          "doi": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/14524282/"
+        },
+        {
+          "pmid": "33063847",
+          "title": "How irritant are n-propanol and isopropanol? - A systematic review",
+          "journal": "Contact Dermatitis",
+          "year": "2021",
+          "doi": "10.1111/cod.13722",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33063847/"
+        },
+        {
+          "pmid": "9035907",
+          "title": "Irritant dermatitis: experimental aspects",
+          "journal": "Curr Probl Dermatol",
+          "year": "1995",
+          "doi": "10.1159/000424309",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/9035907/"
+        }
+      ],
+      "regulatory": {
+        "cid": 3423265,
+        "cas": "151-21-3",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/3423265",
+        "dtxsid": "DTXSID1026031",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID1026031",
+        "ghs_hazards": [
+          "H228: Flammable solid [Danger Flammable solids]",
+          "H302: Harmful if swallowed [Warning Acute toxicity, oral]",
+          "H315: Causes skin irritation [Warning Skin corrosion/irritation]",
+          "H318: Causes serious eye damage [Danger Serious eye damage/eye irritation]",
+          "H319: Causes serious eye irritation [Warning Serious eye damage/eye irritation]",
+          "H332: Harmful if inhaled [Warning Acute toxicity, inhalation]",
+          "H335: May cause respiratory irritation [Warning Specific target organ toxicity, single exposure; Respiratory tract irritation]",
+          "H412: Harmful to aquatic life with long lasting effects [Hazardous to the aquatic environment, long-term hazard]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "low",
+      "action_impact": "low",
+      "concept_tags": [
+        "dose_response"
+      ],
+      "technical_note": "SLS's primary mechanism is local surfactant disruption of the skin/eye lipid barrier (protein denaturation at the contact site) rather than systemic absorption and metabolism \u2014 it's mechanistically a contact irritant, not a compound the liver/kidneys need to process in meaningful amounts at typical rinse-off use.",
+      "summary_plain": "Foaming cleansers found in shampoo and soap. They mostly irritate the skin or eyes and can dry the skin, especially with frequent use or on sensitive skin. They are not mainly a whole-body concern. SLES can carry traces of 1,4-dioxane from how it is made."
+    },
+    {
+      "id": "formaldehyde_releasers",
+      "name": "Formaldehyde-releasing preservatives",
+      "aliases": [
+        "dmdm hydantoin",
+        "quaternium-15",
+        "imidazolidinyl urea",
+        "diazolidinyl urea",
+        "bronopol"
+      ],
+      "category": "personal_care",
+      "concern_level": 3,
+      "summary": "Preservatives that slowly release small amounts of formaldehyde (a known human carcinogen at high/occupational exposure) to inhibit microbial growth. Can trigger contact dermatitis in sensitized individuals.",
+      "common_sources": [
+        "shampoo",
+        "conditioner",
+        "body wash",
+        "nail products"
+      ],
+      "mitigation_tips": [
+        "If you have known formaldehyde sensitivity or contact dermatitis, patch test new products and check ingredient lists.",
+        "Consider preservative systems like sodium benzoate/potassium sorbate as an alternative."
+      ],
+      "pubchem_name": "DMDM hydantoin",
+      "pubmed_query": "formaldehyde releasing preservatives cosmetics contact dermatitis",
+      "references": [
+        {
+          "pmid": "34523734",
+          "title": "Baby wipes and nappy rash - what is the relationship? A review",
+          "journal": "Australas J Dermatol",
+          "year": "2021",
+          "doi": "10.1111/ajd.13715",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34523734/"
+        },
+        {
+          "pmid": "35794071",
+          "title": "Preservatives in non-cosmetic products: Increasing human exposure requires action for protection of health",
+          "journal": "Contact Dermatitis",
+          "year": "2022",
+          "doi": "10.1111/cod.14181",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35794071/"
+        },
+        {
+          "pmid": "21338980",
+          "title": "[Allergic contact dermatitis caused by formaldehyde and formaldehyde releasers]",
+          "journal": "Actas Dermosifiliogr",
+          "year": "2011",
+          "doi": "10.1016/j.ad.2010.09.004",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/21338980/"
+        }
+      ],
+      "regulatory": {
+        "cid": 22947,
+        "cas": "6440-58-0",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/22947",
+        "dtxsid": "DTXSID8035217",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID8035217",
+        "ghs_hazards": [
+          "H302: Harmful if swallowed [Warning Acute toxicity, oral]",
+          "H315: Causes skin irritation [Warning Skin corrosion/irritation]",
+          "H317: May cause an allergic skin reaction [Warning Sensitization, Skin]",
+          "H319: Causes serious eye irritation [Warning Serious eye damage/eye irritation]",
+          "H334: May cause allergy or asthma symptoms or breathing difficulties if inhaled [Danger Sensitization, respiratory]",
+          "Not Classified",
+          "Reported as not meeting GHS hazard criteria by 1 of 1 companies. For more detailed information, please visit  ECHA C&L website."
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "medium",
+      "action_impact": "medium",
+      "concept_tags": [
+        "hepatic_metabolism",
+        "dose_response"
+      ],
+      "technical_note": "Released formaldehyde is rapidly oxidized by alcohol/aldehyde dehydrogenase (the same enzyme family that metabolizes ingested alcohol) to formate, then further processed or excreted \u2014 it does not accumulate. The consumer-product concern is primarily localized contact sensitization in already-sensitized skin, mechanistically distinct from the much higher-dose inhalation cancer data (occupational settings) behind its GHS carcinogen classification.",
+      "summary_plain": "Preservatives that slowly give off tiny amounts of formaldehyde to stop germs growing. At high, workplace-level exposure, formaldehyde is known to cause cancer. In people who have become sensitive to them, these preservatives can cause a skin rash."
+    },
+    {
+      "id": "artificial_food_dyes",
+      "name": "Artificial food dyes",
+      "aliases": [
+        "red 40",
+        "red dye 40",
+        "yellow 5",
+        "yellow 6",
+        "blue 1",
+        "blue 2",
+        "fd&c",
+        "allura red"
+      ],
+      "category": "food",
+      "concern_level": 2,
+      "summary": "Synthetic colorants used in cereals, pastries, and drinks. Some studies link certain dyes to hyperactivity in sensitive children; regulatory status varies by country (several require warning labels in the EU, and the U.S. FDA revoked authorization for Red Dye 3 in food in 2025).",
+      "common_sources": [
+        "breakfast cereal",
+        "flavored yogurt",
+        "pastries",
+        "fruit juice drinks"
+      ],
+      "mitigation_tips": [
+        "Choose whole-food breakfast options (oats, fruit, eggs) over brightly-colored processed cereals.",
+        "Check labels on kids' breakfast products specifically, where dye use is concentrated."
+      ],
+      "pubchem_name": "Allura Red AC",
+      "pubmed_query": "synthetic food dyes children behavior hyperactivity",
+      "references": [
+        {
+          "pmid": "38928929",
+          "title": "Synthetic Colors in Food: A Warning for Children's Health",
+          "journal": "Int J Environ Res Public Health",
+          "year": "2024",
+          "doi": "10.3390/ijerph21060682",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38928929/"
+        },
+        {
+          "pmid": "35484553",
+          "title": "Potential impacts of synthetic food dyes on activity and attention in children: a review of the human and animal evidence",
+          "journal": "Environ Health",
+          "year": "2022",
+          "doi": "10.1186/s12940-022-00849-9",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35484553/"
+        },
+        {
+          "pmid": "22928358",
+          "title": "The influence of components of diet on the symptoms of ADHD in children",
+          "journal": "Rocz Panstw Zakl Hig",
+          "year": "2012",
+          "doi": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/22928358/"
+        }
+      ],
+      "regulatory": {
+        "cid": 33258,
+        "cas": "25956-17-6",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/33258",
+        "dtxsid": "DTXSID4024436",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID4024436",
+        "ghs_hazards": [
+          "Not Classified",
+          "Reported as not meeting GHS hazard criteria by 345 of 345 companies. For more detailed information, please visit  ECHA C&L website."
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "low",
+      "action_impact": "medium",
+      "concept_tags": [
+        "aggregate_exposure",
+        "dose_response"
+      ],
+      "technical_note": "Most approved synthetic dyes are poorly absorbed from the gut and largely excreted unchanged in feces. The hyperactivity research concern is a proposed direct neurobehavioral effect in sensitive children \u2014 mechanistically different from most other entries here, which center on absorption/metabolism/accumulation.",
+      "summary_plain": "Man-made colors used in cereal, pastries and drinks. Some studies link certain dyes to hyperactivity in sensitive children. Rules differ by country: the EU puts warning labels on some, and in 2025 the US FDA withdrew its approval of Red Dye 3 in food."
+    },
+    {
+      "id": "added_sugar",
+      "name": "Added/refined sugar",
+      "aliases": [
+        "sugar",
+        "high fructose corn syrup",
+        "corn syrup",
+        "cane sugar",
+        "dextrose"
+      ],
+      "category": "food",
+      "concern_level": 1,
+      "summary": "Not a 'toxin' in the classic sense: what matters is how much and how often. A 2023 umbrella review of 73 meta-analyses (BMJ) found high sugar intake, especially from sugar-sweetened drinks, linked to poorer cardiometabolic outcomes, though most of the evidence was rated low quality; its authors suggest keeping added sugars under about 25 g a day.",
+      "common_sources": [
+        "sweetened cereal",
+        "pastries",
+        "flavored coffee drinks",
+        "sweetened yogurt"
+      ],
+      "mitigation_tips": [
+        "Pair carbohydrates with protein/fiber at breakfast to blunt glucose spikes.",
+        "Swap sweetened cereal/yogurt for plain versions with fresh fruit."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "added sugar intake metabolic health outcomes",
+      "references": [
+        {
+          "pmid": "37019448",
+          "title": "Dietary sugar consumption and health: umbrella review",
+          "journal": "BMJ",
+          "year": "2023",
+          "doi": "10.1136/bmj-2022-071609",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37019448/"
+        },
+        {
+          "pmid": "26199070",
+          "title": "Consumption of sugar sweetened beverages, artificially sweetened beverages, and fruit juice and incidence of type 2 diabetes: systematic review, meta-analysis, and estimation of population attributable fraction",
+          "journal": "BMJ",
+          "year": "2015",
+          "doi": "10.1136/bmj.h3576",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/26199070/"
+        },
+        {
+          "pmid": "39207876",
+          "title": "Sugar-Sweetened Beverages and Adverse Human Health Outcomes: An Umbrella Review of Meta-Analyses of Observational Studies",
+          "journal": "Annu Rev Nutr",
+          "year": "2024",
+          "doi": "10.1146/annurev-nutr-062322-020650",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/39207876/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-26",
+      "action_effort": "medium",
+      "action_impact": "medium",
+      "concept_tags": [
+        "dose_response"
+      ],
+      "technical_note": "This isn't a xenobiotic clearance question at all \u2014 glucose and fructose enter normal carbohydrate metabolism. The concern is purely dose and frequency (glycemic load, hepatic fructose handling at high chronic intake), which is part of why it carries the lowest concern level in this database despite being ubiquitous.",
+      "curated_pmids": [
+        "37019448",
+        "26199070",
+        "39207876"
+      ],
+      "summary_plain": "Sugar is not a poison. What matters is how much and how often. A large 2023 review in the BMJ linked a lot of sugar, especially from sweet drinks, to poorer heart and metabolic health, though most of the evidence was low quality. Its authors suggest keeping added sugar under about 25 grams a day."
+    },
+    {
+      "id": "acrylamide",
+      "name": "Acrylamide",
+      "aliases": [
+        "acrylamide",
+        "burnt toast",
+        "browned toast"
+      ],
+      "category": "food",
+      "concern_level": 2,
+      "summary": "Forms naturally in starchy foods during high-heat cooking (toasting, frying, baking) via the Maillard/browning reaction. Classified as a probable human carcinogen based on animal studies at high doses; dietary exposure levels are much lower.",
+      "common_sources": [
+        "toast",
+        "hash browns",
+        "coffee",
+        "breakfast potatoes"
+      ],
+      "mitigation_tips": [
+        "Toast bread to golden rather than dark brown/black.",
+        "Vary starch sources (e.g., some mornings oats or eggs instead of toast/hash browns)."
+      ],
+      "pubchem_name": "acrylamide",
+      "pubmed_query": "dietary acrylamide exposure cancer risk",
+      "references": [
+        {
+          "pmid": "35548558",
+          "title": "Dietary Acrylamide Exposure and Risk of Site-Specific Cancer: A Systematic Review and Dose-Response Meta-Analysis of Epidemiological Studies",
+          "journal": "Front Nutr",
+          "year": "2022",
+          "doi": "10.3389/fnut.2022.875607",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35548558/"
+        },
+        {
+          "pmid": "36673439",
+          "title": "Dietary Acrylamide Exposure and Cancer Risk: A Systematic Approach to Human Epidemiological Studies",
+          "journal": "Foods",
+          "year": "2023",
+          "doi": "10.3390/foods12020346",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36673439/"
+        },
+        {
+          "pmid": "24875401",
+          "title": "Dietary acrylamide and human cancer: a systematic review of literature",
+          "journal": "Nutr Cancer",
+          "year": "2014",
+          "doi": "10.1080/01635581.2014.916323",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/24875401/"
+        }
+      ],
+      "regulatory": {
+        "cid": 6579,
+        "cas": "79-06-1",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/6579",
+        "dtxsid": "DTXSID5020027",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID5020027",
+        "ghs_hazards": [
+          "H301: Toxic if swallowed [Danger Acute toxicity, oral]",
+          "H312: Harmful in contact with skin [Warning Acute toxicity, dermal]",
+          "H315: Causes skin irritation [Warning Skin corrosion/irritation]",
+          "H317: May cause an allergic skin reaction [Warning Sensitization, Skin]",
+          "H319: Causes serious eye irritation [Warning Serious eye damage/eye irritation]",
+          "H332: Harmful if inhaled [Warning Acute toxicity, inhalation]",
+          "H340: May cause genetic defects [Danger Germ cell mutagenicity]",
+          "H350: May cause cancer [Danger Carcinogenicity]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "low",
+      "action_impact": "low",
+      "concept_tags": [
+        "hepatic_metabolism",
+        "dose_response"
+      ],
+      "technical_note": "Acrylamide is metabolized primarily via hepatic CYP2E1 to glycidamide, a more reactive epoxide considered the genotoxic species in animal studies; glycidamide is then detoxified via glutathione conjugation. Dietary exposure sits far below the doses used in the underlying animal carcinogenicity studies, which is the core reason regulators treat it as 'probable' rather than 'confirmed' at real-world food exposure levels.",
+      "summary_plain": "Forms naturally in starchy foods when they are toasted, fried or baked at high heat and turn brown. It is a probable cancer-causing substance, based on animal studies at high doses. The amounts people eat are much lower."
+    },
+    {
+      "id": "bpa",
+      "name": "BPA (Bisphenol A)",
+      "aliases": [
+        "bpa",
+        "bisphenol a",
+        "polycarbonate",
+        "can lining"
+      ],
+      "category": "food",
+      "concern_level": 2,
+      "summary": "Used in some plastic containers and can linings; an endocrine-disrupting chemical that can migrate into food/drink, especially with heat.",
+      "common_sources": [
+        "canned juice",
+        "plastic food storage",
+        "reheated plastic containers"
+      ],
+      "mitigation_tips": [
+        "Avoid microwaving food in plastic containers.",
+        "Prefer glass/stainless storage for reheated breakfast leftovers."
+      ],
+      "pubchem_name": "bisphenol a",
+      "pubmed_query": "bisphenol A exposure endocrine health effects",
+      "references": [
+        {
+          "pmid": "32707118",
+          "title": "Endocrine-disrupting chemicals: implications for human health",
+          "journal": "Lancet Diabetes Endocrinol",
+          "year": "2020",
+          "doi": "10.1016/S2213-8587(20)30129-7",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/32707118/"
+        },
+        {
+          "pmid": "26544531",
+          "title": "EDC-2: The Endocrine Society's Second Scientific Statement on Endocrine-Disrupting Chemicals",
+          "journal": "Endocr Rev",
+          "year": "2015",
+          "doi": "10.1210/er.2015-1010",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/26544531/"
+        },
+        {
+          "pmid": "36436816",
+          "title": "Endocrine disruptors and endometriosis",
+          "journal": "Reprod Toxicol",
+          "year": "2023",
+          "doi": "10.1016/j.reprotox.2022.11.007",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36436816/"
+        }
+      ],
+      "regulatory": {
+        "cid": 6623,
+        "cas": "80-05-7",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/6623",
+        "dtxsid": "DTXSID7020182",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID7020182",
+        "ghs_hazards": [
+          "H317: May cause an allergic skin reaction [Warning Sensitization, Skin]",
+          "H318: Causes serious eye damage [Danger Serious eye damage/eye irritation]",
+          "H335: May cause respiratory irritation [Warning Specific target organ toxicity, single exposure; Respiratory tract irritation]",
+          "H360F: May damage fertility [Danger Reproductive toxicity]",
+          "H400: Very toxic to aquatic life [Warning Hazardous to the aquatic environment, acute hazard]",
+          "H410: Very toxic to aquatic life with long lasting effects [Warning Hazardous to the aquatic environment, long-term hazard]",
+          "H360: May damage fertility or the unborn child [Danger Reproductive toxicity]",
+          "H361: Suspected of damaging fertility or the unborn child [Warning Reproductive toxicity]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "low",
+      "action_impact": "medium",
+      "concept_tags": [
+        "hepatic_metabolism",
+        "renal_clearance",
+        "endocrine_disruption",
+        "dose_response"
+      ],
+      "technical_note": "BPA undergoes rapid hepatic glucuronidation and is excreted in urine with a half-life of only a few hours in adults \u2014 like phthalates, consistent detection reflects ongoing low-level exposure rather than accumulation. Its estrogen-receptor activity is weak relative to estradiol; the more actively debated science concerns low-dose, non-monotonic effects rather than accumulation.",
+      "known_regrettable_substitutes": [
+        "bisphenol_analogs"
+      ],
+      "summary_plain": "Used in some hard plastics and in the lining of some cans. It acts on hormones, and it can move into food and drink, especially when heated."
+    },
+    {
+      "id": "titanium_dioxide",
+      "name": "Titanium dioxide (food-grade, E171)",
+      "aliases": [
+        "titanium dioxide",
+        "e171",
+        "tio2"
+      ],
+      "category": "food",
+      "concern_level": 2,
+      "summary": "A whitening/opacifying additive used in some candies, coffee creamers, and frostings. The European Food Safety Authority withdrew its 'safe' determination in 2021 citing inability to rule out genotoxicity concerns from nanoparticle-sized fractions, and the EU banned it as a food additive in 2022; the U.S. FDA still permits it.",
+      "common_sources": [
+        "powdered coffee creamer",
+        "frosting/icing",
+        "candy",
+        "chewing gum"
+      ],
+      "mitigation_tips": [
+        "Check labels on creamers/candies for 'titanium dioxide' or 'E171' if minimizing intake.",
+        "Whole-milk or plant-milk creamers typically don't need it."
+      ],
+      "pubchem_name": "titanium dioxide",
+      "pubmed_query": "titanium dioxide nanoparticles food additive genotoxicity",
+      "references": [
+        {
+          "pmid": "30982201",
+          "title": "Effects of Titanium Dioxide Nanoparticles Exposure on Human Health-a Review",
+          "journal": "Biol Trace Elem Res",
+          "year": "2020",
+          "doi": "10.1007/s12011-019-01706-6",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30982201/"
+        },
+        {
+          "pmid": "35559883",
+          "title": "Advances in genotoxicity of titanium dioxide nanoparticles in vivo and in vitro",
+          "journal": "NanoImpact",
+          "year": "2022",
+          "doi": "10.1016/j.impact.2021.100377",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35559883/"
+        },
+        {
+          "pmid": "33520589",
+          "title": "Toxicological Consequences of Titanium Dioxide Nanoparticles (TiO(2)NPs) and Their Jeopardy to Human Population",
+          "journal": "Bionanoscience",
+          "year": "2021",
+          "doi": "10.1007/s12668-021-00836-3",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33520589/"
+        }
+      ],
+      "regulatory": {
+        "cid": 26042,
+        "cas": "13463-67-7",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/26042",
+        "dtxsid": "DTXSID3021352",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID3021352",
+        "ghs_hazards": [
+          "H351: Suspected of causing cancer [Warning Carcinogenicity]",
+          "Not Classified",
+          "Reported as not meeting GHS hazard criteria by 274 of 304 companies (only 9.9% companies provided GHS information). For more detailed information, please visit  ECHA C&L website.",
+          "H319: Causes serious eye irritation [Warning Serious eye damage/eye irritation]",
+          "H335: May cause respiratory irritation [Warning Specific target organ toxicity, single exposure; Respiratory tract irritation]",
+          "H372: Causes damage to organs through prolonged or repeated exposure [Danger Specific target organ toxicity, repeated exposure]",
+          "H413: May cause long lasting harmful effects to aquatic life [Hazardous to the aquatic environment, long-term hazard]",
+          "Reported as not meeting GHS hazard criteria by 1 of 1 companies. For more detailed information, please visit  ECHA C&L website."
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "low",
+      "action_impact": "low",
+      "concept_tags": [
+        "dose_response"
+      ],
+      "technical_note": "The specific concern from EFSA's 2021 review is the nanoparticle-sized fraction of ingested particles, which behaves differently from bulk-phase TiO2 in cellular-uptake and genotoxicity assays \u2014 a particle-size question more than a classic absorption/metabolism question, which is why EFSA couldn't rule out concern even though bulk TiO2 itself is considered chemically inert.",
+      "summary_plain": "A whitener added to some candy, creamers and frosting. In 2021 European food-safety experts withdrew their finding that it is safe, because they could not rule out DNA damage from its very tiny particles. The EU banned it in food in 2022. The US FDA still allows it."
+    },
+    {
+      "id": "sodium_nitrite",
+      "name": "Sodium nitrite (cured meat preservative)",
+      "aliases": [
+        "sodium nitrite",
+        "sodium nitrate",
+        "nitrite",
+        "cured",
+        "bacon"
+      ],
+      "category": "food",
+      "concern_level": 2,
+      "summary": "Used to cure bacon, sausage, and deli meat; can form nitrosamines (probable carcinogens) when heated at high temperatures, particularly alongside protein. IARC classifies processed meat as a Group 1 (carcinogenic) exposure, with nitrite chemistry as one proposed mechanism.",
+      "common_sources": [
+        "bacon",
+        "breakfast sausage",
+        "deli meat",
+        "hot dogs"
+      ],
+      "mitigation_tips": [
+        "Pair cured breakfast meats with vitamin-C-rich foods (citrus, peppers), which can inhibit nitrosamine formation.",
+        "Cook bacon/sausage at moderate heat rather than charring, and swap in eggs/plant protein some mornings."
+      ],
+      "pubchem_name": "sodium nitrite",
+      "pubmed_query": "processed meat nitrite nitrosamine cancer risk",
+      "references": [
+        {
+          "pmid": "32188080",
+          "title": "Nitrates/Nitrites in Food-Risk for Nitrosative Stress and Benefits",
+          "journal": "Antioxidants (Basel)",
+          "year": "2020",
+          "doi": "10.3390/antiox9030241",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/32188080/"
+        },
+        {
+          "pmid": "4342",
+          "title": "Nitrite, nitrosamines, and cancer",
+          "journal": "Fed Proc",
+          "year": "1976",
+          "doi": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/4342/"
+        },
+        {
+          "pmid": "31244197",
+          "title": "Nitrate and Nitrites in Foods: Worldwide Regional Distribution in View of Their Risks and Benefits",
+          "journal": "J Agric Food Chem",
+          "year": "2019",
+          "doi": "10.1021/acs.jafc.9b01194",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31244197/"
+        }
+      ],
+      "regulatory": {
+        "cid": 23668193,
+        "cas": "7632-00-0",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/23668193",
+        "dtxsid": "DTXSID0020941",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID0020941",
+        "ghs_hazards": [
+          "H272: May intensify fire; oxidizer [Danger Oxidizing liquids; Oxidizing solids]",
+          "H301: Toxic if swallowed [Danger Acute toxicity, oral]",
+          "H400: Very toxic to aquatic life [Warning Hazardous to the aquatic environment, acute hazard]",
+          "H319: Causes serious eye irritation [Warning Serious eye damage/eye irritation]",
+          "H341: Suspected of causing genetic defects [Warning Germ cell mutagenicity]",
+          "H361: Suspected of damaging fertility or the unborn child [Warning Reproductive toxicity]",
+          "H362: May cause harm to breast-fed children [Reproductive toxicity, effects on or via lactation]",
+          "H370: Causes damage to organs [Danger Specific target organ toxicity, single exposure]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "medium",
+      "action_impact": "medium",
+      "concept_tags": [
+        "dose_response",
+        "hepatic_metabolism"
+      ],
+      "technical_note": "The concern pathway is nitrite reacting with amines/amides from protein at high heat (or under acidic gastric conditions) to form N-nitroso compounds, which then require hepatic bioactivation (largely CYP-mediated) to become DNA-reactive. This is mechanistically why the vitamin-C mitigation tip works: ascorbate competes for the nitrosation reaction itself, blocking formation before metabolism is even relevant.",
+      "summary_plain": "Used to cure bacon, sausage and deli meat. When heated to high temperatures, especially with protein, it can form nitrosamines, which are probable cancer-causing substances. The cancer agency IARC puts processed meat in Group 1, which describes how strong the evidence is, not how big the effect is. Nitrite is one proposed reason."
+    },
+    {
+      "id": "bha_bht",
+      "name": "BHA / BHT (synthetic antioxidant preservatives)",
+      "aliases": [
+        "bha",
+        "bht",
+        "butylated hydroxyanisole",
+        "butylated hydroxytoluene"
+      ],
+      "category": "food",
+      "concern_level": 2,
+      "summary": "Synthetic antioxidants that prevent fats from going rancid in cereals, snack bars, and packaged baked goods. BHA is listed by the U.S. National Toxicology Program as 'reasonably anticipated to be a human carcinogen' based on animal data; BHT evidence is more mixed.",
+      "common_sources": [
+        "packaged cereal",
+        "granola bars",
+        "chewing gum",
+        "packaged baked goods"
+      ],
+      "mitigation_tips": [
+        "Look for cereals/snack bars preserved with vitamin E (tocopherols) instead of BHA/BHT.",
+        "Buying nuts/oats in smaller quantities and refrigerating reduces the need for synthetic antioxidant preservation at home."
+      ],
+      "pubchem_name": "BHA",
+      "pubmed_query": "butylated hydroxyanisole BHT food safety carcinogenicity",
+      "references": [
+        {
+          "pmid": "1298662",
+          "title": "Safety aspects of food preservatives",
+          "journal": "Food Addit Contam",
+          "year": "1992",
+          "doi": "10.1080/02652039209374110",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/1298662/"
+        },
+        {
+          "pmid": "3928262",
+          "title": "Effect of phenolic antioxidants on microbial growth",
+          "journal": "Crit Rev Microbiol",
+          "year": "1985",
+          "doi": "10.3109/10408418509104428",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/3928262/"
+        },
+        {
+          "pmid": "10541460",
+          "title": "Safety assessment of butylated hydroxyanisole and butylated hydroxytoluene as antioxidant food additives",
+          "journal": "Food Chem Toxicol",
+          "year": "1999",
+          "doi": "10.1016/s0278-6915(99)00085-x",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/10541460/"
+        }
+      ],
+      "last_synced": "2026-09-23",
+      "regulatory": {
+        "cid": 8456,
+        "cas": "25013-16-5",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/8456",
+        "dtxsid": "DTXSID7020215",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID7020215",
+        "ghs_hazards": [
+          "H302: Harmful if swallowed [Warning Acute toxicity, oral]",
+          "H315: Causes skin irritation [Warning Skin corrosion/irritation]",
+          "H319: Causes serious eye irritation [Warning Serious eye damage/eye irritation]",
+          "H335: May cause respiratory irritation [Warning Specific target organ toxicity, single exposure; Respiratory tract irritation]",
+          "H351: Suspected of causing cancer [Warning Carcinogenicity]",
+          "H361: Suspected of damaging fertility or the unborn child [Warning Reproductive toxicity]",
+          "H361f: Suspected of damaging fertility [Warning Reproductive toxicity]",
+          "H411: Toxic to aquatic life with long lasting effects [Hazardous to the aquatic environment, long-term hazard]"
+        ]
+      },
+      "action_effort": "medium",
+      "action_impact": "low",
+      "concept_tags": [
+        "hepatic_metabolism",
+        "dose_response"
+      ],
+      "technical_note": "Both are metabolized hepatically and excreted within about a day. BHA's 'reasonably anticipated' NTP carcinogen classification comes from forestomach tumors in rodent studies at high doses \u2014 rodents have a forestomach anatomical structure humans lack, which is part of why the human relevance of that specific finding is more debated than for some other entries here.",
+      "summary_plain": "Man-made antioxidants that stop fats going rancid in cereal, snack bars and baked goods. The US National Toxicology Program lists BHA as 'reasonably anticipated to be a human carcinogen' (likely to cause cancer in people), based on animal data. For BHT the evidence is more mixed."
+    },
+    {
+      "id": "pfas_packaging",
+      "name": "PFAS (\"forever chemicals\") in food packaging",
+      "aliases": [
+        "pfas",
+        "pfoa",
+        "pfos",
+        "grease-resistant wrapper",
+        "non-stick"
+      ],
+      "category": "food",
+      "concern_level": 3,
+      "summary": "Per- and polyfluoroalkyl substances used to make packaging grease/water resistant (fast-food wrappers, some microwave popcorn bags, takeout containers) and some non-stick cookware coatings. Extremely persistent in the body and environment; associated in research with a range of health effects. As older \"long-chain\" PFAS like PFOA were phased out, manufacturers largely moved to \"short-chain\" replacements (e.g. GenX) marketed as safer because they clear the body faster -- but the U.S. FDA and several states have moved to phase out PFAS broadly in food packaging as of the mid-2020s, not just the older compounds.",
+      "common_sources": [
+        "fast-food wrappers",
+        "microwave popcorn bags",
+        "molded fiber takeout containers",
+        "worn non-stick pans"
+      ],
+      "mitigation_tips": [
+        "Transfer takeout/fast food to a plate rather than eating directly from grease-resistant wrapping when practical.",
+        "Retire non-stick pans once the coating is visibly scratched or worn.",
+        "Air-pop popcorn or use a stovetop method instead of microwave bags occasionally."
+      ],
+      "pubchem_name": "perfluorooctanoic acid",
+      "pubmed_query": "PFAS food packaging exposure health effects review",
+      "references": [
+        {
+          "pmid": "30470793",
+          "title": "A review of the pathways of human exposure to poly- and perfluoroalkyl substances (PFASs) and present understanding of health effects",
+          "journal": "J Expo Sci Environ Epidemiol",
+          "year": "2019",
+          "doi": "10.1038/s41370-018-0094-1",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30470793/"
+        },
+        {
+          "pmid": "40665485",
+          "title": "Phthalates, bisphenols and per-and polyfluoroalkyl substances migration from food packaging into food: a systematic review",
+          "journal": "Rev Environ Health",
+          "year": "2025",
+          "doi": "10.1515/reveh-2025-0027",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/40665485/"
+        },
+        {
+          "pmid": "33542707",
+          "title": "Thyroid Disrupting Effects of Old and New Generation PFAS",
+          "journal": "Front Endocrinol (Lausanne)",
+          "year": "2020",
+          "doi": "10.3389/fendo.2020.612320",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33542707/"
+        }
+      ],
+      "regulatory": {
+        "cid": 9554,
+        "cas": "335-67-1",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/9554",
+        "dtxsid": "DTXSID8031865",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID8031865",
+        "ghs_hazards": [
+          "H302: Harmful if swallowed [Warning Acute toxicity, oral]",
+          "H318: Causes serious eye damage [Danger Serious eye damage/eye irritation]",
+          "H332: Harmful if inhaled [Warning Acute toxicity, inhalation]",
+          "H351: Suspected of causing cancer [Warning Carcinogenicity]",
+          "H360D: May damage the unborn child [Danger Reproductive toxicity]",
+          "H362: May cause harm to breast-fed children [Reproductive toxicity, effects on or via lactation]",
+          "H372: Causes damage to organs through prolonged or repeated exposure [Danger Specific target organ toxicity, repeated exposure]",
+          "H314: Causes severe skin burns and eye damage [Danger Skin corrosion/irritation]"
+        ]
+      },
+      "last_synced": "2026-09-26",
+      "action_effort": "medium",
+      "action_impact": "high",
+      "concept_tags": [
+        "bioaccumulation_half_life",
+        "renal_clearance",
+        "aggregate_exposure"
+      ],
+      "technical_note": "This is the one entry where the usual 'liver/kidneys handle it in hours' story doesn't apply: PFAS's charged head group is actively reabsorbed by renal organic anion transporters instead of being excreted, giving serum half-lives measured in years rather than hours for the older long-chain compounds. Short-chain replacements like GenX (HFPO-DA) do clear faster -- but a 2020 NIEHS/EPA study dosing pregnant mice with PFOA or GenX side by side found GenX reproduced many of PFOA's maternal and developmental effects regardless of that shorter half-life, i.e. faster clearance didn't translate to a cleanly better safety profile. That's the general shape of 'regrettable substitution': a replacement engineered to fix one specific, measurable property (persistence) without the underlying toxicity necessarily following.",
+      "curated_pmids": [
+        "30470793",
+        "40665485"
+      ],
+      "pubmed_anchors": [
+        "PFAS",
+        "PFASs",
+        "perfluoroalkyl",
+        "polyfluoroalkyl",
+        "perfluorinated"
+      ],
+      "summary_plain": "'Forever chemicals' that make packaging resist grease and water: fast-food wrappers, some microwave popcorn bags, takeout boxes and some non-stick pans. They last a very long time in the body and the environment, and research links them to a range of health effects. The US FDA and several states are phasing out PFAS in food packaging, including newer 'short-chain' types like GenX."
+    },
+    {
+      "id": "mold_indoor",
+      "name": "Indoor mold / mycotoxin exposure",
+      "aliases": [
+        "mold",
+        "mildew",
+        "musty smell",
+        "water damage",
+        "mycotoxin"
+      ],
+      "category": "environment",
+      "concern_level": 3,
+      "summary": "Indoor mold growth (often from past water damage, humidity, or poor ventilation) can trigger respiratory symptoms, allergic reactions, and in some individuals broader symptom clusters attributed to mycotoxin exposure. Home and workplace HVAC systems are common reservoirs.",
+      "common_sources": [
+        "bathroom",
+        "basement",
+        "HVAC/AC units",
+        "under sinks",
+        "window sills"
+      ],
+      "mitigation_tips": [
+        "Run bathroom exhaust fans during/after showers; fix leaks promptly.",
+        "Have HVAC systems and ductwork inspected/cleaned if musty odors are present.",
+        "Consider a hygrometer to keep indoor humidity under ~50%.",
+        "For confirmed mold or persistent symptoms, consult a certified mold inspector and a physician rather than self-diagnosing."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "indoor dampness mold respiratory health review",
+      "references": [
+        {
+          "pmid": "21269928",
+          "title": "Respiratory and allergic health effects of dampness, mold, and dampness-related agents: a review of the epidemiologic evidence",
+          "journal": "Environ Health Perspect",
+          "year": "2011",
+          "doi": "10.1289/ehp.1002410",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/21269928/"
+        },
+        {
+          "pmid": "14524388",
+          "title": "Indoor fungal exposure",
+          "journal": "Immunol Allergy Clin North Am",
+          "year": "2003",
+          "doi": "10.1016/s0889-8561(03)00061-4",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/14524388/"
+        },
+        {
+          "pmid": "31310034",
+          "title": "Does dampness and mold in schools affect health? Results of a meta-analysis",
+          "journal": "Indoor Air",
+          "year": "2019",
+          "doi": "10.1111/ina.12588",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31310034/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-23",
+      "action_effort": "high",
+      "action_impact": "high",
+      "concept_tags": [
+        "particle_deposition",
+        "dose_response"
+      ],
+      "technical_note": "For most people, symptoms are IgE-mediated allergic responses to inhaled spore/hyphal fragments (subject to the same size-dependent deposition physics as other airborne particles), not mycotoxin poisoning. True mycotoxicosis requires much higher, sustained exposure than typical household contact and is a distinct, much rarer clinical picture from the common allergic/irritant presentation.",
+      "pubmed_anchors": [
+        "mold",
+        "mould",
+        "dampness",
+        "fungal",
+        "fungi"
+      ],
+      "summary_plain": "Mold can grow indoors after water damage, damp air or poor airflow. It can cause breathing problems and allergic reactions. In some people it is blamed for a wider mix of symptoms, linked to substances some molds make (mycotoxins). Heating and cooling systems are common places for it to hide."
+    },
+    {
+      "id": "hvac_filter_age",
+      "name": "Stale/overdue HVAC filter",
+      "aliases": [
+        "ac filter",
+        "hvac filter",
+        "air filter",
+        "dusty vents"
+      ],
+      "category": "environment",
+      "concern_level": 1,
+      "summary": "Overdue HVAC filters recirculate dust, particulates, and can harbor microbial growth, contributing to indoor air quality (IAQ) degradation.",
+      "common_sources": [
+        "home AC unit",
+        "workplace central air"
+      ],
+      "mitigation_tips": [
+        "Replace/check filters roughly every 1-3 months (more often with pets or allergies).",
+        "Request workplace facilities confirm HVAC filter maintenance schedules."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "HVAC filter maintenance indoor air quality health",
+      "references": [
+        {
+          "pmid": "31665545",
+          "title": "In-situ effectiveness of residential HVAC filters",
+          "journal": "Indoor Air",
+          "year": "2020",
+          "doi": "10.1111/ina.12617",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31665545/"
+        },
+        {
+          "pmid": "31845406",
+          "title": "In situ efficiency of filters in residential central HVAC systems",
+          "journal": "Indoor Air",
+          "year": "2020",
+          "doi": "10.1111/ina.12633",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31845406/"
+        },
+        {
+          "pmid": "26197328",
+          "title": "Evaluating the Long-Term Health and Economic Impacts of Central Residential Air Filtration for Reducing Premature Mortality Associated with Indoor Fine Particulate Matter (PM2.5) of Outdoor Origin",
+          "journal": "Int J Environ Res Public Health",
+          "year": "2015",
+          "doi": "10.3390/ijerph120708448",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/26197328/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-26",
+      "action_effort": "low",
+      "action_impact": "low",
+      "concept_tags": [
+        "particle_deposition"
+      ],
+      "technical_note": "A filter's MERV rating describes what particle size it captures efficiently. An overdue filter doesn't just stop filtering well \u2014 the pressure drop across a clogged filter can reduce total airflow, which paradoxically cuts total air changes per hour along with filtration efficiency.",
+      "curated_pmids": [
+        "31665545",
+        "31845406",
+        "26197328"
+      ],
+      "pubmed_anchors": [
+        "filter",
+        "filters",
+        "filtration",
+        "HVAC"
+      ],
+      "summary_plain": "A clogged or overdue air filter sends dust and tiny particles around the home, and can let germs and mold grow. That makes indoor air worse."
+    },
+    {
+      "id": "voc_off_gassing",
+      "name": "VOC off-gassing",
+      "aliases": [
+        "voc",
+        "volatile organic compound",
+        "new carpet smell",
+        "paint fumes",
+        "new furniture smell"
+      ],
+      "category": "environment",
+      "concern_level": 2,
+      "summary": "Volatile organic compounds off-gas from paints, new furniture, carpet, and some cleaning/air-freshening products, contributing to indoor air pollution and, in some individuals, headaches or respiratory irritation.",
+      "common_sources": [
+        "new furniture",
+        "fresh paint",
+        "synthetic carpet",
+        "air fresheners",
+        "office cleaning products"
+      ],
+      "mitigation_tips": [
+        "Ventilate spaces well after painting or installing new furniture/carpet (days to weeks).",
+        "Choose low-VOC paints/products where possible.",
+        "Use a portable air purifier with activated carbon for VOC adsorption in problem rooms."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "volatile organic compounds indoor air quality health effects",
+      "references": [
+        {
+          "pmid": "35886604",
+          "title": "Indoor Air Pollution and the Health of Vulnerable Groups: A Systematic Review Focused on Particulate Matter (PM), Volatile Organic Compounds (VOCs) and Their Effects on Children and People with Pre-Existing Lung Disease",
+          "journal": "Int J Environ Res Public Health",
+          "year": "2022",
+          "doi": "10.3390/ijerph19148752",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35886604/"
+        },
+        {
+          "pmid": "33276576",
+          "title": "Indoor Exposure to Selected Air Pollutants in the Home Environment: A Systematic Review",
+          "journal": "Int J Environ Res Public Health",
+          "year": "2020",
+          "doi": "10.3390/ijerph17238972",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33276576/"
+        },
+        {
+          "pmid": "38840986",
+          "title": "A Comprehensive Literature Review on the Effects of Formaldehyde on the Upper Respiratory Tract",
+          "journal": "Cureus",
+          "year": "2024",
+          "doi": "10.7759/cureus.59743",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38840986/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-26",
+      "action_effort": "medium",
+      "action_impact": "medium",
+      "concept_tags": [
+        "hepatic_metabolism",
+        "dose_response"
+      ],
+      "technical_note": "VOC off-gassing follows roughly first-order decay from a fresh material \u2014 highest emission immediately after installation/application, dropping over days to weeks. That's the physical reason 'ventilate for the first couple weeks' is the standard advice rather than an indefinite precaution.",
+      "curated_pmids": [
+        "35886604",
+        "33276576",
+        "38840986"
+      ],
+      "pubmed_anchors": [
+        "volatile",
+        "formaldehyde",
+        "VOC",
+        "VOCs"
+      ],
+      "summary_plain": "New paint, furniture and carpet, and some cleaning and air-freshening products, give off gases called VOCs. They add to indoor air pollution. In some people they cause headaches or an irritated nose and throat."
+    },
+    {
+      "id": "low_humidity_dry_air",
+      "name": "Low indoor humidity",
+      "aliases": [
+        "dry air",
+        "low humidity",
+        "dry office"
+      ],
+      "category": "environment",
+      "concern_level": 1,
+      "summary": "Very low indoor humidity (common in AC-heavy or heated environments) can dry mucous membranes, reducing natural defenses against airborne irritants and pathogens.",
+      "common_sources": [
+        "office AC",
+        "winter heating",
+        "home AC"
+      ],
+      "mitigation_tips": [
+        "Consider a humidifier for very dry environments (target ~30-50% relative humidity).",
+        "Stay hydrated and use saline nasal spray if mucous membranes feel dry."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "low indoor humidity respiratory infection risk",
+      "references": [
+        {
+          "pmid": "29398406",
+          "title": "Indoor air humidity, air quality, and health - An overview",
+          "journal": "Int J Hyg Environ Health",
+          "year": "2018",
+          "doi": "10.1016/j.ijheh.2018.01.015",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29398406/"
+        },
+        {
+          "pmid": "33601136",
+          "title": "Health, work performance, and risk of infection in office-like environments: The role of indoor temperature, air humidity, and ventilation",
+          "journal": "Int J Hyg Environ Health",
+          "year": "2021",
+          "doi": "10.1016/j.ijheh.2021.113709",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33601136/"
+        },
+        {
+          "pmid": "37298409",
+          "title": "Relative Humidity and Its Impact on the Immune System and Infections",
+          "journal": "Int J Mol Sci",
+          "year": "2023",
+          "doi": "10.3390/ijms24119456",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37298409/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-26",
+      "action_effort": "low",
+      "action_impact": "low",
+      "concept_tags": [
+        "dose_response"
+      ],
+      "technical_note": "Low humidity doesn't introduce a new chemical exposure \u2014 the mechanism is desiccation of the nasal/respiratory mucociliary barrier, the body's primary first-line particle/pathogen clearance system. This entry is more 'reduced defense' than 'exposure' in the sense the rest of this database uses.",
+      "curated_pmids": [
+        "29398406",
+        "33601136",
+        "37298409"
+      ],
+      "pubmed_anchors": [
+        "humidity",
+        "humid"
+      ],
+      "summary_plain": "Very dry indoor air, common with heating or air conditioning, can dry out the lining of your nose and throat. That makes it easier for irritants and germs in the air to get past your natural defenses."
+    },
+    {
+      "id": "high_humidity",
+      "name": "High indoor humidity",
+      "aliases": [
+        "humid",
+        "high humidity",
+        "condensation"
+      ],
+      "category": "environment",
+      "concern_level": 2,
+      "summary": "Sustained high indoor humidity (>60%) promotes dust mite and mold growth, compounding respiratory exposure risks.",
+      "common_sources": [
+        "bathroom",
+        "basement",
+        "poorly ventilated kitchen"
+      ],
+      "mitigation_tips": [
+        "Use dehumidifiers in consistently damp areas.",
+        "Improve ventilation (exhaust fans, cracked windows) in high-moisture rooms."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "indoor humidity dust mite allergen asthma",
+      "references": [
+        {
+          "pmid": "3709462",
+          "title": "Indirect health effects of relative humidity in indoor environments",
+          "journal": "Environ Health Perspect",
+          "year": "1986",
+          "doi": "10.1289/ehp.8665351",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/3709462/"
+        },
+        {
+          "pmid": "23760885",
+          "title": "Dehumidifiers for chronic asthma",
+          "journal": "Cochrane Database Syst Rev",
+          "year": "2013",
+          "doi": "10.1002/14651858.CD003563.pub2",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/23760885/"
+        },
+        {
+          "pmid": "8041869",
+          "title": "Humidity regulation in the management of asthma patients sensitized to house dust mites",
+          "journal": "Q J Med",
+          "year": "1994",
+          "doi": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/8041869/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-26",
+      "action_effort": "medium",
+      "action_impact": "medium",
+      "concept_tags": [
+        "particle_deposition",
+        "dose_response"
+      ],
+      "technical_note": "Above roughly 60% relative humidity, dust mite and mold growth rates increase sharply \u2014 this entry is really an upstream risk factor feeding the `mold_indoor` and dust-mite-allergen pathways rather than an exposure in its own right.",
+      "curated_pmids": [
+        "3709462",
+        "23760885",
+        "8041869"
+      ],
+      "pubmed_anchors": [
+        "humidity",
+        "dehumidifier",
+        "dehumidifiers"
+      ],
+      "summary_plain": "Air that stays humid, over about 60%, helps dust mites and mold grow. That adds to what you breathe in."
+    },
+    {
+      "id": "siloxanes",
+      "name": "Cyclic siloxanes (D4/D5)",
+      "aliases": [
+        "cyclopentasiloxane",
+        "cyclotetrasiloxane",
+        "dimethicone",
+        "d4",
+        "d5"
+      ],
+      "category": "personal_care",
+      "concern_level": 2,
+      "summary": "Silicone-derived ingredients that give hair/skin products a smooth, silky feel. D4 is classified by the EU as a substance of very high concern (endocrine disruption, environmental persistence) and is restricted there; D5 is more debated. Most dimethicone itself (the polymer) is considered lower concern than the cyclic (ring-shaped) siloxane monomers D4/D5.",
+      "common_sources": [
+        "conditioner",
+        "smoothing serum",
+        "primer",
+        "anti-frizz products"
+      ],
+      "mitigation_tips": [
+        "If minimizing siloxane exposure, scan ingredient lists for 'cyclopentasiloxane' or 'cyclotetrasiloxane' specifically (not just any 'dimethicone').",
+        "Rinse-off products (shampoo/conditioner) carry lower systemic exposure than leave-on products."
+      ],
+      "pubchem_name": "decamethylcyclopentasiloxane",
+      "pubmed_query": "cyclosiloxane cosmetics safety",
+      "references": [
+        {
+          "pmid": "22398195",
+          "title": "Endocrine disruptors and asthma-associated chemicals in consumer products",
+          "journal": "Environ Health Perspect",
+          "year": "2012",
+          "doi": "10.1289/ehp.1104052",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/22398195/"
+        }
+      ],
+      "regulatory": {
+        "cid": 10913,
+        "cas": "541-02-6",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/10913",
+        "dtxsid": "DTXSID1027184",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID1027184",
+        "ghs_hazards": [
+          "Not Classified",
+          "Reported as not meeting GHS hazard criteria by 4427 of 4565 companies (only 3% companies provided GHS information). For more detailed information, please visit  ECHA C&L website.",
+          "H227: Combustible liquid [Warning Flammable liquids]",
+          "H373: May causes damage to organs through prolonged or repeated exposure [Warning Specific target organ toxicity, repeated exposure]",
+          "H413: May cause long lasting harmful effects to aquatic life [Hazardous to the aquatic environment, long-term hazard]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "medium",
+      "action_impact": "low",
+      "concept_tags": [
+        "bioaccumulation_half_life",
+        "dose_response"
+      ],
+      "technical_note": "D4/D5 are more persistent and bioaccumulative than most personal-care ingredients here (why the EU restricted D4 specifically) \u2014 lipophilic enough to partition into fatty tissue rather than being rapidly cleared, closer in that respect to PFAS's persistence story than to parabens' hours-long clearance, though via a different mechanism (passive partitioning, not transporter-mediated reabsorption).",
+      "summary_plain": "Silicone-based ingredients that make hair and skin products feel smooth and silky. The EU lists D4 as a 'substance of very high concern' because it may affect hormones and lasts in the environment, and it restricts it. D5 is more debated. Dimethicone itself, the long-chain form, is thought to be a lower concern than the ring-shaped D4 and D5."
+    },
+    {
+      "id": "aluminum_antiperspirant",
+      "name": "Aluminum compounds (antiperspirant)",
+      "aliases": [
+        "aluminum chlorohydrate",
+        "aluminum zirconium",
+        "antiperspirant"
+      ],
+      "category": "personal_care",
+      "concern_level": 1,
+      "summary": "Aluminum salts block sweat ducts in antiperspirants. A commonly raised link to breast cancer has not been supported by the larger body of epidemiological evidence to date, though research is ongoing; skin irritation is the more established concern, especially on freshly shaved skin.",
+      "common_sources": [
+        "antiperspirant deodorant"
+      ],
+      "mitigation_tips": [
+        "If irritation occurs, apply after shaving has fully settled (few hours) rather than immediately.",
+        "Aluminum-free deodorants (which control odor but not sweat) are a straightforward alternative if you'd prefer to avoid aluminum salts."
+      ],
+      "pubchem_name": "aluminum chlorohydrate",
+      "pubmed_query": "antiperspirant aluminum breast cancer epidemiology review",
+      "references": [
+        {
+          "pmid": "38173070",
+          "title": "Exploring the Potential Link between Aluminum-Containing Deodorants/Antiperspirants and Breast Cancer: A Comprehensive Review",
+          "journal": "Curr Med Chem",
+          "year": "2025",
+          "doi": "10.2174/0109298673269343231025070053",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38173070/"
+        },
+        {
+          "pmid": "37354712",
+          "title": "Correlation between daily life aluminium exposure and breast cancer risk: A systematic review",
+          "journal": "J Trace Elem Med Biol",
+          "year": "2023",
+          "doi": "10.1016/j.jtemb.2023.127247",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37354712/"
+        },
+        {
+          "pmid": "29034866",
+          "title": "The Health Effects of Aluminum Exposure",
+          "journal": "Dtsch Arztebl Int",
+          "year": "2017",
+          "doi": "10.3238/arztebl.2017.0653",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29034866/"
+        }
+      ],
+      "regulatory": {
+        "cid": 71586946,
+        "cas": "234-933-1",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/71586946",
+        "dtxsid": null,
+        "comptox_url": null,
+        "ghs_hazards": []
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "low",
+      "action_impact": "low",
+      "concept_tags": [
+        "renal_clearance",
+        "dose_response"
+      ],
+      "technical_note": "Only a small fraction of topically applied aluminum salts penetrates intact skin; what's absorbed is renally cleared like other aluminum compounds. Most people's larger absorbed dose is actually dietary (aluminum-containing food additives, cookware, antacids), part of why epidemiological evidence hasn't supported antiperspirant use specifically as a meaningful driver of health outcomes.",
+      "summary_plain": "Aluminum salts block sweat glands in antiperspirants. People often raise a link to breast cancer, but the larger body of research has not supported it so far, and studies continue. Skin irritation is the better-established concern, especially on freshly shaved skin."
+    },
+    {
+      "id": "talc",
+      "name": "Talc",
+      "aliases": [
+        "talc",
+        "talcum"
+      ],
+      "category": "personal_care",
+      "concern_level": 2,
+      "summary": "A mineral used as a powder base in some cosmetic and body powders. Historical concern centers on possible contamination with asbestos (a known carcinogen) from shared mineral deposits; asbestos-free talc's own cancer risk (e.g., from perineal use) has been debated in epidemiological studies with mixed results.",
+      "common_sources": [
+        "body powder",
+        "baby powder",
+        "some pressed powder makeup"
+      ],
+      "mitigation_tips": [
+        "Cornstarch-based powders are a widely available talc-free alternative.",
+        "Look for products that state third-party asbestos testing if continuing to use talc-based powder."
+      ],
+      "pubchem_name": "talc",
+      "pubmed_query": "talc powder cosmetic use cancer risk epidemiology",
+      "references": [
+        {
+          "pmid": "34758846",
+          "title": "Investigation on factors associated with ovarian cancer: an umbrella review of systematic review and meta-analyses",
+          "journal": "J Ovarian Res",
+          "year": "2021",
+          "doi": "10.1186/s13048-021-00911-z",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34758846/"
+        },
+        {
+          "pmid": "28863045",
+          "title": "Perineal Talc Use and Ovarian Cancer: A Systematic Review and Meta-Analysis",
+          "journal": "Epidemiology",
+          "year": "2018",
+          "doi": "10.1097/EDE.0000000000000745",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/28863045/"
+        },
+        {
+          "pmid": "30100164",
+          "title": "Talc exposure and risk of stomach cancer: Systematic review and meta-analysis of occupational cohort studies",
+          "journal": "J Formos Med Assoc",
+          "year": "2020",
+          "doi": "10.1016/j.jfma.2018.07.015",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30100164/"
+        }
+      ],
+      "regulatory": {
+        "cid": 165411828,
+        "cas": "238-877-9",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/165411828",
+        "dtxsid": null,
+        "comptox_url": null,
+        "ghs_hazards": [
+          "Not Classified",
+          "Reported as not meeting GHS hazard criteria by 4523 of 4758 companies (only 4.9% companies provided GHS information). For more detailed information, please visit  ECHA C&L website.",
+          "H370: Causes damage to organs [Danger Specific target organ toxicity, single exposure]",
+          "H372: Causes damage to organs through prolonged or repeated exposure [Danger Specific target organ toxicity, repeated exposure]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "low",
+      "action_impact": "low",
+      "concept_tags": [
+        "particle_deposition",
+        "dose_response"
+      ],
+      "technical_note": "The historical asbestos-contamination concern is a fiber-inhalation mechanism (asbestos fibers deposit and persist in lung/pleural tissue via the same small-particle physics as PM2.5, but are far more biopersistent). Asbestos-free talc's own risk profile \u2014 particularly for perineal use \u2014 involves a different, still-debated mechanism and has produced inconsistent epidemiological results.",
+      "summary_plain": "A mineral used as a powder in some cosmetics and body powders. The old worry was contamination with asbestos, a known cancer-causing substance, found in some of the same deposits. Studies on whether talc without asbestos can cause cancer, for example with genital use, have had mixed results."
+    },
+    {
+      "id": "retinyl_palmitate",
+      "name": "Retinyl palmitate (in daytime sunscreen)",
+      "aliases": [
+        "retinyl palmitate",
+        "vitamin a palmitate"
+      ],
+      "category": "personal_care",
+      "concern_level": 1,
+      "summary": "A vitamin A derivative added to some sunscreens/moisturizers as an antioxidant/anti-aging ingredient. A U.S. NTP photocarcinogenicity study in mice raised a question about accelerated skin tumor development under intense UV exposure specifically when combined with UV light; the finding hasn't been confirmed in humans and regulators have not restricted its use, but it's part of why some sunscreen guides suggest checking for it in daily-wear, sun-exposed products.",
+      "common_sources": [
+        "sunscreen",
+        "daytime moisturizer with SPF"
+      ],
+      "mitigation_tips": [
+        "Mineral sunscreens (zinc oxide / titanium dioxide based) are a straightforward alternative if avoiding retinyl palmitate specifically.",
+        "This is unrelated to topical retinoids used at night for skin care, which is a separate use case with different evidence."
+      ],
+      "pubchem_name": "retinyl palmitate",
+      "pubmed_query": "retinyl palmitate photocarcinogenesis skin",
+      "references": [
+        {
+          "pmid": "23001333",
+          "title": "Photocarcinogenesis study of retinoic acid and retinyl palmitate [CAS Nos. 302-79-4 (All-trans-retinoic acid) and 79-81-2 (All-trans-retinyl palmitate)] in SKH-1 mice (Simulated Solar Light and Topical Application Study)",
+          "journal": "Natl Toxicol Program Tech Rep Ser",
+          "year": "2012",
+          "doi": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/23001333/"
+        },
+        {
+          "pmid": "2118827",
+          "title": "Cumulative reduction of primary skin tumor growth in UV-irradiated mice by the combination of retinyl palmitate and canthaxanthin",
+          "journal": "Cancer Lett",
+          "year": "1990",
+          "doi": "10.1016/0304-3835(90)90006-j",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/2118827/"
+        },
+        {
+          "pmid": "23652895",
+          "title": "Vitamin A and its derivatives in experimental photocarcinogenesis: preventive effects and relevance to humans",
+          "journal": "J Drugs Dermatol",
+          "year": "2013",
+          "doi": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/23652895/"
+        }
+      ],
+      "regulatory": {
+        "cid": 5280531,
+        "cas": "79-81-2",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/5280531",
+        "dtxsid": "DTXSID1021241",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID1021241",
+        "ghs_hazards": [
+          "H315: Causes skin irritation [Warning Skin corrosion/irritation]",
+          "H360: May damage fertility or the unborn child [Danger Reproductive toxicity]",
+          "H361: Suspected of damaging fertility or the unborn child [Warning Reproductive toxicity]",
+          "H413: May cause long lasting harmful effects to aquatic life [Hazardous to the aquatic environment, long-term hazard]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "low",
+      "action_impact": "low",
+      "concept_tags": [
+        "dose_response"
+      ],
+      "technical_note": "The NTP finding was specifically a photocarcinogenesis interaction \u2014 accelerated tumor development under simultaneous intense UV exposure in mice \u2014 not a standalone toxicity finding. That's mechanistically why the concern is specific to UV-exposed daytime/sunscreen use rather than nighttime retinoid skincare, which has no UV co-exposure.",
+      "summary_plain": "A form of vitamin A added to some sunscreens and moisturizers. A US National Toxicology Program study in mice found skin tumors appeared faster when it was combined with strong UV light. This has not been confirmed in people, and regulators have not restricted it, but it is why some sunscreen guides suggest checking for it in daily-wear products."
+    },
+    {
+      "id": "triclosan",
+      "name": "Triclosan",
+      "aliases": [
+        "triclosan"
+      ],
+      "category": "personal_care",
+      "concern_level": 2,
+      "summary": "An antibacterial agent formerly common in liquid hand soap. The U.S. FDA banned triclosan (and 18 other antibacterial ingredients) from over-the-counter wash products in 2016/2017 citing insufficient evidence that it's more effective than plain soap plus emerging safety questions (endocrine activity, antibiotic resistance concerns); it can still appear in some toothpaste and cosmetics.",
+      "common_sources": [
+        "some toothpaste",
+        "older 'antibacterial' soap stock",
+        "some cosmetics"
+      ],
+      "mitigation_tips": [
+        "Plain soap and water is equally effective for routine handwashing per FDA's own rationale for the ban.",
+        "Check toothpaste ingredient lists if you specifically want to avoid it; it's less common than it used to be."
+      ],
+      "pubchem_name": "triclosan",
+      "pubmed_query": "triclosan antibacterial exposure endocrine safety",
+      "references": [
+        {
+          "pmid": "36965724",
+          "title": "Adverse effects of triclosan exposure on health and potential molecular mechanisms",
+          "journal": "Sci Total Environ",
+          "year": "2023",
+          "doi": "10.1016/j.scitotenv.2023.163068",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36965724/"
+        },
+        {
+          "pmid": "21462230",
+          "title": "Triclosan: environmental exposure, toxicity and mechanisms of action",
+          "journal": "J Appl Toxicol",
+          "year": "2011",
+          "doi": "10.1002/jat.1660",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/21462230/"
+        },
+        {
+          "pmid": "35903762",
+          "title": "Impact of Triclosan on Female and Male Reproductive System and Its Consequences on Fertility: A Literature Review",
+          "journal": "J Family Reprod Health",
+          "year": "2022",
+          "doi": "10.18502/jfrh.v16i1.8592",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35903762/"
+        }
+      ],
+      "regulatory": {
+        "cid": 5564,
+        "cas": "3380-34-5",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/5564",
+        "dtxsid": "DTXSID5032498",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID5032498",
+        "ghs_hazards": [
+          "H315: Causes skin irritation [Warning Skin corrosion/irritation]",
+          "H319: Causes serious eye irritation [Warning Serious eye damage/eye irritation]",
+          "H400: Very toxic to aquatic life [Warning Hazardous to the aquatic environment, acute hazard]",
+          "H410: Very toxic to aquatic life with long lasting effects [Warning Hazardous to the aquatic environment, long-term hazard]",
+          "Not Classified",
+          "H331: Toxic if inhaled [Danger Acute toxicity, inhalation]",
+          "H335: May cause respiratory irritation [Warning Specific target organ toxicity, single exposure; Respiratory tract irritation]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "low",
+      "action_impact": "low",
+      "concept_tags": [
+        "hepatic_metabolism",
+        "dose_response"
+      ],
+      "technical_note": "Triclosan is absorbed through skin/mucosa and hepatically glucuronidated/sulfated for renal and biliary excretion. The FDA's 2016/2017 action was driven less by a specific toxicity finding than by manufacturers failing to demonstrate it worked better than plain soap, combined with theoretical antibiotic-resistance-selection concerns from routine low-level exposure.",
+      "summary_plain": "An antibacterial ingredient once common in liquid hand soap. In 2016-2017 the US FDA banned it, with 18 other antibacterial ingredients, from over-the-counter wash products. There was not enough evidence that it works better than plain soap, and there were questions about hormone effects and antibiotic resistance. It can still turn up in some toothpaste and cosmetics."
+    },
+    {
+      "id": "radon",
+      "name": "Radon gas",
+      "aliases": [
+        "radon"
+      ],
+      "category": "environment",
+      "concern_level": 3,
+      "summary": "A naturally occurring radioactive gas that seeps from soil/rock into homes, especially basements. It's the second-leading cause of lung cancer in the U.S. after smoking per the EPA/Surgeon General, and is completely undetectable without testing (no smell, no visible sign).",
+      "common_sources": [
+        "basement",
+        "ground-floor rooms",
+        "crawl spaces",
+        "well water in some regions"
+      ],
+      "mitigation_tips": [
+        "Test your home with an inexpensive radon test kit (short-term kits are ~$15-25) \u2014 the EPA recommends every home be tested.",
+        "If levels are at/above 4 pCi/L, a radon mitigation system (sub-slab depressurization) reliably brings levels down and typically costs a low-to-mid four-figure sum.",
+        "Retest after any major renovation or if you move into a new home."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "residential radon exposure lung cancer risk",
+      "references": [
+        {
+          "pmid": "21199598",
+          "title": "Radon",
+          "journal": "Chronic Dis Can",
+          "year": "2010",
+          "doi": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/21199598/"
+        },
+        {
+          "pmid": "33536262",
+          "title": "Systematic review and meta-analysis of residential radon and lung cancer in never-smokers",
+          "journal": "Eur Respir Rev",
+          "year": "2021",
+          "doi": "10.1183/16000617.0230-2020",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33536262/"
+        },
+        {
+          "pmid": "39386959",
+          "title": "Radon exposure and potential health effects other than lung cancer: a systematic review and meta-analysis",
+          "journal": "Front Public Health",
+          "year": "2024",
+          "doi": "10.3389/fpubh.2024.1439355",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/39386959/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-23",
+      "action_effort": "medium",
+      "action_impact": "high",
+      "concept_tags": [
+        "alpha_radiation",
+        "dose_response"
+      ],
+      "technical_note": "See the alpha-radiation concept above \u2014 radon's decay products deposit in the bronchial epithelium and emit short-range, high-energy alpha radiation there, which is mechanistically why inhalation (not ingestion, e.g. from well water) dominates its lung cancer risk, and why it's a fundamentally different hazard type than any chemical entry in this database.",
+      "pubmed_anchors": [
+        "radon"
+      ],
+      "summary_plain": "A natural radioactive gas that seeps up from soil and rock into homes, especially basements. After smoking, it is the second leading cause of lung cancer in the US, according to the EPA and the Surgeon General. You cannot see or smell it, so the only way to know is to test."
+    },
+    {
+      "id": "lead_exposure",
+      "name": "Lead (older homes/plumbing)",
+      "aliases": [
+        "lead paint",
+        "lead pipe",
+        "lead service line",
+        "lead dust"
+      ],
+      "category": "environment",
+      "concern_level": 3,
+      "summary": "Homes built before 1978 (U.S.) may have lead-based paint; some older plumbing/service lines still contain lead. No safe blood lead level has been identified, particularly for children's neurodevelopment; adults are also affected at high exposure.",
+      "common_sources": [
+        "pre-1978 painted surfaces (especially chipping/renovation dust)",
+        "older lead plumbing/solder",
+        "some imported ceramics/cookware"
+      ],
+      "mitigation_tips": [
+        "If your home was built before 1978, get paint tested before sanding/renovating, or hire an EPA Lead-Safe Certified contractor.",
+        "Run cold tap water for 30-60 seconds before drinking/cooking if you have older plumbing, especially after the tap has sat unused for hours.",
+        "A home water test or an inexpensive filter certified for lead removal (NSF/ANSI 53) addresses the plumbing pathway specifically."
+      ],
+      "pubchem_name": "lead",
+      "pubmed_query": "residential lead exposure children neurodevelopment review",
+      "references": [
+        {
+          "pmid": "27325637",
+          "title": "Prevention of Childhood Lead Toxicity",
+          "journal": "Pediatrics",
+          "year": "2016",
+          "doi": "10.1542/peds.2016-1493",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27325637/"
+        },
+        {
+          "pmid": "31259498",
+          "title": "Lead Poisoning in Children",
+          "journal": "Am Fam Physician",
+          "year": "2019",
+          "doi": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31259498/"
+        },
+        {
+          "pmid": "22874873",
+          "title": "Lead in drinking water and human blood lead levels in the United States",
+          "journal": "MMWR Suppl",
+          "year": "2012",
+          "doi": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/22874873/"
+        },
+        {
+          "pmid": "33022752",
+          "title": "Household interventions for secondary prevention of domestic lead exposure in children",
+          "journal": "Cochrane Database Syst Rev",
+          "year": "2020",
+          "doi": "10.1002/14651858.CD006047.pub6",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33022752/"
+        }
+      ],
+      "regulatory": {
+        "cid": 5352425,
+        "cas": "7439-92-1",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/5352425",
+        "dtxsid": "DTXSID2024161",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID2024161",
+        "ghs_hazards": [
+          "H360FD: May damage fertility; May damage the unborn child [Danger Reproductive toxicity]",
+          "H362: May cause harm to breast-fed children [Reproductive toxicity, effects on or via lactation]",
+          "H400: Very toxic to aquatic life [Warning Hazardous to the aquatic environment, acute hazard]",
+          "H410: Very toxic to aquatic life with long lasting effects [Warning Hazardous to the aquatic environment, long-term hazard]",
+          "H302: Harmful if swallowed [Warning Acute toxicity, oral]",
+          "H332: Harmful if inhaled [Warning Acute toxicity, inhalation]",
+          "H360: May damage fertility or the unborn child [Danger Reproductive toxicity]",
+          "H372: Causes damage to organs through prolonged or repeated exposure [Danger Specific target organ toxicity, repeated exposure]"
+        ]
+      },
+      "last_synced": "2026-09-26",
+      "action_effort": "medium",
+      "action_impact": "high",
+      "concept_tags": [
+        "bioaccumulation_half_life",
+        "renal_clearance",
+        "dose_response"
+      ],
+      "technical_note": "Absorbed lead distributes between blood (half-life around 30 days), soft tissue, and bone, where it can persist for decades and slowly re-release into blood \u2014 especially during physiological states with active bone turnover like pregnancy, lactation, or osteoporosis. That's why past exposure can matter years later, and why 'no safe level' is the standard public-health framing rather than a dose threshold.",
+      "curated_pmids": [
+        "27325637",
+        "31259498",
+        "22874873",
+        "33022752"
+      ],
+      "pubmed_anchors": [
+        "lead"
+      ],
+      "summary_plain": "Homes built before 1978 in the US may have lead paint, and some older water pipes still contain lead. No safe blood lead level has been found, especially for children's developing brains. Adults are affected too at high exposure."
+    },
+    {
+      "id": "pm25_particulate",
+      "name": "Fine particulate matter (PM2.5)",
+      "aliases": [
+        "pm2.5",
+        "particulate matter",
+        "smoke",
+        "wildfire smoke",
+        "traffic pollution"
+      ],
+      "category": "environment",
+      "concern_level": 2,
+      "summary": "Airborne particles \u22642.5 microns wide (from traffic, wildfire smoke, cooking, industrial sources) that penetrate deep into the lungs and bloodstream. Associated with cardiovascular and respiratory effects; the EPA tightened the annual PM2.5 air quality standard in 2024. Log a reading (from a local monitor, an app like AirNow, or a personal sensor) under Journey \u203a Air to have it scored automatically by AQI category.",
+      "common_sources": [
+        "wildfire smoke",
+        "heavy traffic corridors",
+        "gas stove use without ventilation",
+        "regional haze/pollution events"
+      ],
+      "mitigation_tips": [
+        "On high-PM2.5 days (check airnow.gov or a local app), keep windows closed and run a HEPA air purifier if available.",
+        "Use exhaust ventilation (range hood) when cooking, especially with a gas stove.",
+        "An N95/KN95 mask reduces personal exposure during outdoor smoke events."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "PM2.5 fine particulate matter air pollution cardiovascular respiratory health",
+      "references": [
+        {
+          "pmid": "34253165",
+          "title": "Air pollution and children's health-a review of adverse effects associated with prenatal exposure from fine to ultrafine particulate matter",
+          "journal": "Environ Health Prev Med",
+          "year": "2021",
+          "doi": "10.1186/s12199-021-00995-5",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34253165/"
+        },
+        {
+          "pmid": "25071915",
+          "title": "Air pollution exposure and cardiovascular disease",
+          "journal": "Toxicol Res",
+          "year": "2014",
+          "doi": "10.5487/TR.2014.30.2.071",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/25071915/"
+        },
+        {
+          "pmid": "40436385",
+          "title": "[Health Effects of Wildfires]",
+          "journal": "Dtsch Med Wochenschr",
+          "year": "2025",
+          "doi": "10.1055/a-2542-8711",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/40436385/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-23",
+      "action_effort": "low",
+      "action_impact": "medium",
+      "concept_tags": [
+        "particle_deposition",
+        "aggregate_exposure"
+      ],
+      "technical_note": "See the particle-deposition concept above \u2014 PM2.5's alveolar penetration is precisely why it's treated as higher-concern than PM10 despite PM10 being the more 'visible' pollutant; alveolar-deposited particles are also positioned to cross into systemic circulation more readily than particles cleared by the upper-airway mucociliary escalator.",
+      "pubmed_anchors": [
+        "PM2.5",
+        "particulate",
+        "air pollution",
+        "wildfire",
+        "wildfires"
+      ],
+      "summary_plain": "Tiny particles in the air, 2.5 microns wide or smaller, from traffic, wildfire smoke, cooking and industry. They reach deep into the lungs and the bloodstream, and are linked to heart and lung effects. The EPA tightened its yearly PM2.5 standard in 2024. You can log a reading from a local monitor, the AirNow app or your own sensor under Journey, then Air."
+    },
+    {
+      "id": "chlorination_byproducts",
+      "name": "Chlorination byproducts (THMs) in tap water",
+      "aliases": [
+        "trihalomethane",
+        "thm",
+        "chloroform",
+        "chlorinated tap water"
+      ],
+      "category": "environment",
+      "concern_level": 1,
+      "summary": "Trihalomethanes form when chlorine disinfectant reacts with organic matter in municipal water treatment. Regulated by the EPA under the Safe Drinking Water Act; levels in U.S. municipal water are generally kept below the regulatory limit, though some systems have had periodic exceedances, and long-term high exposure has been studied for a possible modest bladder cancer association.",
+      "common_sources": [
+        "chlorinated municipal tap water",
+        "long hot showers (inhalation/skin route)"
+      ],
+      "mitigation_tips": [
+        "Check your local water utility's annual Consumer Confidence Report (public, usually online) for your system's THM (trihalomethane) levels.",
+        "An activated-carbon filter (pitcher or faucet-mount, NSF/ANSI 53 certified) reduces THMs in drinking water if levels are a concern.",
+        "This is a minor, well-regulated exposure for most U.S. municipal water \u2014 not a reason to avoid tap water by default."
+      ],
+      "pubchem_name": "chloroform",
+      "pubmed_query": "trihalomethanes drinking water disinfection byproducts health",
+      "references": [
+        {
+          "pmid": "39837568",
+          "title": "Exposure to Drinking Water Trihalomethanes and Risk of Cancer: A Systematic Review of the Epidemiologic Evidence and Dose-Response Meta-Analysis",
+          "journal": "Environ Health Perspect",
+          "year": "2025",
+          "doi": "10.1289/EHP14505",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/39837568/"
+        },
+        {
+          "pmid": "29676755",
+          "title": "Drinking water disinfection by-products exposure and health effects on pregnancy outcomes: a systematic review",
+          "journal": "J Water Health",
+          "year": "2018",
+          "doi": "10.2166/wh.2018.167",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29676755/"
+        },
+        {
+          "pmid": "38057440",
+          "title": "Trihalomethanes in developed and developing countries",
+          "journal": "Environ Monit Assess",
+          "year": "2023",
+          "doi": "10.1007/s10661-023-12106-8",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38057440/"
+        }
+      ],
+      "regulatory": {
+        "cid": 6212,
+        "cas": "67-66-3",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/6212",
+        "dtxsid": "DTXSID1020306",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID1020306",
+        "ghs_hazards": [
+          "H302: Harmful if swallowed [Warning Acute toxicity, oral]",
+          "H315: Causes skin irritation [Warning Skin corrosion/irritation]",
+          "H319: Causes serious eye irritation [Warning Serious eye damage/eye irritation]",
+          "H331: Toxic if inhaled [Danger Acute toxicity, inhalation]",
+          "H351: Suspected of causing cancer [Warning Carcinogenicity]",
+          "H361d: Suspected of damaging the unborn child [Warning Reproductive toxicity]",
+          "H372: Causes damage to organs through prolonged or repeated exposure [Danger Specific target organ toxicity, repeated exposure]",
+          "H336: May cause drowsiness or dizziness [Warning Specific target organ toxicity, single exposure; Narcotic effects]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "action_effort": "low",
+      "action_impact": "low",
+      "concept_tags": [
+        "hepatic_metabolism",
+        "dose_response",
+        "aggregate_exposure"
+      ],
+      "technical_note": "THMs form continuously in treated water as chlorine reacts with organic matter, so exposure is genuinely aggregate across drinking, cooking, and inhalation/dermal routes during showers (some THMs are volatile enough to off-gas from hot water) \u2014 not just an ingestion question, which is part of why an activated-carbon shower filter is sometimes recommended alongside a drinking-water filter.",
+      "summary_plain": "Chlorine that disinfects tap water can react with natural material in the water and form byproducts called THMs. The EPA regulates them, and US tap water is generally kept below the limit, though some systems have gone over at times. Long-term high exposure has been studied for a possible small link to bladder cancer."
+    },
+    {
+      "id": "nitrogen_dioxide_gas_stove",
+      "name": "Nitrogen dioxide (gas stove combustion)",
+      "aliases": [
+        "nitrogen dioxide",
+        "no2",
+        "gas stove",
+        "gas range"
+      ],
+      "category": "environment",
+      "concern_level": 2,
+      "summary": "Gas and propane stoves release nitrogen dioxide and other combustion byproducts during use, especially without ventilation. Indoor NO2 levels in homes with gas stoves and no range hood use can exceed outdoor air quality standards; associated with respiratory irritation and, in children, increased asthma risk.",
+      "common_sources": [
+        "gas stove",
+        "gas oven",
+        "propane range"
+      ],
+      "mitigation_tips": [
+        "Run the range hood (vented to the outside, not recirculating) every time you use a gas burner or oven \u2014 this is the single highest-leverage change.",
+        "Crack a window when cooking on gas if you don't have a vented hood.",
+        "If replacing a stove, induction ranges eliminate combustion byproducts entirely."
+      ],
+      "pubchem_name": "nitrogen dioxide",
+      "pubmed_query": "gas stove nitrogen dioxide indoor air respiratory health",
+      "action_effort": "low",
+      "action_impact": "medium",
+      "references": [
+        {
+          "pmid": "23962958",
+          "title": "Meta-analysis of the effects of indoor nitrogen dioxide and gas cooking on asthma and wheeze in children",
+          "journal": "Int J Epidemiol",
+          "year": "2013",
+          "doi": "10.1093/ije/dyt150",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/23962958/"
+        },
+        {
+          "pmid": "16254270",
+          "title": "Association of indoor nitrogen dioxide exposure with respiratory symptoms in children with asthma",
+          "journal": "Am J Respir Crit Care Med",
+          "year": "2006",
+          "doi": "10.1164/rccm.200408-1123OC",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/16254270/"
+        },
+        {
+          "pmid": "36451320",
+          "title": "Health risks from indoor gas appliances",
+          "journal": "Aust J Gen Pract",
+          "year": "2022",
+          "doi": "10.31128/AJGP-08-22-6535",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36451320/"
+        },
+        {
+          "pmid": "35796019",
+          "title": "Childhood asthma and household exposures to nitrogen dioxide and fine particles: a triple-crossover randomized intervention trial",
+          "journal": "J Asthma",
+          "year": "2023",
+          "doi": "10.1080/02770903.2022.2093219",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35796019/"
+        }
+      ],
+      "regulatory": {
+        "cid": 3032552,
+        "cas": "233-272-6",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/3032552",
+        "dtxsid": "DTXSID7020974",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID7020974",
+        "ghs_hazards": [
+          "H270: May cause or intensify fire; oxidizer [Danger Oxidizing gases]",
+          "H314: Causes severe skin burns and eye damage [Danger Skin corrosion/irritation]",
+          "H330: Fatal if inhaled [Danger Acute toxicity, inhalation]",
+          "H280: Contains gas under pressure; may explode if heated [Warning Gases under pressure]",
+          "H318: Causes serious eye damage [Danger Serious eye damage/eye irritation]",
+          "H319: Causes serious eye irritation [Warning Serious eye damage/eye irritation]",
+          "H336: May cause drowsiness or dizziness [Warning Specific target organ toxicity, single exposure; Narcotic effects]",
+          "H361: Suspected of damaging fertility or the unborn child [Warning Reproductive toxicity]"
+        ]
+      },
+      "last_synced": "2026-09-26",
+      "concept_tags": [
+        "particle_deposition",
+        "dose_response"
+      ],
+      "technical_note": "NO2 is a gas, not a particle, so it doesn't follow the same size-dependent deposition physics as PM2.5/PM10 \u2014 it's highly water-soluble and reacts primarily in the upper and central airways, the mechanism behind its respiratory-irritant and childhood-asthma associations, and why source control (a range hood) is more effective than any filtration approach aimed primarily at particles.",
+      "curated_pmids": [
+        "23962958",
+        "16254270",
+        "36451320",
+        "35796019"
+      ],
+      "pubmed_anchors": [
+        "nitrogen dioxide",
+        "gas",
+        "NO2"
+      ],
+      "summary_plain": "Gas and propane stoves give off nitrogen dioxide and other gases from burning, especially without ventilation. In homes with a gas stove and no range hood use, indoor levels can go above outdoor air standards. It is linked to airway irritation and, in children, a higher chance of asthma."
+    },
+    {
+      "id": "candle_incense_pm",
+      "name": "Candle and incense smoke (indoor PM2.5)",
+      "aliases": [
+        "candle",
+        "incense",
+        "scented candle"
+      ],
+      "category": "environment",
+      "concern_level": 1,
+      "summary": "Burning candles and incense releases fine particulate matter and, for heavily fragranced candles, some of the same VOCs found in air fresheners. Occasional use is a minor contributor; daily heavy use in a small, unventilated room adds up similarly to other indoor PM2.5 sources.",
+      "common_sources": [
+        "scented candles",
+        "incense sticks",
+        "wax melts"
+      ],
+      "mitigation_tips": [
+        "Crack a window or run an exhaust fan when burning candles/incense for extended periods.",
+        "Trim wicks and avoid letting candles smoke visibly \u2014 visible soot means more particulate output.",
+        "Reserve daily ambiance for flameless (LED) candles or a diffuser using a few drops of essential oil in water instead."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "candle incense burning indoor particulate matter health",
+      "action_effort": "low",
+      "action_impact": "low",
+      "references": [
+        {
+          "pmid": "36467893",
+          "title": "Exposure to fine particulate matter (PM(2.5)) from non-tobacco sources in homes within high-income countries: a systematic review",
+          "journal": "Air Qual Atmos Health",
+          "year": "2023",
+          "doi": "10.1007/s11869-022-01288-8",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36467893/"
+        },
+        {
+          "pmid": "35509323",
+          "title": "Health and Environmental Risks of Incense Smoke: Mechanistic Insights and Cumulative Evidence",
+          "journal": "J Inflamm Res",
+          "year": "2022",
+          "doi": "10.2147/JIR.S347489",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35509323/"
+        },
+        {
+          "pmid": "26820179",
+          "title": "Domestic incense use and lung cancer in Asia: a review",
+          "journal": "Rev Environ Health",
+          "year": "2016",
+          "doi": "10.1515/reveh-2015-0060",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/26820179/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-26",
+      "concept_tags": [
+        "particle_deposition",
+        "aggregate_exposure"
+      ],
+      "technical_note": "Same size-dependent deposition physics as `pm25_particulate` (most candle/incense smoke particles fall in the fine/PM2.5 range), but from an intermittent indoor point source rather than ambient outdoor air \u2014 which is why ventilation during and shortly after use matters more here than it does for background outdoor PM2.5 you can't directly control.",
+      "pubmed_anchors": [
+        "candle",
+        "candles",
+        "incense",
+        "particulate",
+        "PM2.5",
+        "PM(2.5)"
+      ],
+      "curated_pmids": [
+        "36467893",
+        "35509323",
+        "26820179"
+      ],
+      "summary_plain": "Burning candles and incense releases fine particles. Heavily scented candles can also release some of the same VOC gases as air fresheners. Now and then is a small contribution. Daily heavy use in a small, closed room adds up much like other indoor sources of fine particles."
+    },
+    {
+      "id": "microplastics_bottled_water",
+      "name": "Microplastics (bottled water & reheated plastic)",
+      "aliases": [
+        "microplastics",
+        "bottled water",
+        "plastic bottle"
+      ],
+      "category": "food",
+      "concern_level": 1,
+      "summary": "Bottled water and food reheated in plastic can shed microscopic plastic particles, especially with heat or repeated reuse of thin single-use bottles. Health effects of microplastic ingestion at typical dietary levels are still an active, unsettled area of research \u2014 concern here is precautionary rather than based on established harm.",
+      "common_sources": [
+        "single-use bottled water",
+        "reheated plastic containers",
+        "plastic tea bags"
+      ],
+      "mitigation_tips": [
+        "A reusable stainless steel or glass water bottle with filtered tap water sidesteps this entirely and is also cheaper long-term.",
+        "Never microwave food in plastic containers, even ones labeled 'microwave-safe' for leaks \u2014 that label covers structural safety, not particle shedding."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "microplastics bottled water human health exposure review",
+      "action_effort": "low",
+      "action_impact": "low",
+      "references": [
+        {
+          "pmid": "38287142",
+          "title": "Exposure to microplastics and human reproductive outcomes: A systematic review",
+          "journal": "BJOG",
+          "year": "2024",
+          "doi": "10.1111/1471-0528.17756",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38287142/"
+        },
+        {
+          "pmid": "37607425",
+          "title": "Microplastics: Human exposure assessment through air, water, and food",
+          "journal": "Environ Int",
+          "year": "2023",
+          "doi": "10.1016/j.envint.2023.108150",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37607425/"
+        },
+        {
+          "pmid": "36771324",
+          "title": "Microplastics: A Real Global Threat for Environment and Food Safety: A State of the Art Review",
+          "journal": "Nutrients",
+          "year": "2023",
+          "doi": "10.3390/nu15030617",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36771324/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-23",
+      "concept_tags": [
+        "dose_response"
+      ],
+      "technical_note": "The open toxicological question here is genuinely about fate, not just presence: what fraction of ingested microplastic particles cross the gut epithelium versus pass through unabsorbed is still an active research area \u2014 exactly why this entry carries the lowest concern level in the database despite the exposure route itself being well-documented.",
+      "pubmed_anchors": [
+        "microplastic",
+        "microplastics",
+        "plastic",
+        "plastics"
+      ],
+      "summary_plain": "Bottled water, and food reheated in plastic, can shed tiny plastic particles, especially with heat or when thin single-use bottles are reused. What these particles do to health at everyday amounts is still being studied. The concern here is a precaution, not a proven harm."
+    },
+    {
+      "id": "dry_cleaning_perc",
+      "name": "Dry-cleaning solvent residue (PERC)",
+      "aliases": [
+        "perchloroethylene",
+        "tetrachloroethylene",
+        "dry cleaning",
+        "perc"
+      ],
+      "category": "environment",
+      "concern_level": 1,
+      "summary": "Perchloroethylene (PERC), the most common dry-cleaning solvent, off-gasses from freshly dry-cleaned garments stored in a closed closet or worn soon after pickup. Occupational exposure (dry-cleaning workers) is the better-established concern; residue on finished garments in home use is a much smaller, precautionary-level exposure.",
+      "common_sources": [
+        "freshly dry-cleaned clothing",
+        "garment bags"
+      ],
+      "mitigation_tips": [
+        "Remove the plastic garment bag and air out dry-cleaned items outside or in a well-ventilated room for a few hours to a day before wearing or storing them in a closet.",
+        "Ask if your cleaner offers 'wet cleaning' or liquid CO2 cleaning \u2014 both are PERC-free alternatives now offered by many cleaners."
+      ],
+      "pubchem_name": "tetrachloroethylene",
+      "pubmed_query": "perchloroethylene dry cleaning residential exposure health",
+      "action_effort": "low",
+      "action_impact": "low",
+      "references": [
+        {
+          "pmid": "24659585",
+          "title": "Tetrachloroethylene exposure and bladder cancer risk: a meta-analysis of dry-cleaning-worker studies",
+          "journal": "Environ Health Perspect",
+          "year": "2014",
+          "doi": "10.1289/ehp.1307055",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/24659585/"
+        },
+        {
+          "pmid": "9139129",
+          "title": "Dry cleaning",
+          "journal": "IARC Monogr Eval Carcinog Risks Hum",
+          "year": "1995",
+          "doi": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/9139129/"
+        },
+        {
+          "pmid": "33748070",
+          "title": "Perchloroethylene and Dry Cleaning: It's Time to Move the Industry to Safer Alternatives",
+          "journal": "Front Public Health",
+          "year": "2021",
+          "doi": "10.3389/fpubh.2021.638082",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33748070/"
+        },
+        {
+          "pmid": "20169137",
+          "title": "Association between residential proximity to PERC dry cleaning establishments and kidney cancer in New York City",
+          "journal": "J Environ Public Health",
+          "year": "2009",
+          "doi": "10.1155/2009/183920",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/20169137/"
+        }
+      ],
+      "regulatory": {
+        "cid": 31373,
+        "cas": "127-18-4",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/31373",
+        "dtxsid": "DTXSID2021319",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID2021319",
+        "ghs_hazards": [
+          "H351: Suspected of causing cancer [Warning Carcinogenicity]",
+          "H411: Toxic to aquatic life with long lasting effects [Hazardous to the aquatic environment, long-term hazard]",
+          "H315: Causes skin irritation [Warning Skin corrosion/irritation]",
+          "H317: May cause an allergic skin reaction [Warning Sensitization, Skin]",
+          "H319: Causes serious eye irritation [Warning Serious eye damage/eye irritation]",
+          "H336: May cause drowsiness or dizziness [Warning Specific target organ toxicity, single exposure; Narcotic effects]",
+          "H320: Causes eye irritation [Warning Serious eye damage/eye irritation]",
+          "H332: Harmful if inhaled [Warning Acute toxicity, inhalation]"
+        ]
+      },
+      "last_synced": "2026-09-26",
+      "concept_tags": [
+        "hepatic_metabolism",
+        "dose_response"
+      ],
+      "technical_note": "PERC is metabolized via hepatic CYP2E1 (the same enzyme family as acrylamide and ethanol) to trichloroacetic acid, excreted renally over days; it's also partly exhaled unchanged since it's volatile \u2014 which is mechanistically why airing out a garment before wearing it measurably reduces the dose rather than being just a folk remedy.",
+      "curated_pmids": [
+        "24659585",
+        "9139129",
+        "33748070",
+        "20169137"
+      ],
+      "pubmed_anchors": [
+        "tetrachloroethylene",
+        "perchloroethylene",
+        "PERC",
+        "dry cleaning",
+        "dry-cleaning"
+      ],
+      "summary_plain": "Perchloroethylene, or PERC, is the most common dry-cleaning solvent. It can give off fumes from freshly cleaned clothes kept in a closed closet or worn soon after pickup. The better-established concern is for dry-cleaning workers. Residue on clothes at home is a much smaller, precautionary-level exposure."
+    },
+    {
+      "id": "lawn_pesticide_tracked_in",
+      "name": "Lawn/garden pesticide residue tracked indoors",
+      "aliases": [
+        "lawn pesticide",
+        "herbicide",
+        "weed killer",
+        "2,4-d",
+        "glyphosate"
+      ],
+      "category": "environment",
+      "concern_level": 2,
+      "summary": "Pesticides and herbicides applied to lawns don't stay outside \u2014 studies of household dust and carpet consistently find them tracked indoors on shoes and pet paws, where they persist far longer than outdoors (out of UV light and rain). This is one of the more overlooked indoor exposure pathways precisely because the application itself happens outside.",
+      "common_sources": [
+        "treated lawns",
+        "golf courses/parks then tracked home",
+        "pet fur after outdoor time"
+      ],
+      "mitigation_tips": [
+        "A shoes-off-at-the-door household habit is the single most effective, lowest-cost intervention for this entire pathway (also reduces lead dust, pollen, and general dirt).",
+        "Wipe pet paws after they've been on treated grass.",
+        "If you hire a lawn service, ask for the product name and keep kids/pets off treated areas for the reentry interval printed on the product label."
+      ],
+      "pubchem_name": "2,4-Dichlorophenoxyacetic acid",
+      "pubmed_query": "lawn pesticide residential exposure household dust children",
+      "action_effort": "low",
+      "action_impact": "medium",
+      "references": [
+        {
+          "pmid": "28437652",
+          "title": "Review of take-home pesticide exposure pathway in children living in agricultural areas",
+          "journal": "Environ Res",
+          "year": "2017",
+          "doi": "10.1016/j.envres.2017.04.017",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/28437652/"
+        },
+        {
+          "pmid": "30268646",
+          "title": "Household exposure to pesticides and risk of leukemia in children and adolescents: Updated systematic review and meta-analysis",
+          "journal": "Int J Hyg Environ Health",
+          "year": "2019",
+          "doi": "10.1016/j.ijheh.2018.08.004",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30268646/"
+        },
+        {
+          "pmid": "36746112",
+          "title": "Glyphosate in house dust and risk of childhood acute lymphoblastic leukemia in California",
+          "journal": "Environ Int",
+          "year": "2023",
+          "doi": "10.1016/j.envint.2023.107777",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36746112/"
+        }
+      ],
+      "regulatory": {
+        "cid": 1486,
+        "cas": "94-75-7",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/1486",
+        "dtxsid": "DTXSID0020442",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID0020442",
+        "ghs_hazards": [
+          "H302: Harmful if swallowed [Warning Acute toxicity, oral]",
+          "H317: May cause an allergic skin reaction [Warning Sensitization, Skin]",
+          "H318: Causes serious eye damage [Danger Serious eye damage/eye irritation]",
+          "H335: May cause respiratory irritation [Warning Specific target organ toxicity, single exposure; Respiratory tract irritation]",
+          "H412: Harmful to aquatic life with long lasting effects [Hazardous to the aquatic environment, long-term hazard]",
+          "H312: Harmful in contact with skin [Warning Acute toxicity, dermal]",
+          "H334: May cause allergy or asthma symptoms or breathing difficulties if inhaled [Danger Sensitization, respiratory]",
+          "H400: Very toxic to aquatic life [Warning Hazardous to the aquatic environment, acute hazard]"
+        ]
+      },
+      "last_synced": "2026-09-26",
+      "concept_tags": [
+        "aggregate_exposure",
+        "dose_response"
+      ],
+      "technical_note": "Different active ingredients (2,4-D, glyphosate, various pyrethroids) have very different clearance kinetics from each other, so this entry is really an aggregate exposure-*pathway* concern (tracked-in residue accumulating in carpet dust, then hand-to-mouth contact) rather than one compound's toxicokinetics \u2014 the shoes-off intervention addresses the pathway regardless of which specific product was used.",
+      "curated_pmids": [
+        "28437652",
+        "30268646",
+        "36746112"
+      ],
+      "pubmed_anchors": [
+        "pesticide",
+        "pesticides",
+        "glyphosate"
+      ],
+      "summary_plain": "Lawn and garden chemicals do not stay outside. Studies of house dust and carpet keep finding them, carried in on shoes and pet paws. Indoors they last much longer, because there is no sunlight or rain. It is an easily overlooked source, because the spraying happens outside."
+    },
+    {
+      "id": "household_dust_reservoir",
+      "name": "Household dust (chemical reservoir)",
+      "aliases": [
+        "house dust",
+        "household dust"
+      ],
+      "category": "environment",
+      "concern_level": 2,
+      "summary": "House dust isn't just dirt \u2014 it's a well-studied reservoir that accumulates flame retardants (from furniture/electronics), lead (from old paint), pesticides, and phthalates that have settled out of the air or worn off products over time. Regular dust removal is one of the few interventions that reduces exposure to several unrelated substance families at once.",
+      "common_sources": [
+        "carpet and rugs",
+        "upholstered furniture",
+        "areas behind/under furniture"
+      ],
+      "mitigation_tips": [
+        "Vacuum with a HEPA-filter vacuum weekly, focusing on carpet and upholstery.",
+        "Wet-mop or wet-wipe hard floors and surfaces rather than dry-dusting, which just resuspends particles into the air.",
+        "Wash hands before eating, especially for kids who play on the floor \u2014 hand-to-mouth contact is the main route dust exposure actually reaches the body."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "household dust flame retardant lead exposure children review",
+      "action_effort": "medium",
+      "action_impact": "medium",
+      "references": [
+        {
+          "pmid": "28863388",
+          "title": "Children's exposure to brominated flame retardants in indoor environments - A review",
+          "journal": "Environ Int",
+          "year": "2017",
+          "doi": "10.1016/j.envint.2017.08.011",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/28863388/"
+        },
+        {
+          "pmid": "12206053",
+          "title": "Pollutants in house dust as indicators of indoor contamination",
+          "journal": "Rev Environ Contam Toxicol",
+          "year": "2002",
+          "doi": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/12206053/"
+        },
+        {
+          "pmid": "33022752",
+          "title": "Household interventions for secondary prevention of domestic lead exposure in children",
+          "journal": "Cochrane Database Syst Rev",
+          "year": "2020",
+          "doi": "10.1002/14651858.CD006047.pub6",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33022752/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-26",
+      "concept_tags": [
+        "aggregate_exposure",
+        "bioaccumulation_half_life"
+      ],
+      "technical_note": "Dust itself doesn't metabolize anything \u2014 it's a passive reservoir where several unrelated compound classes (flame retardants, lead, phthalates, pesticide residue) settle out of air and off product surfaces, then persist far longer indoors than they would outdoors (out of UV light and rain). That's why dust removal is one of the few single interventions touching multiple substance families in this database at once.",
+      "curated_pmids": [
+        "28863388",
+        "12206053",
+        "33022752"
+      ],
+      "pubmed_anchors": [
+        "dust"
+      ],
+      "summary_plain": "House dust is more than dirt. It builds up flame retardants from furniture and electronics, lead from old paint, pesticides, and phthalates that have settled out of the air or worn off products. Regular dusting and cleaning is one of the few steps that lowers exposure to several unrelated chemical groups at once."
+    },
+    {
+      "id": "nonstick_cookware_ptfe",
+      "name": "Overheated nonstick cookware (PTFE)",
+      "aliases": [
+        "nonstick pan",
+        "teflon",
+        "ptfe"
+      ],
+      "category": "food",
+      "concern_level": 2,
+      "summary": "PTFE nonstick coatings are considered stable at normal cooking temperatures, but overheating an empty or near-empty nonstick pan (above ~500\u00b0F/260\u00b0C) can release fumes that are acutely toxic to birds and cause temporary flu-like symptoms in people ('polymer fume fever'). Scratched/worn coatings are the other main concern, both for fume release and ingesting flaked coating.",
+      "common_sources": [
+        "nonstick frying pans",
+        "nonstick bakeware"
+      ],
+      "mitigation_tips": [
+        "Never preheat a nonstick pan empty on high heat \u2014 add oil or food first, and keep to medium heat or below.",
+        "Use kitchen ventilation (range hood) when cooking, which helps with this and the separate gas-stove NO2 issue.",
+        "Retire a nonstick pan once the coating is visibly scratched, flaking, or peeling; cast iron or stainless steel are scratch-proof alternatives for high-heat cooking."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "polymer fume fever teflon",
+      "action_effort": "medium",
+      "action_impact": "medium",
+      "references": [
+        {
+          "pmid": "37603667",
+          "title": "Polymer Fume Fever (Archived)",
+          "journal": "",
+          "year": "2023",
+          "doi": null,
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37603667/"
+        },
+        {
+          "pmid": "23230259",
+          "title": "Polymer fume fever",
+          "journal": "BMJ Case Rep",
+          "year": "2012",
+          "doi": "10.1136/bcr-2012-007790",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/23230259/"
+        },
+        {
+          "pmid": "25706449",
+          "title": "Metal fume fever and polymer fume fever",
+          "journal": "Clin Toxicol (Phila)",
+          "year": "2015",
+          "doi": "10.3109/15563650.2015.1013548",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/25706449/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-23",
+      "concept_tags": [
+        "dose_response"
+      ],
+      "technical_note": "Intact PTFE is chemically and thermally stable at normal cooking temperatures \u2014 it isn't absorbed or metabolized. The fume-fever mechanism is acute inhalation of pyrolysis breakdown products released only above roughly 260\u00b0C (500\u00b0F), a threshold an empty pan on high heat reaches well before typical cooking temperatures with food or oil in the pan.",
+      "pubmed_anchors": [
+        "polymer fume",
+        "PTFE",
+        "Teflon",
+        "fluoropolymer"
+      ],
+      "summary_plain": "Nonstick coatings (PTFE) are stable at normal cooking temperatures. An empty pan heated above about 500\u00b0F (260\u00b0C) can give off fumes that harm pet birds and can cause a short flu-like illness in people. Scratched or worn coatings are the other main concern."
+    },
+    {
+      "id": "fragranced_laundry_products",
+      "name": "Fragranced laundry products (detergent, dryer sheets)",
+      "aliases": [
+        "dryer sheet",
+        "fabric softener",
+        "laundry fragrance",
+        "scent booster"
+      ],
+      "category": "environment",
+      "concern_level": 1,
+      "summary": "Scented detergents, fabric softeners, and dryer sheets release VOCs during the wash/dry cycle (often vented straight outside from the dryer, but also lingering on fabric and in the laundry room) and leave a fragrance residue on clothing and bedding worn/used against skin for hours at a time.",
+      "common_sources": [
+        "scented laundry detergent",
+        "dryer sheets",
+        "fabric softener",
+        "'scent booster' beads"
+      ],
+      "mitigation_tips": [
+        "Fragrance-free detergent is widely available at the same price point and gets clothes equally clean \u2014 this is a zero-cost swap.",
+        "Wool dryer balls are a fragrance-free alternative to dryer sheets for reducing static.",
+        "Ventilate the laundry room, especially if the dryer vents indoors (uncommon but worth checking)."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "fragranced laundry products volatile organic compounds exposure",
+      "action_effort": "low",
+      "action_impact": "low",
+      "references": [
+        {
+          "pmid": "29391919",
+          "title": "Fragranced consumer products: effects on asthmatics",
+          "journal": "Air Qual Atmos Health",
+          "year": "2018",
+          "doi": "10.1007/s11869-017-0536-2",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29391919/"
+        },
+        {
+          "pmid": "30546500",
+          "title": "Fragranced consumer products: effects on autistic adults in the United States, Australia, and United Kingdom",
+          "journal": "Air Qual Atmos Health",
+          "year": "2018",
+          "doi": "10.1007/s11869-018-0625-x",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30546500/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-26",
+      "concept_tags": [
+        "particle_deposition",
+        "aggregate_exposure"
+      ],
+      "technical_note": "This entry sits at the intersection of two pathways: inhaled VOCs off-gassing from the wash/dry cycle, and direct dermal contact from residue on fabric worn for hours \u2014 which is part of why it's tagged low concern individually but still contributes to a household's aggregate fragrance-chemical exposure alongside personal care products.",
+      "curated_pmids": [
+        "29391919",
+        "30546500"
+      ],
+      "summary_plain": "Scented detergent, fabric softener and dryer sheets release VOC gases while you wash and dry. Much of it is vented outside from the dryer, but some lingers on fabric and in the laundry room. The scent also stays on clothes and bedding that touch your skin for hours."
+    },
+    {
+      "id": "bisphenol_analogs",
+      "name": "Bisphenol analogs (BPS, BPF, BPAF)",
+      "aliases": [
+        "bisphenol s",
+        "bps",
+        "4,4'-sulfonyldiphenol",
+        "bisphenol f",
+        "bpf",
+        "4,4'-methylenediphenol",
+        "bisphenol af",
+        "bpaf"
+      ],
+      "category": "food",
+      "concern_level": 2,
+      "summary": "Close chemical relatives of BPA, commonly swapped in to make a product 'BPA-free' -- same can-lining/plastic/thermal-receipt-paper uses, same general molecular shape. Research directly comparing them to BPA has found similar hormonal activity, not a safety improvement, which is why toxicologists call this pattern 'regrettable substitution.'",
+      "common_sources": [
+        "'BPA-free' plastic containers",
+        "thermal receipt paper",
+        "can linings"
+      ],
+      "mitigation_tips": [
+        "A 'BPA-free' label describes what's absent, not what replaced it -- the same avoid-heat-and-reheating habits that reduce BPA exposure apply here too.",
+        "Glass, stainless, or ceramic sidesteps the whole bisphenol family, not just BPA specifically."
+      ],
+      "pubchem_name": "bisphenol s",
+      "pubmed_query": "bisphenol S bisphenol F endocrine activity BPA substitute",
+      "action_effort": "low",
+      "action_impact": "medium",
+      "concept_tags": [
+        "endocrine_disruption",
+        "dose_response"
+      ],
+      "technical_note": "BPS and BPF share BPA's diphenylmethane-derived backbone and its weak estrogen-receptor affinity; a 2015 systematic review (Rochester & Bolden, Environmental Health Perspectives) pooling 32 studies found their hormonal potency in the same order of magnitude as BPA, acting through the same estrogenic, antiestrogenic, androgenic, and antiandrogenic pathways. Chemical safety testing has historically evaluated compounds one at a time rather than by structural family, which is part of why a like-for-like replacement can clear a 'BPA-free' bar without the underlying biological activity actually changing.",
+      "regrettable_substitute_for": [
+        "bpa"
+      ],
+      "references": [
+        {
+          "pmid": "25775505",
+          "title": "Bisphenol S and F: A Systematic Review and Comparison of the Hormonal Activity of Bisphenol A Substitutes",
+          "journal": "Environ Health Perspect",
+          "year": "2015",
+          "doi": "10.1289/ehp.1408989",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/25775505/"
+        },
+        {
+          "pmid": "37529602",
+          "title": "Bisphenol A substitutes and obesity: a review of the epidemiology and pathophysiology",
+          "journal": "Front Endocrinol (Lausanne)",
+          "year": "2023",
+          "doi": "10.3389/fendo.2023.1155694",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37529602/"
+        },
+        {
+          "pmid": "33120264",
+          "title": "Occurrence, toxicity and ecological risk of Bisphenol A analogues in aquatic environment - A review",
+          "journal": "Ecotoxicol Environ Saf",
+          "year": "2021",
+          "doi": "10.1016/j.ecoenv.2020.111481",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33120264/"
+        }
+      ],
+      "regulatory": {
+        "cid": 6626,
+        "cas": "80-09-1",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/6626",
+        "dtxsid": "DTXSID3022409",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID3022409",
+        "ghs_hazards": [
+          "H360FD: May damage fertility; May damage the unborn child [Danger Reproductive toxicity]",
+          "H360: May damage fertility or the unborn child [Danger Reproductive toxicity]",
+          "H360FD (49%): May damage fertility; May damage the unborn child [Danger Reproductive toxicity]",
+          "H371: May cause damage to organs [Warning Specific target organ toxicity, single exposure]",
+          "H373: May causes damage to organs through prolonged or repeated exposure [Warning Specific target organ toxicity, repeated exposure]",
+          "H402: Harmful to aquatic life [Hazardous to the aquatic environment, acute hazard]",
+          "H412: Harmful to aquatic life with long lasting effects [Hazardous to the aquatic environment, long-term hazard]",
+          "H361f: Suspected of damaging fertility [Warning Reproductive toxicity]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "summary_plain": "BPS, BPF and BPAF are close chemical relatives of BPA. They are often swapped in so a product can say 'BPA-free', for the same uses: can linings, plastics and receipt paper. Studies that compare them directly with BPA find similar effects on hormones, not an improvement. Toxicologists call this pattern 'regrettable substitution'."
+    },
+    {
+      "id": "phenoxyethanol",
+      "name": "Phenoxyethanol",
+      "aliases": [
+        "phenoxyethanol",
+        "2-phenoxyethanol",
+        "ethylene glycol monophenyl ether"
+      ],
+      "category": "personal_care",
+      "concern_level": 1,
+      "summary": "A preservative commonly used in 'paraben-free' cosmetics and personal care products. Considered effective and, at typical cosmetic-use concentrations, lower-concern than some other preservatives -- but it is its own chemical with its own limits, not a neutral stand-in, and the same 'diversify rather than rely on one product long-term' logic that applies to parabens applies here too.",
+      "common_sources": [
+        "'paraben-free' lotion",
+        "'paraben-free' shampoo/conditioner",
+        "baby care wipes",
+        "sunscreen"
+      ],
+      "mitigation_tips": [
+        "'Paraben-free' describes what's absent, not what replaced it -- check the actual ingredient list if minimizing preservative exposure broadly is the goal, not just parabens specifically.",
+        "Rotate/diversify personal care brands rather than using one product exclusively long-term, the same habit that helps with parabens."
+      ],
+      "pubchem_name": "phenoxyethanol",
+      "pubmed_query": "phenoxyethanol cosmetic preservative safety",
+      "action_effort": "low",
+      "action_impact": "low",
+      "concept_tags": [
+        "hepatic_metabolism",
+        "renal_clearance"
+      ],
+      "technical_note": "Phenoxyethanol is metabolized primarily via hepatic alcohol/aldehyde dehydrogenase to phenoxyacetic acid and excreted in urine, without the estrogen-receptor activity that concerns researchers about parabens or bisphenols -- a genuinely different toxicological profile, not just a differently-named version of the same concern. A 2020 review (Nowak et al., Environmental Research) surveying paraben-alternative preservatives (phenoxyethanol, formaldehyde-releasers, triclosan, isothiazolinones) found each carries its own adverse-effect profile; none is a simple like-for-like safety upgrade.",
+      "regrettable_substitute_for": [
+        "parabens"
+      ],
+      "references": [
+        {
+          "pmid": "31588615",
+          "title": "Safety review of phenoxyethanol when used as a preservative in cosmetics",
+          "journal": "J Eur Acad Dermatol Venereol",
+          "year": "2019",
+          "doi": "10.1111/jdv.15944",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/31588615/"
+        },
+        {
+          "pmid": "33221305",
+          "title": "Controversy around parabens: Alternative strategies for preservative use in cosmetics and personal care products",
+          "journal": "Environ Res",
+          "year": "2021",
+          "doi": "10.1016/j.envres.2020.110488",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33221305/"
+        }
+      ],
+      "regulatory": {
+        "cid": 31236,
+        "cas": "122-99-6",
+        "pubchem_url": "https://pubchem.ncbi.nlm.nih.gov/compound/31236",
+        "dtxsid": "DTXSID9021976",
+        "comptox_url": "https://comptox.epa.gov/dashboard/chemical/details/DTXSID9021976",
+        "ghs_hazards": [
+          "H302: Harmful if swallowed [Warning Acute toxicity, oral]",
+          "H318: Causes serious eye damage [Danger Serious eye damage/eye irritation]",
+          "H335: May cause respiratory irritation [Warning Specific target organ toxicity, single exposure; Respiratory tract irritation]",
+          "H319: Causes serious eye irritation [Warning Serious eye damage/eye irritation]",
+          "H336: May cause drowsiness or dizziness [Warning Specific target organ toxicity, single exposure; Narcotic effects]",
+          "H320: Causes eye irritation [Warning Serious eye damage/eye irritation]",
+          "H361: Suspected of damaging fertility or the unborn child [Warning Reproductive toxicity]"
+        ]
+      },
+      "last_synced": "2026-09-23",
+      "summary_plain": "A preservative often used in 'paraben-free' cosmetics. It works well and, at the amounts normally used in cosmetics, is considered a lower concern than some other preservatives. But it is its own chemical with its own limits, not a neutral stand-in. The advice for parabens applies here too: vary your products instead of relying on one for years."
+    }
+  ]
+}

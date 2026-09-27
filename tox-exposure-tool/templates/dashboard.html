@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+{% block title %}Exposure Dashboard{% endblock %}
+{% block content %}
+  <h1>Fused Exposure Dashboard</h1>
+  <p class="subtitle">{{ start }} → {{ end }}
+     {% if streak > 0 %}· <strong>{{ streak }}-day</strong> logging streak{% endif %}
+     · <a href="{{ url_for('achievements_page') }}">{{ unlocked_count }}/{{ total_achievements }} achievements</a></p>
+
+  <div class="days-toggle">
+    <a href="{{ url_for('dashboard', days=3) }}" class="{{ 'active' if days==3 }}">3 days</a>
+    <a href="{{ url_for('dashboard', days=7) }}" class="{{ 'active' if days==7 }}">7 days</a>
+    <a href="{{ url_for('dashboard', days=14) }}" class="{{ 'active' if days==14 }}">14 days</a>
+    <a href="{{ url_for('dashboard', days=30) }}" class="{{ 'active' if days==30 }}">30 days</a>
+  </div>
+
+  <div class="score-grid">
+    <div class="score-tile">
+      <div class="label">Awareness Level</div>
+      <div class="num band-{{ report.awareness_band.key }}">{{ report.awareness_band.label }}</div>
+      <div style="font-size:0.85rem;color:var(--muted);">{{ report.awareness_band.description }}</div>
+    </div>
+    {% for category, cat_label in [('food','Food'), ('personal_care','Personal Care'), ('environment','Environment')] %}
+      {% set c = report.category_summary.get(category) %}
+      <div class="score-tile">
+        <div class="label">{{ cat_label }}</div>
+        <div class="num">{{ c.score if c else 0 }}</div>
+        <div>{{ c.hit_count if c else 0 }} flagged mentions</div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if report.overall_score == 0 and report.entries_analyzed.food == 0 and report.entries_analyzed.products == 0 and report.entries_analyzed.environment == 0 %}
+    <div class="card empty-state">
+      Nothing logged in this window yet. Start with today's breakfast, whatever's in your shower, or
+      how the air felt where you were — the picture builds up fast once a few days are in.
+    </div>
+  {% endif %}
+
+  {% if report.focus_items %}
+    <h2>This Week's Focus</h2>
+    <div class="card">
+      <p class="subtitle" style="margin-top:0;">The 1–3 changes most worth your attention right now —
+         not everything that was flagged, just what matters most.</p>
+      {% for item in report.focus_items %}
+        <div class="tip-item">
+          <div>{{ item.tip }}{% if item.completed %} <span class="pill pill-1">done recently</span>{% endif %}</div>
+          <div class="tip-source">re: {{ item.source }}</div>
+          <form class="inline-form" method="post" action="{{ url_for('complete_action') }}" style="margin-top:6px;">
+            <input type="hidden" name="tip_key" value="{{ item.tip_key }}">
+            <input type="hidden" name="tip_text" value="{{ item.tip }}">
+            <button type="submit" class="btn-secondary" style="padding:4px 10px;font-size:0.8rem;">
+              {{ 'Mark done again' if item.completed else 'Mark as done' }}
+            </button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if report.quick_wins %}
+    <h2>Quick Wins</h2>
+    <div class="card">
+      <p class="subtitle" style="margin-top:0;">Low-effort changes, ranked by impact — different question
+         from "what matters most" above: this is "what's easiest to just go do right now."</p>
+      {% for item in report.quick_wins %}
+        <div class="tip-item">
+          <div>{{ item.tip }}{% if item.completed %} <span class="pill pill-1">done recently</span>{% endif %}</div>
+          <div class="tip-source">re: {{ item.source }} · {{ item.action_impact }} impact</div>
+          <form class="inline-form" method="post" action="{{ url_for('complete_action') }}" style="margin-top:6px;">
+            <input type="hidden" name="tip_key" value="{{ item.tip_key }}">
+            <input type="hidden" name="tip_text" value="{{ item.tip }}">
+            <button type="submit" class="btn-secondary" style="padding:4px 10px;font-size:0.8rem;">
+              {{ 'Mark done again' if item.completed else 'Mark as done' }}
+            </button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if report.air_quality_readings %}
+    <h2>Air Quality</h2>
+    <div class="card">
+      <table>
+        <tr><th>Date</th><th>Location</th><th>Reading</th><th>Category</th></tr>
+        {% for r in report.air_quality_readings %}
+          <tr>
+            <td>{{ r.log_date }}</td>
+            <td>{{ r.location }}</td>
+            <td>{{ r.value }} µg/m³ {{ r.pollutant }}</td>
+            <td><span style="color:{{ r.color }};font-weight:600;">{{ r.category }}</span> (AQI ~{{ r.aqi_estimate }})</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  {% endif %}
+
+  {% if report.produce_summary.watch_total or report.produce_summary.lower_total %}
+    <h2>Produce Variety</h2>
+    <div class="card">
+      <p>{{ report.produce_summary.watch_total }} mention(s) from the historically higher-residue-detection
+         group, {{ report.produce_summary.lower_total }} from the lower-typical group this window.
+         The goal is variety, not avoidance — see <a href="{{ url_for('learn') }}">Learn</a> for the full list.</p>
+      {% if report.produce_summary.tip %}
+        <div class="tip-item" style="border-top:1px solid var(--line);padding-top:10px;">{{ report.produce_summary.tip }}</div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <h2>Flagged substances by category</h2>
+  {% for category, cat_label in [('food','Food'), ('personal_care','Personal Care'), ('environment','Environment')] %}
+    {% set c = report.category_summary.get(category) %}
+    {% if c and c.substances %}
+      <div class="card">
+        <strong>{{ cat_label }}</strong>
+        <table>
+          <tr><th>Substance</th><th>Mentions</th><th>Concern</th></tr>
+          {% for s in c.substances %}
+            <tr>
+              <td>{{ s.name }}</td>
+              <td>{{ s.count }}</td>
+              <td><span class="pill pill-{{ s.concern_level }}">
+                {{ {1:'low',2:'moderate',3:'higher'}[s.concern_level] }}
+              </span></td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  {% if report.processing_counts %}
+    <div class="card">
+      <strong>Food processing mix (NOVA)</strong>
+      <table>
+        <tr><th>Level</th><th>Count</th></tr>
+        {% for level, count in report.processing_counts.items() | sort %}
+          <tr><td>{{ level }} — {{ {1:'Unprocessed/minimal',2:'Culinary ingredient',3:'Processed',4:'Ultra-processed'}[level] }}</td><td>{{ count }}</td></tr>
+        {% endfor %}
+      </table>
+    </div>
+  {% endif %}
+
+  <h2>All recommendations</h2>
+  <div class="card">
+    {% if report.recommendations %}
+      {% for r in report.recommendations %}
+        <div class="tip-item">
+          <div>{{ r.tip }}{% if r.completed %} <span class="pill pill-1">done recently</span>{% endif %}</div>
+          <div class="tip-source">re: {{ r.source }}</div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="empty-state">No substance-specific recommendations yet — nothing flagged in this window.</p>
+    {% endif %}
+  </div>
+
+  {% if report.general_recommendations %}
+    <div class="card">
+      <strong>General habits worth considering</strong>
+      {% for r in report.general_recommendations %}
+        <div class="tip-item">
+          <div>{{ r.tip }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <h2>Resilience Practices</h2>
+  <div class="card">
+    {% if report.practice_summary %}
+      <table>
+        <tr><th>Practice</th><th>Times logged</th><th>Total time</th></tr>
+        {% for pt, s in report.practice_summary.items() %}
+          <tr>
+            <td>{{ {'fasting':'Fasting window','exercise':'Exercise','screen_free':'Screen-free / dopamine reset','grounding_stretching':'Grounding / stretching','other':'Other'}.get(pt, pt) }}</td>
+            <td>{{ s.count }}</td>
+            <td>{{ s.total_minutes }} min</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty-state">Nothing logged yet — <a href="{{ url_for('log_practice') }}">log a fasting window, workout, screen-free block, or stretch session</a>.</p>
+    {% endif %}
+    <p style="margin-top:12px;margin-bottom:0;font-size:0.85rem;color:var(--muted);">{{ report.resilience_note }}</p>
+  </div>
+
+  {% if recent_biomarkers %}
+    <h2>Biomarkers</h2>
+    <div class="card">
+      <table>
+        <tr><th>Date</th><th>Metric</th><th>Value</th><th>Source</th></tr>
+        {% for b in recent_biomarkers %}
+          <tr>
+            <td>{{ b.log_date }}</td>
+            <td>{{ b.metric }}</td>
+            <td>{{ b.value }}{% if b.unit %} {{ b.unit }}{% endif %}</td>
+            <td>{{ b.source or '—' }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      <p style="margin-top:10px;margin-bottom:0;"><a href="{{ url_for('log_biomarker') }}">Log another / view all →</a></p>
+    </div>
+  {% endif %}
+
+  <div class="card" style="border-color:var(--accent);">
+    <strong>A note on behavioral wellbeing</strong>
+    <p style="margin-bottom:0;">{{ report.behavioral_note }}</p>
+  </div>
+{% endblock %}

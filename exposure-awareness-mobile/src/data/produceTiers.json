@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "description": "A rough, original two-tier grouping of common produce items by how often multiple pesticide residues have historically been detected in USDA Pesticide Data Program (PDP) testing, used only to support AGGREGATE exposure awareness — i.e. what you eat most often matters far more than any single item. This is not a reproduction of any advocacy group's proprietary ranking, and detection of a residue does not mean it exceeded an EPA safety tolerance; the PDP itself reports the vast majority of tested samples are within tolerance.",
+    "methodology": "Grouping reflects a well-established general pattern repeated across many years of USDA PDP annual summary reports (ams.usda.gov/datasets/pdp) and is intentionally coarse (two tiers, no ranking within tiers). Verify current-year specifics against the latest PDP report if it matters to you — this list is a starting heuristic, not a lab result for your food.",
+    "principle": "Variety is the actual lever: eating the same few 'watch-list' items daily concentrates exposure to whatever residues they tend to carry. Rotating sources, washing/peeling, and not building a diet around any single produce item matters more than eliminating any one food.",
+    "last_reviewed": "2026-09-14"
+  },
+  "watch_list": [
+    {"item": "strawberries", "note": "Thin skin, grown low to the ground; rinse well under running water."},
+    {"item": "spinach", "note": "Leafy greens have historically shown frequent multi-residue detections; washing and buying pre-washed doesn't fully remove residue but does help with surface debris."},
+    {"item": "kale", "note": "Same leafy-green pattern as spinach/collards."},
+    {"item": "collard/mustard greens", "note": "Same leafy-green pattern as kale/spinach."},
+    {"item": "peaches", "note": "Thin-skinned stone fruit; peeling removes more residue than rinsing alone but also removes fiber/nutrients — a personal tradeoff, not a requirement."},
+    {"item": "nectarines", "note": "Same stone-fruit pattern as peaches."},
+    {"item": "cherries", "note": "Thin skin, hard to peel practically; rinse well."},
+    {"item": "apples", "note": "Thin skin; a produce-wash soak or peeling reduces residue if it's a priority for you."},
+    {"item": "grapes", "note": "Thin skin, eaten whole; rinse under running water (soaking helps more than a quick splash)."},
+    {"item": "bell & hot peppers", "note": "Thin skin, often minimal processing between field and table."},
+    {"item": "blueberries", "note": "Thin skin; rinse well, especially if not organic."},
+    {"item": "green beans", "note": "Historically variable; rinsing before cooking helps."}
+  ],
+  "lower_typical": [
+    {"item": "avocados", "note": "Thick inedible skin acts as a natural barrier."},
+    {"item": "sweet corn", "note": "Husk is removed and discarded before eating."},
+    {"item": "pineapple", "note": "Thick inedible rind."},
+    {"item": "onions", "note": "Outer papery layers are removed before use."},
+    {"item": "cabbage", "note": "Outer leaves are typically discarded."},
+    {"item": "asparagus", "note": "Historically lower multi-residue detection frequency."},
+    {"item": "mangoes", "note": "Thick skin, typically peeled before eating."},
+    {"item": "kiwi", "note": "Fuzzy skin typically peeled or scooped, not eaten."},
+    {"item": "papaya", "note": "Thick skin, typically peeled."},
+    {"item": "bananas", "note": "Peel is discarded before eating."},
+    {"item": "broccoli", "note": "Historically lower multi-residue detection frequency."},
+    {"item": "cauliflower", "note": "Historically lower multi-residue detection frequency."}
+  ]
+}

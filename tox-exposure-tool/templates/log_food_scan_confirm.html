@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Confirm Scanned Product{% endblock %}
+{% block content %}
+  <h1>Confirm & Log</h1>
+  <p class="subtitle">Found via Open Food Facts for barcode {{ barcode }}. Review/edit before logging —
+     the ingredient list below is scanned by the fusion engine just like manually-typed entries.</p>
+
+  <div class="card">
+    <form method="post" action="{{ url_for('log_food') }}">
+      <div class="field">
+        <label for="log_date">Date</label>
+        <input type="date" id="log_date" name="log_date" value="{{ today }}">
+      </div>
+      <div class="field">
+        <label for="meal">Meal</label>
+        <select id="meal" name="meal">
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="snack">Snack</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="food_item">Food item(s)</label>
+        <textarea id="food_item" name="food_item" required>{{ product.name }}{% if product.brands %} ({{ product.brands }}){% endif %}</textarea>
+      </div>
+      <div class="field">
+        <label for="processing_level">Processing level (NOVA)</label>
+        <select id="processing_level" name="processing_level">
+          <option value="" {{ 'selected' if not product.nova_group }}>Not sure / skip</option>
+          <option value="1" {{ 'selected' if product.nova_group==1 }}>1 — Unprocessed / minimally processed</option>
+          <option value="2" {{ 'selected' if product.nova_group==2 }}>2 — Processed culinary ingredient</option>
+          <option value="3" {{ 'selected' if product.nova_group==3 }}>3 — Processed food</option>
+          <option value="4" {{ 'selected' if product.nova_group==4 }}>4 — Ultra-processed</option>
+        </select>
+        {% if product.nova_group %}
+          <span style="font-size:0.8rem;color:var(--muted);">Auto-filled from Open Food Facts' own NOVA classification for this product.</span>
+        {% endif %}
+      </div>
+      <div class="field">
+        <label for="notes">Ingredients (from label — edit freely)</label>
+        <textarea id="notes" name="notes" rows="4">{{ product.ingredients_text }}</textarea>
+      </div>
+      <button type="submit">Confirm & log entry</button>
+      <a href="{{ url_for('log_food_scan') }}" class="btn btn-secondary" style="margin-left:8px;">Scan a different barcode</a>
+    </form>
+  </div>
+{% endblock %}

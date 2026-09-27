@@ -1,0 +1,127 @@
+{
+  "_meta": {
+    "description": "Shared toxicology/pharmacology/physics concepts referenced by hazard_database.json substances via concept_tags. Written once here rather than repeated per-substance. 'general' is plain-language for any reader; 'technical' assumes some science background. These are standard, well-established textbook principles (ADME pharmacokinetics, aerosol deposition physics, basic radiation biology, dose-response toxicology) — not substance-specific claims, which live in each substance's own technical_note instead."
+  },
+  "concepts": [
+    {
+      "id": "aggregate_exposure",
+      "name": "Aggregate exposure",
+      "general": "You don't get a chemical from just one source — you get a running total from everything that contains it across your whole day (food, air, dust, products). No single item usually matters as much as the total.",
+      "technical": "Aggregate/cumulative exposure assessment sums intake across all relevant routes (oral, dermal, inhalation) and sources for a substance or substance class over a defined period, the way EPA cumulative risk assessments are structured. A single product typically contributes a small fraction of total body burden, which is why source diversification is generally higher-leverage than eliminating any one item entirely."
+    },
+    {
+      "id": "bioaccumulation_half_life",
+      "name": "Bioaccumulation & elimination half-life",
+      "general": "Some chemicals leave your body within hours; others take years. That difference changes how much any single choice actually matters — and how much past exposure still counts today.",
+      "technical": "Elimination half-life depends on lipophilicity (log Kow), molecular size, and whether the body actively reabsorbs the compound rather than excreting it. Short-half-life compounds (most phthalates, hours) show urinary metabolite spikes tied to very recent exposure and don't meaningfully accumulate at typical levels. Long-half-life compounds (PFAS, years — due to active renal tubular reabsorption; lead, decades — stored in bone) build a body burden where historical exposure matters as much as current behavior."
+    },
+    {
+      "id": "hepatic_metabolism",
+      "name": "Hepatic (liver) metabolism",
+      "general": "Your liver is built to break down foreign chemicals, usually within hours to a couple of days. This is an always-on background process, not something a cleanse or supplement needs to 'activate.'",
+      "technical": "Most xenobiotics undergo hepatic Phase I metabolism (commonly CYP450-mediated oxidation) followed by Phase II conjugation (glucuronidation, sulfation, or glutathione conjugation) to increase water solubility for excretion. This is the default fate for phthalates, parabens, BPA, acrylamide, and most synthetic food/cosmetic additives."
+    },
+    {
+      "id": "renal_clearance",
+      "name": "Renal (kidney) clearance",
+      "general": "Once the liver has processed a chemical, the kidneys usually flush the byproducts out in urine, typically within a day.",
+      "technical": "Phase II metabolites are generally water-soluble enough for glomerular filtration and/or active tubular secretion. Urinary metabolite concentration is the standard biomonitoring readout (e.g., NHANES phthalate/BPA panels) precisely because renal clearance is fast for most compounds. PFAS is the major exception in this database: its charged head group triggers active tubular *reabsorption* via organic anion transporters instead of excretion, which is mechanistically why it persists for years rather than being cleared."
+    },
+    {
+      "id": "particle_deposition",
+      "name": "Particle deposition physics",
+      "general": "Where dust, smoke, and mold particles end up in your lungs depends heavily on their size — smaller particles travel deeper.",
+      "technical": "Respiratory deposition follows three broad regimes by aerodynamic diameter: particles >10µm impact in the nasopharynx via inertial impaction and are filtered before reaching the lower airway; 2.5–10µm (the PM10 range) deposit largely in the tracheobronchial tree; <2.5µm (PM2.5) penetrate to the alveolar region and deposit primarily via diffusion (Brownian motion) rather than inertial/gravitational mechanisms. This is the physical basis for treating PM2.5 as higher-concern than PM10 despite PM10 being the more 'visible' pollutant — alveolar-deposited particles are also positioned to cross more readily into systemic circulation."
+    },
+    {
+      "id": "endocrine_disruption",
+      "name": "Endocrine disruption",
+      "general": "Some chemicals can loosely mimic or block hormones your body already makes — usually far more weakly than the real thing, but still worth minimizing where it's easy.",
+      "technical": "Endocrine-disrupting chemicals (EDCs) typically act via weak binding to nuclear hormone receptors (e.g., estrogen or androgen receptors) or by interfering with hormone synthesis/transport enzymes. Per-molecule effect size is generally orders of magnitude below endogenous hormone activity, but low-dose, non-monotonic dose-response relationships and mixture effects (multiple weak EDCs from aggregate exposure acting on the same pathway) are active, genuinely debated areas of the toxicology literature — part of why regulatory consensus varies substance-to-substance in this database."
+    },
+    {
+      "id": "dose_response",
+      "name": "Dose-response",
+      "general": "Almost nothing is purely 'safe' or 'toxic' in isolation — it depends on how much and how often. The amount in a typical diet or routine is usually far below the levels studied in the underlying research.",
+      "technical": "Risk assessment centers on the dose-response relationship, typically anchored to a no-observed-adverse-effect-level (NOAEL) or benchmark dose from animal or epidemiological studies, then divided by uncertainty factors (often 100–1000x) to set a reference dose for humans. This app's `concern_level` is a coarse proxy for how consistently a substance is flagged in public-health guidance, not a dose-adjusted calculation — an actual risk estimate requires knowing real quantity and frequency, which this app doesn't measure."
+    },
+    {
+      "id": "nova_classification",
+      "name": "NOVA food processing classification",
+      "general": "NOVA groups food by how much industrial processing changed it, not by its nutrition label numbers alone.",
+      "technical": "The NOVA system (Monteiro et al.) classifies food by the extent and purpose of processing rather than nutrient composition: unprocessed/minimally processed (1), processed culinary ingredients (2), processed foods (3), and ultra-processed formulations (4 — typically 5+ ingredients including additives with no home-kitchen equivalent). It's a structural classification, not a toxicological one: the concern with ultra-processed foods is usually framed as concentrated additive load, an altered food matrix affecting satiety signaling, and displacement of whole foods — not any single ingredient being acutely toxic."
+    },
+    {
+      "id": "alpha_radiation",
+      "name": "Alpha radiation & radon decay",
+      "general": "Radon gas itself passes through you fairly harmlessly, but it decays into solid particles that get stuck in your lungs and give off a especially damaging type of radiation at close range.",
+      "technical": "Radon (a noble gas) decays into solid, chemically reactive progeny (polonium-218 and polonium-214) that attach to ambient dust and deposit in the bronchial epithelium via the same particle-deposition physics as other inhaled particulates. These decay products emit alpha radiation — a particle type with very high linear energy transfer that causes concentrated, localized DNA damage over a very short range, but is stopped by skin and harmless externally. This is mechanistically why inhalation (not ingestion, e.g. from well water) dominates radon's lung cancer risk."
+    },
+    {
+      "id": "adme",
+      "name": "ADME: a chemical's journey through the body",
+      "general": "Every chemical takes the same four-stop trip through your body: how it gets in (absorption), where it travels (distribution), how it is changed (metabolism), and how it leaves (excretion). Where a chemical is on that trip explains most of what it can do.",
+      "technical": "Absorption depends on route (oral, dermal, inhalation) and bioavailability; oral compounds may face first-pass hepatic metabolism before reaching circulation. Distribution follows blood flow, plasma protein binding, and tissue partitioning -- lipophilic compounds concentrate in fat, lead substitutes for calcium in bone -- summarized by volume of distribution. Metabolism (Phase I oxidation, Phase II conjugation) usually increases water solubility; excretion is renal, biliary/fecal, or via breath. Elimination half-life follows from clearance and volume of distribution (t1/2 = 0.693 x Vd / CL), which is why the same dose can linger for hours or years. In-silico ADMET models predict these properties from structure."
+    },
+    {
+      "id": "sensitization",
+      "name": "Sensitization",
+      "general": "Sometimes the body learns to react. After a first exposure primes the immune system, much smaller later exposures can trigger a response -- as with nickel or some fragrance ingredients on skin, or certain dusts in the airway.",
+      "technical": "Sensitizers such as haptens bind skin or airway proteins to form immunogenic complexes. In the induction phase, T cells are primed with no visible symptoms; in the elicitation phase, re-exposure at a far lower dose produces the reaction (allergic contact dermatitis is a type IV delayed hypersensitivity). Because thresholds are set by immune memory rather than direct toxicity, ordinary dose-response reasoning applies differently: the amount that sensitizes can be higher than the amount that later elicits a response, and avoidance after sensitization is the main control."
+    },
+    {
+      "id": "dispersion",
+      "name": "Dispersion: how air and water spread things out",
+      "general": "Air and water carry contaminants (advection), spread them (diffusion and turbulence), and dilute them. That is why a cross-breeze or a range hood can cut indoor levels quickly, and why smoke or a spill is strongest near its source.",
+      "technical": "Transport is described by the advection-diffusion equation. For a well-mixed room, a simple box model gives a steady-state concentration C = G/Q + C_outdoor (G = emission rate, Q = ventilation airflow), and after the source stops, concentration decays as C(t) = C0 x exp(-ACH x t), where ACH is air changes per hour. Outdoors, plumes disperse roughly Gaussian-shaped downwind, widening with turbulence; whether flow is laminar or turbulent (Reynolds number) sets mixing rate. Particle behavior adds settling (Stokes velocity), which is why coarse dust falls out quickly while fine PM2.5 stays suspended and follows the air."
+    },
+    {
+      "id": "relative_absolute_risk",
+      "name": "Relative vs. absolute risk",
+      "general": "'Doubles your risk' describes a ratio, not how likely something is. What matters is the starting (baseline) risk: doubling a 1-in-10,000 chance gives 2-in-10,000. Always ask: increased from what, to what, out of how many people?",
+      "technical": "Relative risk (RR) is the ratio of risk in exposed to unexposed; absolute risk difference (ARD) is the subtraction; number needed to harm is 1/ARD. Identical RRs imply very different absolute effects at different baselines: ARD = baseline x (RR - 1). Odds ratios approximate RR only when the outcome is rare. Reporting in natural frequencies ('per 1,000 people') is consistently better understood than percentages or ratios."
+    },
+    {
+      "id": "confounding",
+      "name": "Confounding",
+      "general": "Two things can move together because a third thing drives both -- not because one causes the other. Coffee drinkers once looked riskier for some cancers partly because more of them smoked.",
+      "technical": "A confounder is associated with both exposure and outcome and is not on the causal pathway. Crude associations can be biased away from or toward the null, or reversed (Simpson's paradox). Control is by design (randomization, restriction, matching) or analysis (stratification, regression, standardization, propensity methods), and only covers confounders that were measured; residual confounding remains a limit of observational studies."
+    },
+    {
+      "id": "safety_thresholds",
+      "name": "How safety thresholds are set",
+      "general": "Regulators start from the highest dose with no observed harm in animal or lab studies, then divide by safety factors -- commonly 10 for animal-to-human and 10 for differences between people -- to get a level meant to be safe for nearly everyone over a lifetime.",
+      "technical": "A point of departure (NOAEL, LOAEL, or a benchmark dose lower bound) is divided by uncertainty factors -- typically 10 for interspecies extrapolation and 10 for human variability, with further factors for LOAEL-to-NOAEL, subchronic-to-chronic, and database gaps -- to derive a reference dose (RfD). The margin of exposure (point of departure / estimated human exposure) shows how far actual exposure sits from the study dose. Thresholds are protective conventions, not cliffs."
+    },
+    {
+      "id": "testing_hierarchy",
+      "name": "In silico, in vitro, in vivo, in people",
+      "general": "Safety evidence is built in layers: computer models predict, cells in a dish screen, animals show whole-body effects, and human studies test what really happens in people. Each layer answers a different question, and none is enough alone.",
+      "technical": "In silico (QSAR, read-across, toxicokinetic and PBPK modelling) is fast and cheap but only as good as its training data. In vitro assays, including high-throughput screening, identify mechanisms and prioritize chemicals but lack whole-body metabolism and kinetics (addressed by in vitro to in vivo extrapolation). In vivo studies capture integrated physiology but face species differences. Epidemiology observes real exposures in people but is prone to confounding and exposure misclassification; randomized trials are strongest but rarely ethical for toxicants. Weight-of-evidence integrates all of them."
+    },
+    {
+      "id": "causation_criteria",
+      "name": "Association vs. causation",
+      "general": "'Linked to' means two things show up together in data. Deciding whether one causes the other takes more: consistent results across studies, the cause coming first, more exposure giving more effect, and a plausible biological reason.",
+      "technical": "Bradford Hill's viewpoints -- strength, consistency, specificity, temporality, biological gradient, plausibility, coherence, experiment, analogy -- structure weight-of-evidence causal inference; temporality is necessary, the others are supportive. Modern practice adds directed acyclic graphs, triangulation across study designs with different biases, and mechanistic evidence from omics and adverse outcome pathways."
+    },
+    {
+      "id": "mixtures",
+      "name": "Mixtures: how combined exposures add up",
+      "general": "You rarely meet one chemical at a time -- meals, products and air all bring several at once. Combined effects are usually close to what you'd expect from adding each one's effect together; occasionally one chemical amplifies another, but that's the exception, not the rule, and mostly shows up at much higher doses than everyday exposure.",
+      "technical": "Chemical combinations can be additive (dose/response sums), synergistic (more than additive, usually because one compound alters another's toxicokinetics -- e.g. inhibiting the enzyme that clears it), or antagonistic (less than additive). Regulatory cumulative risk assessment defaults to dose addition within a 'common mechanism group' (chemicals acting through the same pathway) as a protective assumption. Documented synergisms are real but concentrated in specific mechanistic pairings (e.g. organophosphate + certain fungicides interfering with shared metabolic enzymes) and have mostly been shown at experimentally high concentrations rather than typical dietary exposure levels."
+    },
+    {
+      "id": "nutrition_toxicity",
+      "name": "Essential nutrients: harmful too little, harmful too much",
+      "general": "Some substances aren't simply 'safer in smaller amounts' -- your body actually needs a minimum of them. Iron, vitamin A, sodium and several others cause real harm at too little AND at too much; there's a range in the middle that's the actual goal, not zero.",
+      "technical": "For essential nutrients, the dose-response curve is U-shaped (biphasic) rather than monotonically increasing: deficiency produces one set of adverse effects (e.g. iron-deficiency anemia, vitamin A deficiency causing vision/immune impairment) and excess produces a different set (iron overload/hemochromatosis organ damage; hypervitaminosis A causing liver toxicity and, in pregnancy, teratogenic risk). Nutrition science sets both a recommended intake floor (RDA/EAR) and a tolerable upper intake level (UL) for exactly this reason. This is a distinct concept from hormesis (low-dose stimulation from a substance with no biological requirement, which remains more debated) -- essentiality is not in dispute for these nutrients, only the width of the safe range."
+    },
+    {
+      "id": "pathway_perturbation",
+      "name": "Pathway perturbation & the adverse outcome pathway",
+      "general": "A chemical doesn't jump straight from 'present' to 'harmful' -- it disturbs something specific first (like a hormone receptor or an enzyme), which can then set off a chain of effects. Mapping that chain is what separates 'this changed a cell' from 'this harms health.'",
+      "technical": "The adverse outcome pathway (AOP) framework (Ankley et al. 2010, adopted by the OECD) formalizes this chain: a molecular initiating event (e.g. a chemical binding a specific receptor) triggers key events at increasing levels of biological organization (cellular, tissue, organ) culminating in an adverse outcome relevant to an individual or population. Each link is independently evidenced or contested; a well-documented molecular initiating event with no demonstrated downstream key events is a mechanistic hypothesis, not a shown health effect. AOPs are increasingly used to organize New Approach Methodology (NAM) data and prioritize chemicals for further testing without defaulting to animal studies for every compound."
+    }
+  ]
+}

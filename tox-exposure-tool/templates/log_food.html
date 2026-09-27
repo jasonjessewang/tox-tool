@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Log Food{% endblock %}
+{% block content %}
+  <h1>Log Food / Breakfast</h1>
+  <p class="subtitle">Enter what you ate. Free text is fine — e.g. "sweetened cereal with fruit juice" or
+     "toast, black coffee, eggs". The engine scans for known additive/compound keywords.
+     Got a packaged item in hand? <a href="{{ url_for('log_food_scan') }}">Scan its barcode instead</a> —
+     auto-fills the ingredient list and NOVA processing level for you.</p>
+
+  <div class="card">
+    <form method="post">
+      <div class="field">
+        <label for="log_date">Date</label>
+        <input type="date" id="log_date" name="log_date" value="{{ today }}">
+      </div>
+      <div class="field">
+        <label for="meal">Meal</label>
+        <select id="meal" name="meal">
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="snack">Snack</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="food_item">Food item(s)</label>
+        <textarea id="food_item" name="food_item" required placeholder="e.g. brightly colored breakfast cereal, orange juice from concentrate, buttered toast"></textarea>
+      </div>
+      <div class="field">
+        <label for="processing_level">Processing level (NOVA) — optional, helps track ultra-processed food pattern</label>
+        <select id="processing_level" name="processing_level">
+          <option value="">Not sure / skip</option>
+          <option value="1">1 — Unprocessed / minimally processed (fresh fruit, eggs, plain oats)</option>
+          <option value="2">2 — Processed culinary ingredient (butter, oil, sugar used in cooking)</option>
+          <option value="3">3 — Processed food (canned beans, fresh bread, cheese)</option>
+          <option value="4">4 — Ultra-processed (packaged cereal, toaster pastry, soda, most snack bars)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" name="notes" placeholder="e.g. bread was toasted dark, packaging said 'red 40'"></textarea>
+      </div>
+      <button type="submit">Log entry</button>
+    </form>
+  </div>
+
+  <h2>Recent food entries</h2>
+  <div class="card">
+    {% if recent %}
+      <table>
+        <tr><th>Date</th><th>Meal</th><th>Item</th><th></th></tr>
+        {% for e in recent %}
+          <tr>
+            <td>{{ e.log_date }}</td>
+            <td>{{ e.meal }}</td>
+            <td>{{ e.food_item }}</td>
+            <td>
+              <form class="inline-form" method="post" action="{{ url_for('delete_entry', category='food', log_id=e.id) }}">
+                <button type="submit" class="btn-secondary" style="padding:4px 10px;font-size:0.8rem;">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty-state">No food entries yet.</p>
+    {% endif %}
+  </div>
+{% endblock %}

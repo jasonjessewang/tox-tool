@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Scan a Barcode{% endblock %}
+{% block content %}
+  <h1>Scan a Barcode</h1>
+  <p class="subtitle">Type (or scan with a handheld/phone barcode reader into this field) the barcode number
+     from a packaged food item. We look it up in <a href="https://world.openfoodfacts.org" target="_blank" rel="noopener">Open Food Facts</a>,
+     a free, open product database — no account or app needed. You'll get a chance to review what was
+     found before anything is logged.</p>
+
+  <div class="card">
+    <form method="post">
+      <div class="field">
+        <label for="barcode">Barcode (UPC/EAN number)</label>
+        <input type="text" inputmode="numeric" id="barcode" name="barcode" required autofocus
+               placeholder="e.g. 3017620422003" pattern="[0-9]*">
+      </div>
+      <button type="submit">Look up</button>
+      <a href="{{ url_for('log_food') }}" class="btn btn-secondary" style="margin-left:8px;">Enter manually instead</a>
+    </form>
+  </div>
+
+  <p class="subtitle" style="font-size:0.8rem;">Coverage is strongest for widely-distributed packaged foods
+     and weaker for small/regional brands or fresh items with no barcode — if it's not found, manual entry
+     takes 10 seconds anyway.</p>
+{% endblock %}

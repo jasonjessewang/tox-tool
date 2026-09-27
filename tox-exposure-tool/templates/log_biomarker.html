@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Log a Biomarker{% endblock %}
+{% block content %}
+  <h1>Log a Biomarker</h1>
+  <p class="subtitle">For anyone tracking wearable metrics (Oura, Whoop, a smartwatch) or periodic lab/at-home
+     results (grip strength, VO2max, a quarterly blood panel). Purely for your own trend-watching — not
+     scored, not diagnosed, not compared to any reference range by this tool. See the project's
+     <code>ADVANCED_TIER.md</code> for background on what these categories are and why someone might track
+     them, and talk to a clinician about what's actually worth testing for you — more data isn't
+     automatically better.</p>
+
+  <div class="card">
+    <form method="post">
+      <div class="field">
+        <label for="log_date">Date</label>
+        <input type="date" id="log_date" name="log_date" value="{{ today }}">
+      </div>
+      <div class="field">
+        <label for="metric">Metric</label>
+        <select id="metric" name="metric">
+          {% for p in presets %}
+            <option value="{{ p }}">{{ p }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="field">
+        <label for="metric_other">If "Other" — name it</label>
+        <input type="text" id="metric_other" name="metric_other" placeholder="e.g. Urinary phthalate metabolites">
+      </div>
+      <div class="field">
+        <label for="value">Value</label>
+        <input type="text" inputmode="decimal" id="value" name="value" required placeholder="e.g. 52">
+      </div>
+      <div class="field">
+        <label for="unit">Unit (optional)</label>
+        <input type="text" id="unit" name="unit" placeholder="e.g. bpm, ms, kg, mg/dL">
+      </div>
+      <div class="field">
+        <label for="source">Source (optional)</label>
+        <input type="text" id="source" name="source" placeholder="e.g. Oura ring, Quest Diagnostics, home dynamometer">
+      </div>
+      <div class="field">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" name="notes"></textarea>
+      </div>
+      <button type="submit">Log biomarker</button>
+    </form>
+  </div>
+
+  <h2>Recent biomarker entries</h2>
+  <div class="card">
+    {% if recent %}
+      <table>
+        <tr><th>Date</th><th>Metric</th><th>Value</th><th>Source</th><th></th></tr>
+        {% for e in recent %}
+          <tr>
+            <td>{{ e.log_date }}</td>
+            <td>{{ e.metric }}</td>
+            <td>{{ e.value }}{% if e.unit %} {{ e.unit }}{% endif %}</td>
+            <td>{{ e.source or '—' }}</td>
+            <td>
+              <form class="inline-form" method="post" action="{{ url_for('delete_entry', category='biomarkers', log_id=e.id) }}">
+                <button type="submit" class="btn-secondary" style="padding:4px 10px;font-size:0.8rem;">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty-state">Nothing logged yet.</p>
+    {% endif %}
+  </div>
+{% endblock %}

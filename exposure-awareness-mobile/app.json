@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "Exposure Awareness",
+    "slug": "exposure-awareness-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.exposureawareness.mobile"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#3f6b52",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "name": "Exposure Awareness",
+      "shortName": "Exposure",
+      "description": "A private, on-device way to see what you're exposed to, compare it with published guidance, and make your own changes.",
+      "themeColor": "#3f6b52",
+      "backgroundColor": "#f7f5f0",
+      "lang": "en"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Used only to check local air quality and significant weather/fire alerts near you. Never leaves your device except as a coordinate sent to the National Weather Service and Open-Meteo, both free public data sources with no account."
+        }
+      ],
+      "expo-notifications"
+    ],
+    "description": "A private, on-device way to see what you're exposed to, compare it with published guidance, and make your own changes."
+  }
+}

@@ -1,0 +1,3 @@
+__pycache__/
+*.pyc
+exposure_log.db

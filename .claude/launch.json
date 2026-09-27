@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "expo-web",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-lc", "cd exposure-awareness-mobile && npx expo start --web"],
+      "port": 8081
+    },
+    {
+      "name": "compiled-web",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-lc", "cd outputs/web-app && python3 -m http.server 8090 --bind 127.0.0.1"],
+      "port": 8090
+    }
+  ]
+}

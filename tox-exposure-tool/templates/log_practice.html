@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Log a Reset Practice{% endblock %}
+{% block content %}
+  <h1>Log a Reset / Resilience Practice</h1>
+  <p class="subtitle">Fasting windows, exercise, screen-free/dopamine-reset blocks, grounding or stretching.
+     These are tracked as their own thing — not netted against your exposure score — because they support
+     general resilience and healthy behavior patterns, not a literal chemical "detox." See the note on the
+     dashboard for more on that distinction.</p>
+
+  <div class="card">
+    <form method="post">
+      <div class="field">
+        <label for="log_date">Date</label>
+        <input type="date" id="log_date" name="log_date" value="{{ today }}">
+      </div>
+      <div class="field">
+        <label for="practice_type">Practice</label>
+        <select id="practice_type" name="practice_type">
+          {% for key, label in practice_labels.items() %}
+            <option value="{{ key }}">{{ label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="field">
+        <label for="duration_minutes">Duration (minutes, optional)</label>
+        <input type="text" inputmode="numeric" id="duration_minutes" name="duration_minutes" placeholder="e.g. 30">
+      </div>
+      <div class="field">
+        <label for="detail">Detail (optional)</label>
+        <input type="text" id="detail" name="detail" placeholder="e.g. morning run, 16:8 fasting window, phone-free evening walk">
+      </div>
+      <div class="field">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" name="notes"></textarea>
+      </div>
+      <button type="submit">Log practice</button>
+    </form>
+  </div>
+
+  <h2>Recent practice entries</h2>
+  <div class="card">
+    {% if recent %}
+      <table>
+        <tr><th>Date</th><th>Practice</th><th>Duration</th><th></th></tr>
+        {% for e in recent %}
+          <tr>
+            <td>{{ e.log_date }}</td>
+            <td>{{ practice_labels.get(e.practice_type, e.practice_type) }}</td>
+            <td>{{ e.duration_minutes ~ ' min' if e.duration_minutes else '—' }}</td>
+            <td>
+              <form class="inline-form" method="post" action="{{ url_for('delete_entry', category='practices', log_id=e.id) }}">
+                <button type="submit" class="btn-secondary" style="padding:4px 10px;font-size:0.8rem;">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty-state">No practices logged yet.</p>
+    {% endif %}
+  </div>
+{% endblock %}

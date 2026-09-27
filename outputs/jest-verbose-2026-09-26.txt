@@ -1,0 +1,730 @@
+PASS src/engine/places/places.test.ts
+  the catalog: every check is a comparison with a reference
+    ✓ ids are unique and every kind of place has a real checklist (2 ms)
+    ✓ each check names its reference and where it comes from, and the source is an authority or says it is the app's own (1 ms)
+    ✓ options are well formed: something meets the reference, values are unique, only concerns carry a standing (4 ms)
+    ✓ every substance a check points at exists, and has tips to offer when an answer is worth attention (1 ms)
+    ✓ the wording is calm: no fear vocabulary in questions, answers or reasons (6 ms)
+    ✓ a check applies only to the kinds of place it names (1 ms)
+  reading a place
+    ✓ nothing answered is unknown, never a failure: one reading per check that applies
+    ✓ an answer is read against its option: meets, attention with its standing, and the substance (1 ms)
+    ✓ answers are dated: the answer in force on a day is the newest one given on or before it
+    ✓ an answer the catalog no longer offers, or one that was cleared, reads as unknown
+    ✓ 'doesn't apply' answers take a check off the table without counting for or against
+    ✓ counts: meets, attention, and how much is still unknown
+    ✓ freshness: a year is fully fresh, after that answers carry less, never less than 40%
+  time and people
+    ✓ hours a week set how much a place's findings count: 40 hours is 1, bounded (1 ms)
+    ✓ the household lens reuses the personalization rules: it names who a substance matters most for, and why
+    ✓ a child in the home is seen through the child rules; a pet through its own notes
+    ✓ a finding counts up to 75% more when it matters especially to people who share the place
+    ✓ the user is one of the people in every place, through their own profile
+  standing exposure: what a place carries week after week
+    ✓ only findings worth attention become standing exposure; a check that meets its reference adds nothing (1 ms)
+    ✓ the weight scales with how much of the concern the answer leaves in place, and with the hours spent there
+    ✓ who shares the place changes the weight: an asthmatic housemate makes particle findings count for more
+    ✓ two findings about one substance in two places are one line of advice, adding their weights, naming both places
+    ✓ the weight of one substance is capped, so no single place drowns everything else
+    ✓ standing follows the answer in force on the day: fixing something takes it off the list
+    ✓ a substance the database no longer has is skipped rather than crashing (1 ms)
+  what to ask next
+    ✓ things not yet known come first, ranked by how much they would count; then answers over a year old
+    ✓ a check answered 'not sure' (or taken back) is not asked again for a month
+    ✓ a tip marked done since the answer was given asks 'has this changed?' first -- and only until the answer is updated (1 ms)
+    ✓ needsRecheck: only findings worth attention, only when the completion came after the answer (1 ms)
+    ✓ a fully answered, fresh place has nothing left to ask; the limit is honoured
+    ✓ hours and housemates change the order: what matters more here is asked first
+
+PASS src/engine/signals/signals.test.ts
+  decay
+    ✓ a day's weight halves every ten days and is gone after six weeks (2 ms)
+    ✓ a new person is judged against the days they have actually been around, at least a week's worth
+  exposure: of what you log, how much is flagged
+    ✓ nothing logged: no evidence, not a fake number (1 ms)
+    ✓ clean logging reads high, and confidence grows with how much is logged (3 ms)
+    ✓ the flagged share lowers the reading in proportion (3 ms)
+    ✓ logging more never counts against you: the same share, twice the entries, reads (nearly) the same with more confidence (1 ms)
+    ✓ with few entries, one flagged meal cannot swing the reading wildly
+    ✓ the lean fades as evidence grows: a thorough logger's own pattern shows (1 ms)
+    ✓ swapping a flagged entry for a clean one raises the reading
+    ✓ scanned products are catalog entries: they neither flag nor count as evidence
+    ✓ older days count for less: the same flagged entry hurts less after ten days than after one
+    ✓ evaluated as of an earlier day, later entries do not exist
+    ✓ a quiet spell fades the confidence gradually instead of erasing the picture
+    ✓ air-quality readings are entries too
+  shelf: your products read against the stance rules
+    ✓ an empty shelf has no evidence
+    ✓ clean products read high; a flagged one lowers the share, and retiring it brings it back (6 ms)
+    ✓ no early floor: a typical mixed shelf still has room to move, and a swap shows (2 ms)
+    ✓ scanning more clean products never lowers it (1 ms)
+    ✓ retiring any flagged product can only raise it, even while heavier ones remain (the soak run's finding)
+    ✓ it approaches zero only as flagged products pile up, and never sits on its floor for a normal shelf (1 ms)
+    ✓ confidence grows with the number of products, up to a fuller picture (1 ms)
+    ✓ evaluated as of an earlier day, products added later are not on the shelf yet
+    ✓ how often you use a product matters: the same product reads heavier when daily than rarely
+  adding good: compared with guidelines where they exist
+    ✓ targets follow the person's age, from the published tables
+    ✓ nothing recorded: no evidence, and no habit is scored as zero (1 ms)
+    ✓ meeting the activity guideline reads on target
+    ✓ half the guideline reads as half, and the reading says so in numbers
+    ✓ a teenager is held to the teen sleep range, an adult to the adult one (1 ms)
+    ✓ only what is recorded counts: nightly sleep alone leaves the other habits out, not at zero
+    ✓ hydration and resets are compared with the app's own rhythm, and labelled as that
+    ✓ recent weeks count more than older ones
+    ✓ check-in moods are compared with the week before, in words (1 ms)
+  validation: checked against your body
+    ✓ no biomarker: no evidence, and it says how to begin
+    ✓ freshness eases continuously from the quarterly cadence rather than in steps (1 ms)
+    ✓ a reading within the quarter reads on target; an older one reads room to grow
+    ✓ the latest reading is compared with your own previous one, in words and without a verdict
+    ✓ evaluated as of an earlier day, later readings do not exist yet
+    ✓ one reading anchors the picture; each further one in the year makes it more trustworthy, without a jump
+  understanding: progress through the curriculum
+    ✓ not started has no evidence; each lesson moves it (1 ms)
+    ✓ evaluated as of an earlier day, later lessons are not learned yet
+  understanding: recall on what was read
+    ✓ a right answer on a lesson that was read adds to the reading; the evidence behind it does not move
+    ✓ a wrong answer adds nothing and takes nothing away
+    ✓ answers about a lesson that has not been read count for nothing (1 ms)
+    ✓ as of an earlier day, an answer not yet given is not counted
+    ✓ ideas come back on their own schedule, and the reading says so
+    ✓ never above 100, even with the whole curriculum read and every question answered right
+    ✓ as time passes and more is answered, the reading never falls (random practice, many seeds) (91 ms)
+    ✓ the wording stays calm: nothing about failing, wrong answers or being behind
+  every signal speaks in comparisons
+    ✓ exposure: a value, its evidence, and what it was compared with
+    ✓ resilience: a value, its evidence, and what it was compared with (1 ms)
+    ✓ validation: a value, its evidence, and what it was compared with
+    ✓ shelf: a value, its evidence, and what it was compared with
+    ✓ learning: a value, its evidence, and what it was compared with
+    ✓ the wording never uses alarm vocabulary (2 ms)
+
+PASS src/engine/standing.test.ts
+  a scan entry catalogs a product; it is not a meal eaten
+    ✓ isScanEntry recognises the note the scan flow writes
+    ✓ a scanned product adds nothing to the week's flagged pattern (1 ms)
+    ✓ a scanned food's processing level does not count toward the ultra-processed tally
+    ✓ the same product, actually used and logged by hand, still counts (1 ms)
+    ✓ scans mixed with hand-logged entries: only the hand-logged ones are scored (1 ms)
+  standing exposure feeds the advice, not the scores
+    ✓ with nothing logged, shelf substances still produce Focus and Quick Wins (1 ms)
+    ✓ standing exposure never changes the week's scores or band (1 ms)
+    ✓ a daily-use product outranks a rare one for the same substance weight scale
+    ✓ a substance the logs also flagged keeps its log-derived tips and learns where it lives on the shelf
+    ✓ a completed shelf tip yields to open ones, like any other tip (1 ms)
+    ✓ an unknown substance id is ignored rather than throwing
+    ✓ no standing exposure, no logs: nothing to advise (as before)
+  Focus and Quick Wins show a shelf substance once, and respect what the person decided to keep
+    ✓ a shelf substance appears once in Focus, however many tips it has
+    ✓ with a single shelf substance, Focus is one decision rather than several tips about it
+    ✓ marking a shelf tip done moves Focus on to that substance's next open tip
+    ✓ tips that come from this week's logs are not thinned: one logged substance can still fill Focus
+    ✓ a kept source stays out of Focus and Quick Wins but remains in the full list
+    ✓ keeping something the logs flagged works the same way
+    ✓ keeping works for the non-substance sources too (1 ms)
+    ✓ keeping never changes the scores
+  standingFromLedger
+    ✓ carries each shelf substance with its weekly weight and the products behind it (1 ms)
+    ✓ a retired product stops contributing
+    ✓ only substances the database knows can be advised on
+
+PASS src/engine/signals/placesSignal.test.ts
+  with nothing to compare
+    ✓ no places, or places with no answers: no evidence, and it says so instead of scoring (1 ms)
+    ✓ a place with only 'not sure' and 'doesn't apply' answers is still nothing to compare
+  what it measures
+    ✓ everything meeting its reference reads as the top of the range, and each place says what it was compared with (1 ms)
+    ✓ the comparison is honest about its source: published guidance where an authority gives a number, the app's own curated guidance where not
+    ✓ a finding that is only partly in place gets partial credit, so a half-fix moves the value half way (1 ms)
+    ✓ the value leans toward a typical place while little has been compared, so the first answer does not swing it
+    ✓ answering more that meets the reference never lowers it, and it never reads as nothing at all (1 ms)
+    ✓ worth-attention findings are named, most consequential first, without a verdict
+    ✓ the answer in force on the day is what is compared: fixing a thing raises the value from that day on
+  what makes a finding count for more
+    ✓ the same finding drags the value more in the place where more of the week is spent (1 ms)
+    ✓ and more when someone it matters especially for shares the place
+    ✓ the user's own profile is part of the household: their asthma counts in every place
+    ✓ a concern the database rates higher counts for more than a lighter one
+  how much evidence stands behind it
+    ✓ confidence grows with the number of answered comparisons, and is full at eight (1 ms)
+    ✓ answers over a year old still count, but carry less evidence, and the note says a fresh look would help
+    ✓ unanswered checks are named as what would fill the picture in, not as a shortfall
+    ✓ answers from after the day being read do not exist yet
+  read by place
+    ✓ a place with too little to compare reads 'not enough yet'; a mostly-met place reads on target; a mostly-attention place reads room to grow
+    ✓ two homes are two comparisons
+
+PASS src/engine/places/state.test.ts
+  ✓ wiping local data wipes the places too (1 ms)
+  keeping a place
+    ✓ a new place starts empty, named for its kind, and is stored (2 ms)
+    ✓ a day's answer is dated; correcting it that day replaces it; a later day adds to the history, even for the same answer (1 ms)
+    ✓ only answers the catalog offers, to checks that apply to that kind of place (7 ms)
+    ✓ clearing an answer takes it back to unknown without erasing what was true earlier (1 ms)
+    ✓ the history per check is bounded
+    ✓ many quick answers never clobber each other (1 ms)
+    ✓ hours are bounded and blank names are ignored; null goes back to the default for the kind
+    ✓ the household: people are added, updated in place, and removed; a place can be removed with everything in it
+  what places feed: advice
+    ✓ a finding worth attention becomes standing advice, with the place named and the studies of the substance behind it (1 ms)
+    ✓ Focus never repeats a place's substance, however many tips it has
+    ✓ fixing it takes the advice away, and deciding to keep it quiets Focus like any other advice
+    ✓ a substance on the shelf and in a place is one decision: weights add, both origins are remembered (1 ms)
+  what places feed: the score and its receipt
+    ✓ a first answer turns an empty part into a first reading, compared against the reference it came from (2 ms)
+    ✓ fixing something moves the part up, and the receipt says so
+    ✓ someone joining the household is scored too: a finding that matters more for them counts for more (2 ms)
+    ✓ the score now carries a Places part, weighted like the others, whose coverage grows as the person fills it in
+  the overview the screens read
+    ✓ an empty person has nothing compared and nothing to ask; a person with a place has the next question (1 ms)
+    ✓ marking a tip about a finding done brings that question back first, until the answer is updated
+    ✓ a tip marked done a long time ago no longer prompts a second look
+    ✓ the worth-a-look list runs from the most consequential finding down
+
+PASS src/engine/ingredients/ingredients.test.ts
+  ingredient parsing
+    ✓ splits at top-level commas only and keeps parenthetical sub-ingredients attached to their parent
+    ✓ order gives a rough amount tier: first three major, then minor, tail trace (1 ms)
+    ✓ 'contains 2% or less of' marks everything after it as trace, and the allergen line is not part of the list
+    ✓ an allergen statement with no colon ('CONTAINS WHEAT') ends the list; 'contains one or more of' starts the trace tail
+    ✓ declared percentages override position (a 13% ingredient is major even at position 3) (1 ms)
+    ✓ OCR-style text: line breaks, hyphenated wraps, and a stray header are handled
+    ✓ E-numbers are captured in several spellings
+    ✓ a pasted bare list with no header still parses
+  matching
+    ✓ finds real flags with whole-word matching, tiered by position
+    ✓ personal-care INCI names and E-number/CI synonyms match (1 ms)
+    ✓ 'fragrance' is flagged as POSSIBLE, since the label doesn't say what it contains
+    ✓ false-positive traps: 'percent', 'dependable', 'sugars' and environment-only substances never match
+    ✓ negations are respected: sugar-free, BPA free, no added sugar
+    ✓ keeps the strongest tier when a substance appears twice; reports unmatched ingredients
+    ✓ nothing matched is a normal outcome
+    ✓ chemical relatives of a flagged substance match under their own name, not the original's
+  regrettable substitution
+    ✓ a BPA-free-labeled product that contains bisphenol S is flagged as a swap-in, not silently passed (1 ms)
+    ✓ a paraben-free product with phenoxyethanol is flagged the same way
+    ✓ a product with the original flagged substance (not a substitute) has no substitution note
+    ✓ a product with neither has no substitution note and no false flags
+  nutrition parsing
+    ✓ reads the standard US label
+    ✓ converts units and handles '<1g' (1 ms)
+    ✓ refuses to guess: OCR that lost the units yields nothing rather than a wrong number
+    ✓ EU-style kcal and a combined label + ingredients text parse together
+    ✓ text without a nutrition panel returns null
+  real OCR output (verbatim tesseract text, including its misreads)
+    ✓ the ingredient list is recovered intact from wrapped, all-caps OCR lines (1 ms)
+    ✓ the matcher flags the right substances from OCR text
+    ✓ nutrition values are read, and the OCR misread '(559)' for '(55g)' is NOT trusted as a serving weight
+    ✓ the combined label parses both halves at once
+
+PASS src/engine/wellnessState.test.ts
+  ✓ with nothing recorded the score is an early reading, not a number (2 ms)
+  ✓ two weeks of ordinary logging is a good start but still an early picture: the app has not been told about the shelf or the places (3 ms)
+  ✓ once the shelf and the places are filled in too, the picture is trusted, and each part says what it was compared with (3 ms)
+  ✓ history reads the same records week by week, oldest first, and the picture fills in as the person keeps going (3 ms)
+  ✓ comparing with four weeks earlier: a person who has just started has no earlier self to compare with (1 ms)
+  ✓ after a month of it, each part reports its change against the person's own earlier self (17 ms)
+  ✓ retiring a product you no longer use raises the shelf part straight away (1 ms)
+  ✓ going quiet fades the picture gently: no day-to-day jump, however long the person is away (8 ms)
+  ✓ stored weights that predate a part still work, and are honoured (1 ms)
+  receipts: every activity comes with its comparison
+    ✓ a movement log: which part moved, what it was compared with, and by how much (2 ms)
+    ✓ a first biomarker turns an empty part into a first reading (1 ms)
+    ✓ a meal that changes nothing still tells you the picture got a little fuller (1 ms)
+    ✓ a decision is not scored, and the receipt says why
+    ✓ swapping a product shows in the shelf part's receipt (1 ms)
+
+PASS src/engine/wellnessScore.test.ts
+  ✓ default weights sum to 100 and every part has a label and a blurb (1 ms)
+  a brand-new person
+    ✓ has no picture yet: zero coverage, an early reading, never a hidden number
+  what counts in the score
+    ✓ a part with no evidence is neither a drag nor a prop: it is simply not in the picture (1 ms)
+    ✓ the overall is the evidence-weighted average of the parts, using the user's weights
+    ✓ less evidence means less say
+    ✓ coverage is the weight-and-evidence share of the whole picture
+    ✓ contributions add up to the overall score
+    ✓ a zero weight removes a part's influence entirely
+    ✓ weights are normalized to 100, negative or missing ones cope, and new parts get their default (1 ms)
+  properties: improving things never lowers the score
+    ✓ raising any part's value never lowers the overall; more evidence pulls the overall toward that part's value (15 ms)
+  bands
+    ✓ thresholds
+    ✓ while the picture is thin the band stays 'building' whatever the number says
+    ✓ labels never use fear vocabulary
+  compared with your own earlier self
+    ✓ each part with evidence on both sides reports its change in points
+    ✓ a part that was barely seen on either side reports no change rather than an artefact
+    ✓ the whole is compared only when both pictures were complete enough to trust
+  when there is no number to show
+    ✓ a handful of first entries adds up to a confident-looking figure, so below a fifth of the picture the number is withheld
+    ✓ once a fifth of the picture is filled in, the number is shown (still marked early until it is trusted)
+
+PASS src/engine/scoring.test.ts
+  ✓ hazard db loads with 36 unique substances
+  ✓ hazard db substances carry live-synced references
+  ✓ every substance carries concept_tags resolvable in the concepts glossary (3 ms)
+  ✓ food dye and added sugar both flagged from free text
+  ✓ acrylamide needs the exact 'browned toast' phrase, not just 'dark toasted' (1 ms)
+  ✓ real ingredient list flags SLS, phthalates (via fragrance), formaldehyde-releasers
+  ✓ mold flagged at concern level 3, contributing exactly 3 to environment score
+  ✓ empty logs yield a zero score and the minimal band
+  ✓ ultra-processed food is structural, not a substance match
+  ✓ air quality: Unhealthy for Sensitive Groups reading flows into environment score + focus
+  ✓ air quality: a Good reading does not inflate the score
+  ✓ resilience practices are tracked but never change the exposure score
+  ✓ produce diversity tip is informational only, never affects the score
+  ✓ Quick Wins favors low-effort SLS over high-effort, high-concern mold (1 ms)
+  ✓ a completed tip is deprioritized in ranking but stays visible in all recommendations
+
+PASS src/engine/learningChecks.test.ts
+  ✓ every question in the set can be scheduled and summarized without error, whatever the answers
+  the stored form
+    ✓ an answer is an ordinary learning event, and reads back the same (1 ms)
+    ✓ attempts come back oldest first; two answers on one day keep the order they were given in (storage is newest first)
+  when a question comes back
+    ✓ never answered: nothing is due
+    ✓ right answers push it out along the schedule; the gaps widen and stop widening
+    ✓ a wrong answer is not a failure: it comes back tomorrow and the streak starts again
+    ✓ the schedule is 1, 3, 7, 14, 30, 60, then every 90 days
+  what to ask next
+    ✓ nothing about a lesson that has not been read; nothing when nothing has been read (1 ms)
+    ✓ due questions come first, the longest overdue first; then the never-tried ones on lessons already read
+    ✓ a question that is not due yet stays out of the way, and comes back on its day
+    ✓ the limit is honoured
+  how much has stuck
+    ✓ counts what could be asked, what was tried, what was answered right at least once, what is due and what is new
+    ✓ a slip after a right answer does not take the recall back
+    ✓ as of an earlier day, later answers do not exist yet
+    ✓ questions on lessons not yet read are not counted
+  wrapUp: what is said when the questions on a lesson are done
+    ✓ says when the rest comes back, and never grades
+    ✓ fits the number of questions
+
+PASS src/engine/ingredients/assessLedger.test.ts
+  assessment
+    ✓ a clean list is 'nothing flagged', with an honest 'not a guarantee' caveat
+    ✓ where an ingredient sits on the label changes the verdict: same additive, main vs trace (1 ms)
+    ✓ frequency matters: the same product is a bigger deal daily than a couple of times a month
+    ✓ ultra-processed food adds to the signal for food but never for personal care (1 ms)
+    ✓ a profile changes it: pregnancy makes an endocrine-flagged ingredient matter more, with the reason shown
+    ✓ 'fragrance' is described as unspecified, never asserted as phthalates
+    ✓ never alarmist: no stance headline uses fear vocabulary; suggestions come from the database (1 ms)
+  intake ledger
+    ✓ nutrients are real per-day estimates from declared amounts: 1 daily serving = the label amount
+    ✓ frequency scales the estimate: a few times a week is 3/7 of a daily serving
+    ✓ personal-care items contribute exposures but no nutrients; coverage says how much of the food side is quantified (1 ms)
+    ✓ substances are tracked as frequency and a tier-weighted relative index -- not as a dose
+    ✓ themes roll substances up into the science concepts behind them
+    ✓ items that were removed, or not added yet, don't count -- so history is reconstructable
+    ✓ the weekly series shows the trend: index steps up when a product is added and down when removed (1 ms)
+    ✓ an empty shelf gives an empty, non-crashing ledger
+
+PASS src/engine/personalization.test.ts
+  ✓ life stage buckets match the documented age ranges (1 ms)
+  ✓ kidney condition flags a substance tagged renal_clearance (lead) with a real reason
+  ✓ kidney condition does NOT flag a substance with no renal_clearance tag
+  ✓ pregnancy flags BPA (endocrine_disruption) with a pregnancy-specific reason
+  ✓ child life stage flags dose_response and endocrine_disruption tagged substances (1 ms)
+  ✓ older adult flags renal/hepatic clearance substances
+  ✓ fragrance sensitivity flags phthalates via direct substance match, not a concept tag
+  ✓ no reasons fire for a plain adult with no conditions/pregnancy
+  ✓ reasons are de-duplicated -- kidney AND age 65+ both hitting renal_clearance stays two distinct entries, never literal duplicates
+  ✓ personalizeReport with no profile never changes the base score and reports profileApplied false (6 ms)
+  ✓ personalizeReport adds a positive bump on top of (never replacing) the base score when reasons apply (1 ms)
+  ✓ bodyWeightContextNote is educational, not a dose calculation, and never fabricates a number without weight
+
+PASS src/engine/learningChecksState.test.ts
+  ✓ before any lesson is read there is nothing to ask (1 ms)
+  ✓ reading a lesson opens its two questions, and only those
+  ✓ an answer is recorded, comes back with a receipt from the Understanding part, and is due again the next day (2 ms)
+  ✓ a question answered right comes back further apart each time, and one that is missed comes back tomorrow (2 ms)
+  ✓ the Understanding reading rises with right answers and is untouched by misses (2 ms)
+  ✓ answering counts as a day of learning (the plant and the streaks see it), and stays out of the way of the lesson record (1 ms)
+  ✓ months of practice keep the lessons and the latest attempts, and only trim the old attempts on the same question (13 ms)
+  ✓ answering twice the same day the same way is one attempt; the second, different answer is the one that counts (1 ms)
+
+PASS src/engine/fusion.test.ts
+  ✓ journey position moves from Getting Started through Deep in the Journey (1 ms)
+  needs enough history to say anything
+    ✓ fewer than 2 active weeks reports not_enough_data, not a fake direction
+    ✓ a week with nothing logged at all is absence, not a trend
+    ✓ a clean week with plenty logged is real data, not an inactive week
+  exposure score: lower is better
+    ✓ a drop well beyond the usual week-to-week wobble is 'improving'
+    ✓ a rise well beyond the usual wobble is 'worsening' (1 ms)
+    ✓ with only two active weeks, a clear step still counts
+    ✓ a change inside this person's own range is 'flat', not a trend (the old rule called it improving)
+    ✓ a one- or two-point difference is never enough on its own
+    ✓ equal consecutive weeks report 'flat'
+  exposure score: logging volume must be comparable
+    ✓ a much quieter week scores lower just because less was written down -> not_enough_data, not 'improving'
+    ✓ a much busier week scores higher just because more was written down -> not_enough_data, not 'worsening'
+    ✓ moderately different volume still compares
+    ✓ practices are not volume-gated
+  practices: higher is better
+    ✓ a rise beyond the usual range is 'improving'
+    ✓ a fall beyond the usual range is 'worsening' in the engine's terms
+    ✓ one practice more or fewer is an ordinary week
+  wording
+    ✓ labels are neutral: a direction is information, not a verdict
+    ✓ arrows point the way the metric moved: exposure easing goes down, practices growing go up
+
+PASS src/engine/science/science.test.ts
+  risk math
+    ✓ 10x of a 1-in-10,000 risk is 1-in-1,000: 0.9 extra per 1,000 (1 ms)
+    ✓ the same relative risk has a far bigger absolute effect at a higher baseline
+    ✓ absolute increase equals baseline x (RR - 1); RR of 1 means no change
+    ✓ risk can never exceed 100%
+    ✓ translation and clinician questions use the user's own numbers (9 ms)
+  dose-response
+    ✓ threshold model is exactly zero at or below the NOAEL and rises above it
+    ✓ linear model has no threshold: any dose produces some response
+    ✓ non-monotonic model: a low dose responds more than a mid dose, and the high dose responds most
+    ✓ curves are bounded 0..1 and margin of exposure divides NOAEL by exposure (5 ms)
+  safety thresholds
+    ✓ default recipe divides by 10 x 10
+    ✓ extra factors multiply in, and factors below 1 are ignored
+  confounding lab
+    ✓ crude association is large but vanishes once smoking is accounted for
+  engine health
+    ✓ an empty engine is warming up; a fully fed one is strong (1 ms)
+    ✓ every component says how to improve, and stale biomarkers score lower than fresh ones
+
+PASS src/engine/logMatching.test.ts
+  ordinary meals are not flagged by look-alike words
+    ✓ 'avocado toast with a poached egg' does not flag voc_off_gassing (4 ms)
+    ✓ 'smoked salmon bagel' does not flag pm25_particulate (3 ms)
+    ✓ '70 percent dark chocolate' does not flag dry_cleaning_perc
+    ✓ 'vegetable bhaji' does not flag bha_bht
+    ✓ 'cream of mushroom soup, secured a table by the window' does not flag sodium_nitrite
+    ✓ 'a candlelit dinner' does not flag candle_incense_pm
+    ✓ 'a calm sleep rhythm all week' does not flag chlorination_byproducts (1 ms)
+    ✓ the false VOC hit no longer reaches the Focus list
+  '-free' and 'no ...' claims do not count as the thing they rule out
+    ✓ 'sugar-free gum' does not flag added_sugar
+    ✓ 'BPA-free can of beans' does not flag bpa
+    ✓ 'fragrance-free lotion' does not flag phthalates
+    ✓ 'paraben free shampoo' does not flag parabens
+    ✓ 'no added sugar oatmeal' does not flag added_sugar
+    ✓ a mention next to a claim still counts (1 ms)
+  real mentions still flag
+    ✓ 'cereal with red 40 and added sugar' flags artificial_food_dyes
+    ✓ 'hot dogs and bacon' flags sodium_nitrite
+    ✓ 'canned chili (BPA-lined can lining)' flags bpa
+    ✓ 'takeout in a grease-resistant wrapper' flags pfas_packaging
+    ✓ 'high-fructose corn syrup soda' flags added_sugar
+    ✓ 'two glasses of bottled water' flags microplastics_bottled_water
+    ✓ environment notes flag on the phrase, not on fragments
+  properties over the whole hazard database
+    ✓ every substance is found by its own full name, the way a product note lists what it contains (2 ms)
+    ✓ every alias is found on its own, and stops being found once it is negated (6 ms)
+  produce tally uses the same reading
+    ✓ singular produce words count, and look-alike words do not (1 ms)
+
+PASS src/storage/dataControl.test.ts
+  ✓ the export holds everything the person entered, by table, and says what it is (1 ms)
+  ✓ no secret and no cache goes into an export: not the API key, not the last-known location
+  ✓ every table the app stores is either exported or registered as service storage: nothing is forgotten by the export (1 ms)
+  ✓ an empty person exports an empty, valid document
+  ✓ deleting everything removes the data, the location cache, the connection settings and the API key
+  learning events keep progress and trim only the rolling record
+    ✓ a year of daily reads and recall answers never pushes a completed lesson, a paper or a tool out of the record (24 ms)
+    ✓ trimming keeps the newest of each rolling kind and never reorders
+
+PASS src/data/plainSummaries.test.ts
+  ✓ every substance has a plain-language summary (1 ms)
+  ✓ they read at about a grade-8 level, where the full summaries read at college level (2 ms)
+  ✓ short enough to read on a phone at a glance, and not longer than they need to be (1 ms)
+  ✓ they add no number, year or agency that the full summary does not carry (1 ms)
+  ✓ calm: no alarm words, and nothing shouted (1 ms)
+  ✓ Simple gets the plain summary; every other level keeps the full one
+  ✓ a scanned product's reasons carry both wordings; the plain one uses the plain summary (6 ms)
+
+PASS src/engine/weeklyDigest.test.ts
+  ✓ indicator is the same awareness_band object the score report already computed -- no second scoring system
+  ✓ with nothing logged, all adding-good practice types are suggested (1 ms)
+  ✓ a logged practice type drops out of the suggestion list
+  ✓ education topic is drawn from a concept tag actually present on a flagged substance this week
+  ✓ education topic falls back to the deterministic weekly rotation when nothing is flagged (1 ms)
+  ✓ isoWeekNumber is stable within a week and advances across week boundaries
+  ✓ self-assessment: no biomarkers ever logged is treated as due, not silently ignored
+  ✓ self-assessment: a recent biomarker (well under the quarterly cadence) is not due
+  ✓ self-assessment: a biomarker older than the quarterly cadence is due again (1 ms)
+  ✓ self-assessment uses the most recent of several logged biomarkers, not the oldest
+
+PASS src/engine/readings.test.ts
+  readings over time: the latest against your own earlier ones
+    ✓ a single reading is a first reading; it says what a second one would add (1 ms)
+    ✓ two readings: the change, its direction, and both dates, in words
+    ✓ the same metric is one metric however it was typed; a different metric is its own
+    ✓ readings in different units are never compared with each other
+    ✓ two readings on one day: the one entered later is the latest (1 ms)
+    ✓ as of an earlier day, later readings do not exist yet
+    ✓ the strip keeps the latest few, oldest first
+    ✓ most recently measured first; ties by name
+    ✓ never says whether a number is good, normal or a concern (1 ms)
+
+PASS src/engine/journeyStages.test.ts
+  ✓ a new user's next step is the first tutorial quest, and later stages are locked (1 ms)
+  ✓ next step advances through the tutorial in order
+  ✓ finishing the tutorial unlocks Explore and points at its first incomplete step
+  ✓ explore steps complete automatically from real activity, in any order
+  ✓ mastery unlocks only after every Explore step, and 'scan 10' counts food + care scans
+  ✓ everything done means no next step
+  ✓ every step has exactly one action and a call-to-action (1 ms)
+  ✓ the places steps complete from real answers: three about home, then three in each kind of place
+  ✓ coming back to what was learned is a mastery step that completes from real recall, on three different days (1 ms)
+
+PASS src/engine/signals/properties.test.ts
+  shelf: removing and adding
+    ✓ retiring any product can only raise the value, on many random shelves (117 ms)
+    ✓ adding a product can only lower the value or leave it be, never raise it (89 ms)
+    ✓ swapping a product for its suggested alternative never lowers the value (100 ms)
+    ✓ the value stays within its range and never sits on the floor for a shelf of a normal size (47 ms)
+  places: answering and fixing
+    ✓ moving any answer to one that meets the reference can only raise the value (12 ms)
+    ✓ answering one more check with something that meets its reference never lowers the value (11 ms)
+    ✓ more evidence never means less confidence, and the value stays within its range (53 ms)
+
+PASS src/engine/questsXp.test.ts
+  ✓ nothing done, nothing credited (1 ms)
+  ✓ logging a meal completes two daily quests and their XP counts (it used to show them done and earn nothing)
+  ✓ crediting is idempotent: reading again, or doing more, never counts a quest twice (1 ms)
+  ✓ a day's quests are credited the day they were done, and a new day starts fresh
+  ✓ a weekly quest is credited once for the week when its condition is met (1 ms)
+  ✓ recording an activity through runActivity credits the quest at that moment, without anyone opening the Journey (1 ms)
+
+PASS src/engine/advice.test.ts
+  keeping advice (the person's own decision)
+    ✓ a kept source is in force until its last day, inclusive, then comes back (1 ms)
+    ✓ deciding again replaces the earlier decision instead of stacking
+    ✓ it can be undone
+    ✓ keeping is a decision, not an action taken: it never counts as a completed action
+    ✓ concurrent decisions all survive (1 ms)
+    ✓ clearAll wipes decisions along with everything else
+  advice inputs
+    ✓ carry what the shelf holds and what has been kept, ready for scoreLogs (1 ms)
+    ✓ retiring the product from the shelf ends the advice about it
+    ✓ an empty shelf and no decisions means no extra advice
+
+PASS src/data/references.test.ts
+  ✓ every reference is a real PubMed record: an id, a title, a journal, a year, and a link that names the same id (11 ms)
+  ✓ hand-picked papers come first, in the order chosen, and none is repeated (1 ms)
+  ✓ a paper found by search is only kept if its title names the thing the topic is about
+  ✓ the topics the places checklist points at each show at least two citations, and the ones that were wrong are fixed (1 ms)
+  ✓ a topic's own summary does not claim more than its citations support (the sugar entry's unsupported mechanism was removed)
+
+PASS src/data/wisdom.test.ts
+  ✓ every wisdom item has an id, icon and text, and ids are unique (3 ms)
+  ✓ includes the Paracelsus dose quote and all concept glossary entries
+  ✓ wisdomAt wraps around and handles negative indexes
+  ✓ tone: nothing in the loading content uses alarm vocabulary (3 ms)
+  ✓ dailyLearning is stable within a day and changes on the next
+  ✓ core toxicology concepts (ADME, sensitization, dispersion) are present
+  ✓ verified guideline facts are in the rotation, attributed to a real authority, and never gated behind a literacy tier
+  ✓ no raw literature headlines remain in the loading rotation
+  ✓ cleanTitle strips markup, trailing period and extra spaces
+  ✓ harder ideas are layered in with literacy: tier 1 excludes what tier 3 adds (1 ms)
+  ✓ daily learning respects the tier and stays stable within a day
+  ✓ risk-literacy insights are accurate on the numbers they state
+
+PASS src/engine/textMatch.test.ts
+  whole words only
+    ✓ voc is not found inside avocado toast with a poached egg
+    ✓ thm is not found inside steady sleep rhythm this week
+    ✓ cured is not found inside the door was secured
+    ✓ perc is not found inside 70 percent dark chocolate
+    ✓ bha is not found inside vegetable bhaji
+    ✓ smoke is not found inside smoked salmon bagel
+    ✓ bell is not found inside the doorbell rang
+    ✓ blue 1 is not found inside blue 12 sports drink
+    ✓ voc is found in new paint, VOCs all over the hallway
+    ✓ cured is found in cured salmon on rye
+    ✓ perc is found in picked up the dry cleaning -- perc smell
+    ✓ bha is found in ingredients: wheat flour, BHA, salt
+    ✓ smoke is found in wildfire smoke all afternoon
+    ✓ blue 1 is found in candy with blue 1 and yellow 5
+    ✓ regex characters in a phrase are literal
+  plurals and separators
+    ✓ a plural phrase finds its singular and the reverse
+    ✓ a plural does not leak into a longer word
+    ✓ hyphen and space are the same separator
+  negation
+    ✓ 'sugar-free gum' does not count as a mention of sugar
+    ✓ 'sugar free gum' does not count as a mention of sugar
+    ✓ 'no added sugar' does not count as a mention of sugar
+    ✓ 'no sugar in my coffee' does not count as a mention of sugar
+    ✓ 'made without sugar' does not count as a mention of sugar
+    ✓ 'free of sugar' does not count as a mention of sugar
+    ✓ 'non-sugar sweetener' does not count as a mention of sugar
+    ✓ only the negated occurrence is ignored
+    ✓ 'added sugar' is a mention; the word 'added' alone is not negation
+    ✓ 'no' inside a word is not negation
+
+PASS src/engine/signals/tally.test.ts
+  ✓ for any single day, tallyDay adds up to the same flagged points as scoreLogs (22 ms)
+  ✓ the breakdown by source sums to the points (2 ms)
+  ✓ scan entries are out, and air readings below the moderate band add nothing but still count as entries (1 ms)
+
+PASS src/storage/logUndo.test.ts
+  ✓ deleting hands the entry back; restoring puts it back exactly where it was (11 ms)
+  ✓ restoring the newest and the oldest entries keeps the order too (10 ms)
+  ✓ putting back what is already there does nothing, and deleting what is not there returns nothing (4 ms)
+  ✓ it works the same for every kind of log that has a Delete button
+
+PASS src/engine/weekLog.test.ts
+  ✓ always seven days, oldest first, last is today
+  ✓ aggregates practices (deduped per day), actions, check-ins and numbers per day (1 ms)
+  ✓ a scan catalogs a product: it is not counted as a meal, but it is a day the person was here
+
+PASS src/engine/signals/registry.test.ts
+  ✓ every table the app stores activity in is classified (1 ms)
+  ✓ every kind of activity either feeds a signal or says why it does not (1 ms)
+  ✓ signals and activities agree in both directions (1 ms)
+  ✓ signal keys are unique and every signal has default weight, label and blurb
+  ✓ no storage key is used anywhere in the app without being registered (4 ms)
+
+PASS src/data/conceptChecks.test.ts
+  ✓ every lesson has two questions, and every question belongs to a real lesson (2 ms)
+  ✓ ids are unique and follow lesson.number; lookups work (3 ms)
+  ✓ each question has a prompt, an explanation, and 4 distinct options with the answer among them (9 ms)
+  ✓ the right answer is not always in the same place, and a question's answer never moves
+  ✓ the right answer is not given away by being the longest option every time
+  ✓ questions ask about the lesson's own ideas: each explanation reuses words from its lesson (1 ms)
+  ✓ the wording is calm: a wrong answer is never called a failure, and no fear vocabulary is added (3 ms)
+
+PASS src/engine/evidence.test.ts
+  ✓ every item has a headline, a short vignette AND a detailed write-up, with a real PMID link (4 ms)
+  ✓ ranked by citation count, ids unique (1 ms)
+  ✓ links point at substances and concepts that actually exist in the engine (1 ms)
+  ✓ a study is either about a substance or background for it, never both (1 ms)
+  ✓ studies of ultra-processed food are background for food dyes and added sugar, not evidence about them
+  ✓ lookup helpers: lead has evidence, and animal-study caveats are stated for the sleep paper
+  ✓ no summary promises a cure or detox (1 ms)
+
+PASS src/engine/achievements.test.ts
+  streak
+    ✓ no entries, no streak (1 ms)
+    ✓ an empty morning does not zero a live streak: yesterday and the day before still count
+    ✓ logging today extends it
+    ✓ today alone is a streak of one
+    ✓ a whole missed day breaks it
+    ✓ a gap ends the run at the gap (1 ms)
+    ✓ counts local days: an entry at 9:30 pm and another at 6:45 am the next day are consecutive days
+  daily numbers
+    ✓ numbers saved one evening are not overwritten by the next morning's save (each is its own local day)
+
+PASS src/engine/awarenessBand.test.ts
+  ✓ nothing logged does not read 'Dialed In'
+  ✓ one or two quiet entries are still too little to call a week clear (1 ms)
+  ✓ three quiet entries, or more, is a real look at the week and reads as clear
+  ✓ scanned products do not count as having looked at the week
+  ✓ something flagged is reported as flagged, however little was logged (1 ms)
+  ✓ the wording stays non-fear-based, like every other band
+
+PASS src/util/dates.test.ts
+  ✓ a local evening and a local morning are the calendar day the person is actually in (1 ms)
+  ✓ month and year boundaries roll over on the local calendar
+  ✓ daysAgoISO is calendar arithmetic and does not depend on the time of day (1 ms)
+  ✓ daysAgoISO steps by whole calendar days across a daylight-saving change (2 ms)
+  ✓ daysBetweenISO counts calendar days between day keys
+
+PASS src/engine/plant.test.ts
+  ✓ stage follows starter completion and only 'mature' when all are done
+  ✓ health follows care recency: thriving, thirsty, wilting
+  ✓ a brand-new seed with no care yet is not punished (1 ms)
+  ✓ wilting always needs water, and any care fixes it (no lasting penalty)
+  ✓ mature + healthy + learning on 2+ days bears fruit, capped at 3
+  ✓ mature with no learning this week is thirsty and fruitless even if logging daily
+  ✓ only mature plants fruit; an immature plant never does
+  ✓ a wilting mature plant shows no fruit
+
+PASS src/engine/literacy.test.ts
+  ✓ a new user is in tier 1 with tiers 2 and 3 locked, and the first lesson is next
+  ✓ finishing 80% of Foundations unlocks Practitioner, but not before (1 ms)
+  ✓ Advanced needs Practitioner, which needs Foundations (no skipping)
+  ✓ completing everything reaches 100% and no next lesson
+  ✓ curriculum quality: single idea per lesson, a watch-for and a conversation starter on all (1 ms)
+  ✓ every lesson's evidence reference points at a real item in the evidence library (1 ms)
+  ✓ tone: lessons never promise certainty or use alarm language (1 ms)
+
+PASS src/engine/keepFresh.test.ts
+  ✓ with nothing to keep current it says nothing, rather than inventing something
+  ✓ each thing that has aged gets one plain line, and a place to go
+  ✓ the review is offered as a session of three at most, never as the size of the pile
+  ✓ singular and plural
+  ✓ never more than three lines, and the wording stays calm
+
+PASS src/services/productLookup.test.ts
+  ✓ normalizeBarcode keeps 8-14 digits and strips formatting
+  ✓ parseProduct reads a real Open Food Facts response shape
+  ✓ a product with no name and no ingredients counts as not found
+  ✓ invalid nova_group becomes null rather than a bogus level
+  ✓ prefers the English ingredient list when the product has one
+  ✓ reads per-100g nutriments (sodium g -> mg) and scales them to a real serving (1 ms)
+  ✓ products with no nutrition data simply have none
+
+PASS src/engine/metrics.test.ts
+  ✓ returns 7 days oldest-to-newest ending today, null where nothing logged (1 ms)
+  ✓ week-over-week change compares averages of logged days only
+  ✓ no prior week data means no fabricated change percentage
+  ✓ active minutes falls back to logged exercise/stretching practice minutes
+  ✓ an explicit entry wins over the practice fallback
+
+PASS src/engine/samples.test.ts
+  ✓ imports active minutes into an empty day
+  ✓ never overwrites what the user typed, but preserves their other fields when filling a gap
+  ✓ sleep becomes a sleep practice only if none is logged that day (1 ms)
+  ✓ ignores metrics the app doesn't consume and zero values
+
+PASS src/engine/quests.test.ts
+  ✓ 0 XP is level 1 with 50 needed for the next level
+  ✓ exactly 50 XP rolls over to level 2 with 0 progress into it (1 ms)
+  ✓ 49 XP stays level 1, one short
+  ✓ level curve is monotonically increasing in XP required
+  ✓ daily and weekly quest ids are each unique
+  ✓ no quest title or id references score/risk vocabulary -- same invariant as achievements (1 ms)
+
+PASS src/util/duration.test.ts
+  ✓ a bare number is minutes, unless it is sleep and small enough to be hours (1 ms)
+  ✓ hours and minutes as people write them
+  ✓ what it cannot read, it does not guess at
+
+PASS src/data/starterJourney.test.ts
+  ✓ every starter quest references real, existing substance ids
+  ✓ starter journey orders start-with-the-easiest, hardest (radon) last
+  ✓ total XP is the actual sum of quest XP, not a stale hardcoded number (1 ms)
+  ✓ quest ids are unique
+
+PASS src/data/pillars.test.ts
+  ✓ exactly the three pillars: health, wealth, purpose (1 ms)
+  ✓ every pillar has at least three lessons, ids unique, scripts a listenable length (1 ms)
+  ✓ no lesson makes detox, cure, or investment-return claims (2 ms)
+  ✓ estimateMinutes is at least one minute
+
+PASS src/data/safety.test.ts
+  what the app is for, and what to do when something is urgent
+    ✓ the urgent note names a number to call and says to call instead of using the app (1 ms)
+    ✓ the scope note says what the app does not do
+    ✓ the wording stays calm: it informs and points to help without alarm
+
+PASS src/services/pubmed.test.ts
+  when the app looks for fresh paper titles
+    ✓ not before setup is finished: nobody has been told what leaves the device yet
+    ✓ by default once set up, since the learning-moment screens use them (1 ms)
+    ✓ never for someone who chose to go straight there: they would not see the titles
+
+PASS src/components/TrendStrip.test.ts
+  the readings strip is scaled to a person's own range, and never hides a reading
+    ✓ lowest is a visible stub, highest is full height, the rest fall between in proportion
+    ✓ readings that are all the same read as steady, not as zero (1 ms)
+    ✓ never taller than the strip, never shorter than a stub
+
+A worker process has failed to exit gracefully and has been force exited. This is likely caused by tests leaking due to improper teardown. Try running with --detectOpenHandles to find leaks. Active timers can also cause this, ensure that .unref() was called on them.
+Test Suites: 1 skipped, 49 passed, 49 of 50 total
+Tests:       1 skipped, 552 passed, 553 total
+Snapshots:   0 total
+Time:        3.648 s
+Ran all test suites.

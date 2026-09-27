@@ -1,0 +1,1150 @@
+[
+  {
+    "id": "pmid_14283879",
+    "pmid": "14283879",
+    "title": "The environment and disease: association or causation?",
+    "first_author": "Hill AB",
+    "journal": "Proc R Soc Med",
+    "year": 1965,
+    "study_type": "Landmark essay",
+    "evidence_level": "Methods essay",
+    "topics": [
+      "statistics",
+      "methods"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "causation_criteria"
+    ],
+    "citation_count": 6384,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Nine viewpoints for judging whether an association in the data is likely to be causal -- still used today.",
+    "summary_short": "Sir Austin Bradford Hill proposed a set of considerations -- such as strength, consistency, temporality and biological gradient -- for deciding when an observed association between an exposure and a disease is likely causal.",
+    "summary_detail": "Observational studies find associations far more often than they can prove causes. Hill's 1965 address set out viewpoints to weigh before inferring causation: the strength of the association, its consistency across studies and settings, its specificity, that the exposure comes before the disease (temporality), a biological gradient (more exposure, more effect), biological plausibility, coherence with other knowledge, supporting experimental evidence, and analogy with similar exposures.\n\nHill was explicit that these are viewpoints, not a checklist that yields a yes-or-no verdict; temporality is the one essential condition. Toxicologists and epidemiologists still use them in weight-of-evidence assessments.",
+    "key_findings": [
+      "Association is not automatically causation",
+      "Strength, consistency, temporality and dose-gradient are central considerations",
+      "Considerations inform judgment; they are not a rigid checklist"
+    ],
+    "limitations": [
+      "A 1965 essay, so it predates modern methods such as omics and causal-inference modelling",
+      "No abstract is indexed on PubMed for this paper; this summary reflects its widely taught content"
+    ],
+    "practical": [
+      "When you hear 'linked to', ask which of these viewpoints the evidence actually meets",
+      "Look for a dose gradient and consistency across different kinds of studies"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/14283879/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_16060722",
+    "pmid": "16060722",
+    "title": "Why most published research findings are false",
+    "first_author": "Ioannidis JP",
+    "journal": "PLoS Med",
+    "year": 2005,
+    "study_type": "Essay with simulations",
+    "evidence_level": "Methods essay",
+    "topics": [
+      "statistics",
+      "methods"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "confounding"
+    ],
+    "citation_count": 5216,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "A single 'significant' study is more likely to be wrong than right when studies are small, effects are small, and many relationships are tested.",
+    "summary_short": "An influential essay argues that the chance a research claim is true depends on study power, bias, how many relationships were tested, and how many teams are chasing significance -- so one striking result deserves caution until replicated.",
+    "summary_detail": "The probability that a research claim is true depends on study power and bias, the number of other studies on the same question, and the ratio of true to no relationships among those probed in a field.\n\nA finding is less likely to be true when studies are smaller, effect sizes are smaller, more relationships are tested with less pre-selection, designs and analyses are more flexible, there is greater financial or other interest, and more teams chase statistical significance. Simulations suggest that for most study designs and settings, a claim is more likely false than true, and that findings can often be accurate measures of prevailing bias.\n\nThe practical lesson for health headlines: weight replicated findings, large well-designed studies and consistent evidence across methods far above a single new result.",
+    "key_findings": [
+      "Small studies, small effects and many tested relationships make false positives more likely",
+      "Flexible analyses and strong interests inflate apparent significance",
+      "Replication and convergence across methods matter more than any one result"
+    ],
+    "limitations": [
+      "A theoretical framework with simulations; real fields vary",
+      "Does not mean all research is wrong -- it explains when to be skeptical"
+    ],
+    "practical": [
+      "Ask whether a scary finding has been replicated and by whom",
+      "Prefer systematic reviews and consistent evidence over a single headline study"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16060722/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_20458016",
+    "pmid": "20458016",
+    "title": "Particulate matter air pollution and cardiovascular disease: An update to the scientific statement from the American Heart Association",
+    "first_author": "Brook RD",
+    "journal": "Circulation",
+    "year": 2010,
+    "study_type": "Scientific statement",
+    "evidence_level": "Consensus statement",
+    "topics": [
+      "air",
+      "heart"
+    ],
+    "substance_ids": [
+      "pm25_particulate"
+    ],
+    "context_substance_ids": [
+      "candle_incense_pm"
+    ],
+    "concept_tags": [
+      "particle_deposition"
+    ],
+    "citation_count": 4315,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Breathing fine particles for hours to weeks can trigger heart-related events; years of exposure add more.",
+    "summary_short": "An American Heart Association expert panel concluded that fine particles (PM2.5) can trigger cardiovascular deaths and non-fatal events within hours to weeks, and that longer exposure carries even greater risk.",
+    "summary_detail": "The writing group reviewed the evidence since the AHA's 2004 statement and reached updated conclusions.\n\nExposure to PM2.5 over a few hours to weeks can trigger cardiovascular-related mortality and non-fatal events. Longer-term exposure (a few years) increases the risk of cardiovascular mortality to an even greater extent than short exposures, and reduces life expectancy in more polluted areas.\n\nThe statement also highlights clinical implications, which is why people with heart conditions are commonly advised to limit exposure on high-pollution days.",
+    "key_findings": [
+      "Hours-to-weeks PM2.5 exposure can trigger cardiovascular events",
+      "Multi-year exposure raises cardiovascular mortality risk even more",
+      "Statement includes clinical implications for patients and clinicians"
+    ],
+    "limitations": [
+      "An expert consensus statement, not a single trial",
+      "Effects are larger for people who already have heart disease"
+    ],
+    "practical": [
+      "Indoor sources count: candles, incense and cooking smoke add particles too",
+      "If you have heart or lung disease, ask your clinician about high-pollution days"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20458016/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_24136970",
+    "pmid": "24136970",
+    "title": "Sleep drives metabolite clearance from the adult brain",
+    "first_author": "Xie L",
+    "journal": "Science",
+    "year": 2013,
+    "study_type": "Animal study (mice)",
+    "evidence_level": "Animal study",
+    "topics": [
+      "sleep"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 3926,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "In mice, sleep widened the space between brain cells by 60% and sped clearance of a waste protein.",
+    "summary_short": "A Science study in live mice found the brain's interstitial space expands about 60% during sleep or anesthesia, boosting fluid flow and clearance of beta-amyloid -- a possible reason sleep is restorative.",
+    "summary_detail": "Using real-time tracer diffusion measurements and two-photon imaging in live mice, the team showed natural sleep or anesthesia was associated with a 60% increase in interstitial space and a striking increase in convective exchange between cerebrospinal and interstitial fluid.\n\nThis increased the rate of beta-amyloid clearance during sleep, suggesting the restorative function of sleep may be partly the enhanced removal of potentially neurotoxic waste products.\n\nImportant limit: this is a mouse study. It supports why sleep matters; it is not evidence that any product or routine 'detoxes' the human body.",
+    "key_findings": [
+      "Interstitial space ~60% larger during sleep or anesthesia in mice",
+      "More convective fluid exchange and faster beta-amyloid clearance",
+      "Suggests a waste-clearance role for sleep"
+    ],
+    "limitations": [
+      "Mice, not humans",
+      "Does not show any 'detox' product or routine works"
+    ],
+    "practical": [
+      "Protect a consistent sleep window -- it is one of the best 'adding good' inputs",
+      "Log sleep in Daily to see how it lines up with your other numbers"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24136970/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_28408086",
+    "pmid": "28408086",
+    "title": "Estimates and 25-year trends of the global burden of disease attributable to ambient air pollution: an analysis of data from the Global Burden of Diseases Study 2015",
+    "first_author": "Cohen AJ",
+    "journal": "Lancet",
+    "year": 2017,
+    "study_type": "Global burden analysis",
+    "evidence_level": "Population modelling",
+    "topics": [
+      "air"
+    ],
+    "substance_ids": [
+      "pm25_particulate"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "particle_deposition",
+      "dose_response"
+    ],
+    "citation_count": 3254,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Fine-particle air pollution ranked fifth among global mortality risk factors in 2015.",
+    "summary_short": "Using satellite data, models and ground monitors, this analysis estimated that fine particles (PM2.5) caused about 4.2 million deaths in 2015 -- 7.6% of all deaths worldwide.",
+    "summary_detail": "The authors estimated population-weighted PM2.5 and ozone concentrations at about 11 km resolution by combining satellite estimates, chemical transport models and ground-level measurements.\n\nApplying exposure-response functions for ischaemic heart disease, stroke, COPD, lung cancer and lower respiratory infections, they found ambient PM2.5 was the fifth-ranking mortality risk factor in 2015, responsible for 4.2 million deaths and 103.1 million disability-adjusted life-years.\n\nThe exposure-response curves are non-linear across the global range, which is why reductions matter at every level of exposure.",
+    "key_findings": [
+      "PM2.5 caused an estimated 4.2 million deaths in 2015",
+      "Fifth-ranking global mortality risk factor",
+      "Modelled from satellites, chemical transport models and ground monitors"
+    ],
+    "limitations": [
+      "Modelled estimates with uncertainty (95% interval 3.7-4.8 million deaths)",
+      "Global averages -- your local air may be much cleaner or much worse"
+    ],
+    "practical": [
+      "Use a local air-quality reading to decide when to ventilate or go outside",
+      "A basic HEPA purifier is a reasonable step in high-PM areas"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28408086/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_22419778",
+    "pmid": "22419778",
+    "title": "Hormones and endocrine-disrupting chemicals: low-dose effects and nonmonotonic dose responses",
+    "first_author": "Vandenberg LN",
+    "journal": "Endocr Rev",
+    "year": 2012,
+    "study_type": "Narrative review",
+    "evidence_level": "Expert review",
+    "topics": [
+      "chemicals",
+      "dose"
+    ],
+    "substance_ids": [
+      "bpa",
+      "phthalates"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "dose_response",
+      "endocrine_disruption"
+    ],
+    "citation_count": 2238,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Some hormone-like chemicals can act at low doses in ways high-dose tests would not predict.",
+    "summary_short": "The authors argue that for endocrine-disrupting chemicals, low-dose effects and non-monotonic dose-response curves are common -- challenging the simple rule that 'the dose makes the poison'.",
+    "summary_detail": "Low-dose effects were defined as those within the range of human exposures or below doses used in traditional toxicology studies. Non-monotonic curves are those where the slope changes sign within the tested dose range.\n\nUsing a weight-of-evidence approach on five examples and reviewing hundreds of cell, animal and epidemiology examples, the review concludes that non-monotonic responses and low-dose effects are remarkably common for natural hormones and endocrine disruptors, and discusses the mechanisms behind them.\n\nThe practical upshot is not alarm but humility: risk assessment based only on high-dose tests can miss real effects, especially in development.",
+    "key_findings": [
+      "Low-dose and non-monotonic effects are common for hormones and EDCs",
+      "Mechanistic explanations exist (e.g., receptor and feedback dynamics)",
+      "Challenges a purely linear reading of dose-response"
+    ],
+    "limitations": [
+      "Regulatory interpretation of these findings is still debated",
+      "A review of the literature, not a new experiment"
+    ],
+    "practical": [
+      "Prefer reducing repeated, everyday exposures (food packaging, personal care) over one-off worry",
+      "Extra care around pregnancy and early childhood is well-founded"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22419778/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_29056410",
+    "pmid": "29056410",
+    "title": "The Lancet Commission on pollution and health",
+    "first_author": "Landrigan PJ",
+    "journal": "Lancet",
+    "year": 2018,
+    "study_type": "Expert commission review",
+    "evidence_level": "Expert review",
+    "topics": [
+      "air",
+      "overview"
+    ],
+    "substance_ids": [
+      "pm25_particulate"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "aggregate_exposure"
+    ],
+    "citation_count": 2101,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Pollution was linked to about 9 million premature deaths in 2015 -- roughly 1 in 6 worldwide.",
+    "summary_short": "A major commission pulled together global evidence and concluded pollution -- above all air pollution -- is one of the largest preventable causes of disease and early death. The burden falls hardest in lower-income countries.",
+    "summary_detail": "The Commission reviewed the worldwide evidence on air, water, soil and chemical pollution and estimated its health toll.\n\nIt attributed about 9 million premature deaths in 2015 (16% of all deaths) to pollution, with air pollution the largest single contributor. Most of the burden falls on low- and middle-income countries, but every region is affected.\n\nA central point for individuals: much of this burden is preventable through source control and clean-air measures, which is why local air quality, ventilation and filtration are worth attention.",
+    "key_findings": [
+      "About 9 million premature deaths linked to pollution in 2015 (16% of all deaths)",
+      "Air pollution was the largest contributor",
+      "Burden is concentrated in lower-income countries but global"
+    ],
+    "limitations": [
+      "Population-level estimates -- not a prediction for any one person",
+      "A commission review synthesizes other studies rather than testing a hypothesis directly"
+    ],
+    "practical": [
+      "Check local air quality before outdoor exercise on hazy days",
+      "Ventilate and filter the rooms you spend the most time in"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29056410/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_20821501",
+    "pmid": "20821501",
+    "title": "Adverse outcome pathways: a conceptual framework to support ecotoxicology research and risk assessment.",
+    "first_author": "Ankley GT",
+    "journal": "Environ Toxicol Chem",
+    "year": 2010,
+    "study_type": "Framework paper",
+    "evidence_level": "Methods essay",
+    "topics": [
+      "methods",
+      "overview"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "dose_response"
+    ],
+    "citation_count": 1897,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "The 'adverse outcome pathway' framework maps the whole chain from a chemical first touching a molecule in the body to a health effect showing up -- turning 'this changed a cell' into a structured, testable question instead of a scary-sounding fragment.",
+    "summary_short": "This EPA-authored paper introduced the adverse outcome pathway (AOP): a structured chain of cause and effect running from a molecular initiating event (a chemical binding a specific receptor or protein), through a series of key events at the cell, tissue, and organ level, to an adverse outcome that actually matters for health. It's now a standard framework (adopted by the OECD) for organizing what a lab finding does and doesn't tell you.",
+    "summary_detail": "A common source of confusion in toxicology headlines is the gap between 'this chemical changed something in a cell' and 'this chemical harms health.' The adverse outcome pathway (AOP) framework, introduced in this paper, exists to make that gap explicit and testable rather than papered over.\n\nAn AOP lays out a documented chain: a molecular initiating event (e.g., a chemical binding to a specific hormone receptor) triggers a sequence of key events at increasing levels of biological organization -- cellular changes, then tissue-level effects, then organ-level effects -- culminating in an adverse outcome relevant to an individual or population (e.g., reduced fertility, a developmental effect). Each link in the chain can, in principle, be tested and either supported or weakened by evidence.\n\nThe practical value is that a lab finding like 'binds an estrogen receptor' or 'altered gene expression' can now be placed on a specific, named rung of a specific, named pathway, rather than treated as an isolated, alarming-sounding fact. If the downstream key events and the adverse outcome haven't been shown to follow, that's exactly what the AOP framework is built to make visible -- it doesn't let an early, molecular-level finding quietly stand in for a health outcome. The framework has since been adopted by the OECD as a formal way to organize toxicological knowledge and prioritize testing, especially for chemicals evaluated without animal studies.",
+    "key_findings": [
+      "An adverse outcome pathway (AOP) links a molecular initiating event through intermediate 'key events' to a health-relevant adverse outcome, as a structured, testable chain",
+      "Each link in the chain can be independently supported or weakened by evidence, rather than the whole claim resting on one early-stage finding",
+      "The framework is now used by the OECD to organize toxicological knowledge and help prioritize which chemicals need further testing"
+    ],
+    "limitations": [
+      "A conceptual/methods framework, not a study with its own health-effect data -- its value is organizational, not a new finding about any specific chemical",
+      "Many AOPs are only partially documented; a molecular initiating event doesn't always have well-established downstream key events yet"
+    ],
+    "practical": [
+      "When a headline cites a lab finding ('binds a receptor', 'altered gene expression'), the AOP framework is the reason to ask what's actually been shown downstream, not just at that one early step",
+      "This is the same distinction the Engine Room's mechanism-vs-outcome framing draws on"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20821501/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_26544531",
+    "pmid": "26544531",
+    "title": "EDC-2: The Endocrine Society's Second Scientific Statement on Endocrine-Disrupting Chemicals",
+    "first_author": "Gore AC",
+    "journal": "Endocr Rev",
+    "year": 2015,
+    "study_type": "Scientific statement",
+    "evidence_level": "Consensus statement",
+    "topics": [
+      "chemicals"
+    ],
+    "substance_ids": [
+      "bpa",
+      "phthalates",
+      "parabens"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "endocrine_disruption",
+      "aggregate_exposure"
+    ],
+    "citation_count": 1701,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "The Endocrine Society: exposures during development may lay the foundation for disease later in life.",
+    "summary_short": "A professional society's consensus statement concluding that endocrine-disrupting chemicals are supported by strong mechanistic and animal evidence, consistent with human epidemiology -- especially for exposures during development.",
+    "summary_detail": "Five years after its first statement, the Society reviewed the topics where translational evidence is strongest, including obesity and diabetes and female and male reproduction.\n\nIt found a stronger understanding of how EDCs alter gene-environment interactions through physiological, cellular, molecular and epigenetic changes, with effects in exposed people and, in animals, their descendants. Causal links are supported by animal models and consistent with human correlational data.\n\nThe authors also flag caveats: differences in how animal experiments are run make broad conclusions difficult, and causality in humans must be inferred cautiously.",
+    "key_findings": [
+      "Stronger mechanistic understanding since the 2009 statement",
+      "Developmental exposures may have lifelong effects",
+      "Animal evidence is consistent with human epidemiology"
+    ],
+    "limitations": [
+      "Causal inference in humans remains cautious, per the authors",
+      "Experimental designs vary across animal studies"
+    ],
+    "practical": [
+      "Simplify routines: fewer fragranced and plastic-contact products",
+      "Prioritize changes for pregnancy and young children"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26544531/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_16103423",
+    "pmid": "16103423",
+    "title": "Complementing the genome with an \"exposome\": the outstanding challenge of environmental exposure measurement in molecular epidemiology",
+    "first_author": "Wild CP",
+    "journal": "Cancer Epidemiol Biomarkers Prev",
+    "year": 2005,
+    "study_type": "Editorial",
+    "evidence_level": "Concept paper",
+    "topics": [
+      "exposome",
+      "overview"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "aggregate_exposure"
+    ],
+    "citation_count": 1696,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "The 'exposome' idea: measure the totality of a person's exposures, not just their genes.",
+    "summary_short": "This editorial coined the term 'exposome' -- the totality of environmental exposures from conception onward -- and argued that measuring exposure is the outstanding challenge for understanding disease.",
+    "summary_detail": "Genome-wide studies were advancing quickly, but the author argued that our ability to measure environmental exposures -- including diet and lifestyle -- lagged behind.\n\nThe proposed remedy was to think in terms of an exposome: the totality of exposures across a life, complementing the genome, and to develop better tools to characterize it.\n\nThis is the conceptual root of the 'aggregate exposure' idea in this app: your picture is the running total across food, air, products and habits, not any single item.",
+    "key_findings": [
+      "Introduced the term 'exposome'",
+      "Argues exposure measurement is the bottleneck",
+      "Frames exposure as a whole-life total"
+    ],
+    "limitations": [
+      "An editorial/concept paper, not a data study"
+    ],
+    "practical": [
+      "Think in running totals: small repeated exposures add up",
+      "Every log you add improves your own exposure picture"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16103423/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_33017053",
+    "pmid": "33017053",
+    "title": "Per- and Polyfluoroalkyl Substance Toxicity and Human Health Review: Current State of Knowledge and Strategies for Informing Future Research",
+    "first_author": "Fenton SE",
+    "journal": "Environ Toxicol Chem",
+    "year": 2021,
+    "study_type": "Narrative review",
+    "evidence_level": "Expert review",
+    "topics": [
+      "chemicals",
+      "water",
+      "food"
+    ],
+    "substance_ids": [
+      "pfas_packaging"
+    ],
+    "context_substance_ids": [
+      "nonstick_cookware_ptfe"
+    ],
+    "concept_tags": [
+      "bioaccumulation_half_life",
+      "renal_clearance"
+    ],
+    "citation_count": 1529,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "PFAS are linked to immune, thyroid, liver, lipid and other effects -- but most of the family is barely studied.",
+    "summary_short": "This review found associations between specific PFAS and effects on immune and thyroid function, liver disease, lipid and insulin regulation, kidney disease, reproduction and cancer. Toxicity data exist for only a handful of the hundreds of PFAS in use.",
+    "summary_detail": "Most toxicity data cover a few 'legacy' compounds such as PFOA and PFOS. For these, epidemiology has found associations with altered immune and thyroid function, liver disease, lipid and insulin dysregulation, kidney disease, adverse reproductive and developmental outcomes, and cancer, and many effects agree with animal data.\n\nThe authors stress that PFAS differ greatly in how they move through and leave the body (toxicokinetics), including by sex, species and life stage, and that hundreds of other PFAS lack toxicity data. They propose newer approaches -- read-across, molecular dynamics, protein modelling -- and suggest an appropriate degree of precaution.",
+    "key_findings": [
+      "Associations with immune, thyroid, liver, lipid, kidney, reproductive outcomes and cancer for some PFAS",
+      "Data are concentrated on a few legacy compounds",
+      "Toxicokinetics differ widely between PFAS and between people"
+    ],
+    "limitations": [
+      "Many findings are associations, not proof of causation in people",
+      "Data gaps for most PFAS in commerce"
+    ],
+    "practical": [
+      "Where easy, choose alternatives to stain-resistant and grease-proof coatings",
+      "Check your water utility's report for PFAS testing results"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33017053/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_16002379",
+    "pmid": "16002379",
+    "title": "Low-level environmental lead exposure and children's intellectual function: an international pooled analysis",
+    "first_author": "Lanphear BP",
+    "journal": "Environ Health Perspect",
+    "year": 2005,
+    "study_type": "Pooled cohort analysis",
+    "evidence_level": "Pooled cohorts",
+    "topics": [
+      "lead",
+      "children"
+    ],
+    "substance_ids": [
+      "lead_exposure"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "bioaccumulation_half_life",
+      "dose_response"
+    ],
+    "citation_count": 1469,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "In 1,333 children, higher blood lead meant lower IQ -- and the steepest drop was at the lowest levels.",
+    "summary_short": "Pooling seven long-running cohorts, researchers found IQ fell as blood lead rose, even below 10 micrograms/dL, with a larger drop per unit of lead at the lowest exposures.",
+    "summary_detail": "The analysis combined data from 1,333 children in seven international population-based cohorts followed from infancy to age 5-10. After adjustment, blood lead was inversely related to full-scale IQ.\n\nIncreasing blood lead from 2.4 to 30 micrograms/dL was associated with a 6.9-point IQ decrement. The decrement was steeper at low levels: 3.9 points from 2.4 to 10, 1.9 from 10 to 20, and 1.1 from 20 to 30 micrograms/dL.\n\nChildren whose maximum blood lead stayed below 7.5 micrograms/dL still showed a lead-associated deficit.",
+    "key_findings": [
+      "6.9 IQ-point decrement across 2.4 to 30 micrograms/dL",
+      "Steeper per-unit effect at lower blood lead",
+      "Deficit seen even when blood lead stayed below 7.5 micrograms/dL"
+    ],
+    "limitations": [
+      "Observational; residual confounding is possible",
+      "Group-level effect sizes, not individual prediction"
+    ],
+    "practical": [
+      "Ask your utility about lead service lines and test water in older homes",
+      "Wet-clean dust and keep shoes at the door in homes built before 1978"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16002379/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_16317692",
+    "pmid": "16317692",
+    "title": "Acetaminophen-induced acute liver failure: results of a United States multicenter, prospective study.",
+    "first_author": "Larson AM",
+    "journal": "Hepatology",
+    "year": 2005,
+    "study_type": "Prospective multicenter study",
+    "evidence_level": "Observational cohort",
+    "topics": [
+      "medications",
+      "dose"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "dose_response"
+    ],
+    "citation_count": 1316,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Acetaminophen is the single leading cause of acute liver failure in the US -- median overdose was 24 g, about 48 extra-strength tablets, and 38% of unintentional cases involved taking two or more acetaminophen products at once without realizing it.",
+    "summary_short": "A 6-year prospective study across 22 US transplant centers found acetaminophen overdose caused 42% of all acute liver failure cases -- more than any other cause. Nearly half were unintentional, often from combining a plain acetaminophen product with a second medicine (like a cold remedy or a narcotic combination pill) that also contained it, without the person realizing the dose was stacking.",
+    "summary_detail": "Researchers tracked 662 consecutive acute liver failure patients at 22 US tertiary care centers over six years. Acetaminophen was responsible for 275 cases (42%) -- more than any other single cause, and the share was rising over the study period (28% of ALF cases in 1998 to 51% by 2003).\n\nThe median dose ingested was 24 g, equivalent to about 48 extra-strength (500 mg) tablets -- far above the FDA's current maximum recommended adult dose of 3-4 g per day. Just under half (48%) of cases were unintentional overdoses, not suicide attempts. Within that unintentional group, 38% had taken two or more acetaminophen-containing products at the same time, and 63% were also using a narcotic-combination pain reliever -- many of which contain acetaminophen as a second ingredient a person might not think to count. 81% reported taking it for an ongoing pain condition, not a one-time slip.\n\nAcetaminophen hepatotoxicity is a clean, well-characterized example of dose-dependent injury: below the recommended dose it's one of the most-used, best-tolerated over-the-counter medicines in the world; well above it, it's the leading cause of a life-threatening condition. The authors' practical recommendation was straightforward: better labeling and patient/pharmacist education to reduce simultaneous multi-product use.",
+    "key_findings": [
+      "Acetaminophen caused 42% of acute liver failure cases across 22 US centers over 6 years -- more than any other identified cause",
+      "Median overdose was 24 g (about 48 extra-strength tablets), well above the ~3-4 g/day recommended maximum",
+      "38% of unintentional overdoses involved combining two or more acetaminophen-containing products at once"
+    ],
+    "limitations": [
+      "Tertiary-center liver failure patients are the most severe end of the spectrum -- most acetaminophen use never approaches this",
+      "A US study from the mid-1990s-2000s; labeling and combination-product warnings have changed somewhat since"
+    ],
+    "practical": [
+      "Check whether a second medicine (cold/flu remedy, prescription pain reliever) also lists acetaminophen before adding a plain acetaminophen product on top",
+      "The FDA's current adult maximum is 3,000-4,000 mg/day across ALL sources combined, not per product"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16317692/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_31105044",
+    "pmid": "31105044",
+    "title": "Ultra-Processed Diets Cause Excess Calorie Intake and Weight Gain: An Inpatient Randomized Controlled Trial of Ad Libitum Food Intake",
+    "first_author": "Hall KD",
+    "journal": "Cell Metab",
+    "year": 2019,
+    "study_type": "Randomized controlled trial",
+    "evidence_level": "Randomized trial",
+    "topics": [
+      "food"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [
+      "artificial_food_dyes",
+      "added_sugar"
+    ],
+    "concept_tags": [
+      "nova_classification"
+    ],
+    "citation_count": 1183,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Twenty adults ate about 500 kcal/day more on an ultra-processed diet than on an unprocessed one -- with matched menus.",
+    "summary_short": "In a two-week-each crossover trial at the NIH Clinical Center, people given ultra-processed meals ate about 508 more kcal/day and gained weight; on the unprocessed diet they lost weight.",
+    "summary_detail": "Twenty weight-stable adults lived in the NIH Clinical Center and were randomized to ultra-processed or unprocessed diets for two weeks, then switched. Meals were designed to match for presented calories, energy density, macronutrients, sugar, sodium and fiber, and people could eat as much or little as they wanted.\n\nEnergy intake was 508 kcal/day higher on the ultra-processed diet, with more carbohydrate and fat but not protein. Participants gained 0.9 kg on the ultra-processed diet and lost 0.9 kg on the unprocessed one.\n\nThe authors conclude that limiting ultra-processed foods may help prevent and treat obesity.",
+    "key_findings": [
+      "+508 kcal/day on the ultra-processed diet (p=0.0001)",
+      "+0.9 kg vs -0.9 kg over two weeks",
+      "Weight change tracked energy intake (r=0.8)"
+    ],
+    "limitations": [
+      "Only 20 people and 4 weeks in a controlled setting",
+      "Shows effect on eating, not on additive toxicity"
+    ],
+    "practical": [
+      "Swapping a few packaged items for whole foods is a realistic first step",
+      "Try the cereal-aisle swap from your starter quests"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31105044/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_25775505",
+    "pmid": "25775505",
+    "title": "Bisphenol S and F: A Systematic Review and Comparison of the Hormonal Activity of Bisphenol A Substitutes.",
+    "first_author": "Rochester JR",
+    "journal": "Environ Health Perspect",
+    "year": 2015,
+    "study_type": "Systematic review",
+    "evidence_level": "Systematic review",
+    "topics": [
+      "chemicals",
+      "food"
+    ],
+    "substance_ids": [
+      "bisphenol_analogs"
+    ],
+    "context_substance_ids": [
+      "bpa"
+    ],
+    "concept_tags": [
+      "endocrine_disruption"
+    ],
+    "citation_count": 1128,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Bisphenol S and F -- the most common 'BPA-free' replacements -- turned out to be about as hormonally active as BPA itself across 32 pooled studies.",
+    "summary_short": "A systematic review pooling 25 in vitro and 7 in vivo studies compared the hormonal activity of bisphenol S (BPS) and bisphenol F (BPF) -- two chemicals widely substituted for BPA in 'BPA-free' products -- directly against BPA. Their estrogenic, antiestrogenic, androgenic, and antiandrogenic potency landed in the same order of magnitude as BPA, not meaningfully lower.",
+    "summary_detail": "As BPA drew regulatory and consumer scrutiny, many manufacturers reformulated products to remove it, often labeling the result 'BPA-free.' The most common replacements -- bisphenol S (BPS) and bisphenol F (BPF) -- are themselves bisphenols, sharing BPA's core two-ring structure with a different bridging group between them.\n\nThe authors systematically reviewed the available literature (32 studies total: 25 in vitro, 7 in vivo) comparing BPS and BPF's hormonal activity to BPA's. Both showed potency 'in the same order of magnitude and of similar action as BPA' across estrogenic, antiestrogenic, androgenic, and antiandrogenic pathways. BPS specifically showed potency similar to estradiol itself in some membrane-mediated signaling pathways relevant to cell proliferation and differentiation. In vivo, both substitutes altered organ weights and reproductive endpoints in ways comparable to BPA exposure.\n\nThe authors' conclusion is direct: based on the literature to date, BPS and BPF are about as hormonally active as BPA and have endocrine-disrupting effects of their own. This is the foundational paper behind what toxicologists now call 'regrettable substitution' -- swapping a scrutinized chemical for a close structural relative that hasn't drawn the same attention yet, without necessarily changing the underlying biological activity.",
+    "key_findings": [
+      "BPS and BPF potency landed in the same order of magnitude as BPA across estrogenic, antiestrogenic, androgenic, and antiandrogenic activity",
+      "BPS showed estradiol-like potency in some membrane-mediated signaling pathways",
+      "In vivo studies found altered organ weights and reproductive endpoints comparable to BPA"
+    ],
+    "limitations": [
+      "Most of the underlying evidence (25 of 32 studies) is in vitro, not human data",
+      "A synthesis of existing studies, not a new human exposure study -- inherits whatever gaps the underlying literature has"
+    ],
+    "practical": [
+      "A 'BPA-free' label describes what's absent, not what replaced it -- worth checking whether the replacement is itself a bisphenol",
+      "The same heat/reheating-avoidance habits that reduce BPA exposure apply to its bisphenol relatives too"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25775505/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_15613366",
+    "pmid": "15613366",
+    "title": "Radon in homes and risk of lung cancer: collaborative analysis of individual data from 13 European case-control studies",
+    "first_author": "Darby S",
+    "journal": "BMJ",
+    "year": 2005,
+    "study_type": "Pooled case-control analysis",
+    "evidence_level": "Pooled case-control",
+    "topics": [
+      "radon",
+      "home"
+    ],
+    "substance_ids": [
+      "radon"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "alpha_radiation",
+      "dose_response"
+    ],
+    "citation_count": 960,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Lung-cancer risk rose about 8% per 100 Bq/m3 of home radon -- with no safe threshold found.",
+    "summary_short": "Pooling 13 European studies (7,148 cases, 14,208 controls), researchers found lung cancer risk increased in a straight line with measured home radon, and the effect was clearest for smokers.",
+    "summary_detail": "Relative risk rose 8.4% per 100 Bq/m3 of measured radon (16% after correcting for measurement uncertainty). The dose-response looked linear with no threshold and remained significant even among people whose homes measured under 200 Bq/m3.\n\nBy age 75, absolute lung-cancer risk at 0, 100 and 400 Bq/m3 was estimated at about 0.4%, 0.5% and 0.7% for lifelong non-smokers, and roughly 25 times higher (10%, 12%, 16%) for cigarette smokers. Radon was estimated to cause about 2% of cancer deaths in Europe.",
+    "key_findings": [
+      "+8.4% lung-cancer risk per 100 Bq/m3 (16% corrected)",
+      "Linear dose-response with no threshold seen",
+      "Absolute risk far higher for smokers"
+    ],
+    "limitations": [
+      "Case-control design relies on recalled home history",
+      "European homes; local radon varies widely"
+    ],
+    "practical": [
+      "A home radon test kit is inexpensive and is your boss quest",
+      "If a test is high, a mitigation contractor can lower it"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15613366/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_38446676",
+    "pmid": "38446676",
+    "title": "Microplastics and Nanoplastics in Atheromas and Cardiovascular Events",
+    "first_author": "Marfella R",
+    "journal": "N Engl J Med",
+    "year": 2024,
+    "study_type": "Prospective observational study",
+    "evidence_level": "Observational cohort",
+    "topics": [
+      "microplastics",
+      "heart"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [
+      "microplastics_bottled_water"
+    ],
+    "concept_tags": [
+      "aggregate_exposure"
+    ],
+    "citation_count": 752,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Plastic particles found in artery plaque were associated with more heart attacks, strokes and deaths over about 34 months.",
+    "summary_short": "In 257 patients followed after carotid surgery, those whose plaque contained micro- or nanoplastics had a higher rate of heart attack, stroke or death. It shows association, not proof that plastics caused the events.",
+    "summary_detail": "Researchers analyzed carotid plaque removed from 304 patients (257 completed follow-up of about 33.7 months) using pyrolysis-gas chromatography-mass spectrometry and electron microscopy. Polyethylene was found in 58.4% of patients and polyvinyl chloride in 12.1%.\n\nPatients with plastics detected had a higher risk of the composite outcome of heart attack, stroke or death (hazard ratio 4.53; 95% CI 2.00-10.27).\n\nBecause it is observational, the study cannot show that plastics caused the events -- people with plastics in plaque may differ in other ways.",
+    "key_findings": [
+      "Polyethylene in 58.4% of plaques; PVC in 12.1%",
+      "Hazard ratio 4.53 for heart attack, stroke or death",
+      "Jagged-edged particles seen among plaque macrophages"
+    ],
+    "limitations": [
+      "Observational -- association, not causation",
+      "Patients already had carotid disease; results may not generalize"
+    ],
+    "practical": [
+      "Reduce the biggest everyday contact routes first: heating food in plastic, single-use bottles",
+      "Treat this as a reason to learn, not to worry"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38446676/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_26161749",
+    "pmid": "26161749",
+    "title": "Helping Doctors and Patients Make Sense of Health Statistics",
+    "first_author": "Gigerenzer G",
+    "journal": "Psychol Sci Public Interest",
+    "year": 2007,
+    "study_type": "Review",
+    "evidence_level": "Expert review",
+    "topics": [
+      "statistics",
+      "communication"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "relative_absolute_risk"
+    ],
+    "citation_count": 595,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "A '25% reduction' in risk can mean one fewer person in 1,000 -- and many doctors, journalists and patients misread it.",
+    "summary_short": "This review shows that statistical illiteracy is common among patients, journalists and physicians, and that how numbers are framed -- relative instead of absolute -- can make benefits look big and harms look small.",
+    "summary_detail": "The authors argue that many people, including professionals, do not understand what health statistics mean. One example from the paper: a statement that mammography screening reduces the risk of dying from breast cancer by 25% actually means 1 fewer woman out of 1,000 dies of the disease. Another: higher survival rates with cancer screening do not by themselves imply longer life.\n\nThey provide evidence that statistical illiteracy is common to patients, journalists and physicians; that it is created by non-transparent framing of information (sometimes unintentional, sometimes deliberate); and that it can have serious consequences for health.\n\nThe remedy is not more fear or more reassurance but transparent numbers: absolute risks, natural frequencies ('X out of 1,000 people'), and clear reference groups. That is the habit this app's risk tools are built to practice.",
+    "key_findings": [
+      "Relative-risk framing can hide how small an absolute change is",
+      "Statistical illiteracy is common among patients, journalists and physicians",
+      "Transparent formats (absolute numbers, 'out of 1,000') help everyone"
+    ],
+    "limitations": [
+      "A review of the literature, not a new experiment",
+      "Its screening examples illustrate framing; they are not advice about any individual's screening decisions"
+    ],
+    "practical": [
+      "Whenever you see a percentage change, ask: change from what baseline, out of how many people?",
+      "Bring the absolute numbers, not just the headline, to any conversation with your care team"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26161749/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_21450549",
+    "pmid": "21450549",
+    "title": "Food packaging and bisphenol A and bis(2-ethylhexyl) phthalate exposure: findings from a dietary intervention",
+    "first_author": "Rudel RA",
+    "journal": "Environ Health Perspect",
+    "year": 2011,
+    "study_type": "Dietary intervention (before-and-after)",
+    "evidence_level": "Intervention study",
+    "topics": [
+      "food",
+      "chemicals",
+      "home"
+    ],
+    "substance_ids": [
+      "bpa",
+      "phthalates"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "bioaccumulation_half_life",
+      "aggregate_exposure"
+    ],
+    "citation_count": 451,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "After three days of fresh food that wasn't canned or packaged in plastic, five families' urinary BPA fell by about two-thirds and their phthalate breakdown products by about half.",
+    "summary_short": "Twenty people in five families who usually ate a lot of canned and packaged food switched to three days of fresh food that wasn't canned or plastic-packaged. Their urinary BPA fell about 66% and breakdown products of the phthalate DEHP fell 53-56%.",
+    "summary_detail": "Bisphenol A (BPA) and DEHP, a common phthalate, are used in plastics and can linings, and have been linked to endocrine effects in animals and in some human studies. What had not been tested directly was how much of a person's exposure comes from food packaging.\n\nA Silent Spring Institute team recruited 20 people in five families who reported eating a lot of canned and packaged food. They ate their usual diet, then three days of 'fresh foods' that were not canned or packaged in plastic, then returned to their usual diet, with evening urine samples collected across eight days.\n\nDuring the fresh-food days, urinary BPA fell from a geometric mean of 3.7 to 1.2 ng/mL -- about 66% -- and DEHP metabolites fell 53-56%. The highest values fell furthest: 76% for BPA and 93-96% for DEHP metabolites.\n\nThe pattern fits how quickly the body clears these compounds: what you eat and how it is packaged shows up in your own measurements within days. With 20 people and no comparison group, though, the study cannot say how much of the drop came from the packaging itself, or what it means for health.",
+    "key_findings": [
+      "Urinary BPA fell about 66% and DEHP metabolites 53-56% during three fresh-food days",
+      "The highest values fell furthest: 76% for BPA, 93-96% for DEHP metabolites",
+      "The change showed up within days, not months"
+    ],
+    "limitations": [
+      "20 people in 5 families, with no separate comparison group",
+      "Three days of change, measured in pooled evening urine samples -- recent exposure, not health outcomes",
+      "'Not canned or plastic-packaged' was one bundle of changes, so the study cannot separate packaging from the rest of the diet"
+    ],
+    "practical": [
+      "A few days of fresh food in place of canned and plastic-packaged food is exactly the change this study tested -- a small experiment you can run yourself",
+      "Glass or ceramic containers for storing and heating food sidestep the question of what the plastic contributes"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21450549/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_29182464",
+    "pmid": "29182464",
+    "title": "Triclosan exposure, transformation, and human health effects.",
+    "first_author": "Weatherly LM",
+    "journal": "J Toxicol Environ Health B Crit Rev",
+    "year": 2017,
+    "study_type": "Narrative review",
+    "evidence_level": "Expert review",
+    "topics": [
+      "chemicals"
+    ],
+    "substance_ids": [
+      "triclosan"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "endocrine_disruption"
+    ],
+    "citation_count": 358,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "About 75% of Americans carry detectable triclosan in their bodies; the FDA banned it from soap in 2016, but it's still allowed in toothpaste, mouthwash, and surgical antiseptic.",
+    "summary_short": "A toxicology review found triclosan -- an antimicrobial used in personal care and consumer products since the 1970s -- is readily absorbed through skin and detected in the urine, blood, and breast milk of most Americans tested. After an FDA safety review, triclosan was banned from over-the-counter soap in 2016, but it remains permitted in toothpaste, mouthwash, hand sanitizer, and surgical scrubs. The review summarizes evidence linking triclosan to reproductive and endocrine effects in animal studies, though human evidence is less conclusive.",
+    "summary_detail": "Triclosan (TCS) has been used as an antibacterial and antifungal agent in personal care products, textiles, and plastics since the 1970s. Because of how widely it was used, the authors estimate roughly three in four Americans carry a detectable level of triclosan in their body, usually from skin contact with soap, toothpaste, or other treated products.\n\nAfter reviewing the accumulated evidence, the FDA banned triclosan (and 18 other antibacterial ingredients) from over-the-counter antiseptic soap and body wash in September 2016, on the grounds that manufacturers hadn't shown these ingredients were safe for long-term daily use or more effective than plain soap and water. The ban didn't extend to toothpaste, mouthwash, hand sanitizer, or surgical antiseptic scrubs, where triclosan is still permitted and commonly used.\n\nThe review's main focus is the toxicology literature connecting triclosan exposure to reproductive and hormone-system effects, largely from animal studies -- effects on thyroid hormone levels, reproductive development, and estrogen/androgen signaling have been reported at exposure levels above typical human use. The authors are clear that the human evidence for these effects is more limited and mixed than the animal evidence, and call for more research directly in humans.",
+    "key_findings": [
+      "Roughly 75% of Americans tested have detectable triclosan in urine, blood, or breast milk",
+      "FDA banned triclosan from OTC soap/body wash in 2016; still permitted in toothpaste, mouthwash, hand sanitizer",
+      "Animal studies link triclosan to thyroid, reproductive, and hormone-signaling effects at higher exposure levels"
+    ],
+    "limitations": [
+      "Most of the hormone/reproductive-effect evidence comes from animal studies, not humans",
+      "A narrative review, not a formal meta-analysis -- summarizes the field rather than pooling effect sizes"
+    ],
+    "practical": [
+      "Checking labels for 'triclosan' is most useful for toothpaste, mouthwash, and hand soap -- the products the 2016 ban didn't cover",
+      "This is exactly the kind of low-effort, well-documented swap the Personal care topic in Learn covers"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29182464/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_32074459",
+    "pmid": "32074459",
+    "title": "Evaluation of Maternal, Embryo, and Placental Effects in CD-1 Mice following Gestational Exposure to Perfluorooctanoic Acid (PFOA) or Hexafluoropropylene Oxide Dimer Acid (HFPO-DA or GenX).",
+    "first_author": "Blake BE",
+    "journal": "Environ Health Perspect",
+    "year": 2020,
+    "study_type": "Animal study (mice)",
+    "evidence_level": "Animal study",
+    "topics": [
+      "chemicals",
+      "food"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [
+      "pfas_packaging"
+    ],
+    "concept_tags": [
+      "endocrine_disruption",
+      "bioaccumulation_half_life"
+    ],
+    "citation_count": 216,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "GenX, the short-chain PFAS marketed as a faster-clearing PFOA replacement, produced many of the same effects as PFOA in pregnant mice head-to-head -- despite its much shorter half-life.",
+    "summary_short": "NIEHS and EPA researchers dosed pregnant mice with either PFOA (the older, restricted 'long-chain' PFAS) or GenX (its short-chain replacement, promoted as safer partly because it clears the body faster) and compared effects on the mother, placenta, and embryo. GenX reproduced many of PFOA's documented effects, including maternal liver changes and placental abnormalities, despite its shorter half-life.",
+    "summary_detail": "As PFOA and other long-chain PFAS drew regulatory restriction for their extreme persistence (serum half-lives measured in years) and health associations, manufacturers moved to short-chain alternatives like GenX (HFPO-DA), promoted partly on the grounds that a shorter half-life should mean less cumulative exposure and therefore less risk.\n\nThis study tested that assumption directly: pregnant CD-1 mice were dosed with either PFOA or GenX at comparable levels from early to mid-late gestation, then maternal liver histopathology, placental histopathology, embryo/placental weight, and placental thyroid hormone levels were measured and compared.\n\nBoth chemicals produced elevated gestational weight gain, higher maternal liver weights, changes in liver histopathology, and a greater incidence of placental abnormalities relative to unexposed controls, with effect sizes similar between the two chemicals at comparable doses. Some placental effects showed compound-specific patterns, suggesting the two aren't biologically identical -- but the overall conclusion was that GenX 'recapitulated many documented effects of PFOA... regardless of its much shorter reported half-life.' A faster-clearing replacement didn't translate into a cleanly better safety profile in this head-to-head comparison.",
+    "key_findings": [
+      "GenX and PFOA produced similar increases in gestational weight gain and maternal liver weight at comparable doses",
+      "Both chemicals increased the incidence of placental abnormalities relative to controls",
+      "GenX's much shorter half-life did not prevent it from reproducing many of PFOA's documented effects"
+    ],
+    "limitations": [
+      "A mouse study -- species differences in PFAS handling are well documented, so human potency may differ",
+      "Tests one exposure window and route (oral gavage during gestation); doesn't cover other life stages or routes"
+    ],
+    "practical": [
+      "PFAS exposure reduction habits (retiring worn non-stick pans, not eating directly from grease-resistant wrappers) are about the whole chemical class, not just the specific compounds a package might name",
+      "\"Shorter half-life\" and \"safer\" aren't the same claim -- this is the concrete study behind that distinction"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32074459/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_28845507",
+    "pmid": "28845507",
+    "title": "Toxicological interactions of pesticide mixtures: an update.",
+    "first_author": "Hernández AF",
+    "journal": "Arch Toxicol",
+    "year": 2017,
+    "study_type": "Review",
+    "evidence_level": "Expert review",
+    "topics": [
+      "chemicals",
+      "methods"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [
+      "lawn_pesticide_tracked_in"
+    ],
+    "concept_tags": [
+      "dose_response"
+    ],
+    "citation_count": 214,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Most real-world chemical mixtures add up roughly as expected from their individual doses -- true synergy (the combination doing more damage than the sum of its parts) shows up mainly at unrealistically high lab concentrations, not everyday exposure levels.",
+    "summary_short": "A review of how pesticides interact when combined found that while synergistic interactions (where a mixture is more toxic than its components' doses added together) are real and documented -- especially among cholinesterase-inhibiting insecticides and certain fungicides -- the available evidence suggests they're rare at the concentrations people actually encounter through diet or environment, and mostly appear in lab studies using much higher doses.",
+    "summary_detail": "When two or more chemicals are present together, their combined effect can be additive (roughly the sum of each one's effect), synergistic (more than the sum -- one chemical amplifies the other), or antagonistic (less than the sum -- one blunts the other). Regulatory cumulative risk assessment generally assumes additivity within a 'common mechanism group' (chemicals that act through the same biological pathway) as a protective default.\n\nThis review surveyed the pesticide-mixture literature specifically. It found synergistic interactions are real and mechanistically explainable -- most often because one chemical interferes with how the body metabolizes/clears another, amplifying its effective dose. Cholinesterase-inhibiting insecticides, triazole fungicides, triazine herbicides, and pyrethroids showed up disproportionately in documented synergistic pairs.\n\nThe important caveat for everyday exposure: the authors note that synergisms have mostly been demonstrated at experimentally high concentrations, and the limited evidence available suggests synergism at typical dietary exposure levels is rare. That doesn't mean mixtures don't matter -- it means the additive-default assumption regulators use is a reasonably protective starting point, not a claim that combined exposure is risk-free.",
+    "key_findings": [
+      "Combined chemical effects can be additive, synergistic (more than additive), or antagonistic (less than additive), depending on the specific pair and mechanism",
+      "Synergistic interactions are usually explained by one chemical altering how the body metabolizes the other, effectively raising its dose",
+      "Documented synergisms mostly occurred at high experimental concentrations; evidence suggests synergism at typical real-world dietary exposure levels is rare"
+    ],
+    "limitations": [
+      "Focused specifically on pesticide-pesticide interactions, not the full range of everyday chemical mixtures (food additives, personal-care ingredients, etc.)",
+      "A narrative review of the existing literature, not a new quantitative risk assessment"
+    ],
+    "practical": [
+      "Reducing the number of different flagged sources in a routine (not just the amount of any one) is the practical takeaway behind cumulative/aggregate exposure thinking in this app",
+      "Regulatory limits for a chemical class (like organophosphates) are generally set assuming additive combined exposure across the group, which is the protective, conservative assumption"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28845507/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_26947464",
+    "pmid": "26947464",
+    "title": "Reducing phthalate, paraben, and phenol exposure from personal care products in adolescent girls: findings from the HERMOSA intervention study",
+    "first_author": "Harley KG",
+    "journal": "Environ Health Perspect",
+    "year": 2016,
+    "study_type": "Youth-led intervention study (before-and-after)",
+    "evidence_level": "Intervention study",
+    "topics": [
+      "chemicals",
+      "children",
+      "home"
+    ],
+    "substance_ids": [
+      "phthalates",
+      "parabens",
+      "triclosan"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "endocrine_disruption",
+      "aggregate_exposure"
+    ],
+    "citation_count": 189,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Three days of personal care products labelled free of phthalates, parabens, triclosan and BP-3 lowered most of those chemicals in 100 teenagers' urine by a quarter to a half -- and two other parabens unexpectedly rose.",
+    "summary_short": "One hundred Latina teenagers used personal care products labelled free of phthalates, parabens, triclosan and benzophenone-3 for three days. Monoethyl phthalate fell about 27%, methyl and propyl paraben about 44-45%, triclosan about 36% and benzophenone-3 about 36% -- while ethyl and butyl paraben unexpectedly rose.",
+    "summary_detail": "Personal care products -- cosmetics, lotions, shampoos, sunscreens -- can be a source of chemicals such as phthalates, parabens, triclosan and benzophenone-3 (BP-3), which are suspected endocrine disruptors. The HERMOSA study asked whether ordinary consumer choices could change that.\n\nIt was designed with teenagers, not only for them: 100 Latina girls took part in a youth-led, community-based intervention. For three days they used products whose labels said they did not contain the target chemicals, and urine collected before and after was analysed for the chemicals and their metabolites.\n\nOn average, monoethyl phthalate (MEP) fell 27.4%, methyl paraben 43.9% and propyl paraben 45.4%, triclosan 35.7% and BP-3 36.0%. Two other phthalate metabolites did not change significantly, and ethyl and butyl paraben concentrations actually rose -- at low overall levels, and undetected in almost half the samples.\n\nThe authors' conclusion is measured: label-based choices available to any shopper can lower personal exposure to these chemicals. They also credit involving young people in the design with the study's recruitment, retention and compliance.",
+    "key_findings": [
+      "MEP fell 27.4%; methyl and propyl paraben fell about 44-45%; triclosan and BP-3 fell about 36%",
+      "Two phthalate metabolites (MnBP, MiBP) did not change significantly",
+      "Ethyl and butyl paraben rose -- unexpected, and at low levels"
+    ],
+    "limitations": [
+      "Before-and-after design over three days, with no comparison group",
+      "Urine levels reflect recent exposure, not long-term burden or health outcomes",
+      "Products were chosen by their label claims, and the rise in two parabens shows a swap does not lower everything"
+    ],
+    "practical": [
+      "Read the ingredient list, not just the front of the pack: 'fragrance-free' and 'unscented' are not the same thing",
+      "When you swap away from one chemical, watch for its relatives -- the same reason this app groups related compounds together"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26947464/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_25861095",
+    "pmid": "25861095",
+    "title": "Effect of organic diet intervention on pesticide exposures in young children living in low-income urban and agricultural communities",
+    "first_author": "Bradman A",
+    "journal": "Environ Health Perspect",
+    "year": 2015,
+    "study_type": "Dietary intervention (before-during-after)",
+    "evidence_level": "Intervention study",
+    "topics": [
+      "food",
+      "children",
+      "chemicals"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [
+      "lawn_pesticide_tracked_in"
+    ],
+    "concept_tags": [
+      "aggregate_exposure"
+    ],
+    "citation_count": 108,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Seven days of organic food lowered urinary markers of organophosphate insecticides by 40-49%, and of the herbicide 2,4-D by 25%, in 40 young children.",
+    "summary_short": "Forty Mexican-American children aged 3-6 in California ate conventionally grown food for 4 days, organic food for 7, then conventional again for 5. During the organic days, markers of organophosphate insecticides fell 40-49% and of the herbicide 2,4-D 25%; several other pesticide markers were rarely detected or unchanged.",
+    "summary_detail": "Earlier organic-diet studies had mostly involved children in suburban communities. This one followed 40 Mexican-American children aged 3-6 living in low-income urban (Oakland) and agricultural (Salinas) communities in California, where home and farm-related exposures can differ.\n\nOver 16 consecutive days the children ate conventionally grown food for 4 days, organic food for 7 days, then conventionally grown food for 5 days, while urine samples were analysed for 23 pesticide metabolites -- organophosphate, pyrethroid and others.\n\nOf the six metabolites detected often enough to analyse, levels during the organic phase were generally lower. The reductions were statistically significant for total dialkylphosphates (-40%) and dimethyl dialkylphosphates (-49%), both markers of organophosphate insecticides, and for 2,4-D (-25%). Several chemical-specific pyrethroid and herbicide metabolites were rarely detected or not significantly changed. Levels for most frequently detected metabolites were generally higher in Salinas than in Oakland.\n\nThe authors note that diet is one source among several, and that more research is needed to sort out how much comes from food versus the home and other routes.",
+    "key_findings": [
+      "Organophosphate insecticide markers fell 40% (total DAPs) and 49% (dimethyl DAPs) on the organic diet",
+      "The herbicide 2,4-D marker fell 25%",
+      "Several pyrethroid and herbicide markers were rarely detected or unchanged"
+    ],
+    "limitations": [
+      "40 children over 16 days; each child was their own comparison, with no separate control group",
+      "Urine markers show recent exposure, not health effects",
+      "Diet was one source of several -- the study cannot say how much came from the home or elsewhere"
+    ],
+    "practical": [
+      "If organic isn't within reach, the produce guide in this app (higher-residue 'watch list' versus lower-residue items) is a practical way to choose where to put the effort",
+      "Diet is one route; home and garden products are another, so the two add up"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25861095/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_33221305",
+    "pmid": "33221305",
+    "title": "Controversy around parabens: Alternative strategies for preservative use in cosmetics and personal care products.",
+    "first_author": "Nowak K",
+    "journal": "Environ Res",
+    "year": 2021,
+    "study_type": "Review",
+    "evidence_level": "Expert review",
+    "topics": [
+      "chemicals"
+    ],
+    "substance_ids": [
+      "parabens",
+      "phenoxyethanol"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "endocrine_disruption"
+    ],
+    "citation_count": 70,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "The common paraben alternatives -- phenoxyethanol, formaldehyde-releasers, triclosan, isothiazolinones -- each carry their own documented adverse-effect profile; none is simply a safety upgrade.",
+    "summary_short": "A review of preservative strategies in cosmetics surveyed the chemicals most often used in place of parabens -- phenoxyethanol, formaldehyde-releasing preservatives, triclosan, methylisothiazolinone, benzyl alcohol, and sodium benzoate -- and found each has documented adverse effects of its own, from skin sensitization to the specific endocrine and antimicrobial-resistance concerns already tracked for triclosan in this app.",
+    "summary_detail": "Parabens' safety has been debated for years, driving many 'paraben-free' reformulations. This review takes stock of what those reformulations typically use instead: phenoxyethanol, formaldehyde-releasing preservatives, triclosan, methylisothiazolinone/methylchloroisothiazolinone, benzyl alcohol, and sodium benzoate are named as the most common substitutes.\n\nThe authors' point is not that parabens are vindicated, but that none of the common alternatives is a clean upgrade: each has its own adverse-effect profile in the literature (contact sensitization and allergy for the isothiazolinones in particular, formaldehyde release as a known carcinogen concern, triclosan's endocrine and antimicrobial-resistance questions already covered elsewhere in this library). Interest in plant-based/essential-oil antimicrobials is growing but faces its own effectiveness and formulation challenges at present.\n\nPhenoxyethanol specifically is one of the more commonly used and, per this and other reviews, comparatively lower-concern options at typical cosmetic-use levels -- but 'comparatively lower-concern' is a different claim from 'inert,' and it's a genuinely different chemical with its own limits, not a neutral placeholder for 'paraben-free.'",
+    "key_findings": [
+      "Phenoxyethanol, formaldehyde-releasers, triclosan, and isothiazolinones are the most common paraben substitutes in current cosmetics",
+      "Each alternative preservative has its own documented adverse-effect profile in the literature, not a clean safety improvement over parabens",
+      "Isothiazolinones (e.g. methylisothiazolinone) are specifically flagged for contact-sensitization/allergy risk"
+    ],
+    "limitations": [
+      "A narrative review summarizing the field, not a new head-to-head safety comparison with pooled effect sizes",
+      "Natural/plant-based alternatives are noted as promising but under-studied for real-world formulation use"
+    ],
+    "practical": [
+      "'Paraben-free' describes what's absent, not what replaced it -- worth a glance at the actual ingredient list if minimizing preservative exposure broadly (not just parabens) is the goal",
+      "Rotating personal care brands, rather than relying on one 'paraben-free' product exclusively, still applies here"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33221305/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_38363072",
+    "pmid": "38363072",
+    "title": "Ultra-processed food consumption and human health: an umbrella review of systematic reviews with meta-analyses.",
+    "first_author": "Barbaresko J",
+    "journal": "Crit Rev Food Sci Nutr",
+    "year": 2024,
+    "study_type": "Umbrella review of meta-analyses",
+    "evidence_level": "Umbrella review",
+    "topics": [
+      "food"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [
+      "artificial_food_dyes",
+      "added_sugar"
+    ],
+    "concept_tags": [
+      "nova_classification",
+      "dose_response"
+    ],
+    "citation_count": 39,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Each extra 50 g/day of ultra-processed food tracked with about 2% higher all-cause mortality risk across 16 pooled reviews -- modest, and it's still unclear if processing itself is the cause.",
+    "summary_short": "An umbrella review pooled 16 systematic reviews and meta-analyses on ultra-processed (NOVA-defined) food and health outcomes. Moderate-certainty evidence linked higher intake to higher all-cause mortality, cardiovascular disease, type 2 diabetes, and colorectal cancer, rising gradually with intake. The authors note it's still unclear whether processing itself drives the risk, or whether ultra-processed intake is mostly a marker of a lower-quality diet overall.",
+    "summary_detail": "Researchers searched four databases through January 2024 for systematic reviews with meta-analyses that used the NOVA classification system to define ultra-processed food, then combined their results and rated the certainty of each finding using GRADE -- the same framework used to grade clinical guidelines.\n\nSixteen publications were included. Moderate-certainty evidence linked higher ultra-processed food intake to higher all-cause mortality (about 2% higher risk per extra 50 g/day), cardiovascular disease incidence and mortality (4-5% higher per 50 g/day), type 2 diabetes incidence (12% higher per 10 percentage points of diet), and colorectal cancer (4% higher per 10 percentage points). Similar patterns showed up for obesity, metabolic syndrome, fatty liver disease, and mental health outcomes, but the evidence behind those was weaker.\n\nThe authors are candid about a key limitation: because NOVA classifies food by how it's processed rather than by nutrient content, it's hard to separate the effect of processing itself from the fact that most ultra-processed diets are also higher in sugar, refined starch, and sodium, and lower in fiber. This is one of the largest, most rigorously graded syntheses on the topic to date -- but it's built from observational associations, not proof that processing itself is the cause.",
+    "key_findings": [
+      "2% higher all-cause mortality risk per extra 50 g/day of ultra-processed food (moderate certainty)",
+      "4-5% higher cardiovascular disease incidence/mortality per 50 g/day (moderate certainty)",
+      "12% higher type 2 diabetes incidence per 10 percentage points of diet (moderate certainty)"
+    ],
+    "limitations": [
+      "Built from observational cohorts, not randomized trials -- shows association, not proof of cause",
+      "Can't fully separate 'food processing' from 'a diet that's also higher in sugar, refined starch, and sodium'"
+    ],
+    "practical": [
+      "The starter quests' cereal-aisle swap and label-reading habit both target this exact pattern",
+      "Pairs with the Hall et al. 2019 trial in this library, which shows a mechanism: people eat more calories, unprompted, on ultra-processed menus"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38363072/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_42001662",
+    "pmid": "42001662",
+    "title": "Levers to decrease exposure to harmful chemicals: the case of personal care products and cosmetics",
+    "first_author": "Jovanovic N",
+    "journal": "Environ Int",
+    "year": 2026,
+    "study_type": "Intervention study with health impact assessment",
+    "evidence_level": "Intervention study",
+    "topics": [
+      "chemicals",
+      "home",
+      "children"
+    ],
+    "substance_ids": [
+      "phenoxyethanol",
+      "parabens",
+      "phthalates",
+      "bpa"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "aggregate_exposure",
+      "endocrine_disruption"
+    ],
+    "citation_count": 2,
+    "citations_as_of": "2026-09",
+    "citation_source": "NIH iCite",
+    "headline": "Five days of swapping personal care products lowered urinary markers of phenoxyethanol (about 64%), BPA, methylparaben and a phthalate in 103 young women -- and the authors add that regulation would do more than individual choices.",
+    "summary_short": "In Grenoble, 103 women aged 18-30 set aside their usual personal care products for five days and used alternatives free of the chemicals of interest. Urinary phenoxyacetic acid (a breakdown product of phenoxyethanol) fell about 64%, BPA 39%, methylparaben 30% and monoethyl phthalate 22%.",
+    "summary_detail": "Personal care products can be a modifiable source of chemical exposure -- but how much can a person change by changing what they use? This 2026 study tested it directly. In Grenoble, France, 103 women aged 18-30 gave up their usual products for five days and were given alternatives free of the chemicals being measured (eleven phenols, sixteen phthalates and two glycol ethers). They used a median of 12 products a day beforehand and 7 during the intervention.\n\nComparing 24-hour urine collections from before and from the last intervention day, median phenoxyacetic acid -- a breakdown product of the preservative phenoxyethanol -- fell 64%, bisphenol A 39%, methylparaben 30% and monoethyl phthalate 22%, and propylparaben was detected less often. Several chemicals were still detectable afterwards: personal care products are one source among several.\n\nThe team also ran a health impact assessment, a modelling exercise, for bisphenol A in pregnancy. Its estimates were uncertain, and they are best read as a hypothesis rather than a finding. The authors' own conclusion is worth keeping in view: individual changes can lower exposure, but regulatory action would probably be more efficient and fairer.",
+    "key_findings": [
+      "Phenoxyacetic acid fell 64%, BPA 39%, methylparaben 30% and monoethyl phthalate 22% after five days",
+      "Products used per day fell from a median of 12 to 7",
+      "Several chemicals were still detectable after the swap"
+    ],
+    "limitations": [
+      "Very recent (2026): not yet widely cited or independently replicated",
+      "Five days, before-and-after, women aged 18-30 in one city, with no comparison group",
+      "The health impact estimates are modelled rather than observed, and uncertain"
+    ],
+    "practical": [
+      "Fewer products and simpler ingredient lists both mattered here: participants went from 12 products a day to 7",
+      "Personal choices help, and shared measures such as labelling and regulation reach further -- both can be true at once"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/42001662/",
+    "source": "curated"
+  }
+]

@@ -1,0 +1,126 @@
+Engine soak report -- .sim-out
+
+Mina, 18 -- first-year university student, Seoul  [Asia/Seoul]
+  entries stamped on the wrong calendar day: 0/151   morning-open streak reading 0 when it was live: 0/28
+  wellness 71 +/- 3 (range 68-81);  shelf index end 107.6, 11 items
+  score movement (picture trusted): mean 0.55 points a day, at most 5 in a day and 8 in a week; 7 early-reading days; picture 58% filled in at the end
+  Focus: empty 0d (of which unexplained by a kept decision while the shelf carries load: 0d), from the shelf 84d, repeated shelf substance 0d, longest unchanged #1 74d, most kept at once 7
+  Places: 23 answers given, 0 fixes made; at the end 18 compared (10 meet, 8 worth a look, 2 unanswered); part 82.2 at 100% evidence; Focus drew on places 26d
+  Recall: 30 questions answered (22 right the first time round), 13 of 16 on the lessons read answered right at least once, 16 due; Understanding 42 against 36% through the curriculum
+  events: scan 12, evidence 1, review 4, place_setup 3, place_answer 23, lesson 8, recall 30, quest 3, biomarker 2, adopt 1, retire 1, keep 7
+
+Marcus, 35 -- hospital nurse on rotating shifts, Houston  [America/Chicago]
+  entries stamped on the wrong calendar day: 0/98   morning-open streak reading 0 when it was live: 0/26
+  wellness 59 +/- 11 (range 0-77);  shelf index end 77.9, 5 items
+  score movement (picture trusted): mean 1.07 points a day, at most 9 in a day and 12 in a week; 8 early-reading days; picture 54% filled in at the end
+  Focus: empty 2d (of which unexplained by a kept decision while the shelf carries load: 0d), from the shelf 36d, repeated shelf substance 0d, longest unchanged #1 32d, most kept at once 8
+  Places: 12 answers given, 1 fixes made; at the end 12 compared (3 meet, 9 worth a look, 2 unanswered); part 39.7 at 100% evidence; Focus drew on places 62d
+  Recall: 2 questions answered (0 right the first time round), 0 of 4 on the lessons read answered right at least once, 1 due; Understanding 9 against 9% through the curriculum
+  events: scan 9, lesson 2, recall 2, quest 2, review 5, keep 8, place_setup 1, household 4, place_answer 12, biomarker 3, adopt 3, retire 4, evidence 1, place_fix 1
+
+Elena, 55 -- school principal preparing to retire, Madrid  [Europe/Madrid]
+  entries stamped on the wrong calendar day: 0/498   morning-open streak reading 0 when it was live: 0/64
+  wellness 91 +/- 3 (range 76-94);  shelf index end 0, 7 items
+  score movement (picture trusted): mean 0.47 points a day, at most 7 in a day and 7 in a week; 3 early-reading days; picture 94% filled in at the end
+  Focus: empty 44d (of which unexplained by a kept decision while the shelf carries load: 0d), from the shelf 10d, repeated shelf substance 0d, longest unchanged #1 14d, most kept at once 9
+  Places: 22 answers given, 2 fixes made; at the end 21 compared (15 meet, 6 worth a look, 0 unanswered); part 84.7 at 100% evidence; Focus drew on places 37d
+  Recall: 139 questions answered (107 right the first time round), 34 of 44 on the lessons read answered right at least once, 25 due; Understanding 100 against 100% through the curriculum
+  events: review 10, scan 11, lesson 22, recall 139, quest 9, evidence 15, place_setup 3, household 1, place_answer 22, adopt 6, retire 4, keep 9, biomarker 4, place_fix 2
+
+Priya, 31 -- software engineer, 20 weeks pregnant with asthma, San Francisco  [America/Los_Angeles]
+  entries stamped on the wrong calendar day: 0/240   morning-open streak reading 0 when it was live: 0/36
+  wellness 73 +/- 5 (range 66-80);  shelf index end 6, 6 items
+  score movement (picture trusted): mean 0.74 points a day, at most 8 in a day and 13 in a week; 7 early-reading days; picture 74% filled in at the end
+  Focus: empty 0d (of which unexplained by a kept decision while the shelf carries load: 0d), from the shelf 76d, repeated shelf substance 0d, longest unchanged #1 32d, most kept at once 7
+  Places: 31 answers given, 1 fixes made; at the end 18 compared (11 meet, 7 worth a look, 3 unanswered); part 75.3 at 100% evidence; Focus drew on places 55d
+  Recall: 42 questions answered (33 right the first time round), 12 of 18 on the lessons read answered right at least once, 12 due; Understanding 47 against 41% through the curriculum
+  events: scan 13, review 7, place_setup 3, household 2, place_answer 31, keep 8, lesson 9, recall 42, quest 9, biomarker 2, adopt 11, retire 7, place_fix 1, evidence 2
+
+Trend pill, behaviour unchanged (logging-thoroughness twins): 29/392 decided days named a direction (7%)
+
+Concurrent writes: 200/200 kept with the per-key lock (an unlocked read-modify-write kept 1/200); mixed insert/delete 75/75; daily numbers 30/30
+Knowledge change (current database vs one without bisphenol analogs / phenoxyethanol): 7 products change stance or gain a flag; shelf index shifts mina 90.6->94.6, marcus 95.7->96.1, elena 19.3->29.8, priya 104.5->116.5
+Dashboard-load reads as history grows: 90d/810 entries: wellness 8ms, fusion 13ms; 365d/3285 entries: wellness 4ms, fusion 5ms; 730d/6570 entries: wellness 6ms, fusion 17ms
+
+Checks
+  PASS  mina: every entry is stamped with the person's own calendar day  (0/151 wrong)
+  PASS  mina: the streak never reads 0 on a morning when it is still alive  (0/28)
+  PASS  mina: advice does not go quiet while the shelf carries load  (0 days)
+  PASS  mina: Focus never repeats a substance from the shelf or the places  (0 days)
+  PASS  mina: what the person told the app about their places reaches the score  (23 answers, evidence 1)
+  PASS  mina: every places receipt is about the Places part  (0 not)
+  PASS  mina: fixing something in a place never lowers the Places part  (0/0)
+  PASS  mina: once it has a first reading, no single answer or housemate moves the Places part more than 30 points  (largest 5)
+  PASS  mina: advice from the places reaches Focus (unless the person kept everything)  (75 days with something worth a look, Focus from places 26d)
+  PASS  mina: the score never jumps more than 12 points in a day once the picture is trusted  (largest 5)
+  PASS  mina: the score never moves more than 20 points in a week once the picture is trusted  (largest 8)
+  PASS  mina: no answer to a question ever lowers the Understanding part  (0/30)
+  PASS  mina: every recall receipt is about the Understanding part  (0 not)
+  PASS  mina: questions are only asked about lessons that were already read  (0 asked early)
+  PASS  mina: the Understanding part never falls from one day to the next  (0 days)
+  PASS  mina: recall adds to the curriculum share and never more than its cap  (largest addition 5.9)
+  PASS  mina: answers given right reach the Understanding part  (22 right answers)
+  PASS  mina: retiring a product never lowers the shelf part  (0 times)
+  PASS  mina: the shelf part never sits on its floor while there are products to read  (0 days)
+  PASS  marcus: every entry is stamped with the person's own calendar day  (0/98 wrong)
+  PASS  marcus: the streak never reads 0 on a morning when it is still alive  (0/26)
+  PASS  marcus: advice does not go quiet while the shelf carries load  (0 days)
+  PASS  marcus: Focus never repeats a substance from the shelf or the places  (0 days)
+  PASS  marcus: what the person told the app about their places reaches the score  (12 answers, evidence 1)
+  PASS  marcus: every places receipt is about the Places part  (0 not)
+  PASS  marcus: fixing something in a place never lowers the Places part  (0/1)
+  PASS  marcus: once it has a first reading, no single answer or housemate moves the Places part more than 30 points  (largest 9)
+  PASS  marcus: advice from the places reaches Focus (unless the person kept everything)  (62 days with something worth a look, Focus from places 62d)
+  PASS  marcus: the score never jumps more than 12 points in a day once the picture is trusted  (largest 9)
+  PASS  marcus: the score never moves more than 20 points in a week once the picture is trusted  (largest 12)
+  PASS  marcus: no answer to a question ever lowers the Understanding part  (0/2)
+  PASS  marcus: every recall receipt is about the Understanding part  (0 not)
+  PASS  marcus: questions are only asked about lessons that were already read  (0 asked early)
+  PASS  marcus: the Understanding part never falls from one day to the next  (0 days)
+  PASS  marcus: recall adds to the curriculum share and never more than its cap  (largest addition 0.0)
+  PASS  marcus: answers given right reach the Understanding part  (0 right answers)
+  PASS  marcus: retiring a product never lowers the shelf part  (0 times)
+  PASS  marcus: the shelf part never sits on its floor while there are products to read  (0 days)
+  PASS  elena: every entry is stamped with the person's own calendar day  (0/498 wrong)
+  PASS  elena: the streak never reads 0 on a morning when it is still alive  (0/64)
+  PASS  elena: advice does not go quiet while the shelf carries load  (0 days)
+  PASS  elena: Focus never repeats a substance from the shelf or the places  (0 days)
+  PASS  elena: what the person told the app about their places reaches the score  (22 answers, evidence 1)
+  PASS  elena: every places receipt is about the Places part  (0 not)
+  PASS  elena: fixing something in a place never lowers the Places part  (0/2)
+  PASS  elena: once it has a first reading, no single answer or housemate moves the Places part more than 30 points  (largest 5)
+  PASS  elena: advice from the places reaches Focus (unless the person kept everything)  (79 days with something worth a look, Focus from places 37d)
+  PASS  elena: the score never jumps more than 12 points in a day once the picture is trusted  (largest 7)
+  PASS  elena: the score never moves more than 20 points in a week once the picture is trusted  (largest 7)
+  PASS  elena: no answer to a question ever lowers the Understanding part  (0/139)
+  PASS  elena: every recall receipt is about the Understanding part  (0 not)
+  PASS  elena: questions are only asked about lessons that were already read  (0 asked early)
+  PASS  elena: the Understanding part never falls from one day to the next  (0 days)
+  PASS  elena: recall adds to the curriculum share and never more than its cap  (largest addition 10.9)
+  PASS  elena: answers given right reach the Understanding part  (107 right answers)
+  PASS  elena: retiring a product never lowers the shelf part  (0 times)
+  PASS  elena: the shelf part never sits on its floor while there are products to read  (0 days)
+  PASS  priya: every entry is stamped with the person's own calendar day  (0/240 wrong)
+  PASS  priya: the streak never reads 0 on a morning when it is still alive  (0/36)
+  PASS  priya: advice does not go quiet while the shelf carries load  (0 days)
+  PASS  priya: Focus never repeats a substance from the shelf or the places  (0 days)
+  PASS  priya: what the person told the app about their places reaches the score  (31 answers, evidence 1)
+  PASS  priya: every places receipt is about the Places part  (0 not)
+  PASS  priya: fixing something in a place never lowers the Places part  (0/1)
+  PASS  priya: once it has a first reading, no single answer or housemate moves the Places part more than 30 points  (largest 18)
+  PASS  priya: advice from the places reaches Focus (unless the person kept everything)  (81 days with something worth a look, Focus from places 55d)
+  PASS  priya: the score never jumps more than 12 points in a day once the picture is trusted  (largest 8)
+  PASS  priya: the score never moves more than 20 points in a week once the picture is trusted  (largest 13)
+  PASS  priya: no answer to a question ever lowers the Understanding part  (0/42)
+  PASS  priya: every recall receipt is about the Understanding part  (0 not)
+  PASS  priya: questions are only asked about lessons that were already read  (0 asked early)
+  PASS  priya: the Understanding part never falls from one day to the next  (0 days)
+  PASS  priya: recall adds to the curriculum share and never more than its cap  (largest addition 5.5)
+  PASS  priya: answers given right reach the Understanding part  (33 right answers)
+  PASS  priya: retiring a product never lowers the shelf part  (0 times)
+  PASS  priya: the shelf part never sits on its floor while there are products to read  (0 days)
+  PASS  trend labels: users whose behaviour never changed are not told they are improving or worsening  (29/392 decided days (7%))
+  PASS  concurrent writes never lose an entry
+  PASS  engine reads stay under 2 s even with two years of history  (slowest 17 ms)
+
+79/79 checks passed

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Learn{% endblock %}
+{% block content %}
+  <h1>Learn</h1>
+  <p class="subtitle">Plain-language background on everything the fusion engine watches for, with real
+     peer-reviewed sources you can check yourself — not just a claim to take on faith. Concern level is a
+     coarse 1–3 heuristic, not a dose-adjusted risk rating; see the note on every page.</p>
+
+  <div class="card" style="border-color:var(--accent);">
+    <strong>How to read "concern level"</strong>
+    <p style="margin-bottom:0;">These scores reflect how consistently a substance shows up in public-health/
+      regulatory guidance as worth managing — they do <em>not</em> account for dose. The amount in a typical
+      product or serving is almost always far below what's studied in the underlying research. GHS hazard
+      statements below (when present) describe the <em>pure, concentrated</em> substance as handled
+      industrially — not the diluted trace amount in a consumer product.</p>
+  </div>
+
+  <h2>Concepts glossary</h2>
+  <p class="subtitle" style="margin-top:0;">Nine ideas that come up across many entries below — explained once
+     here, then linked from any substance that uses them (via "Go deeper" inside that entry's card).</p>
+  {% for id, c in concepts.items() %}
+    <details class="card">
+      <summary style="cursor:pointer;font-weight:600;">{{ c.name }}</summary>
+      <p>{{ c.general }}</p>
+      <div class="tip-source">Technical</div>
+      <p style="margin-top:4px;margin-bottom:0;">{{ c.technical }}</p>
+    </details>
+  {% endfor %}
+
+  {% for category, label in [('food','Food'), ('personal_care','Personal Care'), ('environment','Environment')] %}
+    <h2>{{ label }}</h2>
+    {% for s in by_category.get(category, []) %}
+      <details class="card">
+        <summary style="cursor:pointer;font-weight:600;">
+          {{ s.name }}
+          <span class="pill pill-{{ s.concern_level }}">{{ {1:'low',2:'moderate',3:'higher'}[s.concern_level] }} concern</span>
+        </summary>
+        <p>{{ s.summary }}</p>
+
+        <div class="tip-source" style="margin-top:10px;">Common sources</div>
+        <p>{{ s.common_sources | join(', ') }}</p>
+
+        <div class="tip-source">What you can do</div>
+        <ul style="margin-top:4px;">
+          {% for tip in s.mitigation_tips %}
+            <li>{{ tip }}</li>
+          {% endfor %}
+        </ul>
+
+        {% if s.technical_note %}
+          <details style="margin-top:12px;">
+            <summary style="cursor:pointer;font-size:0.85rem;color:var(--accent);">Go deeper (mechanism / technical)</summary>
+            <p style="margin-top:8px;">{{ s.technical_note }}</p>
+            {% if s.concept_tags %}
+              <div class="tip-source">Related concepts</div>
+              {% for tag in s.concept_tags %}
+                {% set c = concepts.get(tag) %}
+                {% if c %}
+                  <p style="margin:6px 0;"><strong>{{ c.name }}:</strong> {{ c.technical }}</p>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </details>
+        {% endif %}
+
+        {% if s.regulatory and s.regulatory.ghs_hazards %}
+          <div class="tip-source">GHS hazard statements (pure substance, industrial classification — <a href="{{ s.regulatory.pubchem_url }}" target="_blank" rel="noopener">PubChem CID {{ s.regulatory.cid }}</a>{% if s.regulatory.cas %}, CAS {{ s.regulatory.cas }}{% endif %})</div>
+          <ul style="margin-top:4px;font-size:0.85rem;color:var(--muted);">
+            {% for h in s.regulatory.ghs_hazards %}
+              <li>{{ h }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if s.references %}
+          <div class="tip-source">Further reading (real citations, pulled live from PubMed)</div>
+          <ul style="margin-top:4px;">
+            {% for ref in s.references %}
+              <li>
+                <a href="{{ ref.url }}" target="_blank" rel="noopener">{{ ref.title }}</a>
+                <span style="color:var(--muted);"> — {{ ref.journal }}{% if ref.year %}, {{ ref.year }}{% endif %}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if s.last_synced %}
+          <p style="font-size:0.75rem;color:var(--muted);margin-bottom:0;">Data last refreshed from PubMed/PubChem: {{ s.last_synced }}</p>
+        {% endif %}
+      </details>
+    {% endfor %}
+  {% endfor %}
+{% endblock %}

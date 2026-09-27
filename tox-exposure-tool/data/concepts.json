@@ -1,0 +1,61 @@
+{
+  "_meta": {
+    "description": "Shared toxicology/pharmacology/physics concepts referenced by hazard_database.json substances via concept_tags. Written once here rather than repeated per-substance. 'general' is plain-language for any reader; 'technical' assumes some science background. These are standard, well-established textbook principles (ADME pharmacokinetics, aerosol deposition physics, basic radiation biology, dose-response toxicology) — not substance-specific claims, which live in each substance's own technical_note instead."
+  },
+  "concepts": [
+    {
+      "id": "aggregate_exposure",
+      "name": "Aggregate exposure",
+      "general": "You don't get a chemical from just one source — you get a running total from everything that contains it across your whole day (food, air, dust, products). No single item usually matters as much as the total.",
+      "technical": "Aggregate/cumulative exposure assessment sums intake across all relevant routes (oral, dermal, inhalation) and sources for a substance or substance class over a defined period, the way EPA cumulative risk assessments are structured. A single product typically contributes a small fraction of total body burden, which is why source diversification is generally higher-leverage than eliminating any one item entirely."
+    },
+    {
+      "id": "bioaccumulation_half_life",
+      "name": "Bioaccumulation & elimination half-life",
+      "general": "Some chemicals leave your body within hours; others take years. That difference changes how much any single choice actually matters — and how much past exposure still counts today.",
+      "technical": "Elimination half-life depends on lipophilicity (log Kow), molecular size, and whether the body actively reabsorbs the compound rather than excreting it. Short-half-life compounds (most phthalates, hours) show urinary metabolite spikes tied to very recent exposure and don't meaningfully accumulate at typical levels. Long-half-life compounds (PFAS, years — due to active renal tubular reabsorption; lead, decades — stored in bone) build a body burden where historical exposure matters as much as current behavior."
+    },
+    {
+      "id": "hepatic_metabolism",
+      "name": "Hepatic (liver) metabolism",
+      "general": "Your liver is built to break down foreign chemicals, usually within hours to a couple of days. This is an always-on background process, not something a cleanse or supplement needs to 'activate.'",
+      "technical": "Most xenobiotics undergo hepatic Phase I metabolism (commonly CYP450-mediated oxidation) followed by Phase II conjugation (glucuronidation, sulfation, or glutathione conjugation) to increase water solubility for excretion. This is the default fate for phthalates, parabens, BPA, acrylamide, and most synthetic food/cosmetic additives."
+    },
+    {
+      "id": "renal_clearance",
+      "name": "Renal (kidney) clearance",
+      "general": "Once the liver has processed a chemical, the kidneys usually flush the byproducts out in urine, typically within a day.",
+      "technical": "Phase II metabolites are generally water-soluble enough for glomerular filtration and/or active tubular secretion. Urinary metabolite concentration is the standard biomonitoring readout (e.g., NHANES phthalate/BPA panels) precisely because renal clearance is fast for most compounds. PFAS is the major exception in this database: its charged head group triggers active tubular *reabsorption* via organic anion transporters instead of excretion, which is mechanistically why it persists for years rather than being cleared."
+    },
+    {
+      "id": "particle_deposition",
+      "name": "Particle deposition physics",
+      "general": "Where dust, smoke, and mold particles end up in your lungs depends heavily on their size — smaller particles travel deeper.",
+      "technical": "Respiratory deposition follows three broad regimes by aerodynamic diameter: particles >10µm impact in the nasopharynx via inertial impaction and are filtered before reaching the lower airway; 2.5–10µm (the PM10 range) deposit largely in the tracheobronchial tree; <2.5µm (PM2.5) penetrate to the alveolar region and deposit primarily via diffusion (Brownian motion) rather than inertial/gravitational mechanisms. This is the physical basis for treating PM2.5 as higher-concern than PM10 despite PM10 being the more 'visible' pollutant — alveolar-deposited particles are also positioned to cross more readily into systemic circulation."
+    },
+    {
+      "id": "endocrine_disruption",
+      "name": "Endocrine disruption",
+      "general": "Some chemicals can loosely mimic or block hormones your body already makes — usually far more weakly than the real thing, but still worth minimizing where it's easy.",
+      "technical": "Endocrine-disrupting chemicals (EDCs) typically act via weak binding to nuclear hormone receptors (e.g., estrogen or androgen receptors) or by interfering with hormone synthesis/transport enzymes. Per-molecule effect size is generally orders of magnitude below endogenous hormone activity, but low-dose, non-monotonic dose-response relationships and mixture effects (multiple weak EDCs from aggregate exposure acting on the same pathway) are active, genuinely debated areas of the toxicology literature — part of why regulatory consensus varies substance-to-substance in this database."
+    },
+    {
+      "id": "dose_response",
+      "name": "Dose-response",
+      "general": "Almost nothing is purely 'safe' or 'toxic' in isolation — it depends on how much and how often. The amount in a typical diet or routine is usually far below the levels studied in the underlying research.",
+      "technical": "Risk assessment centers on the dose-response relationship, typically anchored to a no-observed-adverse-effect-level (NOAEL) or benchmark dose from animal or epidemiological studies, then divided by uncertainty factors (often 100–1000x) to set a reference dose for humans. This app's `concern_level` is a coarse proxy for how consistently a substance is flagged in public-health guidance, not a dose-adjusted calculation — an actual risk estimate requires knowing real quantity and frequency, which this app doesn't measure."
+    },
+    {
+      "id": "nova_classification",
+      "name": "NOVA food processing classification",
+      "general": "NOVA groups food by how much industrial processing changed it, not by its nutrition label numbers alone.",
+      "technical": "The NOVA system (Monteiro et al.) classifies food by the extent and purpose of processing rather than nutrient composition: unprocessed/minimally processed (1), processed culinary ingredients (2), processed foods (3), and ultra-processed formulations (4 — typically 5+ ingredients including additives with no home-kitchen equivalent). It's a structural classification, not a toxicological one: the concern with ultra-processed foods is usually framed as concentrated additive load, an altered food matrix affecting satiety signaling, and displacement of whole foods — not any single ingredient being acutely toxic."
+    },
+    {
+      "id": "alpha_radiation",
+      "name": "Alpha radiation & radon decay",
+      "general": "Radon gas itself passes through you fairly harmlessly, but it decays into solid particles that get stuck in your lungs and give off a especially damaging type of radiation at close range.",
+      "technical": "Radon (a noble gas) decays into solid, chemically reactive progeny (polonium-218 and polonium-214) that attach to ambient dust and deposit in the bronchial epithelium via the same particle-deposition physics as other inhaled particulates. These decay products emit alpha radiation — a particle type with very high linear energy transfer that causes concentrated, localized DNA damage over a very short range, but is stopped by skin and harmless externally. This is mechanistically why inhalation (not ingestion, e.g. from well water) dominates radon's lung cancer risk."
+    }
+  ]
+}

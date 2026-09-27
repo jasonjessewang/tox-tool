@@ -1,0 +1,73 @@
+ACCESSIBILITY SPOT CHECK ACROSS EVERY SCREEN (final build, 2026-09-26)
+
+Method
+  scripts/a11y-audit.js run on each screen by scripts/a11y-walk.js, in the web build at 375 x 812 (a phone), with the storage of a
+  simulated person with history loaded (Priya, after 84 days) and "Straight there" chosen under About you. Screens were reached by
+  tapping. The same walk was repeated at 320 x 640 (the width WCAG uses for reflow).
+  Each line: headings (how many, how many h1, how many skipped levels) . controls without an accessible name out of all controls .
+  controls sharing a name . targets under 24 x 24 px . text under 4.5:1 contrast (3:1 for large text) . text under 11 px .
+  radios / checkboxes / tabs whose state is not exposed to assistive technology. Horizontal overflow is flagged when it occurs;
+  it did not occur on any screen at either width.
+
+Results at 375 x 812 (39 screens)
+Dashboard: 13 headings (1 h1, 0 skipped) . 0/24 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Score: 3 headings (1 h1, 0 skipped) . 0/7 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Journey hub: 2 headings (1 h1, 0 skipped) . 0/12 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Scan: 1 headings (1 h1, 0 skipped) . 0/8 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Food: 2 headings (1 h1, 0 skipped) . 0/23 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Sleep: 2 headings (1 h1, 0 skipped) . 0/21 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Air: 2 headings (1 h1, 0 skipped) . 0/16 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Biomarkers: 5 headings (1 h1, 0 skipped) . 0/25 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Shelf: 1 headings (1 h1, 0 skipped) . 0/6 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+About you: 4 headings (1 h1, 0 skipped) . 0/34 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Places: 1 headings (1 h1, 0 skipped) . 0/7 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Place detail: 1 headings (1 h1, 0 skipped) . 0/30 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Place check open: 1 headings (1 h1, 0 skipped) . 0/37 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Roadmap: 1 headings (1 h1, 0 skipped) . 0/1 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Connected sources: 1 headings (1 h1, 0 skipped) . 0/2 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Research (from the hub): 1 headings (1 h1, 0 skipped) . 0/28 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Daily, step 1: 2 headings (1 h1, 0 skipped) . 0/9 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Daily, step 2: 1 headings (1 h1, 0 skipped) . 0/10 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Daily, step 3: 1 headings (1 h1, 0 skipped) . 0/10 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Daily, step 4: 1 headings (1 h1, 0 skipped) . 0/11 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Weekly: 3 headings (1 h1, 0 skipped) . 0/5 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Learn: Topics: 1 headings (1 h1, 0 skipped) . 0/11 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Learn: a theme: 1 headings (1 h1, 0 skipped) . 0/12 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Learn: a substance page: 5 headings (1 h1, 0 skipped) . 0/3 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Learn: Research: 2 headings (1 h1, 0 skipped) . 0/35 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Learn: a research page: 4 headings (1 h1, 0 skipped) . 0/3 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Learn: Engine: 3 headings (1 h1, 0 skipped) . 0/27 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Engine: Risk translator: 1 headings (1 h1, 0 skipped) . 0/12 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Engine: Dose-response explorer: 1 headings (1 h1, 0 skipped) . 0/9 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Engine: Safety-threshold builder: 1 headings (1 h1, 0 skipped) . 0/11 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Engine: Evidence ladder: 1 headings (1 h1, 0 skipped) . 0/6 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Engine: Confounding lab: 1 headings (1 h1, 0 skipped) . 0/3 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Engine: See your engine run: 4 headings (1 h1, 0 skipped) . 0/7 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Engine: a quick review: 2 headings (1 h1, 0 skipped) . 0/5 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Engine: a quick review, answered: 2 headings (1 h1, 0 skipped) . 0/6 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Engine: a lesson: 1 headings (1 h1, 0 skipped) . 0/5 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Engine: a lesson, questions open: 2 headings (1 h1, 0 skipped) . 0/8 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Learn: Concepts: 2 headings (1 h1, 0 skipped) . 0/31 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+Learn: an audio pillar: 4 headings (1 h1, 0 skipped) . 0/4 unnamed . 0 repeated . 0 small targets . 0 low contrast . 0 tiny . 0 missing state
+
+Also audited in the fresh-install state (a person with no history), each with 0 unnamed, 0 repeated, 0 small targets, 0 low contrast, 0 tiny text,
+0 missing state and no overflow. Intake, Intro and the empty Dashboard were re-audited on the compiled build (outputs/web-app), the rest on the development build:
+  Intake ("A few quick things"): 1 h1, 19 controls
+  Intro ("Your first steps"): 6 headings (1 h1, five h2s, including "What this is, and isn't"), 12 controls
+  Dashboard, empty: 10 headings (1 h1), 11 controls
+  Tutorial quests: 1 h1, 28 controls, every checkbox 28 x 28 px and named
+  the Scan review of a pasted product: 8 headings (1 h1, none skipped)
+  the Places screen with nothing set up, and one place with its questions
+
+Results at 320 x 640
+  The same walk found no unnamed or repeated control, no target under 24 px, no low-contrast or tiny text, no missing state, and no
+  horizontal overflow on any of the 39 screens (control counts differ by one or two where the content reflowed or the state differed).
+
+Not reached by the walk
+  Tutorial quests, with history (the person had finished the starter quests, so there was no "Show me" step to open it from): it was
+  audited in the fresh-install state instead (above).
+
+What a spot check cannot tell
+  Whether the reading order and focus after a screen change make sense; how live regions sound; whether the labels read well aloud;
+  dynamic type and switch control on a device; the camera scan. Keyboard focus was checked visually with the Tab key (a visible focus
+  ring on the Learn tabs). Someone should go through the app once with VoiceOver or TalkBack.

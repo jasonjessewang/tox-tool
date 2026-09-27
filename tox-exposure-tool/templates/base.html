@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Exposure Awareness{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <nav class="topnav">
+    <a class="brand" href="{{ url_for('index') }}">Exposure Awareness</a>
+    <div class="navlinks">
+      <a href="{{ url_for('log_food') }}">Food</a>
+      <a href="{{ url_for('log_product') }}">Personal Care</a>
+      <a href="{{ url_for('log_environment') }}">Environment</a>
+      <a href="{{ url_for('log_air_quality') }}">Air Quality</a>
+      <a href="{{ url_for('log_practice') }}">Resets</a>
+      <a href="{{ url_for('log_biomarker') }}">Biomarkers</a>
+      <a href="{{ url_for('learn') }}">Learn</a>
+      <a href="{{ url_for('achievements_page') }}">Achievements</a>
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-stack">
+          {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="disclaimer">
+    <strong>Not medical advice.</strong> This tool is an educational awareness aid that pattern-matches
+    logged items against a small reference database of commonly discussed substances. It does not
+    diagnose conditions, measure actual exposure levels, or replace guidance from a physician,
+    toxicologist, registered dietitian, or licensed mental health professional.
+  </footer>
+</body>
+</html>

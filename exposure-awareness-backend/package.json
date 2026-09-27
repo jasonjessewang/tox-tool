@@ -1,0 +1,25 @@
+{
+  "name": "exposure-awareness-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node src/server.ts",
+    "dev": "node --watch src/server.ts",
+    "create-key": "node src/create-api-key.ts",
+    "test": "node --test tests/*.test.ts",
+    "seed": "node src/seed-evidence.ts",
+    "sync-literature": "node src/sync-literature.ts"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "tesseract.js": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^24.0.0"
+  }
+}

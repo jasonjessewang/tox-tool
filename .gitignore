@@ -1,0 +1,22 @@
+node_modules/
+.expo/
+dist/
+*.db
+*.db-wal
+*.db-shm
+__pycache__/
+.pytest_cache/
+.DS_Store
+*.tsbuildinfo
+
+# Generated outputs: regenerate rather than commit (see outputs/README.md).
+# The small reports in outputs/ stay tracked; the build and old simulation runs do not.
+outputs/web-app/
+outputs/experiments/
+
+# Scratch databases left by backend test runs
+*.db-journal
+
+# Local environment files and secrets
+.env
+.env.*

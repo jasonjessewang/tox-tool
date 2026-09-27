@@ -1,0 +1,25 @@
+{
+  "_meta": {
+    "description": "U.S. EPA Air Quality Index (AQI) breakpoints for PM2.5 and PM10, in micrograms per cubic meter (24-hr average).",
+    "pm25_source": "EPA 'Final Updates to the Air Quality Index (AQI) for Particulate Matter' fact sheet, effective 2024-05-06 (verified directly against the EPA PDF at publish time: https://www.epa.gov/system/files/documents/2024-02/pm-naaqs-air-quality-index-fact-sheet.pdf). This superseded the 2012 breakpoints.",
+    "pm10_source": "EPA 40 CFR Part 58, Appendix G (long-standing PM10 breakpoints; PM10 NAAQS was not revised by the 2024 PM2.5 rule).",
+    "verify_at": "https://www.airnow.gov/aqi/aqi-basics/ — always cross-check against AirNow for the authoritative, current table.",
+    "last_verified": "2026-09-14"
+  },
+  "pm25": [
+    {"lo": 0.0,   "hi": 9.0,   "aqi_lo": 0,   "aqi_hi": 50,  "category": "Good",                            "color": "#4a9f4a", "guidance": "Air quality is good. No action needed."},
+    {"lo": 9.1,   "hi": 35.4,  "aqi_lo": 51,  "aqi_hi": 100, "category": "Moderate",                        "color": "#c9a227", "guidance": "Acceptable for most people. Unusually sensitive individuals may consider limiting prolonged outdoor exertion."},
+    {"lo": 35.5,  "hi": 55.4,  "aqi_lo": 101, "aqi_hi": 150, "category": "Unhealthy for Sensitive Groups",  "color": "#d98a3d", "guidance": "People with heart/lung disease, older adults, children, and pregnant people should reduce prolonged/heavy outdoor exertion."},
+    {"lo": 55.5,  "hi": 125.4, "aqi_lo": 151, "aqi_hi": 200, "category": "Unhealthy",                       "color": "#c0504d", "guidance": "Everyone may begin to experience effects. Sensitive groups should avoid prolonged outdoor exertion; consider an indoor HEPA purifier."},
+    {"lo": 125.5, "hi": 225.4, "aqi_lo": 201, "aqi_hi": 300, "category": "Very Unhealthy",                  "color": "#7a4a8f", "guidance": "Health alert. Everyone should reduce outdoor exertion; keep windows closed and run air purification if available."},
+    {"lo": 225.5, "hi": 500.4, "aqi_lo": 301, "aqi_hi": 500, "category": "Hazardous",                       "color": "#7a2f2f", "guidance": "Health emergency conditions. Stay indoors with filtered air; follow local public health guidance."}
+  ],
+  "pm10": [
+    {"lo": 0,   "hi": 54,  "aqi_lo": 0,   "aqi_hi": 50,  "category": "Good",                            "color": "#4a9f4a", "guidance": "Air quality is good. No action needed."},
+    {"lo": 55,  "hi": 154, "aqi_lo": 51,  "aqi_hi": 100, "category": "Moderate",                        "color": "#c9a227", "guidance": "Acceptable for most people. Unusually sensitive individuals may consider limiting prolonged outdoor exertion."},
+    {"lo": 155, "hi": 254, "aqi_lo": 101, "aqi_hi": 150, "category": "Unhealthy for Sensitive Groups",  "color": "#d98a3d", "guidance": "People with heart/lung disease, older adults, children, and pregnant people should reduce prolonged/heavy outdoor exertion."},
+    {"lo": 255, "hi": 354, "aqi_lo": 151, "aqi_hi": 200, "category": "Unhealthy",                       "color": "#c0504d", "guidance": "Everyone may begin to experience effects. Sensitive groups should avoid prolonged outdoor exertion."},
+    {"lo": 355, "hi": 424, "aqi_lo": 201, "aqi_hi": 300, "category": "Very Unhealthy",                  "color": "#7a4a8f", "guidance": "Health alert. Everyone should reduce outdoor exertion."},
+    {"lo": 425, "hi": 604, "aqi_lo": 301, "aqi_hi": 500, "category": "Hazardous",                       "color": "#7a2f2f", "guidance": "Health emergency conditions. Stay indoors."}
+  ]
+}

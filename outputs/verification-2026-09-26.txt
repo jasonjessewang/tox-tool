@@ -1,0 +1,154 @@
+EXPOSURE AWARENESS: VERIFICATION ON THE FINAL BUILD
+Run 2026-09-26 on macOS 26.6.2 (arm64), Node v24.21.0, Python 3.9.6.
+Every result below was produced by the command shown, in this folder, after the last change to the code.
+
+1. exposure-awareness-mobile: TypeScript (strict)
+   $ npm run typecheck        # tsc --noEmit
+   exit code 0, no output
+
+2. exposure-awareness-mobile: unit and integration tests
+   $ npm test                 # jest, two workers
+   Test Suites: 1 skipped, 49 passed, 49 of 50 total
+   Tests:       1 skipped, 552 passed, 553 total
+   Snapshots:   0 total
+   Time:        3.648 s
+   (the one skipped suite is the simulation, which runs under `npm run sim`; the full list of tests is in jest-verbose-2026-09-26.txt)
+
+3. exposure-awareness-mobile: the same tests under seven timezones
+   $ npm run tz
+   UTC                   Tests:       1 skipped, 552 passed, 553 total
+   Asia/Seoul            Tests:       1 skipped, 552 passed, 553 total
+   America/Chicago       Tests:       1 skipped, 552 passed, 553 total
+   Pacific/Kiritimati    Tests:       1 skipped, 552 passed, 553 total
+   Pacific/Pago_Pago     Tests:       1 skipped, 552 passed, 553 total
+   Europe/Madrid         Tests:       1 skipped, 552 passed, 553 total
+   America/Los_Angeles   Tests:       1 skipped, 552 passed, 553 total
+
+4. exposure-awareness-mobile: the engine soak run (four simulated people, 84 days each, in their own timezones)
+   $ npm run sim
+   79/79 checks passed
+   the checks (the full report, with each person's summary, is in sim-report-2026-09-26.txt):
+   PASS  mina: every entry is stamped with the person's own calendar day  (0/151 wrong)
+   PASS  mina: the streak never reads 0 on a morning when it is still alive  (0/28)
+   PASS  mina: advice does not go quiet while the shelf carries load  (0 days)
+   PASS  mina: Focus never repeats a substance from the shelf or the places  (0 days)
+   PASS  mina: what the person told the app about their places reaches the score  (23 answers, evidence 1)
+   PASS  mina: every places receipt is about the Places part  (0 not)
+   PASS  mina: fixing something in a place never lowers the Places part  (0/0)
+   PASS  mina: once it has a first reading, no single answer or housemate moves the Places part more than 30 points  (largest 5)
+   PASS  mina: advice from the places reaches Focus (unless the person kept everything)  (75 days with something worth a look, Focus from places 26d)
+   PASS  mina: the score never jumps more than 12 points in a day once the picture is trusted  (largest 5)
+   PASS  mina: the score never moves more than 20 points in a week once the picture is trusted  (largest 8)
+   PASS  mina: no answer to a question ever lowers the Understanding part  (0/30)
+   PASS  mina: every recall receipt is about the Understanding part  (0 not)
+   PASS  mina: questions are only asked about lessons that were already read  (0 asked early)
+   PASS  mina: the Understanding part never falls from one day to the next  (0 days)
+   PASS  mina: recall adds to the curriculum share and never more than its cap  (largest addition 5.9)
+   PASS  mina: answers given right reach the Understanding part  (22 right answers)
+   PASS  mina: retiring a product never lowers the shelf part  (0 times)
+   PASS  mina: the shelf part never sits on its floor while there are products to read  (0 days)
+   PASS  marcus: every entry is stamped with the person's own calendar day  (0/98 wrong)
+   PASS  marcus: the streak never reads 0 on a morning when it is still alive  (0/26)
+   PASS  marcus: advice does not go quiet while the shelf carries load  (0 days)
+   PASS  marcus: Focus never repeats a substance from the shelf or the places  (0 days)
+   PASS  marcus: what the person told the app about their places reaches the score  (12 answers, evidence 1)
+   PASS  marcus: every places receipt is about the Places part  (0 not)
+   PASS  marcus: fixing something in a place never lowers the Places part  (0/1)
+   PASS  marcus: once it has a first reading, no single answer or housemate moves the Places part more than 30 points  (largest 9)
+   PASS  marcus: advice from the places reaches Focus (unless the person kept everything)  (62 days with something worth a look, Focus from places 62d)
+   PASS  marcus: the score never jumps more than 12 points in a day once the picture is trusted  (largest 9)
+   PASS  marcus: the score never moves more than 20 points in a week once the picture is trusted  (largest 12)
+   PASS  marcus: no answer to a question ever lowers the Understanding part  (0/2)
+   PASS  marcus: every recall receipt is about the Understanding part  (0 not)
+   PASS  marcus: questions are only asked about lessons that were already read  (0 asked early)
+   PASS  marcus: the Understanding part never falls from one day to the next  (0 days)
+   PASS  marcus: recall adds to the curriculum share and never more than its cap  (largest addition 0.0)
+   PASS  marcus: answers given right reach the Understanding part  (0 right answers)
+   PASS  marcus: retiring a product never lowers the shelf part  (0 times)
+   PASS  marcus: the shelf part never sits on its floor while there are products to read  (0 days)
+   PASS  elena: every entry is stamped with the person's own calendar day  (0/498 wrong)
+   PASS  elena: the streak never reads 0 on a morning when it is still alive  (0/64)
+   PASS  elena: advice does not go quiet while the shelf carries load  (0 days)
+   PASS  elena: Focus never repeats a substance from the shelf or the places  (0 days)
+   PASS  elena: what the person told the app about their places reaches the score  (22 answers, evidence 1)
+   PASS  elena: every places receipt is about the Places part  (0 not)
+   PASS  elena: fixing something in a place never lowers the Places part  (0/2)
+   PASS  elena: once it has a first reading, no single answer or housemate moves the Places part more than 30 points  (largest 5)
+   PASS  elena: advice from the places reaches Focus (unless the person kept everything)  (79 days with something worth a look, Focus from places 37d)
+   PASS  elena: the score never jumps more than 12 points in a day once the picture is trusted  (largest 7)
+   PASS  elena: the score never moves more than 20 points in a week once the picture is trusted  (largest 7)
+   PASS  elena: no answer to a question ever lowers the Understanding part  (0/139)
+   PASS  elena: every recall receipt is about the Understanding part  (0 not)
+   PASS  elena: questions are only asked about lessons that were already read  (0 asked early)
+   PASS  elena: the Understanding part never falls from one day to the next  (0 days)
+   PASS  elena: recall adds to the curriculum share and never more than its cap  (largest addition 10.9)
+   PASS  elena: answers given right reach the Understanding part  (107 right answers)
+   PASS  elena: retiring a product never lowers the shelf part  (0 times)
+   PASS  elena: the shelf part never sits on its floor while there are products to read  (0 days)
+   PASS  priya: every entry is stamped with the person's own calendar day  (0/240 wrong)
+   PASS  priya: the streak never reads 0 on a morning when it is still alive  (0/36)
+   PASS  priya: advice does not go quiet while the shelf carries load  (0 days)
+   PASS  priya: Focus never repeats a substance from the shelf or the places  (0 days)
+   PASS  priya: what the person told the app about their places reaches the score  (31 answers, evidence 1)
+   PASS  priya: every places receipt is about the Places part  (0 not)
+   PASS  priya: fixing something in a place never lowers the Places part  (0/1)
+   PASS  priya: once it has a first reading, no single answer or housemate moves the Places part more than 30 points  (largest 18)
+   PASS  priya: advice from the places reaches Focus (unless the person kept everything)  (81 days with something worth a look, Focus from places 55d)
+   PASS  priya: the score never jumps more than 12 points in a day once the picture is trusted  (largest 8)
+   PASS  priya: the score never moves more than 20 points in a week once the picture is trusted  (largest 13)
+   PASS  priya: no answer to a question ever lowers the Understanding part  (0/42)
+   PASS  priya: every recall receipt is about the Understanding part  (0 not)
+   PASS  priya: questions are only asked about lessons that were already read  (0 asked early)
+   PASS  priya: the Understanding part never falls from one day to the next  (0 days)
+   PASS  priya: recall adds to the curriculum share and never more than its cap  (largest addition 5.5)
+   PASS  priya: answers given right reach the Understanding part  (33 right answers)
+   PASS  priya: retiring a product never lowers the shelf part  (0 times)
+   PASS  priya: the shelf part never sits on its floor while there are products to read  (0 days)
+   PASS  trend labels: users whose behaviour never changed are not told they are improving or worsening  (29/392 decided days (7%))
+   PASS  concurrent writes never lose an entry
+   PASS  engine reads stay under 2 s even with two years of history  (slowest 17 ms)
+
+5. exposure-awareness-backend
+   $ npm test
+   ✔ rejects requests with no API key (30.166958ms)
+   ✔ rejects requests with a bogus API key (3.046459ms)
+   ✔ inserts and retrieves a food log (9.152917ms)
+   ✔ 400s when log_date is missing (1.876458ms)
+   ✔ results are sorted by log_date desc, then insertion order desc (4.904416ms)
+   ✔ cursor pagination returns disjoint pages that together cover all rows (20.827042ms)
+   ✔ since/until date filtering works (1.95325ms)
+   ✔ delete removes a row and is idempotent (404 on second delete) (2.189625ms)
+   ✔ a read-only API key can read but not write (0.961875ms)
+   ✔ users are isolated: user A cannot see user B's logs (0.861708ms)
+   ✔ indexed list queries stay fast (p95 latency check) with 500 rows (195.056208ms)
+   ✔ seeding is idempotent (61.313375ms)
+   ✔ list is ranked by citation count and pages by keyset cursor without gaps or repeats (39.396333ms)
+   ✔ filter by substance uses the link table; unknown substance returns nothing (1.693083ms)
+   ✔ studies of something close by are background, not evidence: they are not found by ?substance=, and say what they are background for (2.11475ms)
+   ✔ list is a distillable vignette; detail adds the full write-up (1.877583ms)
+   ✔ items awaiting a reviewed summary are never served (1.745542ms)
+   ✔ requires an API key (1.190167ms)
+   ✔ crypto: tokens round-trip, tampering is rejected, state expires and is unforgeable (51.915916ms)
+   ✔ provider list shows configuration honestly (29.654041ms)
+   ✔ Strava: authorize -> callback stores ENCRYPTED tokens -> sync is idempotent -> daily totals (14.515875ms)
+   ✔ callback rejects a forged or wrong-provider state (1.719625ms)
+   ✔ unconfigured providers cannot start a flow (0.75325ms)
+   ✔ on-device ingest: validates, is idempotent per day, and averages vital signs (5.7335ms)
+   ✔ disconnect removes the account, deauthorizes upstream, and can purge imported data (1.5665ms)
+   ✔ reads an ingredient list and nutrition facts from a real image (21640.202292ms)
+   ✔ rejects missing, tiny and non-image payloads (7.875041ms)
+   ✔ requires a write-scoped API key (0.659125ms)
+   ℹ tests 28
+   ℹ suites 0
+   ℹ pass 28
+   ℹ fail 0
+   ℹ cancelled 0
+   ℹ skipped 0
+   ℹ todo 0
+   ℹ duration_ms 21714.653625
+
+6. tox-exposure-tool (Python)
+   $ python3 -m pytest -q tests
+   33 passed in 0.08s
+
+What this does not cover: the app has been run as a web build only. It has not been run on a phone or in a simulator, and it has not been tested with a screen reader. See section 6 and the open items of exposure-awareness-mobile/docs/walkthrough-2026-09-26.md.

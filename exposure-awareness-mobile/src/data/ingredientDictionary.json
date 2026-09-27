@@ -1,0 +1,16 @@
+{
+  "_meta": "Synonyms, INCI names and E-numbers that map an ingredient-list entry to a substance already in hazardDatabase.json. This file only ADDS ways to recognize a substance; it never invents risk claims. 'possible' marks class terms (e.g. 'fragrance') where the label doesn't say what is actually inside.",
+  "synonyms": [
+    { "substance_id": "artificial_food_dyes", "names": ["tartrazine", "sunset yellow", "allura red", "brilliant blue", "indigo carmine", "erythrosine", "red 3", "ponceau 4r", "quinoline yellow", "azorubine"], "e_numbers": ["e102", "e104", "e110", "e122", "e124", "e127", "e129", "e132", "e133"] },
+    { "substance_id": "titanium_dioxide", "names": ["ci 77891"], "e_numbers": ["e171"] },
+    { "substance_id": "parabens", "names": ["paraben", "parabens", "sodium methylparaben", "sodium propylparaben"], "e_numbers": ["e214", "e215", "e216", "e217", "e218", "e219"] },
+    { "substance_id": "sodium_nitrite", "names": ["potassium nitrite", "potassium nitrate", "sodium nitrate", "sodium nitrite"], "e_numbers": ["e249", "e250", "e251", "e252"] },
+    { "substance_id": "bha_bht", "names": [], "e_numbers": ["e320", "e321"] },
+    { "substance_id": "added_sugar", "names": ["sucrose", "glucose syrup", "glucose-fructose syrup", "fructose syrup", "invert sugar", "cane syrup", "evaporated cane juice", "brown sugar", "agave syrup", "agave nectar", "rice syrup", "crystalline fructose", "hfcs"], "e_numbers": [] },
+    { "substance_id": "phthalates", "names": ["diethyl phthalate", "dibutyl phthalate"], "possible_names": ["fragrance", "parfum", "perfume", "aroma"], "e_numbers": [] },
+    { "substance_id": "formaldehyde_releasers", "names": ["2-bromo-2-nitropropane-1,3-diol", "quaternium 15"], "e_numbers": [] },
+    { "substance_id": "sodium_lauryl_sulfate", "names": ["sodium laureth sulfate", "sodium lauryl sulphate", "sodium laureth sulphate", "ammonium lauryl sulfate"], "e_numbers": [] },
+    { "substance_id": "talc", "names": ["talcum powder", "magnesium silicate hydrate"], "e_numbers": [] }
+  ],
+  "ignore_aliases": ["cured", "bacon", "can lining", "polycarbonate", "non-stick", "burnt toast", "browned toast", "grease-resistant wrapper", "antiperspirant"]
+}

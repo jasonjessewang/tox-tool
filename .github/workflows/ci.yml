@@ -1,0 +1,102 @@
+# Checks every change against the core engine and data before it can merge.
+# Same commands as the local verification in outputs/verification-*.txt.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * 1" # Mondays 03:17 UTC: full run on a clean machine, even in quiet weeks
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  app:
+    name: App - types, tests, engine simulation
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: exposure-awareness-mobile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: exposure-awareness-mobile/package-lock.json
+      - run: npm ci
+      - name: TypeScript (strict)
+        run: npm run typecheck
+      - name: Unit, integration and property tests
+        run: npm test -- --ci
+      - name: Engine soak run (four simulated lives, invariant checks)
+        run: npm run sim
+      - name: Keep the simulation results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sim-out
+          path: exposure-awareness-mobile/.sim-out
+          retention-days: 30
+
+  timezones:
+    # The day boundary was once a real bug; the suite must pass on both sides of UTC.
+    # Runs on pull requests, the weekly schedule and by hand (UTC is covered by the app job).
+    if: github.event_name != 'push'
+    name: App tests in ${{ matrix.tz }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        tz: [Asia/Seoul, America/Chicago, Pacific/Kiritimati, Pacific/Pago_Pago, Europe/Madrid, America/Los_Angeles]
+    defaults:
+      run:
+        working-directory: exposure-awareness-mobile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: exposure-awareness-mobile/package-lock.json
+      - run: npm ci
+      - run: npx jest --ci
+        env:
+          TZ: ${{ matrix.tz }}
+
+  backend:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: exposure-awareness-backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: exposure-awareness-backend/package-lock.json
+      - run: npm ci
+      - run: npm test
+
+  data:
+    name: Data pipeline and data-parity checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r tox-exposure-tool/requirements.txt pytest
+      - name: Python tests (includes the check that both copies of the hazard database match)
+        working-directory: tox-exposure-tool
+        run: python -m pytest -q tests

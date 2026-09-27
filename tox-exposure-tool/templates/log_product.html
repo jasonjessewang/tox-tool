@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Log Personal Care Product{% endblock %}
+{% block content %}
+  <h1>Log Personal Care Product</h1>
+  <p class="subtitle">Shampoo, conditioner, body wash, lotion, etc. Paste the ingredient list from the label
+     if you have it handy — matching is much more accurate with a real ingredient list than a product name alone.</p>
+
+  <div class="card">
+    <form method="post">
+      <div class="field">
+        <label for="log_date">Date</label>
+        <input type="date" id="log_date" name="log_date" value="{{ today }}">
+      </div>
+      <div class="field">
+        <label for="product_type">Product type</label>
+        <select id="product_type" name="product_type">
+          <option>Shampoo</option>
+          <option>Conditioner</option>
+          <option>Body wash</option>
+          <option>Soap</option>
+          <option>Lotion / moisturizer</option>
+          <option>Sunscreen</option>
+          <option>Deodorant</option>
+          <option>Toothpaste</option>
+          <option>Makeup</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="product_name">Product name / brand</label>
+        <input type="text" id="product_name" name="product_name" required placeholder="e.g. Brand X Volumizing Shampoo">
+      </div>
+      <div class="field">
+        <label for="ingredients_text">Ingredient list (paste from label, comma-separated)</label>
+        <textarea id="ingredients_text" name="ingredients_text" placeholder="Water, Sodium Laureth Sulfate, Fragrance, DMDM Hydantoin, ..."></textarea>
+      </div>
+      <div class="field">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" name="notes" placeholder="e.g. noticed scalp irritation after use"></textarea>
+      </div>
+      <button type="submit">Log entry</button>
+    </form>
+  </div>
+
+  <h2>Recent product entries</h2>
+  <div class="card">
+    {% if recent %}
+      <table>
+        <tr><th>Date</th><th>Type</th><th>Product</th><th></th></tr>
+        {% for e in recent %}
+          <tr>
+            <td>{{ e.log_date }}</td>
+            <td>{{ e.product_type }}</td>
+            <td>{{ e.product_name }}</td>
+            <td>
+              <form class="inline-form" method="post" action="{{ url_for('delete_entry', category='products', log_id=e.id) }}">
+                <button type="submit" class="btn-secondary" style="padding:4px 10px;font-size:0.8rem;">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty-state">No product entries yet.</p>
+    {% endif %}
+  </div>
+{% endblock %}

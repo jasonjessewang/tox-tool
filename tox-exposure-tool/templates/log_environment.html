@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Log Environment{% endblock %}
+{% block content %}
+  <h1>Log Environmental Conditions</h1>
+  <p class="subtitle">Home, workplace, or elsewhere — HVAC/AC status, mold or musty smells, humidity, fresh
+     paint/new furniture, etc. This is the third "sensor" feeding the fused picture.</p>
+
+  <div class="card">
+    <form method="post">
+      <div class="field">
+        <label for="log_date">Date</label>
+        <input type="date" id="log_date" name="log_date" value="{{ today }}">
+      </div>
+      <div class="field">
+        <label for="location">Location</label>
+        <select id="location" name="location">
+          <option>Home — bathroom</option>
+          <option>Home — bedroom</option>
+          <option>Home — basement</option>
+          <option>Home — kitchen</option>
+          <option>Workplace — office</option>
+          <option>Workplace — general</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="condition_type">Condition</label>
+        <select id="condition_type" name="condition_type">
+          <option>Mold / musty smell</option>
+          <option>HVAC / AC filter overdue</option>
+          <option>VOC (new paint/furniture/carpet smell)</option>
+          <option>High humidity</option>
+          <option>Low humidity / dry air</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="detail">Detail</label>
+        <input type="text" id="detail" name="detail" placeholder="e.g. musty smell under bathroom sink, AC filter not changed in 6 months">
+      </div>
+      <div class="field">
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" name="notes" placeholder="e.g. symptoms noticed: sneezing in the mornings"></textarea>
+      </div>
+      <button type="submit">Log entry</button>
+    </form>
+  </div>
+
+  <h2>Recent environment entries</h2>
+  <div class="card">
+    {% if recent %}
+      <table>
+        <tr><th>Date</th><th>Location</th><th>Condition</th><th></th></tr>
+        {% for e in recent %}
+          <tr>
+            <td>{{ e.log_date }}</td>
+            <td>{{ e.location }}</td>
+            <td>{{ e.condition_type }}</td>
+            <td>
+              <form class="inline-form" method="post" action="{{ url_for('delete_entry', category='environment', log_id=e.id) }}">
+                <button type="submit" class="btn-secondary" style="padding:4px 10px;font-size:0.8rem;">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty-state">No environment entries yet.</p>
+    {% endif %}
+  </div>
+{% endblock %}
