@@ -1,6 +1,5 @@
 import * as db from "../storage/db";
 import * as quests from "./quests";
-import * as achievements from "./achievements";
 import { getPlant } from "./plantState";
 import { buildJourney, type JourneyContext } from "./journeyStages";
 import { SCAN_NOTE_PREFIX } from "./scanNotes";
@@ -11,13 +10,14 @@ import { todayISO } from "../util/dates";
 export { SCAN_NOTE_PREFIX };
 
 export async function getJourney() {
-  const [starter, evidenceRefs, recent, biomarkers, checkins, streak, plant, places, learning] = await Promise.all([
+  const [starter, evidenceRefs, recent, biomarkers, checkins, completedKeys, kept, plant, places, learning] = await Promise.all([
     quests.getStarterJourneyStatus(),
     db.getLearningRefs("evidence:"),
     db.getRecentLogs(1000),
     db.getBiomarkerLogs(1),
     db.getCheckInLogs(60),
-    achievements.computeStreak(),
+    db.getCompletedActionKeys(),
+    db.getKeptAdvice(""), // every keep ever made, expired or not, so a finished step never un-finishes
     getPlant(),
     db.getPlaces(),
     db.getLearningEvents(),
@@ -31,7 +31,7 @@ export async function getJourney() {
     careScans: recent.products.filter((p) => p.notes.startsWith(SCAN_NOTE_PREFIX)).length,
     biomarkers: biomarkers.length,
     checkIns: new Set(checkins.map((c) => c.log_date)).size,
-    streak,
+    decisions: [...completedKeys].filter((k) => !/^(starter|daily|weekly):/.test(k)).length + kept.length,
     plantFruits: plant.plant.fruits,
     homeChecks: answered.filter((a) => a.kind === "home").reduce((s, a) => s + a.n, 0),
     placesChecked: new Set(answered.filter((a) => a.n >= 3).map((a) => a.kind)).size,

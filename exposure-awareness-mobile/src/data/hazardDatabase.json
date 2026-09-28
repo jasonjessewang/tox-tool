@@ -1795,7 +1795,7 @@
         "traffic pollution"
       ],
       "category": "environment",
-      "concern_level": 2,
+      "concern_level": 3,
       "summary": "Airborne particles \u22642.5 microns wide (from traffic, wildfire smoke, cooking, industrial sources) that penetrate deep into the lungs and bloodstream. Associated with cardiovascular and respiratory effects; the EPA tightened the annual PM2.5 air quality standard in 2024. Log a reading (from a local monitor, an app like AirNow, or a personal sensor) under Journey \u203a Air to have it scored automatically by AQI category.",
       "common_sources": [
         "wildfire smoke",
@@ -2689,6 +2689,366 @@
       },
       "last_synced": "2026-09-23",
       "summary_plain": "A preservative often used in 'paraben-free' cosmetics. It works well and, at the amounts normally used in cosmetics, is considered a lower concern than some other preservatives. But it is its own chemical with its own limits, not a neutral stand-in. The advice for parabens applies here too: vary your products instead of relying on one for years."
+    },
+    {
+      "id": "tobacco_smoke",
+      "name": "Tobacco and vape smoke indoors",
+      "aliases": [
+        "secondhand smoke",
+        "second-hand smoke",
+        "cigarette",
+        "cigarettes",
+        "cigar",
+        "cigars",
+        "vape",
+        "vaping",
+        "e-cigarette",
+        "tobacco",
+        "hookah"
+      ],
+      "category": "environment",
+      "concern_level": 3,
+      "summary": "Smoke from cigarettes, cigars and hookah is a complex aerosol of fine particles and thousands of combustion products, including recognized carcinogens; e-cigarette aerosol carries nicotine, ultrafine particles and flavoring compounds, generally at lower but non-zero levels. A comparative-risk analysis of data from 192 countries attributed about 603,000 deaths in 2004 to second-hand smoke, and a 2024 meta-analysis of 97 studies found a pooled relative risk of lung cancer of 1.24 among never-smokers exposed to it, rising with duration and intensity. The US Surgeon General's 2006 report found no risk-free level of exposure and concluded that ventilation and air cleaning cannot eliminate it; keeping smoke out of indoor spaces is what fully protects the people inside.",
+      "common_sources": [
+        "smoking or vaping indoors",
+        "smoke in the car",
+        "smoke drifting in from a neighbor's unit",
+        "residue on furniture, walls and fabrics"
+      ],
+      "mitigation_tips": [
+        "Make your home and car fully smoke- and vape-free, for visitors too. Smoking outdoors, away from doors and windows, removes most of the exposure for everyone else.",
+        "Fans, open windows and air purifiers reduce but do not remove secondhand smoke; the US Surgeon General found that only keeping smoke out fully protects the people inside.",
+        "If you smoke and want support to stop, free coaching is available in the US at 1-800-QUIT-NOW, and a clinician can talk through options that make quitting more likely to last."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "secondhand smoke exposure health effects never smokers",
+      "references": [
+        {
+          "pmid": "21112082",
+          "title": "Worldwide burden of disease from exposure to second-hand smoke: a retrospective analysis of data from 192 countries",
+          "journal": "Lancet",
+          "year": "2011",
+          "doi": "10.1016/S0140-6736(10)61388-8",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/21112082/"
+        },
+        {
+          "pmid": "39537242",
+          "title": "Association between second-hand smoke exposure and lung cancer risk in never-smokers: a systematic review and meta-analysis",
+          "journal": "Eur Respir Rev",
+          "year": "2024",
+          "doi": "10.1183/16000617.0077-2024",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/39537242/"
+        },
+        {
+          "pmid": "30208628",
+          "title": "Exposure to Secondhand Smoke and Risk of Cancer in Never Smokers: A Meta-Analysis of Epidemiologic Studies",
+          "journal": "Int J Environ Res Public Health",
+          "year": "2018",
+          "doi": "10.3390/ijerph15091981",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30208628/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-28",
+      "action_effort": "medium",
+      "action_impact": "high",
+      "concept_tags": [
+        "particle_deposition",
+        "aggregate_exposure",
+        "dose_response"
+      ],
+      "technical_note": "Second-hand smoke is a mixture exposure: fine and ultrafine particles deposit deep in the airways (see particle deposition), while semi-volatile constituents sorb to indoor surfaces and re-emit later as 'thirdhand' residue, which is why smoke-free rules work where ventilation does not. In the 2024 never-smoker meta-analysis, risk rose with duration, intensity and pack-years, and the setting-specific estimates (home 1.20, workplace 1.38) show the same agent behaving consistently across exposure contexts, the pattern that supports a causal reading.",
+      "pubmed_anchors": [
+        "secondhand smoke",
+        "second-hand smoke",
+        "passive smoking",
+        "tobacco smoke"
+      ],
+      "curated_pmids": [
+        "21112082",
+        "39537242",
+        "30208628"
+      ],
+      "summary_plain": "Smoke from cigarettes, cigars, hookah and vapes fills indoor air with fine particles that everyone in the room breathes. People who never smoked but live or work around smoke get more lung cancer, and the US Surgeon General found no level without effects. Opening a window is not enough. Keeping your home and car smoke-free is what works."
+    },
+    {
+      "id": "alcohol",
+      "name": "Alcoholic drinks (ethanol)",
+      "aliases": [
+        "alcohol",
+        "alcoholic",
+        "beer",
+        "wine",
+        "liquor",
+        "vodka",
+        "whiskey",
+        "whisky",
+        "bourbon",
+        "rum",
+        "gin",
+        "tequila",
+        "soju",
+        "sake",
+        "makgeolli",
+        "hard seltzer",
+        "hard cider",
+        "champagne",
+        "prosecco",
+        "sangria"
+      ],
+      "category": "food",
+      "concern_level": 3,
+      "summary": "Ethanol in beer, wine and spirits is oxidized mainly in the liver to acetaldehyde; the International Agency for Research on Cancer classifies ethanol in alcoholic beverages, and the acetaldehyde formed from it, as carcinogenic to humans (Group 1). A dose-response meta-analysis of 572 studies found clear dose-risk relationships for cancers of the oral cavity and pharynx, oesophagus, colorectum, larynx and female breast, and the Global Burden of Disease 2016 analysis found that the level of consumption minimising overall health loss was zero standard drinks per week, with alcohol the leading risk factor for death and disability among people aged 15 to 49 worldwide. Risk rises with amount, so drinking less lowers it at every level, and during pregnancy the advice is none at all.",
+      "common_sources": [
+        "beer",
+        "wine",
+        "spirits and mixed drinks",
+        "hard seltzers and ciders"
+      ],
+      "mitigation_tips": [
+        "Less is better at every level: a few alcohol-free days each week and smaller pours both lower the total.",
+        "Swap one regular drinking occasion for an alcohol-free option (sparkling water, alcohol-free beer, tea) and notice whether it sticks.",
+        "During pregnancy the advice is none at all. If cutting back is hard, a clinician can help, and in the US SAMHSA's free, confidential National Helpline is at 1-800-662-4357."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "alcohol consumption cancer risk dose-response",
+      "references": [
+        {
+          "pmid": "30146330",
+          "title": "Alcohol use and burden for 195 countries and territories, 1990-2016: a systematic analysis for the Global Burden of Disease Study 2016",
+          "journal": "Lancet",
+          "year": "2018",
+          "doi": "10.1016/S0140-6736(18)31310-2",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30146330/"
+        },
+        {
+          "pmid": "25422909",
+          "title": "Alcohol consumption and site-specific cancer risk: a comprehensive dose-response meta-analysis",
+          "journal": "Br J Cancer",
+          "year": "2014",
+          "doi": "10.1038/bjc.2014.579",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/25422909/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-28",
+      "action_effort": "medium",
+      "action_impact": "high",
+      "concept_tags": [
+        "hepatic_metabolism",
+        "dose_response"
+      ],
+      "technical_note": "Ethanol is oxidized by alcohol dehydrogenase and CYP2E1 to acetaldehyde, then by ALDH2 to acetate. A common ALDH2 variant, frequent in East Asian populations, slows that second step, so acetaldehyde builds up (the flushing response) and the upper-digestive cancer risk per drink is higher: a clear example of how inherited differences in metabolic enzymes change the dose that actually reaches tissue.",
+      "pubmed_anchors": [
+        "alcohol"
+      ],
+      "curated_pmids": [
+        "30146330",
+        "25422909"
+      ],
+      "summary_plain": "Alcohol in beer, wine and spirits is broken down in the liver into a compound that can damage cells. Large studies link drinking to several cancers, including mouth, throat, bowel and breast, and the risk grows with the amount. A global analysis found that the amount with the least health loss was zero. Drinking less helps at any level."
+    },
+    {
+      "id": "private_well_water",
+      "name": "Untested private well water",
+      "aliases": [
+        "well water",
+        "private well",
+        "domestic well"
+      ],
+      "category": "environment",
+      "concern_level": 3,
+      "summary": "About 44 million people in the US drink from domestic wells, which fall outside the Safe Drinking Water Act, so testing and treatment are up to the owner. A US Geological Survey model estimated that about 2.1 million of them use wells with arsenic above 10 micrograms per liter, the federal limit for public systems, and nitrate from fertilizer and manure is common in agricultural areas: an updated review found the strongest evidence, beyond infant methemoglobinemia, for colorectal cancer, thyroid disease and neural tube defects, sometimes at levels below the regulatory limit. Bacteria from septic systems and runoff can also reach wells, especially after heavy rain. None of these can be seen or reliably tasted; a certified laboratory test is the only way to know, and treatment can then be matched to what is found.",
+      "common_sources": [
+        "private or domestic wells",
+        "shallow wells near farms or septic systems",
+        "wells in regions with arsenic-bearing rock"
+      ],
+      "mitigation_tips": [
+        "Test your well at least once a year for bacteria and nitrate through a state-certified lab (your state or county health department can point you to one), and test for arsenic and other local concerns at least once.",
+        "Test again after flooding, a change in taste, smell or color, or any work on the well or septic system.",
+        "Match treatment to the result: choose a filter or system certified for the specific contaminant found, since no single filter removes everything."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "private well water arsenic nitrate testing",
+      "references": [
+        {
+          "pmid": "29043784",
+          "title": "Estimating the High-Arsenic Domestic-Well Population in the Conterminous United States",
+          "journal": "Environ Sci Technol",
+          "year": "2017",
+          "doi": "10.1021/acs.est.7b02881",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/29043784/"
+        },
+        {
+          "pmid": "30041450",
+          "title": "Drinking Water Nitrate and Human Health: An Updated Review",
+          "journal": "Int J Environ Res Public Health",
+          "year": "2018",
+          "doi": "10.3390/ijerph15071557",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/30041450/"
+        },
+        {
+          "pmid": "38387579",
+          "title": "Private groundwater contamination and risk management: A comparative scoping review of similarities, drivers and challenges across two socio-economically developed regions",
+          "journal": "Sci Total Environ",
+          "year": "2024",
+          "doi": "10.1016/j.scitotenv.2024.171112",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/38387579/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-28",
+      "action_effort": "low",
+      "action_impact": "high",
+      "concept_tags": [
+        "dose_response",
+        "renal_clearance"
+      ],
+      "technical_note": "Arsenic in groundwater is mostly inorganic arsenite and arsenate, efficiently absorbed from water and methylated in the liver; chronic exposure is associated with skin, bladder and lung cancer and with cardiovascular effects. Nitrate itself has low intrinsic toxicity, but under conditions that favour endogenous nitrosation it forms N-nitroso compounds, which is why the associations in the review depend on factors such as diet that affect nitrosation, and why a public-system limit set for infant methemoglobinemia may not capture every effect.",
+      "pubmed_anchors": [
+        "well",
+        "wells",
+        "arsenic",
+        "nitrate"
+      ],
+      "curated_pmids": [
+        "29043784",
+        "30041450",
+        "38387579"
+      ],
+      "summary_plain": "About 44 million people in the US drink from home wells, which public water rules do not cover. Arsenic from rock and nitrate from farm runoff are common, and germs can get in after heavy rain. You cannot see or taste them. A test from a certified lab is the only way to know, and a filter can then be matched to what it finds."
+    },
+    {
+      "id": "carbon_monoxide",
+      "name": "Carbon monoxide (CO)",
+      "aliases": [
+        "carbon monoxide",
+        "generator",
+        "space heater",
+        "kerosene heater"
+      ],
+      "category": "environment",
+      "concern_level": 3,
+      "summary": "An odourless, colourless gas from incomplete combustion: furnaces, water heaters, gas ranges, fireplaces, portable generators, fuel-burning space heaters and vehicles in attached garages. Carbon monoxide binds haemoglobin far more tightly than oxygen, so a room can reach harmful levels before anyone notices, and early symptoms (headache, dizziness, nausea) are easily mistaken for flu. CDC surveillance for 2005 to 2018 found about 3.3 unintentional deaths per million people each year in the US, most often in winter, with the highest emergency-visit rates in young children and the highest death rates in adults over 80; a 2023 analysis found accidental deaths rising from 2015 to 2021, with over half occurring at home. A working CO alarm near sleeping areas, yearly appliance checks, and never running engines or generators indoors are the standard protections.",
+      "common_sources": [
+        "furnaces and water heaters",
+        "gas ranges and fireplaces",
+        "portable generators",
+        "vehicles in attached garages",
+        "fuel-burning space heaters"
+      ],
+      "mitigation_tips": [
+        "Put a working CO alarm on every level of the home and near sleeping areas; test it monthly and replace it by the date printed on it.",
+        "Never run a generator, grill or engine indoors or in an attached garage, even with the door open, and keep generators well away from windows and doors.",
+        "Have fuel-burning appliances, flues and chimneys checked every year before the heating season.",
+        "If the alarm sounds, or several people feel unwell at once, get everyone outside into fresh air and call 911 or the fire department from there."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "unintentional carbon monoxide poisoning prevention",
+      "references": [
+        {
+          "pmid": "36585319",
+          "title": "Morbidity and Mortality of Unintentional Carbon Monoxide Poisoning: United States 2005 to 2018",
+          "journal": "Ann Emerg Med",
+          "year": "2022",
+          "doi": "10.1016/j.annemergmed.2022.10.011",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36585319/"
+        },
+        {
+          "pmid": "37535036",
+          "title": "Carbon monoxide poisoning mortality in the United States from 2015-2021",
+          "journal": "Clin Toxicol (Phila)",
+          "year": "2023",
+          "doi": "10.1080/15563650.2023.2237667",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37535036/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-28",
+      "action_effort": "low",
+      "action_impact": "high",
+      "concept_tags": [
+        "dose_response"
+      ],
+      "technical_note": "Carbon monoxide's affinity for haemoglobin is roughly 200 to 250 times that of oxygen, so carboxyhaemoglobin accumulates even at modest air concentrations and clears slowly on room air; it also binds myoglobin and cytochrome oxidase, which is why the heart and brain are most affected. The 2023 mortality analysis found no measurable effect of state laws requiring residential alarms, a reminder that a law is not the same as a working alarm in the right place.",
+      "pubmed_anchors": [
+        "carbon monoxide"
+      ],
+      "curated_pmids": [
+        "36585319",
+        "37535036"
+      ],
+      "summary_plain": "A gas you cannot see or smell, made when fuel burns: furnaces, water heaters, gas stoves, fireplaces, generators and cars in attached garages. Early signs feel like the flu: headache, dizziness, nausea. It happens most in winter. A working CO alarm near where you sleep, and never running a generator or engine indoors, are the simple protections."
+    },
+    {
+      "id": "work_dust_fumes",
+      "name": "Dust, fumes and chemicals at work",
+      "aliases": [
+        "silica dust",
+        "welding fumes",
+        "welding",
+        "solvent",
+        "solvents",
+        "diesel exhaust",
+        "asbestos",
+        "sawdust",
+        "paint fumes"
+      ],
+      "category": "environment",
+      "concern_level": 3,
+      "summary": "Work is where many people meet the highest concentrations of anything in their day: mineral and wood dust, welding and metal fumes, solvents, pesticides, diesel exhaust and, in older buildings, asbestos. The Global Burden of Disease 2016 analyses attributed about 17% of the burden of chronic obstructive pulmonary disease and 10% of asthma to airborne occupational exposures, and an estimated 349,000 cancer deaths in 2016 to 14 occupational carcinogens classified by the International Agency for Research on Cancer, led by asbestos, secondhand smoke at work, silica and diesel engine exhaust. In the US, employers must make safety data sheets available for hazardous chemicals, and the most effective protections remove or enclose the source, with ventilation next and respirators last.",
+      "common_sources": [
+        "construction and demolition",
+        "manufacturing and welding",
+        "farming and landscaping",
+        "auto and body shops",
+        "cleaning, beauty and nail work",
+        "woodworking and other hobbies"
+      ],
+      "mitigation_tips": [
+        "Ask for the safety data sheets for the products you work with; US employers must make them available, and they list what each product contains and the protection it needs.",
+        "Favour controls that remove the exposure (a safer product, an enclosure, local exhaust ventilation) over relying on masks; if a respirator is needed, it should be fit-tested.",
+        "Keep work clothes and shoes out of the home and wash them separately, so dust does not come home with you.",
+        "If you have symptoms you connect to work, military service or a hobby, an occupational medicine clinician can help; US veterans can ask the VA about its toxic exposure screening."
+      ],
+      "pubchem_name": null,
+      "pubmed_query": "occupational exposure burden of disease dust fumes",
+      "references": [
+        {
+          "pmid": "32054818",
+          "title": "Global and regional burden of chronic respiratory disease in 2016 arising from non-infectious airborne occupational exposures: a systematic analysis for the Global Burden of Disease Study 2016",
+          "journal": "Occup Environ Med",
+          "year": "2020",
+          "doi": "10.1136/oemed-2019-106013",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/32054818/"
+        },
+        {
+          "pmid": "32054819",
+          "title": "Global and regional burden of cancer in 2016 arising from occupational exposure to selected carcinogens: a systematic analysis for the Global Burden of Disease Study 2016",
+          "journal": "Occup Environ Med",
+          "year": "2020",
+          "doi": "10.1136/oemed-2019-106012",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/32054819/"
+        }
+      ],
+      "regulatory": null,
+      "last_synced": "2026-09-28",
+      "action_effort": "medium",
+      "action_impact": "high",
+      "concept_tags": [
+        "particle_deposition",
+        "dose_response"
+      ],
+      "technical_note": "Occupational exposure limits (OSHA PELs, NIOSH RELs, ACGIH TLVs) are set for healthy adult workers over an eight-hour day, and many OSHA limits date from the early 1970s, which is why the hierarchy of controls aims well below them rather than at them. Respirable crystalline silica and asbestos act through deposition of particles and fibres in the distal lung: the same particle-deposition physics as air pollution, at far higher doses.",
+      "pubmed_anchors": [
+        "occupational"
+      ],
+      "curated_pmids": [
+        "32054818",
+        "32054819"
+      ],
+      "summary_plain": "Work can bring the highest levels of dust, fumes or chemicals in your day: silica and wood dust, welding fumes, solvents, pesticides and diesel exhaust. Global studies link them to a real share of lung disease and some cancers. The best fixes remove or enclose the source, then add fresh air, with masks last. You can ask to see the safety sheet for what you work with."
     }
   ]
 }

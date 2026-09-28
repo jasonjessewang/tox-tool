@@ -105,11 +105,10 @@ describe("wording", () => {
   });
 });
 
-test("journey position moves from Getting Started through Deep in the Journey", () => {
-  expect(journeyPosition(0, 1)).toBe("Getting Started");
-  expect(journeyPosition(10, 1)).toBe("Getting Started");
-  expect(journeyPosition(30, 1)).toBe("Building Momentum");
-  expect(journeyPosition(80, 1)).toBe("Maintaining");
-  expect(journeyPosition(100, 1)).toBe("Maintaining"); // 100% but low level isn't "deep" yet
-  expect(journeyPosition(100, 3)).toBe("Deep in the Journey");
+test("journey position follows the share of first steps done, with no points or levels behind it", () => {
+  expect(journeyPosition(0)).toBe("Getting Started");
+  expect(journeyPosition(10)).toBe("Getting Started");
+  expect(journeyPosition(30)).toBe("Building Momentum");
+  expect(journeyPosition(80)).toBe("Maintaining");
+  expect(journeyPosition(100)).toBe("Maintaining");
 });

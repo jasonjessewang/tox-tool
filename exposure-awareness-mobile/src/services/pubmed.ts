@@ -5,6 +5,7 @@
  */
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LITERATURE_FALLBACK, type LiteratureItem } from "../data/literatureFallback";
+import { learningMomentsOn } from "../engine/calm";
 
 export type { LiteratureItem };
 
@@ -63,7 +64,7 @@ export async function getLiterature(): Promise<LiteratureItem[]> {
  * In both cases the app makes no request.
  */
 export function shouldRefreshLiterature(profile: { learningMoments?: boolean } | null): boolean {
-  return profile !== null && profile.learningMoments !== false;
+  return profile !== null && learningMomentsOn(profile);
 }
 
 /** Fire-and-forget: re-pulls at most once per day, sequentially to respect NCBI's rate limit. */

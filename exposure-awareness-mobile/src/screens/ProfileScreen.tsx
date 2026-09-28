@@ -10,6 +10,7 @@ import { todayISO } from "../util/dates";
 import { Collapsible } from "../components/Collapsible";
 import { colors } from "../theme";
 import type { UserProfile, ContentComplexity, CheckInTime } from "../engine/types";
+import { CALM_DEFAULTS, learningMomentsOn } from "../engine/calm";
 import IntakeScreen from "./onboarding/IntakeScreen";
 
 const COMPLEXITY_OPTIONS: { key: ContentComplexity; label: string }[] = [
@@ -33,7 +34,7 @@ export default function ProfileScreen({ onDeleted, onSaved }: { onDeleted?: () =
   const [locationEnabled, setLocationEnabled] = useState(false);
   const [locationStatus, setLocationStatus] = useState<"idle" | "requesting" | "denied">("idle");
   const [checkInTime, setCheckInTime] = useState<CheckInTime>("off");
-  const [learningMoments, setLearningMoments] = useState(true);
+  const [learningMoments, setLearningMoments] = useState(CALM_DEFAULTS.learningMoments);
   const [loaded, setLoaded] = useState(false);
   const [saved, setSaved] = useState(false);
 
@@ -44,7 +45,7 @@ export default function ProfileScreen({ onDeleted, onSaved }: { onDeleted?: () =
         setComplexity(p.contentComplexity);
         setLocationEnabled(p.locationEnabled);
         setCheckInTime(p.checkInTime);
-        setLearningMoments(p.learningMoments !== false);
+        setLearningMoments(learningMomentsOn(p));
       }
       setLoaded(true);
     });
@@ -202,7 +203,7 @@ export default function ProfileScreen({ onDeleted, onSaved }: { onDeleted?: () =
               <View style={{ marginTop: 14 }}>
                 <Collapsible title="What leaves this device" teaser="Only public look-ups, and only when you use them">
                   <Text style={styles.principle}>Your profile, logs, shelf, places and score are never sent anywhere. The app reaches out in four cases, and each carries no name, account or entry:</Text>
-                  <Text style={styles.principle}>{"\u2022"} Once a day, on opening: searches PubMed (US National Library of Medicine) for recent paper titles to show on the learning-moment screens. Like any web request, it shows your network address to NCBI. It does not happen before you finish setting up, and it stops if you choose "Straight there" above.</Text>
+                  <Text style={styles.principle}>{"\u2022"} Once a day, on opening: searches PubMed (US National Library of Medicine) for recent paper titles to show on the learning-moment screens. Like any web request, it shows your network address to NCBI. It happens only if you turn learning moments on above (they start off), and never before you finish setting up.</Text>
                   <Text style={styles.principle}>{"\u2022"} When you look up a barcode: the barcode number goes to Open Food Facts (food) or Open Beauty Facts (personal care), which are public community databases.</Text>
                   <Text style={styles.principle}>{"\u2022"} Only if you turn on local alerts: your coordinates go to Open-Meteo (air quality) and the US National Weather Service (alerts).</Text>
                   <Text style={styles.principle}>{"\u2022"} Only if you connect your own backend: what you choose to sync goes to that server, which you run.</Text>

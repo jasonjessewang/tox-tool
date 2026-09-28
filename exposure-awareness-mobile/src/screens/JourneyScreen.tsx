@@ -3,18 +3,15 @@ import { ScrollView, View, Text, StyleSheet, Pressable } from "react-native";
 import * as quests from "../engine/quests";
 import * as trends from "../engine/trends";
 import type { StarterQuest } from "../data/starterJourney";
-import type { DailyQuest, WeeklyQuest, LevelStatus } from "../engine/quests";
 import { Card, SectionTitle, Subtitle } from "../components/ui";
 import { Collapsible } from "../components/Collapsible";
 import { BarChart } from "../components/BarChart";
 import { colors } from "../theme";
 
 type StarterRow = StarterQuest & { completed: boolean };
-type DailyRow = DailyQuest & { completed: boolean };
-type WeeklyRow = WeeklyQuest & { completed: boolean };
 
-/** The tick box. Said aloud it names the quest and whether it is done; a done quest stays ticked (there is nothing to undo). */
-function QuestCheckbox({ completed, label, onPress }: { completed: boolean; label: string; onPress: () => void }) {
+/** The tick box. Said aloud it names the step and whether it is done; a done step stays ticked (there is nothing to undo). */
+function StepCheckbox({ completed, label, onPress }: { completed: boolean; label: string; onPress: () => void }) {
   return (
     <Pressable accessibilityRole="checkbox" aria-checked={completed} aria-disabled={completed} accessibilityLabel={label} onPress={onPress} hitSlop={8} style={styles.checkboxHit}>
       <View style={[styles.checkbox, completed && styles.checkboxDone]}>
@@ -24,33 +21,16 @@ function QuestCheckbox({ completed, label, onPress }: { completed: boolean; labe
   );
 }
 
-/** A quest whose whole row is the tick box: one control, named by the quest, rather than a button holding a button. */
-function QuestRowToggle({ completed, title, xp, first, onPress }: { completed: boolean; title: string; xp: number; first: boolean; onPress: () => void }) {
-  return (
-    <Pressable accessibilityRole="checkbox" aria-checked={completed} aria-disabled={completed} accessibilityLabel={`${title}, ${xp} XP`} onPress={onPress} style={first ? undefined : styles.divider}>
-      <View style={styles.questRow}>
-        <View style={[styles.checkbox, completed && styles.checkboxDone]} aria-hidden>
-          {completed && <Text style={styles.checkmark}>✓</Text>}
-        </View>
-        <Text style={styles.questTitleFlat}>{title}</Text>
-        <Text style={styles.xpBadge}>+{xp}</Text>
-      </View>
-    </Pressable>
-  );
-}
-
+/**
+ * The first steps as a plain checklist, biggest sources first. Calm by design (engine/calm.ts): no points, levels,
+ * daily or weekly quests -- a step is done or not yet, and the list can be taken at any pace.
+ */
 export default function JourneyScreen() {
-  const [level, setLevel] = useState<LevelStatus | null>(null);
-  const [starter, setStarter] = useState<{ quests: StarterRow[]; xpEarned: number; totalXp: number } | null>(null);
-  const [daily, setDaily] = useState<DailyRow[]>([]);
-  const [weekly, setWeekly] = useState<WeeklyRow[]>([]);
+  const [starter, setStarter] = useState<{ quests: StarterRow[]; done: number; total: number } | null>(null);
   const [history, setHistory] = useState<trends.WeeklyPoint[]>([]);
 
   const load = useCallback(async () => {
-    setLevel(await quests.getLevelStatus());
     setStarter(await quests.getStarterJourneyStatus());
-    setDaily((await quests.getDailyQuestStatus()).quests);
-    setWeekly((await quests.getWeeklyQuestStatus()).quests);
     setHistory(await trends.getWeeklyHistory(6));
   }, []);
 
@@ -63,18 +43,8 @@ export default function JourneyScreen() {
     await quests.completeStarterQuest(id);
     load();
   }
-  async function toggleDaily(id: string, completed: boolean) {
-    if (completed) return;
-    await quests.completeDailyQuest(id);
-    load();
-  }
-  async function toggleWeekly(id: string, completed: boolean) {
-    if (completed) return;
-    await quests.completeWeeklyQuest(id);
-    load();
-  }
 
-  if (!level || !starter) {
+  if (!starter) {
     return (
       <View style={styles.center}>
         <Text style={{ color: colors.muted }}>Loading…</Text>
@@ -82,60 +52,37 @@ export default function JourneyScreen() {
     );
   }
 
-  const nextStarterQuest = starter.quests.find((q) => !q.completed);
-  const levelProgress = level.xpIntoLevel / level.xpForNextLevel;
+  const nextStep = starter.quests.find((q) => !q.completed);
+  const progress = starter.done / Math.max(1, starter.total);
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16 }}>
       <Text accessibilityRole="header" style={styles.h1}>Journey</Text>
 
       <Card style={{ borderColor: colors.accent }}>
-        <View style={styles.levelRow}>
-          <Text style={styles.levelText}>Level {level.level}</Text>
-          <Text style={styles.xpText}>
-            {level.xpIntoLevel} / {level.xpForNextLevel} XP
-          </Text>
-        </View>
-        <View style={styles.progressTrack}>
-          <View style={[styles.progressFill, { width: `${Math.min(100, levelProgress * 100)}%` }]} />
+        <Text style={styles.progressText}>
+          {starter.done} of {starter.total} first steps done
+        </Text>
+        <View style={styles.progressTrack} accessibilityLabel={`${starter.done} of ${starter.total} first steps done`}>
+          <View style={[styles.progressFill, { width: `${Math.min(100, progress * 100)}%` }]} />
         </View>
       </Card>
 
-      <SectionTitle>
-        Starter Journey ({starter.xpEarned}/{starter.totalXp} XP)
-      </SectionTitle>
-      {nextStarterQuest && <Subtitle>Next up: {nextStarterQuest.title}</Subtitle>}
+      <SectionTitle>First steps, biggest sources first</SectionTitle>
+      {nextStep && <Subtitle>Next up: {nextStep.title}</Subtitle>}
       <Card>
         {starter.quests.map((q, i) => (
           <View key={q.id} style={i > 0 ? styles.divider : undefined}>
             <View style={styles.questRow}>
-              <QuestCheckbox completed={q.completed} label={`${q.order}. ${q.title}, ${q.xp} XP`} onPress={() => toggleStarter(q.id, q.completed)} />
+              <StepCheckbox completed={q.completed} label={`${q.order}. ${q.title}`} onPress={() => toggleStarter(q.id, q.completed)} />
               <View style={{ flex: 1 }}>
-                <Collapsible
-                  title={`${q.order}. ${q.title}`}
-                  teaser={q.action}
-                >
+                <Collapsible title={`${q.order}. ${q.title}`} teaser={q.action}>
                   <Text style={styles.questWhy}>{q.why}</Text>
                   <Text style={styles.questAction}>→ {q.action}</Text>
                 </Collapsible>
               </View>
-              <Text style={styles.xpBadge}>+{q.xp}</Text>
             </View>
           </View>
-        ))}
-      </Card>
-
-      <SectionTitle>Daily Quests</SectionTitle>
-      <Card>
-        {daily.map((q, i) => (
-          <QuestRowToggle key={q.id} completed={q.completed} title={q.title} xp={q.xp} first={i === 0} onPress={() => toggleDaily(q.id, q.completed)} />
-        ))}
-      </Card>
-
-      <SectionTitle>Weekly Quests</SectionTitle>
-      <Card>
-        {weekly.map((q, i) => (
-          <QuestRowToggle key={q.id} completed={q.completed} title={q.title} xp={q.xp} first={i === 0} onPress={() => toggleWeekly(q.id, q.completed)} />
         ))}
       </Card>
 
@@ -160,9 +107,7 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   center: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.bg },
   h1: { fontSize: 22, fontWeight: "700", color: colors.ink, marginBottom: 8 },
-  levelRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "baseline" },
-  levelText: { fontSize: 18, fontWeight: "700", color: colors.accent },
-  xpText: { fontSize: 12, color: colors.muted },
+  progressText: { fontSize: 16, fontWeight: "700", color: colors.accent },
   progressTrack: { height: 8, backgroundColor: colors.line, borderRadius: 4, marginTop: 8, overflow: "hidden" },
   progressFill: { height: 8, backgroundColor: colors.accent },
   questRow: { flexDirection: "row", alignItems: "center", gap: 10, paddingVertical: 6 },
@@ -179,8 +124,6 @@ const styles = StyleSheet.create({
   },
   checkboxDone: { backgroundColor: colors.accent, borderColor: colors.accent },
   checkmark: { color: "#fff", fontSize: 13, fontWeight: "700" },
-  questTitleFlat: { flex: 1, fontSize: 14, fontWeight: "600", color: colors.ink },
-  xpBadge: { fontSize: 12, color: colors.accent, fontWeight: "700" },
   questWhy: { fontSize: 12, color: colors.muted, marginTop: 4, lineHeight: 17 },
   questAction: { fontSize: 13, color: colors.ink, marginTop: 6, fontStyle: "italic" },
   divider: { borderTopWidth: 1, borderTopColor: colors.line, marginTop: 4, paddingTop: 4 },

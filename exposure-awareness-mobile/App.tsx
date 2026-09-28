@@ -28,6 +28,7 @@ import * as notify from "./src/notifications/notify";
 import { refreshLiteratureIfStale, shouldRefreshLiterature } from "./src/services/pubmed";
 import { colors } from "./src/theme";
 import type { UserProfile } from "./src/engine/types";
+import { CALM_DEFAULTS, learningMomentsOn } from "./src/engine/calm";
 
 // No login screen: this build is local-only by design -- fully usable with zero accounts.
 // The health-intake profile below is a DIFFERENT thing from login/SSO: it's stored purely
@@ -62,7 +63,7 @@ const OVERLAY_TITLES: Record<Overlay, string> = {
   connections: "Connected sources",
 };
 
-const TAB_TARGETS: Partial<Record<JourneyTarget, Tab>> = { daily: "daily", weekly: "weekly", learn: "learn" };
+const TAB_TARGETS: Partial<Record<JourneyTarget, Tab>> = { daily: "daily", weekly: "weekly", learn: "learn", dashboard: "dashboard" };
 
 type BootPhase = "loading" | "intake" | "intro" | "app";
 
@@ -75,7 +76,7 @@ export default function App() {
   // Where each screen was opened from, so "back" goes back to that (null is the tab the person was on) rather than always to the Journey.
   const [trail, setTrail] = useState<(Overlay | null)[]>([]);
   // A learning moment between screens; the person can switch it off under About you.
-  const [momentsOn, setMomentsOn] = useState(true);
+  const [momentsOn, setMomentsOn] = useState(CALM_DEFAULTS.learningMoments);
   // which part of Learn to open on, when something elsewhere in the app points at it (e.g. the questions ready for review)
   const [learnSegment, setLearnSegment] = useState<"engine" | undefined>(undefined);
   const [bootPhase, setBootPhase] = useState<BootPhase>("loading");
@@ -92,7 +93,7 @@ export default function App() {
   useEffect(() => {
     db.getUserProfile().then((profile) => {
       setPendingPhase(profile ? "app" : "intake");
-      const on = profile?.learningMoments !== false;
+      const on = learningMomentsOn(profile);
       setMomentsOn(on);
       if (!on) setLaunchDone(true);
       // no request to NCBI before setup is finished, or for someone who chose "Straight there"
@@ -221,7 +222,7 @@ export default function App() {
         {!transitioning && overlay === "log_practice" && <LogPracticeScreen />}
         {!transitioning && overlay === "log_biomarker" && <LogBiomarkerScreen />}
         {!transitioning && overlay === "quests" && <JourneyScreen />}
-        {!transitioning && overlay === "profile" && <ProfileScreen onSaved={(p) => setMomentsOn(p.learningMoments !== false)} onDeleted={() => { setTrail([]); setOverlay(null); setTab("dashboard"); setMomentsOn(true); setBootPhase("intake"); }} />}
+        {!transitioning && overlay === "profile" && <ProfileScreen onSaved={(p) => setMomentsOn(learningMomentsOn(p))} onDeleted={() => { setTrail([]); setOverlay(null); setTab("dashboard"); setMomentsOn(CALM_DEFAULTS.learningMoments); setBootPhase("intake"); }} />}
         {!transitioning && overlay === "roadmap" && <RoadmapScreen />}
         {!transitioning && overlay === "evidence" && <EvidenceScreen onDetailChange={setDetailOpen} />}
         {!transitioning && overlay === "scan" && <ScanScreen onOpenShelf={() => openOverlay("shelf")} />}

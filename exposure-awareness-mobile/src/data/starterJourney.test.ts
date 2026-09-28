@@ -1,7 +1,7 @@
-import { STARTER_JOURNEY, STARTER_JOURNEY_TOTAL_XP } from "./starterJourney";
+import { STARTER_JOURNEY, BIG_STONE_STEP_IDS } from "./starterJourney";
 import hazardDatabase from "./hazardDatabase.json";
 
-test("every starter quest references real, existing substance ids", () => {
+test("every starter step references real, existing substance ids", () => {
   const validIds = new Set((hazardDatabase as any).substances.map((s: any) => s.id));
   for (const quest of STARTER_JOURNEY) {
     for (const id of quest.substance_ids) {
@@ -10,19 +10,27 @@ test("every starter quest references real, existing substance ids", () => {
   }
 });
 
-test("starter journey orders start-with-the-easiest, hardest (radon) last", () => {
+test("ordered by leverage: the big stones come first, radon at the top", () => {
   const orders = STARTER_JOURNEY.map((q) => q.order);
   expect(orders).toEqual([...orders].sort((a, b) => a - b));
-  expect(STARTER_JOURNEY[STARTER_JOURNEY.length - 1].id).toBe("starter_radon");
-  expect(STARTER_JOURNEY[0].id).toBe("starter_tupperware");
+  expect(STARTER_JOURNEY.slice(0, BIG_STONE_STEP_IDS.length).map((q) => q.id)).toEqual([...BIG_STONE_STEP_IDS]);
+  expect(STARTER_JOURNEY[0].id).toBe("starter_radon");
 });
 
-test("total XP is the actual sum of quest XP, not a stale hardcoded number", () => {
-  const computed = STARTER_JOURNEY.reduce((sum, q) => sum + q.xp, 0);
-  expect(STARTER_JOURNEY_TOTAL_XP).toBe(computed);
+test("steps carry no points", () => {
+  for (const q of STARTER_JOURNEY) expect(Object.keys(q)).not.toContain("xp");
 });
 
-test("quest ids are unique", () => {
+test("the water step reads the report before suggesting any filter", () => {
+  const water = STARTER_JOURNEY.find((q) => q.id === "starter_water_filter")!;
+  expect(water.action.indexOf("Report")).toBeGreaterThanOrEqual(0);
+  expect(water.action.indexOf("Report")).toBeLessThan(water.action.indexOf("filter"));
+});
+
+test("ids are unique, and the ids people may already have completed are kept (they are storage keys)", () => {
   const ids = STARTER_JOURNEY.map((q) => q.id);
   expect(new Set(ids).size).toBe(ids.length);
+  for (const kept of ["starter_tupperware", "starter_laundry", "starter_shoes_off", "starter_range_hood", "starter_shampoo_label", "starter_breakfast_swap", "starter_hvac_filter", "starter_water_filter", "starter_radon"]) {
+    expect(ids).toContain(kept);
+  }
 });

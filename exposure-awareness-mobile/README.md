@@ -247,16 +247,18 @@ the score signals or places.
 ## Design decisions carried over from the web app
 
 - **Local-only, no login required** — matches the free/no-paywall design of the web app.
-- **Non-fear-based gamification, extended to quests**: same invariant as the achievement
-  catalog — `quests.test.ts` asserts no daily/weekly quest title or id can reference
-  score/risk/concern/band vocabulary. Checking things off is one-way (no "losing" a
-  completed quest), matching the achievements' non-punitive design.
-- **Starter Journey ordering is deliberate, not algorithmic**: frequency/commonness and
-  low effort first (tupperware, laundry, shoes-off, range hood), impact-only-matters-most
-  items last (radon is the explicit "boss quest") — because a highest-impact-first
-  ordering front-loads the hardest asks before any momentum exists, which is the exact
-  pattern that gets wellness apps deleted (see the persona-test findings from the
-  notification-design pass earlier in this build).
+- **Calm by design (launch build, 2026-09-28)**: a checkup, not a feed. No streaks, points,
+  levels, badges, or daily and weekly quests; the plant grows from first steps done and never
+  wilts; the daily reminder and the learning moments between screens start off until the
+  person turns them on; the only notifications are air-quality events the person enabled.
+  Defaults live in `src/engine/calm.ts`; `src/engine/calm.test.ts` fails if any of it comes back.
+  (Earlier builds had achievements, XP and quests; the badge engine is kept only for the
+  simulation's reports, and nothing in it is shown.)
+- **Starter Journey ordering: biggest stones first**: radon, smoke indoors and lead-era housing
+  lead the list because they are Tier A sources that are also cheap to act on (a test kit, a
+  house rule, a question about the home's age); everyday habits follow. An earlier build ran
+  easiest-first with radon last as a "boss quest"; the launch plan reversed that so the cheapest
+  big wins don't wait behind small ones. Step ids are storage keys and never change.
 - **Trend graphs stay in the same non-fear register** as the dashboard: labeled "flagged
   mentions," not "risk," with the same dose-not-modeled caveat surfaced right next to the
   chart, and resilience practices charted separately, never netted against the other graph.

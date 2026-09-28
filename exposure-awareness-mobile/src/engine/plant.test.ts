@@ -1,51 +1,43 @@
 import { computePlant, stageFor } from "./plant";
 
-const base = { starterDone: 3, starterTotal: 9, daysSinceCare: 0, learningDaysLast7: 1, checkInDaysLast7: 1 };
+const base = { starterDone: 3, starterTotal: 11, daysSinceCare: 0, learningDaysLast7: 1, checkInDaysLast7: 1 };
 
-test("stage follows starter completion and only 'mature' when all are done", () => {
-  expect(stageFor(0, 9)).toBe("seed");
-  expect(stageFor(1, 9)).toBe("sprout");
-  expect(stageFor(3, 9)).toBe("seedling");
-  expect(stageFor(6, 9)).toBe("sapling");
-  expect(stageFor(8, 9)).toBe("sapling");
-  expect(stageFor(9, 9)).toBe("mature");
+test("stage follows first-step completion and is 'mature' only when all are done", () => {
+  expect(stageFor(0, 11)).toBe("seed");
+  expect(stageFor(1, 11)).toBe("sprout");
+  expect(stageFor(4, 11)).toBe("seedling");
+  expect(stageFor(8, 11)).toBe("sapling");
+  expect(stageFor(10, 11)).toBe("sapling");
+  expect(stageFor(11, 11)).toBe("mature");
 });
 
-test("health follows care recency: thriving, thirsty, wilting", () => {
-  expect(computePlant({ ...base, daysSinceCare: 2 }).health).toBe("thriving");
-  expect(computePlant({ ...base, daysSinceCare: 3 }).health).toBe("thirsty");
-  expect(computePlant({ ...base, daysSinceCare: 4 }).health).toBe("thirsty");
-  expect(computePlant({ ...base, daysSinceCare: 5 }).health).toBe("wilting");
+test("time away never costs anything: no thirst, no wilting, no needs (calm by design)", () => {
+  for (const days of [null, 0, 3, 5, 30]) {
+    const p = computePlant({ ...base, daysSinceCare: days });
+    expect(p.health).toBe("thriving");
+    expect(p.needs).toEqual([]);
+  }
 });
 
-test("a brand-new seed with no care yet is not punished", () => {
-  expect(computePlant({ ...base, starterDone: 0, daysSinceCare: null }).health).toBe("thriving");
-  expect(computePlant({ ...base, starterDone: 2, daysSinceCare: null }).health).toBe("thirsty");
-});
-
-test("wilting always needs water, and any care fixes it (no lasting penalty)", () => {
-  expect(computePlant({ ...base, daysSinceCare: 6 }).needs).toContain("water");
-  expect(computePlant({ ...base, daysSinceCare: 0 }).health).toBe("thriving");
-});
-
-test("mature + healthy + learning on 2+ days bears fruit, capped at 3", () => {
-  const mature = { ...base, starterDone: 9, daysSinceCare: 0 };
+test("a full-grown plant learning on 2+ days in a week bears fruit, capped at 3, even after a long gap", () => {
+  const mature = { ...base, starterDone: 11 };
   expect(computePlant({ ...mature, learningDaysLast7: 2 }).fruits).toBe(1);
   expect(computePlant({ ...mature, learningDaysLast7: 4 }).fruits).toBe(3);
   expect(computePlant({ ...mature, learningDaysLast7: 7 }).fruits).toBe(3);
+  expect(computePlant({ ...mature, daysSinceCare: 20, learningDaysLast7: 3 }).fruits).toBe(2);
 });
 
-test("mature with no learning this week is thirsty and fruitless even if logging daily", () => {
-  const p = computePlant({ ...base, starterDone: 9, daysSinceCare: 0, learningDaysLast7: 0 });
-  expect(p.health).toBe("thirsty");
+test("a full-grown plant with no learning this week simply has no fruit, and says how fruit comes", () => {
+  const p = computePlant({ ...base, starterDone: 11, learningDaysLast7: 0 });
   expect(p.fruits).toBe(0);
-  expect(p.needs).toContain("learn");
+  expect(p.message).toMatch(/fruit/);
 });
 
-test("only mature plants fruit; an immature plant never does", () => {
-  expect(computePlant({ ...base, starterDone: 8, learningDaysLast7: 7 }).fruits).toBe(0);
+test("only full-grown plants fruit", () => {
+  expect(computePlant({ ...base, starterDone: 10, learningDaysLast7: 7 }).fruits).toBe(0);
 });
 
-test("a wilting mature plant shows no fruit", () => {
-  expect(computePlant({ ...base, starterDone: 9, daysSinceCare: 7, learningDaysLast7: 5 }).fruits).toBe(0);
+test("messages count first steps, never quests or points", () => {
+  expect(computePlant({ ...base, starterDone: 0 }).message).toMatch(/first step/);
+  expect(computePlant(base).message).toBe("Growing -- 3 of 11 first steps done.");
 });

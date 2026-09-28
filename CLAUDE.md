@@ -21,16 +21,20 @@ The owner has an MS in Toxicology and Human Risk (Johns Hopkins). Treat them as 
 4. **Never fabricate identifiers or citations.** PMIDs, DTXSIDs, CAS numbers and DOIs are resolved live (PubMed, PubChem), never typed from memory. When PubMed content is used in an answer, attribute it to PubMed and include the DOI links.
 5. **Measuring is never punished.** Logging more, scanning a clean product, answering more that meets a reference, answering a recall question: none of these may lower a score. Back "never lowers" claims with randomized property tests, not only a simulation that happened to pass.
 6. **Evidence is labelled for what it is.** A study of something nearby is "Wider context" (`context_substance_ids`), never "Research behind this".
+7. **Calm by design (launch plan, 2026-09-28).** A checkup, not a feed: no streaks, points, levels, badges or leaderboards; the plant never wilts; reminders and learning moments start off until the person turns them on; nothing is tuned to bring people back more often. Defaults live in `src/engine/calm.ts` and `src/engine/calm.test.ts` holds the line.
+8. **Big stones first.** Rankings and first steps put the few sources that drive most exposure (radon, smoke indoors, lead-era housing, fine particles, alcohol, well water, carbon monoxide, work exposures) ahead of small ones; `src/data/bigStones.test.ts` holds the data.
 
 ## Standing instruction from the owner (their words)
 
 "Continue to work autonomously until this session's token limit is close to being reached, I will test against it. This will be the new norm: lots of self-evaluative building, internal refinement against popular sticky apps, and autonomous approaches, leveraging as much real public health science (toxicology databases, PubMed, CompTOX, etc.) as the foundational core engine as possible."
 
+Update from the launch plan (2026-09-28, agreed with the owner): benchmark against the calm-by-design rules (invariant 7), not against engagement mechanics. Learn from successful apps where they make the app clearer, kinder or more useful, never where they make it stickier.
+
 In practice: work in long stretches, verify after every change (types, tests, and actually looking at the running app), benchmark against successful consumer health apps, and ground the engine in real public data. Ask before anything outward-facing (publishing, sending, committing or pushing) and before deleting anything.
 
 ## Commands
 
-In `exposure-awareness-mobile`: `npm test` (552 tests), `npm run typecheck`, `npm run tz` (seven timezones), `npm run sim` (79 checks), `npm run tables`, `npm run web`, `npm run snapshots`, `npm run web:build`. Backend `npm test` (28). Python `python3 -m pytest -q tests` (33). `.claude/launch.json` defines `expo-web` (dev server, port 8081) and `compiled-web` (the static build, port 8090) for the preview tools. (A session that was *moved* into this folder from somewhere else keeps its original directory for `preview_start {name}`: check `preview_list` for the `cwd` it runs from, and if it is not this folder, start the server here with Bash and open it with `preview_start {url}`.)
+In `exposure-awareness-mobile`: `npm test` (567 tests), `npm run typecheck`, `npm run tz` (seven timezones), `npm run sim` (79 checks), `npm run tables`, `npm run web`, `npm run snapshots`, `npm run web:build`. Backend `npm test` (28). Python `python3 -m pytest -q tests` (33). `.claude/launch.json` defines `expo-web` (dev server, port 8081) and `compiled-web` (the static build, port 8090) for the preview tools. (A session that was *moved* into this folder from somewhere else keeps its original directory for `preview_start {name}`: check `preview_list` for the `cwd` it runs from, and if it is not this folder, start the server here with Bash and open it with `preview_start {url}`.)
 
 After engine, scoring or advice changes: `npm run sim` and check all invariants pass. After anything date-related: `npm run tz`.
 
@@ -46,4 +50,4 @@ After engine, scoring or advice changes: `npm run sim` and check all invariants 
 
 ## Open items (from the walkthrough)
 
-No real VoiceOver/TalkBack or device testing; native build, camera scan and push notifications not run; a top recommendation nobody answers stays #1 for weeks; recall questions are multiple-choice only; weak citations for SLS, formaldehyde releasers, siloxanes and talc; the learning moment between screens is on by default (about 40 s of forced waiting in a first session); the Python prototype has no score signals, places or recall.
+No real VoiceOver/TalkBack or device testing; native build, camera scan and push notifications not run; a top recommendation nobody answers stays #1 for weeks; recall questions are multiple-choice only; weak citations for SLS, formaldehyde releasers, siloxanes and talc; the Places comparisons for well water, carbon monoxide and work exposures use the app's curated guidance until the authorities' pages are re-read; the Python prototype has no score signals, places or recall.

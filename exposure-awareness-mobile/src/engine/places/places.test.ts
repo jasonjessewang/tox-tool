@@ -215,12 +215,18 @@ describe("standing exposure: what a place carries week after week", () => {
   });
 
   test("two findings about one substance in two places are one line of advice, adding their weights, naming both places", () => {
-    const st = placesStanding([home({ home_smoke: [["indoors", "2026-09-01"]] }), place("daily", { daily_traffic: [["lots", "2026-09-01"]] })], substances, asOf, null);
+    const st = placesStanding([home({ home_voc: [["fresh", "2026-09-01"]] }), place("work", { work_new: [["fresh", "2026-09-01"]] })], substances, asOf, null);
     expect(st).toHaveLength(1);
-    expect(st[0].substanceId).toBe("pm25_particulate");
+    expect(st[0].substanceId).toBe("voc_off_gassing");
     expect(st[0].viaPlaces).toHaveLength(2);
     expect(st[0].viaPlaces!.some((v) => v.startsWith("Home:"))).toBe(true);
-    expect(st[0].viaPlaces!.some((v) => v.startsWith("Everyday places:"))).toBe(true);
+    expect(st[0].viaPlaces!.some((v) => v.startsWith("Work"))).toBe(true);
+  });
+
+  test("smoke indoors is its own finding (tobacco and vape smoke), and it counts for more with an asthmatic housemate, like other particles", () => {
+    const st = placesStanding([home({ home_smoke: [["indoors", "2026-09-01"]] })], substances, asOf, null);
+    expect(st.map((s) => s.substanceId)).toEqual(["tobacco_smoke"]);
+    expect(amplification(byId.get("tobacco_smoke")!, [person({ conditions: ["asthma"] })])).toBe(1.25);
   });
 
   test("the weight of one substance is capped, so no single place drowns everything else", () => {
@@ -294,8 +300,8 @@ describe("what to ask next", () => {
     const withAsthma = place("home", {}, { occupants: [person({ conditions: ["asthma"] })] });
     const first = nextChecks([withAsthma], substances, asOf, null, 3).map((n) => n.check.substanceId);
     expect(first.length).toBe(3);
-    const solo = nextChecks([place("home")], substances, asOf, null, 30).find((n) => n.check.substanceId === "pm25_particulate")!;
-    const shared = nextChecks([withAsthma], substances, asOf, null, 30).find((n) => n.check.substanceId === "pm25_particulate")!;
+    const solo = nextChecks([place("home")], substances, asOf, null, 30).find((n) => n.check.substanceId === "tobacco_smoke")!;
+    const shared = nextChecks([withAsthma], substances, asOf, null, 30).find((n) => n.check.substanceId === "tobacco_smoke")!;
     expect(shared.weight).toBeGreaterThan(solo.weight);
   });
 });

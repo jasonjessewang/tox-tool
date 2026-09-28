@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ScrollView, View, Text, StyleSheet, RefreshControl, Pressable } from "react-native";
 import * as db from "../storage/db";
 import { scoreLogs, loadHazardDb, sourceOf } from "../engine/scoring";
-import * as achievements from "../engine/achievements";
 import * as notify from "../notifications/notify";
 import { getFusionReport, TREND_LABELS, type FusionReport, type TrendDirection } from "../engine/fusion";
 import { personalizeReport, type PersonalizationResult } from "../engine/personalization";
@@ -84,8 +83,6 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
   const [places, setPlaces] = useState<PlacesOverview | null>(null);
   const [kept, setKept] = useState<db.KeptAdvice[]>([]);
   const [fresh, setFresh] = useState<FreshLine[]>([]);
-  const [streak, setStreak] = useState(0);
-  const [unlockedCount, setUnlockedCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [permission, setPermission] = useState<notify.PermissionState>("default");
   const substanceNames = useMemo(() => Object.fromEntries(loadHazardDb().map((s) => [s.id, s.name])), []);
@@ -131,14 +128,7 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
     const substancesById = Object.fromEntries(loadHazardDb().map((s) => [s.id, s]));
     setPersonalization(personalizeReport(scored, userProfile, substancesById));
 
-    const { allUnlocked, newlyUnlocked } = await achievements.evaluateAndUnlock();
-    setUnlockedCount(allUnlocked.size);
-    setStreak(await achievements.computeStreak());
     setPermission(await notify.getPermissionState());
-
-    for (const a of newlyUnlocked) {
-      notify.fireLocal(`${a.icon} ${a.name} unlocked`, a.description);
-    }
 
     setLoading(false);
   }, []);
@@ -151,7 +141,7 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
     const result = await notify.requestPermission();
     setPermission(result);
     if (result === "granted") {
-      notify.fireLocal("Notifications enabled", "Achievement unlocks and Moderate-or-worse air quality events only.");
+      notify.fireLocal("Notifications enabled", "Moderate-or-worse air quality events only.");
     }
   }
 
@@ -187,10 +177,7 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
       refreshControl={<RefreshControl refreshing={loading} onRefresh={load} />}
     >
       <Text accessibilityRole="header" style={styles.h1}>Dashboard</Text>
-      <Subtitle>
-        {streak > 0 ? `${streak}-day streak · ` : ""}
-        {unlockedCount}/{achievements.CATALOG.length} achievements
-      </Subtitle>
+      <Subtitle>Your picture this week, compared with published guidance and with you.</Subtitle>
 
       {wellness && (
         <Pressable accessibilityRole="button" onPress={onOpenScore} style={styles.scoreCard}>
@@ -227,7 +214,6 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
           <View key="pos">
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
               <Text style={[styles.cardTitle, { fontSize: 18 }]}>{fusion.aggregate.position}</Text>
-              <Text style={{ color: colors.muted, fontSize: 12 }}>Level {fusion.aggregate.level.level}</Text>
             </View>
             <View style={{ flexDirection: "row", gap: 10, marginTop: 6, flexWrap: "wrap" }}>
               <Text style={[styles.pillText, { color: TREND_COLOR[fusion.aggregate.scoreTrend] }]}>
@@ -415,8 +401,8 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
 
       {permission !== "granted" && permission !== "unsupported" && (
         <Card>
-          <Collapsible title="Get notified on key moments" icon={"\ud83d\udd14"} teaser="Achievement unlocks + air quality events only">
-            <Text style={styles.note}>No daily reminders, no "you haven't logged in" nudges -- just these two.</Text>
+          <Collapsible title="Get notified about air quality" icon={"\ud83d\udd14"} teaser="Moderate-or-worse air quality events only">
+            <Text style={styles.note}>No daily reminders, no "you haven't logged in" nudges, no badges -- only air quality near you, when location alerts are on.</Text>
             <View style={{ marginTop: 8 }}>
               <PrimaryButton title="Enable notifications" onPress={enableNotifications} />
             </View>

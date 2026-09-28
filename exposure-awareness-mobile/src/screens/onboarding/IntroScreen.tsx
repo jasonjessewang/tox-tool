@@ -8,6 +8,7 @@ import { ADDING_GOOD_PRACTICE_TYPES, PRACTICE_LABELS } from "../../engine/scorin
 import * as location from "../../services/location";
 import conceptsData from "../../data/concepts.json";
 import { CLINICIAN_NOTE, SCOPE_NOTE, URGENT_NOTE } from "../../data/safety";
+import { CALM_DEFAULTS } from "../../engine/calm";
 import type { ContentComplexity, Concept, CheckInTime } from "../../engine/types";
 
 const CONCEPTS = (conceptsData as { concepts: Concept[] }).concepts;
@@ -38,7 +39,7 @@ export default function IntroScreen({ onDone }: { onDone: (choices: IntroChoices
   const [complexity, setComplexity] = useState<ContentComplexity>("balanced");
   const [locationEnabled, setLocationEnabled] = useState(false);
   const [locationStatus, setLocationStatus] = useState<"idle" | "requesting" | "denied">("idle");
-  const [checkInTime, setCheckInTime] = useState<CheckInTime>("midday");
+  const [checkInTime, setCheckInTime] = useState<CheckInTime>(CALM_DEFAULTS.checkInTime);
 
   async function handleEnableLocation() {
     setLocationStatus("requesting");
@@ -56,18 +57,16 @@ export default function IntroScreen({ onDone }: { onDone: (choices: IntroChoices
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16 }}>
       <Text accessibilityRole="header" style={styles.h1}>Your first steps</Text>
       <Text style={styles.subtitle}>
-        Think of this like a tutorial zone: a fixed, ordered questline, easiest and most common first so momentum
-        builds before the harder asks. Everything below is a literal next step -- not a preview.
+        A short, ordered list: the biggest sources first, then everyday habits. Each one is a real change you can make,
+        at your own pace, and skipping one is fine.
       </Text>
 
       <Card>
         {STARTER_JOURNEY.map((q, i) => {
-          const isBoss = i === STARTER_JOURNEY.length - 1;
           return (
             <View key={q.id} style={i > 0 ? styles.divider : undefined}>
               <View style={styles.questHeaderRow}>
-                <Text style={styles.stepBadge}>{isBoss ? "★ Boss" : `Step ${q.order}`}</Text>
-                <Text style={styles.xpBadge}>+{q.xp} XP</Text>
+                <Text style={styles.stepBadge}>{`Step ${q.order}`}</Text>
               </View>
               <Text style={styles.questTitle}>{q.title}</Text>
               <Text style={styles.questAction}>{q.action}</Text>
@@ -157,7 +156,7 @@ export default function IntroScreen({ onDone }: { onDone: (choices: IntroChoices
 
       <Text accessibilityRole="header" aria-level={2} style={styles.sectionTitle}>Daily check-in</Text>
       <Text style={styles.subtitle}>
-        A short reflection + plan-for-tomorrow prompt, once a day. You can change this anytime in your profile.
+        A short reflection prompt, if you want one. It starts off; you can turn it on here or anytime in your profile.
       </Text>
       {CHECKIN_OPTIONS.map((opt) => (
         <Pressable
@@ -198,7 +197,6 @@ const styles = StyleSheet.create({
   sectionTitle: { fontSize: 16, fontWeight: "700", color: colors.ink, marginTop: 20, marginBottom: 4 },
   questHeaderRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
   stepBadge: { fontSize: 12, fontWeight: "700", color: colors.accent, textTransform: "uppercase" },
-  xpBadge: { fontSize: 12, color: colors.muted },
   questTitle: { fontSize: 14, fontWeight: "600", color: colors.ink, marginTop: 2 },
   questAction: { fontSize: 13, color: colors.muted, marginTop: 2, fontStyle: "italic" },
   divider: { borderTopWidth: 1, borderTopColor: colors.line, marginTop: 10, paddingTop: 10 },

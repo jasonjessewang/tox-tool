@@ -245,8 +245,8 @@ export interface UserProfile {
   locationEnabled: boolean;
   checkInTime: CheckInTime;
   /**
-   * A short learning moment between screens (and when the app opens). On unless the person turns it off -- absent means on, so profiles
-   * saved before this existed behave as they always did.
+   * A short learning moment between screens (and when the app opens). Off unless the person turns it on under About you -- absent
+   * means off (calm defaults, engine/calm.ts).
    */
   learningMoments?: boolean;
 }

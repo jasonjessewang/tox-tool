@@ -1,7 +1,10 @@
 /**
- * Port of tox-exposure-tool/engine/achievements.py. Same 11-badge catalog, same
- * invariant: every achievement rewards a constructive behavior, never the content of
- * what got logged (no badge for a low score, none for a high one).
+ * Port of tox-exposure-tool/engine/achievements.py. Invariant: every milestone rewards a constructive behavior, never
+ * the content of what got logged (nothing for a low score, nothing for a high one).
+ *
+ * Calm launch build (engine/calm.ts): no screen shows badges and nothing fires a notification when one unlocks, and the
+ * streak badges are gone. The catalog is kept for the simulation's reports; computeStreak stays because the simulation
+ * uses it to check that every entry lands on the person's own calendar day. Nothing here is shown to the person.
  */
 import * as db from "../storage/db";
 import { loadHazardDb } from "./scoring";
@@ -29,9 +32,6 @@ interface Stats {
 
 export const CATALOG: Achievement[] = [
   { key: "first_log", name: "First Step", icon: "🌱", description: "Logged your first entry.", check: (s) => s.total_all >= 1 },
-  { key: "streak_3", name: "3-Day Streak", icon: "🔥", description: "Logged something 3 days in a row.", check: (s) => s.streak >= 3 },
-  { key: "streak_7", name: "Full Week", icon: "📆", description: "Logged something every day for a week.", check: (s) => s.streak >= 7 },
-  { key: "streak_30", name: "30-Day Streak", icon: "🏆", description: "A full month of consistent logging.", check: (s) => s.streak >= 30 },
   { key: "full_picture", name: "Full Picture", icon: "🧩", description: "Logged all 5 categories at least once.", check: (s) => s.categories_logged.size >= 5 },
   { key: "focused_1", name: "First Action", icon: "✅", description: "Marked a recommendation as done for the first time.", check: (s) => s.total_completed_actions >= 1 },
   { key: "focused_10", name: "Action Taker", icon: "💪", description: "Marked 10 recommendations as done.", check: (s) => s.total_completed_actions >= 10 },

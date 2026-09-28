@@ -45,9 +45,9 @@ function environment(condition_type: string, detail: string) {
   };
 }
 
-test("hazard db loads with 36 unique substances", () => {
+test("hazard db loads with 41 unique substances (36, plus the five big stones added for launch: smoke indoors, alcohol, well water, carbon monoxide, work exposures)", () => {
   const substances = loadHazardDb();
-  expect(substances.length).toBe(36);
+  expect(substances.length).toBe(41);
   const ids = new Set(substances.map((s) => s.id));
   expect(ids.size).toBe(substances.length);
 });

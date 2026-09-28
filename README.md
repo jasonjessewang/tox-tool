@@ -20,7 +20,7 @@ This folder is a working copy of everything: the app, the optional backend, the 
 TOX TOOL/
   exposure-awareness-mobile/     the app: Expo SDK 57, React Native 0.86, React 19, TypeScript, Jest
     src/engine/                  scoring, the wellness score's signals, places, recall, the ingredient engine
-    src/data/                    hazard database (36 substances), lessons, recall questions, place checks, evidence (27)
+    src/data/                    hazard database (41 substances), lessons, recall questions, place checks, evidence (27)
     src/screens/, src/components/
     src/sim/                     four simulated lives used to test the engine over twelve weeks
     scripts/                     sim runner and report, walkthrough tables, browser accessibility audit + walk, timezone matrix
@@ -47,7 +47,7 @@ In `exposure-awareness-mobile`:
 
 | | |
 |---|---|
-| `npm test` | 552 tests in 49 suites |
+| `npm test` | 567 tests in 50 suites |
 | `npm run typecheck` | TypeScript, strict |
 | `npm run tz` | the whole suite under seven timezones (the day boundary was once a real bug) |
 | `npm run sim` | four simulated people for 84 days each, then 79 checks on what the engine did |
@@ -62,7 +62,7 @@ Needs Node 22.5 or newer (the backend uses `node:sqlite`; this was built on Node
 
 ## Where things stand (2026-09-26)
 
-- Everything above passes on the final build: 552 app tests (also under seven timezones), TypeScript clean, 79 checks on the simulated lives, 28 backend tests, 33 Python tests.
+- Everything above passed on the 2026-09-26 build. On the calm-mode and big-stones branch (2026-09-28): 567 app tests, TypeScript clean, 79 of 79 checks on the simulated lives, the suite under Pacific/Kiritimati, and the Python data checks (database parity, plain summaries, scoring); the full timezone matrix and the backend/Python suites run in CI once the repo is on GitHub.
 - **Web only.** The app was built and verified as a web build at phone width. It has not been run on a phone or in a simulator: no camera scan, no push notification, no VoiceOver or TalkBack. Those are the most useful next things to test, and the walkthrough lists them.
 - **No version control here.** Nothing is committed anywhere. `git init` at this level (or per project) is one command away if you want history.
 - **Local-first.** A fresh install makes no network requests. What can leave the device, and when, is listed under About you > What leaves this device, and in section 5 of the walkthrough.

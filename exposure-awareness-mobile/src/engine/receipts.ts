@@ -10,7 +10,6 @@
 import { ACTIVITY_ROLE, signalsFedBy } from "./signals/registry";
 import type { ActivityKind, ComparisonPart, SignalKey } from "./signals/types";
 import { getWellnessScore } from "./wellnessState";
-import { recordAutoQuestCompletions } from "./quests";
 import type { ScoreComponent, WellnessScore } from "./wellnessScore";
 
 export interface ReceiptLine {
@@ -81,11 +80,6 @@ export function buildReceipt(kind: ActivityKind, before: WellnessScore, after: W
 export async function runActivity<T>(kind: ActivityKind, write: () => Promise<T>, opts: { now?: Date; notes?: string[] } = {}): Promise<{ result: T; receipt: Receipt }> {
   const before = await getWellnessScore(undefined, opts.now);
   const result = await write();
-  try {
-    await recordAutoQuestCompletions(); // doing the thing earns the quest's XP at the moment it is done
-  } catch {
-    // crediting XP never gets in the way of recording the activity
-  }
   const after = await getWellnessScore(undefined, opts.now);
   return { result, receipt: buildReceipt(kind, before, after, opts.notes ?? []) };
 }

@@ -6,7 +6,8 @@
  * References were read from the authorities' own pages on 2026-09-26 (EPA: radon action level, sources of lead, moisture
  * and mold guidance, indoor air quality, air-cleaner/filter guide; WHO 2021 PM2.5 guideline and the US Surgeon General's
  * 2006 secondhand-smoke report via data/guidelines.ts). Where the standard is this app's own curated guidance rather than
- * an authority's number, the source says so.
+ * an authority's number, the source says so. The well-water, carbon monoxide and work checks (added 2026-09-28) use the
+ * app's curated guidance, backed by the PubMed studies on their substances, until the authorities' pages are re-read.
  *
  * Tone: calm and practical. A check that "needs attention" is one where a small, specific change would bring an
  * answer in line with the reference -- never a verdict about the person or the place.
@@ -168,7 +169,7 @@ export const PLACE_CHECKS: PlaceCheck[] = [
     why: "Nonstick coatings are fine at ordinary cooking heat. The thing to avoid is overheating an empty pan or using a worn coating.",
   },
   {
-    id: "home_smoke", places: ["home"], short: "smoking or vaping indoors", substanceId: "pm25_particulate",
+    id: "home_smoke", places: ["home"], short: "smoking or vaping indoors", substanceId: "tobacco_smoke",
     question: "Does anyone smoke or vape indoors at home?",
     options: [
       { value: "no", label: "No", status: "meets" },
@@ -177,6 +178,32 @@ export const PLACE_CHECKS: PlaceCheck[] = [
     ],
     reference: { text: "Even brief exposure to secondhand smoke has measurable effects, and no level has been found without them.", source: "US Surgeon General, 2006 report" },
     why: "Smoke and vapor stay in the air and settle on surfaces. Going outside removes most of the exposure for everyone else in the home.",
+  },
+  {
+    id: "home_water", places: ["home"], short: "well water", substanceId: "private_well_water",
+    question: "Where does your home's drinking water come from?",
+    help: "If you pay a water bill to a utility, it's a public system. A well on the property is private, and testing it is up to the owner.",
+    options: [
+      { value: "utility", label: "A public water utility", status: "meets" },
+      { value: "well_tested", label: "A private well, tested by a certified lab in the last year", status: "meets" },
+      { value: "well_untested", label: "A private well, not tested in the last year", status: "attention", standing: 1 },
+      { value: "unsure", label: "Not sure", status: "unknown" },
+    ],
+    reference: { text: "Private wells are not covered by public drinking-water rules. Test at least once a year for bacteria and nitrate through a certified lab, and for arsenic at least once.", source: CURATED },
+    why: "Well water can carry things you can't see or taste, such as arsenic from rock or nitrate from farm runoff. A yearly lab test is the only way to know.",
+  },
+  {
+    id: "home_co", places: ["home"], short: "carbon monoxide alarm", substanceId: "carbon_monoxide",
+    question: "Does your home have fuel-burning appliances or an attached garage -- and a working carbon monoxide alarm?",
+    help: "Fuel-burning means gas, oil, propane or wood: a furnace, water heater, gas stove, fireplace or space heater.",
+    options: [
+      { value: "none", label: "No fuel-burning appliances or attached garage", status: "na" },
+      { value: "alarm", label: "Yes, and a working CO alarm near where we sleep", status: "meets" },
+      { value: "no_alarm", label: "Yes, but no working CO alarm", status: "attention", standing: 1 },
+      { value: "unsure", label: "Not sure", status: "unknown" },
+    ],
+    reference: { text: "A working carbon monoxide alarm near sleeping areas, and no generator or engine run indoors or in an attached garage.", source: CURATED },
+    why: "Carbon monoxide has no smell or color, and early signs feel like the flu. An alarm is inexpensive and notices it before you would.",
   },
   {
     id: "home_drycleaning", places: ["home"], short: "dry-cleaned clothes", substanceId: "dry_cleaning_perc",
@@ -212,6 +239,20 @@ export const PLACE_CHECKS: PlaceCheck[] = [
     ],
     reference: { text: "Filters typically need replacing every 60 to 90 days; ask facilities to confirm the maintenance schedule.", source: "US EPA, Guide to Air Cleaners in the Home; this app's curated guidance" },
     why: "You can't change the filters yourself, but you can ask when they were last changed -- and the question often gets them changed.",
+  },
+  {
+    id: "work_exposures", places: ["work"], short: "dust, fumes or chemicals at work", substanceId: "work_dust_fumes",
+    question: "Does your work involve dust, fumes, solvents, pesticides or other chemicals?",
+    help: "Think of the tasks as well as the place: sanding, welding, spraying, cutting stone or concrete, strong cleaning products, farm or lawn chemicals.",
+    options: [
+      { value: "no", label: "No", status: "meets" },
+      { value: "controlled", label: "Yes -- with ventilation or enclosures, and I can see the safety data sheets", status: "meets" },
+      { value: "partly", label: "Yes -- some controls, but I mostly rely on a mask", status: "attention", standing: 0.5 },
+      { value: "uncontrolled", label: "Yes -- with little or no protection", status: "attention", standing: 1 },
+      { value: "unsure", label: "Not sure", status: "unknown" },
+    ],
+    reference: { text: "Controls that remove or enclose the source come first, then ventilation, with masks last; each product's safety data sheet lists what it contains and the protection it needs.", source: CURATED },
+    why: "Work is often where the highest levels of anything in your day come from. Asking for the safety data sheets is a fair, ordinary request.",
   },
   {
     id: "work_new", places: ["work"], short: "new paint, carpet or furniture at work", substanceId: "voc_off_gassing",

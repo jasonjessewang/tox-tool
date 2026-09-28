@@ -23,14 +23,14 @@
 import * as db from "../storage/db";
 import { scoreLogs } from "./scoring";
 import { getWeeklyHistory, type WeeklyPoint } from "./trends";
-import { getStarterJourneyStatus, getLevelStatus, type LevelStatus } from "./quests";
+import { getStarterJourneyStatus } from "./quests";
 import { getAdviceInputs } from "./adviceState";
 import type { BiomarkerLog, ScoreReport } from "./types";
 import { daysAgoISO, todayISO } from "../util/dates";
 
 export type TrendDirection = "improving" | "flat" | "worsening" | "not_enough_data";
 
-export type JourneyPosition = "Getting Started" | "Building Momentum" | "Maintaining" | "Deep in the Journey";
+export type JourneyPosition = "Getting Started" | "Building Momentum" | "Maintaining";
 
 export interface FusionReport {
   acute: {
@@ -42,9 +42,8 @@ export interface FusionReport {
     practiceTrend: TrendDirection;
     journeyProgressPct: number;
     position: JourneyPosition;
-    recommendedNextStep: { label: string; detail: string; source: "starter_journey" | "weekly_quest" | "focus" } | null;
+    recommendedNextStep: { label: string; detail: string; source: "starter_journey" | "focus" } | null;
     history: WeeklyPoint[];
-    level: LevelStatus;
   };
   validation: {
     recentBiomarkers: BiomarkerLog[];
@@ -106,10 +105,10 @@ export function directionFrom(history: WeeklyPoint[], key: "overallScore" | "pra
   return (higherIsBetter ? change > 0 : change < 0) ? "improving" : "worsening";
 }
 
-export function journeyPosition(journeyProgressPct: number, level: number): JourneyPosition {
+/** Where the person is in the first steps, by how many are done (no points or levels behind it). */
+export function journeyPosition(journeyProgressPct: number): JourneyPosition {
   if (journeyProgressPct < 20) return "Getting Started";
   if (journeyProgressPct < 60) return "Building Momentum";
-  if (journeyProgressPct >= 100 && level >= 3) return "Deep in the Journey";
   return "Maintaining";
 }
 
@@ -117,12 +116,11 @@ export async function getFusionReport(): Promise<FusionReport> {
   const today = todayISO();
   const weekAgo = daysAgoISO(6);
 
-  const [logs, completedKeys, history, starter, level, recentBiomarkers, advice] = await Promise.all([
+  const [logs, completedKeys, history, starter, recentBiomarkers, advice] = await Promise.all([
     db.getLogsForRange(weekAgo, today),
     db.getCompletedActionKeys(daysAgoISO(13)),
     getWeeklyHistory(6),
     getStarterJourneyStatus(),
-    getLevelStatus(),
     db.getBiomarkerLogs(5),
     getAdviceInputs(),
   ]);
@@ -131,7 +129,7 @@ export async function getFusionReport(): Promise<FusionReport> {
 
   const scoreTrend = directionFrom(history, "overallScore", /* higherIsBetter */ false);
   const practiceTrend = directionFrom(history, "practicesLogged", /* higherIsBetter */ true);
-  const journeyProgressPct = Math.round((starter.xpEarned / starter.totalXp) * 100);
+  const journeyProgressPct = Math.round((starter.done / Math.max(1, starter.total)) * 100);
 
   let recommendedNextStep: FusionReport["aggregate"]["recommendedNextStep"] = null;
   const nextStarter = starter.quests.find((q) => !q.completed);
@@ -150,10 +148,9 @@ export async function getFusionReport(): Promise<FusionReport> {
       scoreTrend,
       practiceTrend,
       journeyProgressPct,
-      position: journeyPosition(journeyProgressPct, level.level),
+      position: journeyPosition(journeyProgressPct),
       recommendedNextStep,
       history,
-      level,
     },
     validation: {
       recentBiomarkers,
