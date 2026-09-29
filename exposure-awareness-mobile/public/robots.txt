@@ -1,0 +1,3 @@
+# Exposure Awareness is a usable app at this address, not a page trying to keep search engines out.
+User-agent: *
+Allow: /

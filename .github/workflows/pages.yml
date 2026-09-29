@@ -1,0 +1,79 @@
+# Publishes the web build as the project's live site: the app itself, not a marketing page, since it needs no login and no
+# native build to try. Deploys on every push to main that touches the app, and by hand from the Actions tab.
+#
+# One-time setup this workflow cannot do for you: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+# Until that is set, the deploy job below will fail with a clear "Pages site not found" style error -- flip the switch and
+# re-run it.
+name: Deploy web app to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "exposure-awareness-mobile/**"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deploy in flight; a new push wins over one still running rather than queueing behind it.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: exposure-awareness-mobile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: exposure-awareness-mobile/package-lock.json
+      - run: npm ci
+
+      - name: Point the build at this repo's Pages path
+        # A user/org page (a repo literally named "<name>.github.io") is served from the domain root; any other repo is
+        # served from /<repo-name>/, so the exported bundle's asset links need that prefix or the page loads blank.
+        # See expo.experiments.baseUrl (https://docs.expo.dev/versions/v57.0.0/config/app/#baseurl). Written to a throwaway
+        # copy of app.json in the CI runner only -- nothing here is committed back.
+        run: |
+          REPO="${GITHUB_REPOSITORY##*/}"
+          case "$REPO" in
+            *.github.io) BASE="" ;;
+            *) BASE="/$REPO" ;;
+          esac
+          export BASE
+          node -e '
+            const fs = require("fs");
+            const p = "app.json";
+            const j = JSON.parse(fs.readFileSync(p, "utf8"));
+            j.expo.experiments = { ...(j.expo.experiments || {}), baseUrl: process.env.BASE };
+            fs.writeFileSync(p, JSON.stringify(j, null, 2) + "\n");
+          '
+          echo "Pages base path: '${BASE:-/ (repo root)}'"
+
+      - name: Export the static web build
+        run: npx expo export --platform web --output-dir dist
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: exposure-awareness-mobile/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

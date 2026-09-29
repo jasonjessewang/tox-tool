@@ -11,6 +11,7 @@
       "bundleIdentifier": "com.exposureawareness.mobile"
     },
     "android": {
+      "package": "com.exposureawareness.mobile",
       "adaptiveIcon": {
         "backgroundColor": "#3f6b52",
         "foregroundImage": "./assets/android-icon-foreground.png",

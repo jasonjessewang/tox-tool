@@ -11,7 +11,7 @@ intent — ported to a real, offline-first mobile app shell rather than a mockup
   Wins vs. Focus divergence test and the "acrylamide needs the exact phrase"
   matching-limits test.
 - **Typecheck clean**: `npx tsc --noEmit` passes with zero errors across the whole app.
-- **552 Jest tests pass** (`npm test`) across 49 suites: engine parity, journey/quest data
+- **567 Jest tests pass** (`npm test`) across 50 suites: engine parity, journey/quest data
   integrity, the ingredient engine, literacy, evidence, dates, free-text matching, the
   standing-exposure model, trend labels, the wellness score's signals and receipts, the places
   lens (catalog integrity, dated answers, household weighting), the recall questions (scheduling,
@@ -52,23 +52,23 @@ intent — ported to a real, offline-first mobile app shell rather than a mockup
 
 | Piece | Status |
 |---|---|
-| Engine: scoring, AQI, produce, achievements, quests, trends, the ingredient engine, places, the score's signals, recall | **Built and tested** (552 tests; 79 checks on the simulated lives) |
+| Engine: scoring, AQI, produce, achievements, quests, trends, the ingredient engine, places, the score's signals, recall, calm-mode defaults, big-stones ordering | **Built and tested** (567 tests; 79 checks on the simulated lives) |
 | Local storage (AsyncStorage): every entry, the shelf, places, learning events, settings | **Working**; a copy can be exported and everything deleted under About you |
 | Screens: Dashboard, Daily (four steps), Weekly, Learn (Topics, Research, Engine, Concepts), Journey (hub, tutorial quests, roadmap), Score, Scan + product review + Shelf, Food, Sleep, Air, Biomarkers, Places, About you, Connected sources | **Working**, driven live in the browser at phone width; every one audited for accessibility ([walkthrough](docs/walkthrough-2026-09-26.md)) |
 | Barcode look-up (typed number), pasted label text | **Verified**. Camera scanning is implemented with `expo-camera` but needs a device camera to exercise; reading a label from a photo needs a backend the person runs |
 | Local notifications | **Web verified** (the embedded browser blocks the OS prompt, so both triggers were verified through the logged fallback). The native path (`expo-notifications`, scheduled daily check-in) is implemented against the SDK 57 docs and **not exercised on a device** here |
-| Native iOS/Android build (Simulator or device) | **Not built or run here** -- no Xcode/Android Studio in this environment. Everything above was verified on the web build |
+| Native iOS/Android build (Simulator or device) | **Not built or run here** -- no Xcode/Android Studio in this environment, and none needed to *start* a build: `eas.json` is configured for cloud builds via EAS. See [docs/shipping.md](docs/shipping.md) |
 | Health-app data (Apple Health, Health Connect) | **Not built**: those stores can only be read by a native build |
 | Strava, Google sign-in, photo label reading | **Need a backend the person runs** (`exposure-awareness-backend`); off by default |
 | Sign in with Apple/Google (SSO) | **Deliberately not built** -- local-only v1 |
-| App Store / Play Store submission | **Not started** -- needs Apple Developer / Google Play accounts |
+| App Store / Play Store submission | **Config ready** (`eas.json`, bundle/package ids, a 1024×1024 icon, a hosted privacy policy) -- **not submitted**: needs your Apple Developer ($99/yr) and Google Play ($25 one-time) accounts, and screenshots from a real build. See [docs/shipping.md](docs/shipping.md) |
 
 ## Running it
 
 ```bash
 cd exposure-awareness-mobile
 npm install
-npm test          # 552 Jest tests across 49 suites
+npm test          # 567 Jest tests across 50 suites
 npx tsc --noEmit  # typecheck
 npm run sim       # engine soak run: 4 simulated people x 12 weeks, report + 79 invariant checks
 npm run tables    # the "continued use" tables in the walkthrough, from the last sim run
@@ -81,6 +81,13 @@ npm run web       # opens in a browser -- works right now, no Xcode needed
 be installed on this machine first**. Once Xcode finishes installing, these should work —
 worth a fresh attempt then to get real Simulator verification instead of the web-only
 path this was built against.
+
+## Shipping it
+
+The web build deploys itself (GitHub Pages, on every push to `main`); iOS and Android build in the cloud via EAS
+once you've logged in with your own Expo account -- config, bundle/package ids, the icon and a hosted privacy policy
+are all already in place. The exact commands, what each store asks for, and what's genuinely still open (no
+simulator or device here to test the native-only paths on) are in [docs/shipping.md](docs/shipping.md).
 
 ## The wellness score: every part is a comparison
 

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy — Exposure Awareness</title>
+<meta name="description" content="What Exposure Awareness stores, what it sends anywhere, and what it never does." />
+<meta name="robots" content="index,follow" />
+<style>
+  :root {
+    --ink: #2b2b26;
+    --muted: #5f5f5f;
+    --bg: #f7f5f0;
+    --card: #ffffff;
+    --line: #e3ded2;
+    --accent: #3f6b52;
+    --accent-soft: #eaf1ec;
+    max-width: 720px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #ece9e2; --muted: #b7b2a5; --bg: #1c1c19; --card: #26261f; --line: #3a392f; --accent: #7fb897; --accent-soft: #24312a; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 20px 64px; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 680px; margin: 0 auto; }
+  h1 { font-size: 28px; margin: 0 0 4px; }
+  .updated { color: var(--muted); font-size: 14px; margin: 0 0 32px; }
+  h2 { font-size: 18px; margin: 40px 0 12px; }
+  p, li { color: var(--ink); }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 10px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 18px 20px; margin: 16px 0;
+  }
+  .lead { background: var(--accent-soft); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  code { background: var(--accent-soft); padding: 1px 6px; border-radius: 6px; font-size: 14px; }
+  a { color: var(--accent); }
+  .back { display: inline-block; margin-bottom: 24px; color: var(--accent); text-decoration: none; font-weight: 600; }
+  footer { margin-top: 48px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="./">&larr; Back to Exposure Awareness</a>
+  <h1>Privacy</h1>
+  <p class="updated">Last updated 2026-09-29</p>
+
+  <div class="lead">
+    <p style="margin:0">Exposure Awareness is local-first: your profile, everything you log, your shelf, your places, your score
+    and your learning history live only on your own device, in your browser's or app's local storage. Nothing is uploaded to
+    a server we run, because we don't run one. There is no account, no login and no ads.</p>
+  </div>
+
+  <h2>What the app never does</h2>
+  <ul>
+    <li>No account or sign-in. No advertising or ad tracking, and no analytics that identify you.</li>
+    <li>No selling or sharing of your data — there's no server of ours to share it from.</li>
+    <li>Nothing about the people you tell it share your home or workplace with (a household member, a pet) leaves your device, and none of it is required.</li>
+  </ul>
+
+  <h2>What can leave your device, and when</h2>
+  <p>The app makes a network request in exactly four cases, and each one is named on the About&nbsp;you screen inside the app
+  ("What leaves this device"). None of them carries your name, an account identifier, or anything else you've entered:</p>
+  <div class="card">
+    <ul style="margin:0">
+      <li><strong>Once a day, after you finish setup</strong>, if the short learning moments between screens are turned on:
+      a search to <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener">PubMed</a> (the U.S. National Library of Medicine) for recent paper titles. Like any web request this shows your network address to NCBI, the library that runs PubMed. Turning learning moments off (About&nbsp;you &rsaquo; Between screens) stops it.</li>
+      <li><strong>When you look up a barcode</strong>: the barcode number is sent to <a href="https://world.openfoodfacts.org/" target="_blank" rel="noopener">Open Food Facts</a> or <a href="https://world.openbeautyfacts.org/" target="_blank" rel="noopener">Open Beauty Facts</a>, both public, community-run product databases.</li>
+      <li><strong>Only if you turn on local air-quality alerts</strong>: your coordinates go to <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> and the <a href="https://www.weather.gov/" target="_blank" rel="noopener">U.S. National Weather Service</a>, both free public data sources with no account.</li>
+      <li><strong>Only if you connect a backend of your own</strong> (Connected sources &rsaquo; Your backend): whatever you choose to sync goes to that server, which you run and control.</li>
+    </ul>
+  </div>
+
+  <h2>Data on your device</h2>
+  <p>Your profile, every entry you log, your shelf, your places, your score history and your learning progress are stored on
+  your device using standard local/session storage (<code>AsyncStorage</code> in the app, <code>localStorage</code> in a
+  browser). You can export a full copy as a plain JSON file, or delete everything, at any time — About&nbsp;you &rsaquo; Your data.
+  Uninstalling the app, or clearing your browser's site data, removes it the same way it would for any other app or site.</p>
+
+  <h2>Health information</h2>
+  <p>Age, sex, weight, height, pregnancy status and any conditions you enter are optional, used only on-device to judge which
+  flagged exposures matter more for you, and are never sent anywhere. The app measures patterns in what you choose to log —
+  it is an awareness and learning tool, not a medical device: it doesn't diagnose, treat, or replace a clinician. If something
+  may be urgent, it says so and points to your local emergency number or poison centre rather than asking you to keep using the app.</p>
+
+  <h2>Children</h2>
+  <p>The app is not directed at children and does not knowingly collect information from them; there is no account system
+  through which age is verified, because there is no account system at all.</p>
+
+  <h2>Changes to this page</h2>
+  <p>If this changes, the date at the top will change with it. Past versions are visible in the project's public
+  <a href="https://github.com/jasonjessewang/exposure-awareness/commits/main/exposure-awareness-mobile/public/privacy.html" target="_blank" rel="noopener">version history</a>.</p>
+
+  <h2>Contact</h2>
+  <p>Questions or a correction: open an issue on the
+  <a href="https://github.com/jasonjessewang/exposure-awareness/issues" target="_blank" rel="noopener">project's GitHub repository</a>.</p>
+
+  <footer>Exposure Awareness &middot; a private, on-device way to see what you're exposed to and make your own changes.</footer>
+</main>
+</body>
+</html>
