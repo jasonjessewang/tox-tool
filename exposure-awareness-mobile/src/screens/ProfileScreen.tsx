@@ -5,6 +5,7 @@ import * as location from "../services/location";
 import * as notify from "../notifications/notify";
 import { Card, SecondaryButton } from "../components/ui";
 import { deliverExport } from "../services/dataExport";
+import { openFeedback } from "../services/feedback";
 import { CLINICIAN_NOTE, SCOPE_NOTE, URGENT_NOTE } from "../data/safety";
 import { todayISO } from "../util/dates";
 import { Collapsible } from "../components/Collapsible";
@@ -208,6 +209,14 @@ export default function ProfileScreen({ onDeleted, onSaved }: { onDeleted?: () =
                   <Text style={styles.principle}>{"\u2022"} Only if you turn on local alerts: your coordinates go to Open-Meteo (air quality) and the US National Weather Service (alerts).</Text>
                   <Text style={styles.principle}>{"\u2022"} Only if you connect your own backend: what you choose to sync goes to that server, which you run.</Text>
                 </Collapsible>
+              </View>
+            </Card>
+
+            <Card>
+              <Text accessibilityRole="header" aria-level={2} style={styles.label}>Something off, or a thought to share?</Text>
+              <Text style={styles.helper}>This opens your own mail app, addressed to us, with nothing attached but what you type. We see nothing unless you send it.</Text>
+              <View style={{ marginTop: 10 }}>
+                <SecondaryButton title="Send feedback" onPress={() => openFeedback()} />
               </View>
             </Card>
 

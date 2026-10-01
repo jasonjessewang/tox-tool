@@ -1,8 +1,8 @@
 # Exposure Awareness
 
-[![CI](https://github.com/jasonjessewang/exposure-awareness/actions/workflows/ci.yml/badge.svg)](https://github.com/jasonjessewang/exposure-awareness/actions/workflows/ci.yml)
-[![Deploy web app](https://github.com/jasonjessewang/exposure-awareness/actions/workflows/pages.yml/badge.svg)](https://github.com/jasonjessewang/exposure-awareness/actions/workflows/pages.yml)
-&middot; **[Try it](https://jasonjessewang.github.io/exposure-awareness/)** (live once the repo is on GitHub and Pages is switched on — see [Publishing](#publishing-git-the-live-site-ios-and-android) below)
+[![CI](https://github.com/jasonjessewang/tox-tool/actions/workflows/ci.yml/badge.svg)](https://github.com/jasonjessewang/tox-tool/actions/workflows/ci.yml)
+[![Deploy web app](https://github.com/jasonjessewang/tox-tool/actions/workflows/pages.yml/badge.svg)](https://github.com/jasonjessewang/tox-tool/actions/workflows/pages.yml)
+&middot; **[Try it](https://jasonjessewang.github.io/tox-tool/)** (live)
 
 A private, on-device way to see what you're exposed to (food, personal care, air, the places you spend your days), compare it with published guidance, and make your own changes. Built on toxicology and exposure science; non-fear-based by design.
 
@@ -74,9 +74,12 @@ Needs Node 22.5 or newer (the backend uses `node:sqlite`; this was built on Node
 
 ## Publishing (Git, the live site, iOS and Android)
 
-This folder is a git repository (`main`, MIT-licensed) with CI already running on every push and pull request
-(`.github/workflows/ci.yml`: types, the 572 tests, the timezone matrix, the engine simulation, the backend, and the
-data pipeline). It isn't pushed anywhere yet, because that needs a destination only you can choose:
+Live at [jasonjessewang.github.io/tox-tool](https://jasonjessewang.github.io/tox-tool/), pushed from this folder's
+`main` branch (MIT-licensed). CI runs on every push and pull request (`.github/workflows/ci.yml`: types, the 572
+tests, the timezone matrix, the engine simulation, the backend, and the data pipeline); `.github/workflows/pages.yml`
+builds and deploys the web app itself on every push to `main`, no further steps needed after the one-time setup below.
+
+Reusing this folder under a different GitHub repo needs that same one-time setup again:
 
 ```bash
 # once, on GitHub: create an empty repository (no README/license/gitignore — this folder already has them)
@@ -84,11 +87,10 @@ git remote add origin https://github.com/<your-username>/<your-repo-name>.git
 git push -u origin main
 ```
 
-The badges and the "Try it" link above assume `jasonjessewang/exposure-awareness` (read from this machine's git
-config) — correct them in a find-and-replace if you use a different name.
+then **Settings &rsaquo; Pages &rsaquo; Build and deployment &rsaquo; Source: GitHub Actions** (one toggle, one
+time), and a find-and-replace of `jasonjessewang/tox-tool` in the badges and the "Try it" link above for your own
+repo name.
 
-Once it's pushed: **Settings &rsaquo; Pages &rsaquo; Build and deployment &rsaquo; Source: GitHub Actions** (one
-toggle, one time) turns on the live site — `.github/workflows/pages.yml` builds and deploys the web app itself on
-every push to `main` after that, no further steps. iOS and Android build in the cloud through EAS once you've logged
-in with your own free Expo account; the exact commands and what each app store's listing will ask for are in
+iOS and Android build in the cloud through EAS once you've logged in with your own free Expo account; the exact
+commands and what each app store's listing will ask for are in
 [exposure-awareness-mobile/docs/shipping.md](exposure-awareness-mobile/docs/shipping.md).

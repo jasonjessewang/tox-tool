@@ -11,6 +11,7 @@ import JourneyScreen from "./src/screens/JourneyScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import LoadingScreen from "./src/components/LoadingScreen";
 import BrandMark from "./src/components/BrandMark";
+import ErrorBoundary from "./src/components/ErrorBoundary";
 import JourneyHubScreen, { type JourneyTarget } from "./src/screens/JourneyHubScreen";
 import EvidenceScreen from "./src/screens/EvidenceScreen";
 import ScanScreen from "./src/screens/ScanScreen";
@@ -71,6 +72,14 @@ const LAUNCH_BEAT_MS = 5500;
 const NAV_BEAT_MS = 3200;
 
 export default function App() {
+  return (
+    <ErrorBoundary>
+      <AppInner />
+    </ErrorBoundary>
+  );
+}
+
+function AppInner() {
   const [tab, setTab] = useState<Tab>("dashboard");
   const [overlay, setOverlay] = useState<Overlay | null>(null);
   // Where each screen was opened from, so "back" goes back to that (null is the tab the person was on) rather than always to the Journey.
