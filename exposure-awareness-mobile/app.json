@@ -36,7 +36,8 @@
           "locationWhenInUsePermission": "Used only to check local air quality and significant weather/fire alerts near you. Never leaves your device except as a coordinate sent to the National Weather Service and Open-Meteo, both free public data sources with no account."
         }
       ],
-      "expo-notifications"
+      "expo-notifications",
+      "expo-secure-store"
     ],
     "description": "A private, on-device way to see what you're exposed to, compare it with published guidance, and make your own changes."
   }

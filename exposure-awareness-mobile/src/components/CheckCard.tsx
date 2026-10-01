@@ -110,11 +110,12 @@ export function CheckCard({
                     <Text style={styles.studyTitle}>{r.title}</Text>
                     <Text style={styles.refSource}>{[r.journal, r.year].filter(Boolean).join(" · ")}</Text>
                     <View style={styles.links}>
-                      <Pressable accessibilityRole="link" onPress={() => Linking.openURL(r.url)} style={{ paddingVertical: 8 }}>
+                      {/* With more than one study, a bare "PubMed" link repeats for each -- name which study it opens. */}
+                      <Pressable accessibilityRole="link" accessibilityLabel={studies.length > 1 ? `PubMed: ${r.title}` : undefined} onPress={() => Linking.openURL(r.url)} style={{ paddingVertical: 8 }}>
                         <Text style={styles.link}>PubMed {"›"}</Text>
                       </Pressable>
                       {r.doi ? (
-                        <Pressable accessibilityRole="link" onPress={() => Linking.openURL(`https://doi.org/${r.doi}`)} style={{ paddingVertical: 8 }}>
+                        <Pressable accessibilityRole="link" accessibilityLabel={studies.length > 1 ? `DOI: ${r.title}` : undefined} onPress={() => Linking.openURL(`https://doi.org/${r.doi}`)} style={{ paddingVertical: 8 }}>
                           <Text style={styles.link}>DOI {"›"}</Text>
                         </Pressable>
                       ) : null}

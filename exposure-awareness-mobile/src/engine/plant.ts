@@ -56,9 +56,11 @@ export function computePlant(i: PlantInputs): PlantState {
   const fruits = mature && i.learningDaysLast7 >= 2 ? Math.min(3, i.learningDaysLast7 - 1) : 0;
   const needs: PlantNeed[] = [];
 
+  // Both places that show this (JourneyHubScreen, PlantCard) already print stageLabel right next to it, so the mature
+  // messages below do not restate "Full-grown" themselves -- that collided into "Full-grown · Full-grown. ..." before.
   let message: string;
-  if (mature && fruits > 0) message = `Full-grown and fruiting -- ${fruits} fruit${fruits > 1 ? "s" : ""} from your recent learning.`;
-  else if (mature) message = "Full-grown. It bears fruit in a week when you learn something new on two or more days.";
+  if (mature && fruits > 0) message = `Fruiting -- ${fruits} fruit${fruits > 1 ? "s" : ""} from your recent learning.`;
+  else if (mature) message = "It bears fruit in a week when you learn something new on two or more days.";
   else if (stage === "seed") message = "A seed, waiting. It sprouts when you finish your first step.";
   else message = `Growing -- ${i.starterDone} of ${i.starterTotal} first steps done.`;
 

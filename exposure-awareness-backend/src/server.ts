@@ -1,8 +1,10 @@
 import express from "express";
 import { buildApiRouter } from "./routes.ts";
 import { seedEvidence } from "./seed-evidence.ts";
+import { corsMiddleware } from "./cors.ts";
 
 const app = express();
+app.use(corsMiddleware);
 app.use(express.json({ limit: "14mb" })); // label photos arrive base64-encoded
 
 // Coarse latency visibility on every response, not just the paginated list endpoints --

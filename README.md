@@ -14,7 +14,7 @@ This folder is a working copy of everything: the app, the optional backend, the 
 |---|---|
 | **See the app now**, no setup | Double-click `serve-compiled-web.command` (opens the compiled build in your browser). Or `cd outputs/web-app && python3 -m http.server 8090`, then open http://localhost:8090 |
 | **Run the app in development** | Double-click `run-web.command`, or `cd exposure-awareness-mobile && npm run web` |
-| **Read what was found, fixed and left open** | `exposure-awareness-mobile/docs/walkthrough-2026-09-26.md` |
+| **Read what was found, fixed and left open** | `exposure-awareness-mobile/docs/walkthrough-2026-09-26.md`, then `exposure-awareness-mobile/docs/qa-2026-10-02.md` |
 | **See the numbers behind it** | `outputs/verification-2026-09-26.txt`, `outputs/walkthrough-tables.md`, `outputs/a11y-walk-2026-09-26.txt` |
 | **Understand the app's design** | `exposure-awareness-mobile/README.md` |
 
@@ -28,7 +28,7 @@ TOX TOOL/
     src/screens/, src/components/
     src/sim/                     four simulated lives used to test the engine over twelve weeks
     scripts/                     sim runner and report, walkthrough tables, browser accessibility audit + walk, timezone matrix
-    docs/walkthrough-2026-09-26.md, docs/shipping.md
+    docs/walkthrough-2026-09-26.md, docs/shipping.md, docs/qa-2026-10-02.md
     .sim-out/                    the last simulation run: results per person, and each person's storage as a snapshot
     eas.json, public/            iOS/Android build profiles; privacy.html + robots.txt served alongside the web app
   exposure-awareness-backend/    optional Node + SQLite backend (evidence API, label OCR, integrations); off by default
@@ -53,7 +53,7 @@ In `exposure-awareness-mobile`:
 
 | | |
 |---|---|
-| `npm test` | 567 tests in 50 suites |
+| `npm test` | 572 tests in 51 suites |
 | `npm run typecheck` | TypeScript, strict |
 | `npm run tz` | the whole suite under seven timezones (the day boundary was once a real bug) |
 | `npm run sim` | four simulated people for 84 days each, then 79 checks on what the engine did |
@@ -62,20 +62,20 @@ In `exposure-awareness-mobile`:
 | `npm run web:build` | a static build into `dist/` |
 | `npm run snapshots` | serves a simulated person's storage and the audit scripts to the browser (see `scripts/snapshot-server.py`) |
 
-Backend: `cd exposure-awareness-backend && npm test` (28 tests). Python: `cd tox-exposure-tool && python3 -m pytest -q tests` (33 tests).
+Backend: `cd exposure-awareness-backend && npm test` (31 tests). Python: `cd tox-exposure-tool && python3 -m pytest -q tests` (33 tests).
 
 Needs Node 22.5 or newer (the backend uses `node:sqlite`; this was built on Node 24), npm, and Python 3 with pytest.
 
 ## Where things stand (2026-09-26)
 
-- Everything above passed on the 2026-09-26 build. On the calm-mode and big-stones branch (2026-09-28): 567 app tests, TypeScript clean, 79 of 79 checks on the simulated lives, the suite under Pacific/Kiritimati, and the Python data checks (database parity, plain summaries, scoring); the full timezone matrix and the backend/Python suites run in CI once the repo is on GitHub.
+- Everything above passed on the 2026-09-26 build, again on the 2026-09-28 calm-mode/big-stones launch build, and again in the 2026-10-02 QA/QC pass (security, engine stability, accessibility, usability, calibration, stickiness -- three real bugs found and fixed, see `qa-2026-10-02.md`): 572 app tests, TypeScript clean, 79 of 79 checks on the simulated lives with the big-stones content live, and the Python data checks (database parity, plain summaries, scoring). The full timezone matrix, and the backend/Python suites, run in CI on every push.
 - **Web only.** The app was built and verified as a web build at phone width. It has not been run on a phone or in a simulator: no camera scan, no push notification, no VoiceOver or TalkBack. Those are the most useful next things to test, and the walkthrough lists them.
 - **Local-first.** A fresh install makes no network requests. What can leave the device, and when, is listed under About you > What leaves this device, and in section 5 of the walkthrough.
 
 ## Publishing (Git, the live site, iOS and Android)
 
 This folder is a git repository (`main`, MIT-licensed) with CI already running on every push and pull request
-(`.github/workflows/ci.yml`: types, the 567 tests, the timezone matrix, the engine simulation, the backend, and the
+(`.github/workflows/ci.yml`: types, the 572 tests, the timezone matrix, the engine simulation, the backend, and the
 data pipeline). It isn't pushed anywhere yet, because that needs a destination only you can choose:
 
 ```bash

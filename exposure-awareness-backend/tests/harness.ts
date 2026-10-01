@@ -13,8 +13,10 @@ export async function startApp(name: string) {
   const { db } = await import("../src/db.ts");
   const { buildApiRouter } = await import("../src/routes.ts");
   const { generateApiKey } = await import("../src/auth.ts");
+  const { corsMiddleware } = await import("../src/cors.ts");
   const express = (await import("express")).default;
   const app = express();
+  app.use(corsMiddleware);
   app.use(express.json({ limit: "14mb" }));
   app.use("/v1", buildApiRouter());
   const apiKey = generateApiKey(name, "read,write");

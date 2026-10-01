@@ -11,7 +11,7 @@ intent — ported to a real, offline-first mobile app shell rather than a mockup
   Wins vs. Focus divergence test and the "acrylamide needs the exact phrase"
   matching-limits test.
 - **Typecheck clean**: `npx tsc --noEmit` passes with zero errors across the whole app.
-- **567 Jest tests pass** (`npm test`) across 50 suites: engine parity, journey/quest data
+- **572 Jest tests pass** (`npm test`) across 51 suites: engine parity, journey/quest data
   integrity, the ingredient engine, literacy, evidence, dates, free-text matching, the
   standing-exposure model, trend labels, the wellness score's signals and receipts, the places
   lens (catalog integrity, dated answers, household weighting), the recall questions (scheduling,
@@ -25,7 +25,9 @@ intent — ported to a real, offline-first mobile app shell rather than a mockup
   own advice and taking the recall questions, then the results are checked against 79 invariants. See below.
 - **A walkthrough of every pathway** from a fresh install to twelve weeks of use, with content, privacy,
   accessibility and learning checked and the findings fixed or listed:
-  [docs/walkthrough-2026-09-26.md](docs/walkthrough-2026-09-26.md). Its numbers come from `npm run sim`
+  [docs/walkthrough-2026-09-26.md](docs/walkthrough-2026-09-26.md), and a follow-up QA/QC pass (security, engine
+  stability, accessibility, usability, score calibration, calm-by-design/"stickiness"):
+  [docs/qa-2026-10-02.md](docs/qa-2026-10-02.md). Its numbers come from `npm run sim`
   (`npm run tables`) and from `scripts/a11y-audit.js` / `scripts/a11y-walk.js`, which run in the browser
   (`npm run snapshots` serves them, and a simulated person's storage, to it).
 - **Actually runs**: verified live via `npx expo start --web` multiple times across this
@@ -52,9 +54,9 @@ intent — ported to a real, offline-first mobile app shell rather than a mockup
 
 | Piece | Status |
 |---|---|
-| Engine: scoring, AQI, produce, achievements, quests, trends, the ingredient engine, places, the score's signals, recall, calm-mode defaults, big-stones ordering | **Built and tested** (567 tests; 79 checks on the simulated lives) |
+| Engine: scoring, AQI, produce, achievements, quests, trends, the ingredient engine, places, the score's signals, recall, calm-mode defaults, big-stones ordering | **Built and tested** (572 tests; 79 checks on the simulated lives) |
 | Local storage (AsyncStorage): every entry, the shelf, places, learning events, settings | **Working**; a copy can be exported and everything deleted under About you |
-| Screens: Dashboard, Daily (four steps), Weekly, Learn (Topics, Research, Engine, Concepts), Journey (hub, tutorial quests, roadmap), Score, Scan + product review + Shelf, Food, Sleep, Air, Biomarkers, Places, About you, Connected sources | **Working**, driven live in the browser at phone width; every one audited for accessibility ([walkthrough](docs/walkthrough-2026-09-26.md)) |
+| Screens: Dashboard, Daily (four steps), Weekly, Learn (Topics, Research, Engine, Concepts), Journey (hub, tutorial quests, roadmap), Score, Scan + product review + Shelf, Food, Sleep, Air, Biomarkers, Places, About you, Connected sources | **Working**, driven live in the browser at phone width; every one audited for accessibility twice ([walkthrough](docs/walkthrough-2026-09-26.md), [QA/QC pass](docs/qa-2026-10-02.md)) |
 | Barcode look-up (typed number), pasted label text | **Verified**. Camera scanning is implemented with `expo-camera` but needs a device camera to exercise; reading a label from a photo needs a backend the person runs |
 | Local notifications | **Web verified** (the embedded browser blocks the OS prompt, so both triggers were verified through the logged fallback). The native path (`expo-notifications`, scheduled daily check-in) is implemented against the SDK 57 docs and **not exercised on a device** here |
 | Native iOS/Android build (Simulator or device) | **Not built or run here** -- no Xcode/Android Studio in this environment, and none needed to *start* a build: `eas.json` is configured for cloud builds via EAS. See [docs/shipping.md](docs/shipping.md) |
@@ -68,7 +70,7 @@ intent — ported to a real, offline-first mobile app shell rather than a mockup
 ```bash
 cd exposure-awareness-mobile
 npm install
-npm test          # 567 Jest tests across 50 suites
+npm test          # 572 Jest tests across 51 suites
 npx tsc --noEmit  # typecheck
 npm run sim       # engine soak run: 4 simulated people x 12 weeks, report + 79 invariant checks
 npm run tables    # the "continued use" tables in the walkthrough, from the last sim run

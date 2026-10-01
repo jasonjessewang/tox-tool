@@ -3,7 +3,7 @@
  * the backend adds server-side OAuth (Strava, Google sign-in), which needs client secrets
  * that must never ship inside a mobile app. Config lives on-device only.
  */
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getSecureItem, setSecureItem } from "./secureStorage";
 
 const KEY = "exposure:backend_config";
 
@@ -12,14 +12,16 @@ export interface BackendConfig {
   apiKey: string;
 }
 
+/** On the OS keychain on iOS/Android, AsyncStorage on web -- see services/secureStorage.ts. The config holds a real
+ *  credential (the API key has write access to whatever backend is configured), unlike everything else this app stores. */
 export async function getBackendConfig(): Promise<BackendConfig | null> {
-  const raw = await AsyncStorage.getItem(KEY);
+  const raw = await getSecureItem(KEY);
   const c = raw ? (JSON.parse(raw) as BackendConfig) : null;
   return c?.baseUrl && c?.apiKey ? c : null;
 }
 
 export async function saveBackendConfig(c: BackendConfig): Promise<void> {
-  await AsyncStorage.setItem(KEY, JSON.stringify({ baseUrl: c.baseUrl.trim().replace(/\/+$/, ""), apiKey: c.apiKey.trim() }));
+  await setSecureItem(KEY, JSON.stringify({ baseUrl: c.baseUrl.trim().replace(/\/+$/, ""), apiKey: c.apiKey.trim() }));
 }
 
 export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {

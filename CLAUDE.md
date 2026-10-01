@@ -1,6 +1,6 @@
 # Exposure Awareness: how to work in this folder
 
-This is the shared workspace for the exposure-awareness project. Read this first; it is short on purpose. The design story is in `exposure-awareness-mobile/README.md`, and the latest full pass (what was found, fixed and left open) is `exposure-awareness-mobile/docs/walkthrough-2026-09-26.md`.
+This is the shared workspace for the exposure-awareness project. Read this first; it is short on purpose. The design story is in `exposure-awareness-mobile/README.md`; the first full pass (content, accessibility, aggregate use) is `exposure-awareness-mobile/docs/walkthrough-2026-09-26.md`; the latest, covering security, engine stability, usability and calm-by-design/"stickiness" specifically, is `exposure-awareness-mobile/docs/qa-2026-10-02.md`.
 
 ## What is here
 
@@ -34,7 +34,7 @@ In practice: work in long stretches, verify after every change (types, tests, an
 
 ## Commands
 
-In `exposure-awareness-mobile`: `npm test` (567 tests), `npm run typecheck`, `npm run tz` (seven timezones), `npm run sim` (79 checks), `npm run tables`, `npm run web`, `npm run snapshots`, `npm run web:build`. Backend `npm test` (28). Python `python3 -m pytest -q tests` (33). `.claude/launch.json` defines `expo-web` (dev server, port 8081) and `compiled-web` (the static build, port 8090) for the preview tools. (A session that was *moved* into this folder from somewhere else keeps its original directory for `preview_start {name}`: check `preview_list` for the `cwd` it runs from, and if it is not this folder, start the server here with Bash and open it with `preview_start {url}`.)
+In `exposure-awareness-mobile`: `npm test` (572 tests), `npm run typecheck`, `npm run tz` (seven timezones), `npm run sim` (79 checks), `npm run tables`, `npm run web`, `npm run snapshots`, `npm run web:build`. Backend `npm test` (31). Python `python3 -m pytest -q tests` (33). `.claude/launch.json` defines `expo-web` (dev server, port 8081) and `compiled-web` (the static build, port 8090) for the preview tools. (A session that was *moved* into this folder from somewhere else keeps its original directory for `preview_start {name}`: check `preview_list` for the `cwd` it runs from, and if it is not this folder, start the server here with Bash and open it with `preview_start {url}`. It can also lose the ability to spawn the preview tool's own dev-server process entirely -- `getcwd: cannot access parent directories` from `preview_logs` with no process actually listening -- with no fix from this end found yet; start the dev server directly with Bash instead and point the browser at it with `navigate`.)
 
 After engine, scoring or advice changes: `npm run sim` and check all invariants pass. After anything date-related: `npm run tz`.
 
@@ -48,6 +48,6 @@ After engine, scoring or advice changes: `npm run sim` and check all invariants 
 - **Jest** is capped at two workers in `package.json`: with one per core a worker segfaulted in about 1 full run in 12 (Node 24 + Jest 29). If it recurs, `npx jest --runInBand`.
 - **Web caveat.** React Native Web maps `accessibilityRole`/`accessibilityLabel` but not `accessibilityState`: use `aria-checked`, `aria-selected`, `aria-expanded` alongside.
 
-## Open items (from the walkthrough)
+## Open items (from the walkthrough and the QA/QC pass)
 
-No real VoiceOver/TalkBack or device testing; native build, camera scan and push notifications not run; a top recommendation nobody answers stays #1 for weeks; recall questions are multiple-choice only; weak citations for SLS, formaldehyde releasers, siloxanes and talc; the Places comparisons for well water, carbon monoxide and work exposures use the app's curated guidance until the authorities' pages are re-read; the Python prototype has no score signals, places or recall.
+No real VoiceOver/TalkBack or device testing; native build, camera scan and push notifications not run; a top recommendation nobody answers stays #1 for weeks; recall questions are multiple-choice only; weak citations for SLS, formaldehyde releasers, siloxanes and talc; the Places comparisons for well water, carbon monoxide and work exposures use the app's curated guidance until the authorities' pages are re-read; the Python prototype has no score signals, places or recall. From the 2026-10-02 QA pass: the Journey hub/Dashboard's Tutorial/Explore/Mastery fraction badges ("11/11" etc.) pass calm-mode's own test but have a faint gamified visual shape worth the owner's own look (see qa-2026-10-02.md §5); one backend OCR test ran ~100s once (passed; plausibly this session's own concurrent load, not investigated further).
