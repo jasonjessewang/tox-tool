@@ -5,6 +5,7 @@ import { ComparisonRow } from "./ComparisonRow";
 import { colors, radius } from "../theme";
 import { useContentComplexity } from "../util/complexity";
 import type { Receipt } from "../engine/receipts";
+import { tr } from "../i18n";
 
 /**
  * What every recorded activity comes back with: how it compares. The headline is always visible; the comparisons behind
@@ -17,24 +18,24 @@ export function ReceiptCard({ receipt }: { receipt: Receipt }) {
     <View style={styles.card}>
       <Text accessibilityRole="alert" style={styles.headline}>{receipt.headline}</Text>
       {receipt.unscored ? (
-        <Text style={styles.note}>{receipt.unscored}</Text>
+        <Text style={styles.note}>{tr(receipt.unscored)}</Text>
       ) : (
         <>
           {receipt.lines.map((line) => (
             <Text key={line.key} style={styles.line}>
               {line.headline}
-              {line.vsBefore && line.vsBefore.change !== 0 ? ` (${line.vsBefore.change > 0 ? "+" : ""}${line.vsBefore.change} against ${line.vsBefore.window} ago)` : ""}
+              {line.vsBefore && line.vsBefore.change !== 0 ? tr(" ({change} against {window} ago)", { change: `${line.vsBefore.change > 0 ? "+" : ""}${line.vsBefore.change}`, window: tr(line.vsBefore.window) }) : ""}
             </Text>
           ))}
           <Text style={styles.coverage}>
-            Picture filled in: {score.coverageBefore}% {"→"} {score.coverageAfter}%
+            {tr("Picture filled in: {coverageBefore}% → {coverageAfter}%", { coverageBefore: score.coverageBefore, coverageAfter: score.coverageAfter })}
           </Text>
           {receipt.lines.length > 0 && (
             <View style={{ marginTop: 8 }}>
-              <Collapsible title="How this compares" teaser="What it was measured against" defaultOpen={level === "technical"}>
+              <Collapsible title={tr("How this compares")} teaser={tr("What it was measured against")} defaultOpen={level === "technical"}>
                 {receipt.lines.map((line) => (
                   <View key={line.key} style={{ marginBottom: 4 }}>
-                    <Text style={styles.partTitle}>{line.label}</Text>
+                    <Text style={styles.partTitle}>{tr(line.label)}</Text>
                     {line.parts.map((p) => (
                       <ComparisonRow key={p.label} part={p} />
                     ))}

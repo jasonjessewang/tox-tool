@@ -1,13 +1,16 @@
 import * as db from "../storage/db";
-import { LESSONS, curriculumRef } from "../data/curriculum";
+import { curriculumRef } from "../data/curriculum";
+import { ALL_LESSONS } from "../data/modules";
+import { ALL_CHECKS } from "../data/conceptChecks";
 import { attemptsFrom, checkRef, nextChecks, recallSummary, type CheckAttempt, type Recall } from "./learningChecks";
 import { runActivity, type Receipt } from "./receipts";
 import { localISODate } from "../util/dates";
 
 export interface RecallState {
-  /** lessons the person has read ("Got it") */
+  /** lessons the person has read ("Got it"), core and elective */
   readLessons: Set<string>;
   attempts: CheckAttempt[];
+  /** every question on the lessons read, core and elective -- what the screens show (the score counts its own way) */
   recall: Recall;
   /** the questions worth asking next: due ones first, then unanswered ones on lessons already read */
   next: ReturnType<typeof nextChecks>;
@@ -18,13 +21,13 @@ export interface RecallState {
 export async function getRecallState(now: Date = new Date(), limit = 3): Promise<RecallState> {
   const events = await db.getLearningEvents();
   const refs = new Set(events.map((e) => e.ref));
-  const readLessons = new Set(LESSONS.filter((l) => refs.has(curriculumRef(l.id))).map((l) => l.id));
+  const readLessons = new Set(ALL_LESSONS.filter((l) => refs.has(curriculumRef(l.id))).map((l) => l.id));
   const attempts = attemptsFrom(events);
   const today = localISODate(now);
   return {
     readLessons,
     attempts,
-    recall: recallSummary(readLessons, attempts, today),
+    recall: recallSummary(readLessons, attempts, today, ALL_CHECKS),
     next: nextChecks(readLessons, attempts, today, limit),
     answeredToday: attempts.some((a) => a.day === today),
   };

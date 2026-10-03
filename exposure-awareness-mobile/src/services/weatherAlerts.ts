@@ -20,22 +20,22 @@ export interface WeatherAlert {
 }
 
 const SIGNIFICANT_EVENT_KEYWORDS = [
-  "air quality",
-  "red flag",
-  "fire weather",
-  "smoke",
-  "excessive heat",
-  "extreme heat",
-  "heat advisory",
-  "winter storm",
-  "ice storm",
-  "extreme cold",
-  "wind chill",
-  "hurricane",
-  "tropical storm",
-  "tornado",
-  "flash flood",
-  "flood warning",
+  "air quality", // i18n-ignore: matched against the National Weather Service's English event names
+  "red flag", // i18n-ignore: matched against the National Weather Service's English event names
+  "fire weather", // i18n-ignore: matched against the National Weather Service's English event names
+  "smoke", // i18n-ignore: matched against the National Weather Service's English event names
+  "excessive heat", // i18n-ignore: matched against the National Weather Service's English event names
+  "extreme heat", // i18n-ignore: matched against the National Weather Service's English event names
+  "heat advisory", // i18n-ignore: matched against the National Weather Service's English event names
+  "winter storm", // i18n-ignore: matched against the National Weather Service's English event names
+  "ice storm", // i18n-ignore: matched against the National Weather Service's English event names
+  "extreme cold", // i18n-ignore: matched against the National Weather Service's English event names
+  "wind chill", // i18n-ignore: matched against the National Weather Service's English event names
+  "hurricane", // i18n-ignore: matched against the National Weather Service's English event names
+  "tropical storm", // i18n-ignore: matched against the National Weather Service's English event names
+  "tornado", // i18n-ignore: matched against the National Weather Service's English event names
+  "flash flood", // i18n-ignore: matched against the National Weather Service's English event names
+  "flood warning", // i18n-ignore: matched against the National Weather Service's English event names
 ];
 
 function isSignificant(event: string): boolean {
@@ -47,7 +47,7 @@ export async function fetchSignificantAlerts(coords: { latitude: number; longitu
   const url = `https://api.weather.gov/alerts/active?point=${coords.latitude},${coords.longitude}`;
   try {
     const res = await fetch(url, {
-      headers: { "User-Agent": "exposure-awareness-mobile/1.0 (local personal-use app, no server)" },
+      headers: { "User-Agent": "exposure-awareness-mobile/1.0 (local personal-use app, no server)" }, // i18n-ignore
     });
     if (!res.ok) return [];
     const data = await res.json();

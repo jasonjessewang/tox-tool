@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet, useWindowDimensions } from "react-native";
 import { colors, radius, shadow } from "../../theme";
+import { tr } from "../../i18n";
 
-export function ToolHeader({ title, blurb, onBack, backLabel = "Engine" }: { title: string; blurb: string; onBack: () => void; backLabel?: string }) {
+export function ToolHeader({ title, blurb, onBack, backLabel = tr("Engine") }: { title: string; blurb: string; onBack: () => void; backLabel?: string }) {
   return (
     <View style={{ marginBottom: 14 }}>
       <Pressable accessibilityRole="button" onPress={onBack} hitSlop={8} style={{ marginBottom: 12, paddingVertical: 8 }}>
@@ -19,7 +20,7 @@ export function ChipRow<T extends string | number>({ options, value, onChange, f
     <View style={styles.chipRow}>
       {options.map((o) => (
         <Pressable accessibilityRole="radio" key={String(o)} onPress={() => onChange(o)} aria-checked={!!(value === o)} style={[styles.chip, value === o && styles.chipOn]}>
-          <Text style={[styles.chipText, value === o && { color: "#fff" }]}>{format ? format(o) : String(o)}</Text>
+          <Text style={[styles.chipText, value === o && { color: colors.onAccent }]}>{format ? format(o) : String(o)}</Text>
         </Pressable>
       ))}
     </View>
@@ -52,7 +53,7 @@ export function PeopleArray({ baseline, extra, total = 1000 }: { baseline: numbe
                 width: size,
                 height: size,
                 borderRadius: 2,
-                backgroundColor: isBase ? "#8b8b8b" : isExtra ? "#e07b00" : "#d9d4c5",
+                backgroundColor: isBase ? colors.vizNeutral : isExtra ? colors.vizAmber : colors.vizMuted,
                 transform: isExtra ? [{ scale: 1.8 }] : undefined,
                 zIndex: isExtra ? 2 : 0,
               }}
@@ -61,10 +62,10 @@ export function PeopleArray({ baseline, extra, total = 1000 }: { baseline: numbe
         })}
       </View>
       <View style={styles.legend}>
-        <View style={[styles.legendDot, { backgroundColor: "#8b8b8b" }]} />
-        <Text style={styles.legendText}>would happen anyway</Text>
-        <View style={[styles.legendDot, { backgroundColor: "#e07b00", marginLeft: 14 }]} />
-        <Text style={styles.legendText}>extra from the exposure</Text>
+        <View style={[styles.legendDot, { backgroundColor: colors.vizNeutral }]} />
+        <Text style={styles.legendText}>{tr("would happen anyway")}</Text>
+        <View style={[styles.legendDot, { backgroundColor: colors.vizAmber, marginLeft: 14 }]} />
+        <Text style={styles.legendText}>{tr("extra from the exposure")}</Text>
       </View>
     </View>
   );
@@ -77,14 +78,14 @@ const styles = StyleSheet.create({
   h1: { fontSize: 24, fontWeight: "700", color: colors.ink },
   blurb: { fontSize: 14, color: colors.muted, lineHeight: 21, marginTop: 6 },
   chipRow: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
-  chip: { borderWidth: 1, borderColor: colors.line, borderRadius: 999, paddingVertical: 8, paddingHorizontal: 14, backgroundColor: "#fff" },
-  chipOn: { backgroundColor: colors.accent, borderColor: colors.accent },
+  chip: { borderWidth: 1, borderColor: colors.line, borderRadius: 999, paddingVertical: 8, paddingHorizontal: 14, backgroundColor: colors.surface },
+  chipOn: { backgroundColor: colors.accentFill, borderColor: colors.accentFill },
   chipText: { fontSize: 13, color: colors.ink, fontWeight: "600" },
   label: { fontSize: 12, fontWeight: "700", color: colors.muted, textTransform: "uppercase", marginTop: 18, marginBottom: 8 },
   dots: { flexDirection: "row", flexWrap: "wrap", gap: 2, marginTop: 4 },
-  dot: { aspectRatio: 1, borderRadius: 3, backgroundColor: "#d9d4c5" },
-  dotBase: { backgroundColor: "#8b8b8b" },
-  dotExtra: { backgroundColor: "#e07b00", transform: [{ scale: 1.9 }], zIndex: 2 },
+  dot: { aspectRatio: 1, borderRadius: 3, backgroundColor: colors.vizMuted },
+  dotBase: { backgroundColor: colors.vizNeutral },
+  dotExtra: { backgroundColor: colors.vizAmber, transform: [{ scale: 1.9 }], zIndex: 2 },
   legend: { flexDirection: "row", alignItems: "center", marginTop: 10 },
   legendDot: { width: 10, height: 10, borderRadius: 3 },
   legendText: { fontSize: 12, color: colors.muted, marginLeft: 5 },

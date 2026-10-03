@@ -81,7 +81,8 @@
         "hepatic_metabolism",
         "renal_clearance",
         "endocrine_disruption",
-        "aggregate_exposure"
+        "aggregate_exposure",
+        "dermal_absorption"
       ],
       "technical_note": "Parabens are rapidly hydrolyzed by esterases in skin and liver to para-hydroxybenzoic acid, then conjugated and excreted in urine within hours \u2014 they do not meaningfully bioaccumulate. Their estrogen-receptor binding is several orders of magnitude weaker than estradiol; the more relevant concern is aggregate exposure across the many products a person uses in one day, not any single application.",
       "known_regrettable_substitutes": [
@@ -166,7 +167,8 @@
         "renal_clearance",
         "endocrine_disruption",
         "aggregate_exposure",
-        "dose_response"
+        "dose_response",
+        "dermal_absorption"
       ],
       "technical_note": "Phthalates are rapidly metabolized (hepatic hydrolysis to monoester metabolites, then glucuronidation) and cleared renally with urinary half-lives of hours \u2014 which is why biomonitoring studies use spot urine samples: they reflect very recent exposure, not a stored body burden. Because clearance is fast, same-day aggregate exposure (fragrance across several products at once) matters more than any one product in isolation.",
       "summary_plain": "Chemicals that make plastic flexible and help scent last. They can hide behind the word 'fragrance' on a label. Research links some of them to effects on hormones, and several groups rate them a higher concern than parabens."
@@ -769,7 +771,8 @@
       "action_impact": "medium",
       "concept_tags": [
         "dose_response",
-        "hepatic_metabolism"
+        "hepatic_metabolism",
+        "carcinogen_classification"
       ],
       "technical_note": "The concern pathway is nitrite reacting with amines/amides from protein at high heat (or under acidic gastric conditions) to form N-nitroso compounds, which then require hepatic bioactivation (largely CYP-mediated) to become DNA-reactive. This is mechanistically why the vitamin-C mitigation tip works: ascorbate competes for the nitrosation reaction itself, blocking formation before metabolism is even relevant.",
       "summary_plain": "Used to cure bacon, sausage and deli meat. When heated to high temperatures, especially with protein, it can form nitrosamines, which are probable cancer-causing substances. The cancer agency IARC puts processed meat in Group 1, which describes how strong the evidence is, not how big the effect is. Nitrite is one proposed reason."
@@ -1412,7 +1415,8 @@
       "action_impact": "low",
       "concept_tags": [
         "renal_clearance",
-        "dose_response"
+        "dose_response",
+        "dermal_absorption"
       ],
       "technical_note": "Only a small fraction of topically applied aluminum salts penetrates intact skin; what's absorbed is renally cleared like other aluminum compounds. Most people's larger absorbed dose is actually dietary (aluminum-containing food additives, cookware, antacids), part of why epidemiological evidence hasn't supported antiperspirant use specifically as a meaningful driver of health outcomes.",
       "summary_plain": "Aluminum salts block sweat glands in antiperspirants. People often raise a link to breast cancer, but the larger body of research has not supported it so far, and studies continue. Skin irritation is the better-established concern, especially on freshly shaved skin."
@@ -1550,7 +1554,8 @@
       "action_effort": "low",
       "action_impact": "low",
       "concept_tags": [
-        "dose_response"
+        "dose_response",
+        "dermal_absorption"
       ],
       "technical_note": "The NTP finding was specifically a photocarcinogenesis interaction \u2014 accelerated tumor development under simultaneous intense UV exposure in mice \u2014 not a standalone toxicity finding. That's mechanistically why the concern is specific to UV-exposed daytime/sunscreen use rather than nighttime retinoid skincare, which has no UV co-exposure.",
       "summary_plain": "A form of vitamin A added to some sunscreens and moisturizers. A US National Toxicology Program study in mice found skin tumors appeared faster when it was combined with strong UV light. This has not been confirmed in people, and regulators have not restricted it, but it is why some sunscreen guides suggest checking for it in daily-wear products."
@@ -1622,7 +1627,8 @@
       "action_impact": "low",
       "concept_tags": [
         "hepatic_metabolism",
-        "dose_response"
+        "dose_response",
+        "dermal_absorption"
       ],
       "technical_note": "Triclosan is absorbed through skin/mucosa and hepatically glucuronidated/sulfated for renal and biliary excretion. The FDA's 2016/2017 action was driven less by a specific toxicity finding than by manufacturers failing to demonstrate it worked better than plain soap, combined with theoretical antibiotic-resistance-selection concerns from routine low-level exposure.",
       "summary_plain": "An antibacterial ingredient once common in liquid hand soap. In 2016-2017 the US FDA banned it, with 18 other antibacterial ingredients, from over-the-counter wash products. There was not enough evidence that it works better than plain soap, and there were questions about hormone effects and antibiotic resistance. It can still turn up in some toothpaste and cosmetics."
@@ -1681,7 +1687,8 @@
       "action_impact": "high",
       "concept_tags": [
         "alpha_radiation",
-        "dose_response"
+        "dose_response",
+        "carcinogen_classification"
       ],
       "technical_note": "See the alpha-radiation concept above \u2014 radon's decay products deposit in the bronchial epithelium and emit short-range, high-energy alpha radiation there, which is mechanistically why inhalation (not ingestion, e.g. from well water) dominates its lung cancer risk, and why it's a fundamentally different hazard type than any chemical entry in this database.",
       "pubmed_anchors": [
@@ -1842,7 +1849,8 @@
       "action_impact": "medium",
       "concept_tags": [
         "particle_deposition",
-        "aggregate_exposure"
+        "aggregate_exposure",
+        "carcinogen_classification"
       ],
       "technical_note": "See the particle-deposition concept above \u2014 PM2.5's alveolar penetration is precisely why it's treated as higher-concern than PM10 despite PM10 being the more 'visible' pollutant; alveolar-deposited particles are also positioned to cross into systemic circulation more readily than particles cleared by the upper-airway mucociliary escalator.",
       "pubmed_anchors": [
@@ -2647,7 +2655,8 @@
       "action_impact": "low",
       "concept_tags": [
         "hepatic_metabolism",
-        "renal_clearance"
+        "renal_clearance",
+        "dermal_absorption"
       ],
       "technical_note": "Phenoxyethanol is metabolized primarily via hepatic alcohol/aldehyde dehydrogenase to phenoxyacetic acid and excreted in urine, without the estrogen-receptor activity that concerns researchers about parabens or bisphenols -- a genuinely different toxicological profile, not just a differently-named version of the same concern. A 2020 review (Nowak et al., Environmental Research) surveying paraben-alternative preservatives (phenoxyethanol, formaldehyde-releasers, triclosan, isothiazolinones) found each carries its own adverse-effect profile; none is a simple like-for-like safety upgrade.",
       "regrettable_substitute_for": [
@@ -2755,7 +2764,8 @@
       "concept_tags": [
         "particle_deposition",
         "aggregate_exposure",
-        "dose_response"
+        "dose_response",
+        "carcinogen_classification"
       ],
       "technical_note": "Second-hand smoke is a mixture exposure: fine and ultrafine particles deposit deep in the airways (see particle deposition), while semi-volatile constituents sorb to indoor surfaces and re-emit later as 'thirdhand' residue, which is why smoke-free rules work where ventilation does not. In the 2024 never-smoker meta-analysis, risk rose with duration, intensity and pack-years, and the setting-specific estimates (home 1.20, workplace 1.38) show the same agent behaving consistently across exposure contexts, the pattern that supports a causal reading.",
       "pubmed_anchors": [
@@ -2836,7 +2846,8 @@
       "action_impact": "high",
       "concept_tags": [
         "hepatic_metabolism",
-        "dose_response"
+        "dose_response",
+        "carcinogen_classification"
       ],
       "technical_note": "Ethanol is oxidized by alcohol dehydrogenase and CYP2E1 to acetaldehyde, then by ALDH2 to acetate. A common ALDH2 variant, frequent in East Asian populations, slows that second step, so acetaldehyde builds up (the flushing response) and the upper-digestive cancer risk per drink is higher: a clear example of how inherited differences in metabolic enzymes change the dose that actually reaches tissue.",
       "pubmed_anchors": [

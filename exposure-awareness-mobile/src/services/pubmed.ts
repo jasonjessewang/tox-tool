@@ -13,16 +13,16 @@ const CACHE_KEY = "exposure:literature_cache";
 const DAY_MS = 86400000;
 const BASE = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/";
 
-const TOPICS: { label: string; term: string }[] = [
-  { label: "Microplastics", term: "microplastic*[ti] AND (human*[ti] OR health[ti] OR exposure[ti])" },
-  { label: "PFAS", term: "(PFAS[ti] OR polyfluoroalkyl[ti])" },
-  { label: "Exposome", term: "exposome[ti]" },
-  { label: "Air pollution", term: '"air pollution"[ti] AND health[ti]' },
-  { label: "Endocrine disruptors", term: "phthalate*[ti]" },
-  { label: "Toxicokinetics", term: "toxicokinetic*[ti]" },
-  { label: "Indoor air", term: '"indoor air"[ti]' },
-  { label: "Aggregate exposure", term: '"aggregate exposure"[ti]' },
-  { label: "Nature / Science", term: '(Nature[ta] OR Science[ta] OR Nat Commun[ta]) AND (toxic*[ti] OR pollution[ti] OR "human exposure"[ti] OR "chemical exposure"[ti])' },
+const TOPICS: { label: string; term: string }[] = [ // i18n-ignore: a PubMed query
+  { label: "Microplastics", term: "microplastic*[ti] AND (human*[ti] OR health[ti] OR exposure[ti])" }, // i18n-ignore: a PubMed query
+  { label: "PFAS", term: "(PFAS[ti] OR polyfluoroalkyl[ti])" }, // i18n-ignore: a PubMed query
+  { label: "Exposome", term: "exposome[ti]" }, // i18n-ignore: a PubMed query
+  { label: "Air pollution", term: '"air pollution"[ti] AND health[ti]' }, // i18n-ignore: a PubMed query
+  { label: "Endocrine disruptors", term: "phthalate*[ti]" }, // i18n-ignore: a PubMed query
+  { label: "Toxicokinetics", term: "toxicokinetic*[ti]" }, // i18n-ignore: a PubMed query
+  { label: "Indoor air", term: '"indoor air"[ti]' }, // i18n-ignore: a PubMed query
+  { label: "Aggregate exposure", term: '"aggregate exposure"[ti]' }, // i18n-ignore: a PubMed query
+  { label: "Nature / Science", term: '(Nature[ta] OR Science[ta] OR Nat Commun[ta]) AND (toxic*[ti] OR pollution[ti] OR "human exposure"[ti] OR "chemical exposure"[ti])' }, // i18n-ignore: a PubMed query
 ];
 
 export function cleanTitle(raw: string): string {

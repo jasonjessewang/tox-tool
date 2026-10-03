@@ -4,6 +4,7 @@ import { computeRisk, translate, questionsForCareTeam, formatPerThousand } from 
 import { PrimaryButton, SecondaryButton } from "../../components/ui";
 import { ToolHeader, ChipRow, Label, PeopleArray, cardStyle } from "./viz";
 import { colors } from "../../theme";
+import { tr } from "../../i18n";
 
 const BASELINES = [100000, 10000, 1000, 100, 10];
 const RRS = [1.1, 1.5, 2, 5, 10];
@@ -17,44 +18,44 @@ export default function RiskTranslator({ onBack }: { onBack: () => void }) {
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16, paddingTop: 20 }}>
-      <ToolHeader title="Risk translator" blurb="Headlines give the ratio. This shows the real numbers -- try the 10-times example, then change the starting risk." onBack={onBack} />
+      <ToolHeader title={tr("Risk translator")} blurb={tr("Headlines give the ratio. This shows the real numbers -- try the 10-times example, then change the starting risk.")} onBack={onBack} />
 
-      <Label>Starting (baseline) risk -- illustrative</Label>
-      <ChipRow options={BASELINES} value={oneIn} onChange={setOneIn} format={(n) => `1 in ${n.toLocaleString("en-US")}`} />
-      <Label>The headline says the risk is multiplied by</Label>
+      <Label>{tr("Starting (baseline) risk -- illustrative")}</Label>
+      <ChipRow options={BASELINES} value={oneIn} onChange={setOneIn} format={(n) => tr("1 in {n}", { n: n.toLocaleString("en-US") })} />
+      <Label>{tr("The headline says the risk is multiplied by")}</Label>
       <ChipRow options={RRS} value={rr} onChange={setRr} format={(n) => `${n}×`} />
 
-      <View style={[cardStyle, { borderColor: "#e3c9a4", backgroundColor: "#fbf3e6" }]}>
-        <Text style={styles.kicker}>THE HEADLINE</Text>
-        <Text style={styles.headline}>{t.headline}</Text>
+      <View style={[cardStyle, { borderColor: colors.highlightLine, backgroundColor: colors.highlight }]}>
+        <Text style={styles.kicker}>{tr("THE HEADLINE")}</Text>
+        <Text style={styles.headline}>{tr(t.headline)}</Text>
       </View>
       <View style={[cardStyle, { borderColor: colors.accent }]}>
-        <Text style={[styles.kicker, { color: colors.accent }]}>IN REAL NUMBERS</Text>
-        <Text style={styles.honest}>{t.honest}</Text>
-        {r.numberNeededToHarm && <Text style={styles.small}>About {r.numberNeededToHarm.toLocaleString("en-US")} people would need the exposure for one extra case.</Text>}
-        {r.capped && <Text style={styles.small}>Risk can't exceed 100%, so this combination is capped.</Text>}
+        <Text style={[styles.kicker, { color: colors.accent }]}>{tr("IN REAL NUMBERS")}</Text>
+        <Text style={styles.honest}>{tr(t.honest)}</Text>
+        {r.numberNeededToHarm && <Text style={styles.small}>{tr("About {n} people would need the exposure for one extra case.", { n: r.numberNeededToHarm.toLocaleString("en-US") })}</Text>}
+        {r.capped && <Text style={styles.small}>{tr("Risk can't exceed 100%, so this combination is capped.")}</Text>}
       </View>
 
       <View style={cardStyle}>
-        <Text style={styles.kicker}>OUT OF 1,000 PEOPLE</Text>
+        <Text style={styles.kicker}>{tr("OUT OF 1,000 PEOPLE")}</Text>
         <PeopleArray baseline={r.perThousandBaseline} extra={r.perThousandExtra} />
         <Text style={styles.small}>
-          Baseline {formatPerThousand(r.perThousandBaseline)} {"→"} {formatPerThousand(r.perThousandExposed)} per 1,000. Fractions of a person don't show as dots.
+          {tr("Baseline {baseline} → {exposed} per 1,000. Fractions of a person don't show as dots.", { baseline: formatPerThousand(r.perThousandBaseline), exposed: formatPerThousand(r.perThousandExposed) })}
         </Text>
       </View>
 
       <View style={cardStyle}>
-        <Text style={styles.kicker}>BRING IT TO YOUR CARE TEAM</Text>
-        <Text style={styles.small}>Questions worth asking about any risk statistic -- filled in with the numbers above.</Text>
+        <Text style={styles.kicker}>{tr("BRING IT TO YOUR CARE TEAM")}</Text>
+        <Text style={styles.small}>{tr("Questions worth asking about any risk statistic -- filled in with the numbers above.")}</Text>
         {questions.map((q, i) => (
-          <Text key={i} style={styles.q}>{i + 1}. {q}</Text>
+          <Text key={i} style={styles.q}>{i + 1}. {tr(q)}</Text>
         ))}
         <View style={{ marginTop: 14 }}>
-          <SecondaryButton title="Share these questions" onPress={() => Share.share({ message: `Questions to ask about a health statistic:\n\n${questions.map((q, i) => `${i + 1}. ${q}`).join("\n")}` })} />
+          <SecondaryButton title={tr("Share these questions")} onPress={() => Share.share({ message: `${tr("Questions to ask about a health statistic:")}\n\n${questions.map((q, i) => `${i + 1}. ${tr(q)}`).join("\n")}` })} />
         </View>
       </View>
 
-      <Text style={styles.disclaimer}>These are teaching numbers, not real baselines. Real baselines depend on age, sex and history -- your clinician can tell you yours. This is education, not medical advice.</Text>
+      <Text style={styles.disclaimer}>{tr("These are teaching numbers, not real baselines. Real baselines depend on age, sex and history -- your clinician can tell you yours. This is education, not medical advice.")}</Text>
     </ScrollView>
   );
 }

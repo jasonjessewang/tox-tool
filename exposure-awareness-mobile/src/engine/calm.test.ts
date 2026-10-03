@@ -5,7 +5,7 @@
  */
 import * as fs from "fs";
 import * as path from "path";
-import { CALM_DEFAULTS, learningMomentsOn } from "./calm";
+import { CALM_DEFAULTS, learningMomentsOn, airQualityNotificationsOn } from "./calm";
 import { computePlant } from "./plant";
 
 const ROOT = path.join(__dirname, "..", "..");
@@ -33,6 +33,14 @@ describe("defaults are quiet until the person chooses otherwise", () => {
     expect(learningMomentsOn({})).toBe(false);
     expect(learningMomentsOn({ learningMoments: false })).toBe(false);
     expect(learningMomentsOn({ learningMoments: true })).toBe(true);
+  });
+
+  test("air quality / weather-alert notifications start off; absent means off", () => {
+    expect(CALM_DEFAULTS.airQualityNotifications).toBe(false);
+    expect(airQualityNotificationsOn(null)).toBe(false);
+    expect(airQualityNotificationsOn({})).toBe(false);
+    expect(airQualityNotificationsOn({ airQualityNotifications: false })).toBe(false);
+    expect(airQualityNotificationsOn({ airQualityNotifications: true })).toBe(true);
   });
 });
 

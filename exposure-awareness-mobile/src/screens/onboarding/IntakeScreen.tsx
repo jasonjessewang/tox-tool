@@ -3,13 +3,15 @@ import { ScrollView, View, Text, TextInput, Pressable, StyleSheet } from "react-
 import { PrimaryButton, Card } from "../../components/ui";
 import { colors, radiusSm } from "../../theme";
 import type { UserProfile, Condition } from "../../engine/types";
+import { msg, tr, resolveLanguage, setLanguage, type LanguagePreference } from "../../i18n";
+import { LanguagePicker, languageChoiceOffered } from "../../components/LanguagePicker";
 
 const CONDITIONS: { key: Condition; label: string }[] = [
-  { key: "asthma", label: "Asthma / respiratory" },
-  { key: "kidney", label: "Kidney condition" },
-  { key: "liver", label: "Liver condition" },
-  { key: "immunocompromised", label: "Immunocompromised" },
-  { key: "fragrance_sensitivity", label: "Fragrance/chemical sensitivity" },
+  { key: "asthma", label: msg("Asthma / respiratory") },
+  { key: "kidney", label: msg("Kidney condition") },
+  { key: "liver", label: msg("Liver condition") },
+  { key: "immunocompromised", label: msg("Immunocompromised") },
+  { key: "fragrance_sensitivity", label: msg("Fragrance/chemical sensitivity") },
 ];
 
 function Chip({ label, active, onPress, single = false }: { label: string; active: boolean; onPress: () => void; single?: boolean }) {
@@ -23,7 +25,7 @@ function Chip({ label, active, onPress, single = false }: { label: string; activ
 export default function IntakeScreen({
   initial,
   onContinue,
-  continueLabel = "Continue",
+  continueLabel = tr("Continue"),
   extraSection,
 }: {
   initial: Partial<UserProfile> | null;
@@ -41,6 +43,9 @@ export default function IntakeScreen({
   const [breastfeeding, setBreastfeeding] = useState(initial?.breastfeeding ?? false);
   const [conditions, setConditions] = useState<Condition[]>(initial?.conditions ?? []);
   const [noneConditions, setNoneConditions] = useState(false);
+  // first run only: under About you the language has its own card, saved the moment it changes
+  const firstRun = initial === null;
+  const [language, setLanguagePref] = useState<LanguagePreference>("system");
 
   function toggleCondition(key: Condition) {
     setNoneConditions(false);
@@ -64,75 +69,85 @@ export default function IntakeScreen({
       pregnant,
       breastfeeding,
       conditions,
+      ...(firstRun ? { language } : {}),
     });
+  }
+
+  function chooseLanguage(next: LanguagePreference) {
+    setLanguagePref(next);
+    setLanguage(resolveLanguage(next));
   }
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16 }}>
-      <Text accessibilityRole="header" style={styles.h1}>A few quick things</Text>
+      {firstRun && languageChoiceOffered() && (
+        <View style={{ marginBottom: 14 }}>
+          <Text style={[styles.label, { marginTop: 0 }]}>{"🌐"} {tr("Language")}</Text>
+          <LanguagePicker value={language} onChange={chooseLanguage} />
+        </View>
+      )}
+      <Text accessibilityRole="header" style={styles.h1}>{tr("A few quick things")}</Text>
       <Text style={styles.subtitle}>
-        Helps tailor which flagged items matter more for you specifically -- e.g. kidney/liver conditions,
-        pregnancy, and age all change which exposures are worth extra attention. Everything here is optional
-        and stored only on this device.
+        {tr("Helps tailor which flagged items matter more for you specifically -- e.g. kidney/liver conditions, pregnancy, and age all change which exposures are worth extra attention. Everything here is optional and stored only on this device.")}
       </Text>
 
       <Card>
-        <Text style={styles.label}>Age</Text>
-        <TextInput style={styles.input} value={age} onChangeText={setAge} accessibilityLabel="Age in years" placeholder="e.g. 34" keyboardType="number-pad" />
+        <Text style={styles.label}>{tr("Age")}</Text>
+        <TextInput style={styles.input} value={age} onChangeText={setAge} accessibilityLabel={tr("Age in years")} placeholder={tr("e.g. 34")} keyboardType="number-pad" />
 
-        <Text style={styles.label}>Sex (for physiological reference ranges)</Text>
+        <Text style={styles.label}>{tr("Sex (for physiological reference ranges)")}</Text>
         <View style={styles.rowWrap}>
-          <Chip single label="Female" active={sex === "female"} onPress={() => setSex("female")} />
-          <Chip single label="Male" active={sex === "male"} onPress={() => setSex("male")} />
-          <Chip single label="Prefer not to say" active={sex === "unspecified"} onPress={() => setSex("unspecified")} />
+          <Chip single label={tr("Female")} active={sex === "female"} onPress={() => setSex("female")} />
+          <Chip single label={tr("Male")} active={sex === "male"} onPress={() => setSex("male")} />
+          <Chip single label={tr("Prefer not to say")} active={sex === "unspecified"} onPress={() => setSex("unspecified")} />
         </View>
 
-        <Text style={styles.label}>Weight</Text>
+        <Text style={styles.label}>{tr("Weight")}</Text>
         <View style={styles.rowInline}>
           <TextInput
             style={[styles.input, { flex: 1 }]}
-            accessibilityLabel="Weight"
+            accessibilityLabel={tr("Weight")}
             value={weight}
             onChangeText={setWeight}
-            placeholder={weightUnit === "kg" ? "e.g. 70" : "e.g. 155"}
+            placeholder={weightUnit === "kg" ? tr("e.g. 70") : tr("e.g. 155")}
             keyboardType="decimal-pad"
           />
-          <Chip single label="kg" active={weightUnit === "kg"} onPress={() => setWeightUnit("kg")} />
-          <Chip single label="lb" active={weightUnit === "lb"} onPress={() => setWeightUnit("lb")} />
+          <Chip single label={tr("kg")} active={weightUnit === "kg"} onPress={() => setWeightUnit("kg")} />
+          <Chip single label={tr("lb")} active={weightUnit === "lb"} onPress={() => setWeightUnit("lb")} />
         </View>
 
-        <Text style={styles.label}>Height (optional)</Text>
+        <Text style={styles.label}>{tr("Height (optional)")}</Text>
         <View style={styles.rowInline}>
           <TextInput
             style={[styles.input, { flex: 1 }]}
-            accessibilityLabel="Height"
+            accessibilityLabel={tr("Height")}
             value={height}
             onChangeText={setHeight}
-            placeholder={heightUnit === "cm" ? "e.g. 170" : "e.g. 67"}
+            placeholder={heightUnit === "cm" ? tr("e.g. 170") : tr("e.g. 67")}
             keyboardType="decimal-pad"
           />
-          <Chip single label="cm" active={heightUnit === "cm"} onPress={() => setHeightUnit("cm")} />
-          <Chip single label="in" active={heightUnit === "in"} onPress={() => setHeightUnit("in")} />
+          <Chip single label={tr("cm")} active={heightUnit === "cm"} onPress={() => setHeightUnit("cm")} />
+          <Chip single label={tr("in")} active={heightUnit === "in"} onPress={() => setHeightUnit("in")} />
         </View>
 
-        <Text style={styles.label}>If applicable (optional)</Text>
+        <Text style={styles.label}>{tr("If applicable (optional)")}</Text>
         <View style={styles.rowWrap}>
-          <Chip label="Pregnant" active={pregnant} onPress={() => setPregnant(!pregnant)} />
-          <Chip label="Breastfeeding" active={breastfeeding} onPress={() => setBreastfeeding(!breastfeeding)} />
+          <Chip label={tr("Pregnant")} active={pregnant} onPress={() => setPregnant(!pregnant)} />
+          <Chip label={tr("Breastfeeding")} active={breastfeeding} onPress={() => setBreastfeeding(!breastfeeding)} />
         </View>
 
-        <Text style={styles.label}>Any of these apply to you? (optional)</Text>
+        <Text style={styles.label}>{tr("Any of these apply to you? (optional)")}</Text>
         <View style={styles.rowWrap}>
           {CONDITIONS.map((c) => (
-            <Chip key={c.key} label={c.label} active={conditions.includes(c.key)} onPress={() => toggleCondition(c.key)} />
+            <Chip key={c.key} label={tr(c.label)} active={conditions.includes(c.key)} onPress={() => toggleCondition(c.key)} />
           ))}
-          <Chip label="None of these" active={noneConditions} onPress={toggleNone} />
+          <Chip label={tr("None of these")} active={noneConditions} onPress={toggleNone} />
         </View>
       </Card>
 
       {extraSection}
 
-      <Text style={styles.privacy}>Your answers stay on this device and are never sent anywhere. You can change them, export them or delete them any time under About you.</Text>
+      <Text style={styles.privacy}>{tr("Your answers stay on this device and are never sent anywhere. You can change them, export them or delete them any time under About you.")}</Text>
 
       <PrimaryButton title={continueLabel} onPress={submit} />
     </ScrollView>
@@ -144,12 +159,12 @@ const styles = StyleSheet.create({
   h1: { fontSize: 22, fontWeight: "700", color: colors.ink, marginBottom: 6 },
   subtitle: { fontSize: 13, color: colors.muted, lineHeight: 19, marginBottom: 14 },
   label: { fontSize: 12, fontWeight: "600", color: colors.muted, marginTop: 14, marginBottom: 6 },
-  input: { borderWidth: 1, borderColor: colors.line, borderRadius: radiusSm, padding: 10, fontSize: 15, backgroundColor: "#fff" },
+  input: { borderWidth: 1, borderColor: colors.line, borderRadius: radiusSm, padding: 10, fontSize: 15, backgroundColor: colors.surface },
   rowWrap: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
   rowInline: { flexDirection: "row", gap: 8, alignItems: "center" },
-  chip: { borderWidth: 1, borderColor: colors.line, borderRadius: 999, paddingVertical: 8, paddingHorizontal: 14, backgroundColor: "#fff" },
-  chipActive: { backgroundColor: colors.accent, borderColor: colors.accent },
+  chip: { borderWidth: 1, borderColor: colors.line, borderRadius: 999, paddingVertical: 8, paddingHorizontal: 14, backgroundColor: colors.surface },
+  chipActive: { backgroundColor: colors.accentFill, borderColor: colors.accentFill },
   chipText: { color: colors.ink, fontSize: 13 },
-  chipTextActive: { color: "#fff" },
+  chipTextActive: { color: colors.onAccent },
   privacy: { fontSize: 12, color: colors.muted, textAlign: "center", marginVertical: 12 },
 });

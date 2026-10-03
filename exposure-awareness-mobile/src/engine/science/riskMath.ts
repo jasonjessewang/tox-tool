@@ -3,6 +3,7 @@
  * a headline's "X times the risk" means nothing until it is multiplied by the baseline.
  * absolute change = baseline x (RR - 1).
  */
+import { tr } from "../../i18n";
 export interface RiskInput {
   /** Baseline risk as "1 in N" (N >= 1). */
   oneIn: number;
@@ -49,14 +50,14 @@ export function formatPerThousand(n: number): string {
 
 export function formatOneIn(p: number): string {
   if (p <= 0) return "0";
-  return `1 in ${Math.round(1 / p).toLocaleString("en-US")}`;
+  return tr("1 in {n}", { n: Math.round(1 / p).toLocaleString("en-US") });
 }
 
 /** The one-sentence translation: headline framing on the left, honest framing on the right. */
 export function translate(input: RiskInput): { headline: string; honest: string } {
   const r = computeRisk(input);
-  const headline = `"${input.relativeRisk}x the risk" -- a ${Math.round(r.percentIncrease)}% increase`;
-  const honest = `${formatOneIn(r.baseline)} becomes ${formatOneIn(r.exposed)} -- ${formatPerThousand(r.perThousandExtra)} extra per 1,000 people`;
+  const headline = tr("\"{rr}x the risk\" -- a {pct}% increase", { rr: input.relativeRisk, pct: Math.round(r.percentIncrease) });
+  const honest = tr("{baseline} becomes {exposed} -- {extra} extra per 1,000 people", { baseline: formatOneIn(r.baseline), exposed: formatOneIn(r.exposed), extra: formatPerThousand(r.perThousandExtra) });
   return { headline, honest };
 }
 
@@ -64,11 +65,11 @@ export function translate(input: RiskInput): { headline: string; honest: string 
 export function questionsForCareTeam(input: RiskInput): string[] {
   const r = computeRisk(input);
   return [
-    `Is the baseline (${formatOneIn(r.baseline)}) right for someone like me -- my age, sex and history?`,
-    `In absolute terms, does this change mean about ${formatPerThousand(r.perThousandExtra)} more per 1,000 people, or is it different for my situation?`,
-    "How large and how well-designed was the study, and has the result been replicated?",
-    "What else differs between the groups that could explain it (smoking, age, diet, income)?",
-    "Was the exposure in the study similar in amount and duration to mine?",
-    "What is the range of plausible values (confidence interval), not just the headline number?",
+    tr("Is the baseline ({baseline}) right for someone like me -- my age, sex and history?", { baseline: formatOneIn(r.baseline) }),
+    tr("In absolute terms, does this change mean about {extra} more per 1,000 people, or is it different for my situation?", { extra: formatPerThousand(r.perThousandExtra) }),
+    tr("How large and how well-designed was the study, and has the result been replicated?"),
+    tr("What else differs between the groups that could explain it (smoking, age, diet, income)?"),
+    tr("Was the exposure in the study similar in amount and duration to mine?"),
+    tr("What is the range of plausible values (confidence interval), not just the headline number?"),
   ];
 }

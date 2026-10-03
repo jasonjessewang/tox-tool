@@ -11,6 +11,7 @@ import { daysBetweenISO } from "../../util/dates";
 import { getPersonalReasons } from "../personalization";
 import type { PersonalReason, StandingExposure, Substance, UserProfile } from "../types";
 import { PLACE_INFO, type AnswerEntry, type CheckReading, type Occupant, type Place, type PlaceCheck } from "./types";
+import { msg } from "../../i18n";
 
 /** The answer in force on a day: the newest one given on or before it. */
 export function answerAsOf(place: Place, checkId: string, asOf: string): AnswerEntry | null {
@@ -73,8 +74,8 @@ export const placeHours = (place: Place) => place.hoursPerWeek ?? PLACE_INFO[pla
 export const timeFactor = (place: Place) => clamp(placeHours(place) / 40, 0.25, 2);
 
 const PET_NOTES: Record<string, string> = {
-  household_dust_reservoir: "Pets live at floor level and lick what they walk on, so floor dust reaches them directly.",
-  lawn_pesticide_tracked_in: "Pets walk on treated grass and clean their paws with their mouths.",
+  household_dust_reservoir: msg("Pets live at floor level and lick what they walk on, so floor dust reaches them directly."),
+  lawn_pesticide_tracked_in: msg("Pets walk on treated grass and clean their paws with their mouths."),
 };
 
 /** An occupant seen through the same lens the app applies to the user's own profile. */
@@ -96,7 +97,7 @@ export function occupantProfile(o: Occupant): UserProfile {
 
 export const selfOccupant = (profile: UserProfile): Occupant => ({
   id: "self",
-  label: "You",
+  label: msg("You"),
   ageYears: profile.ageYears,
   pregnant: profile.pregnant,
   conditions: profile.conditions,
@@ -114,7 +115,7 @@ export function householdNotes(substance: Substance, people: Occupant[]): Househ
   for (const o of people) {
     if (o.isPet) {
       const reason = PET_NOTES[substance.id];
-      if (reason) out.push({ who: o.label, reasons: [{ conceptTag: "pets", label: "Pet", reason }] });
+      if (reason) out.push({ who: o.label, reasons: [{ conceptTag: "pets", label: msg("Pet"), reason }] });
       continue;
     }
     const reasons = getPersonalReasons(substance, occupantProfile(o));

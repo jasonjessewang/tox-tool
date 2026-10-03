@@ -4,6 +4,7 @@ import { colors } from "../theme";
 import { PrimaryButton, SecondaryButton } from "./ui";
 import BrandMark from "./BrandMark";
 import { openFeedback } from "../services/feedback";
+import { tr } from "../i18n";
 
 interface State {
   error: Error | null;
@@ -32,13 +33,13 @@ export class ErrorBoundary extends React.Component<{ children: React.ReactNode }
     return (
       <SafeAreaView style={styles.screen}>
         <BrandMark size={22} color={colors.accent} style={styles.brand} />
-        <Text style={styles.heading}>This screen hit a snag.</Text>
+        <Text style={styles.heading}>{tr("This screen hit a snag.")}</Text>
         <Text style={styles.body}>
-          Nothing you've logged was lost -- it lives on this device, separately from what just broke.
+          {tr("Nothing you've logged was lost -- it lives on this device, separately from what just broke.")}
         </Text>
         <View style={styles.actions}>
-          <PrimaryButton title="Try again" onPress={() => this.setState({ error: null })} />
-          <SecondaryButton title="Send feedback" onPress={() => openFeedback(`${error.name}: ${error.message}`)} />
+          <PrimaryButton title={tr("Try again")} onPress={() => this.setState({ error: null })} />
+          <SecondaryButton title={tr("Send feedback")} onPress={() => openFeedback(`${error.name}: ${error.message}`)} />
         </View>
       </SafeAreaView>
     );

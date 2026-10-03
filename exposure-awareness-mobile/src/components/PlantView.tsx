@@ -2,11 +2,12 @@ import React, { useEffect, useRef } from "react";
 import { View, Text, Animated, Easing } from "react-native";
 import type { PlantHealth, PlantStage } from "../engine/plant";
 import { useReduceMotion } from "../util/motion";
+import { colors } from "../theme";
 
 const PALETTE = {
-  thriving: { leaf: "#4f9a67", leafLight: "#6fb883", stem: "#3f7d55", glow: "#fbf1c9" },
-  thirsty: { leaf: "#a9b25c", leafLight: "#bfc673", stem: "#8b9257", glow: "#f1eedc" },
-  wilting: { leaf: "#b39a5c", leafLight: "#c4ad74", stem: "#8a7a52", glow: "#ece8de" },
+  thriving: { leaf: "#4f9a67", leafLight: "#6fb883", stem: "#3f7d55", glow: colors.glowWarm },
+  thirsty: { leaf: "#a9b25c", leafLight: "#bfc673", stem: "#8b9257", glow: colors.glowA },
+  wilting: { leaf: "#b39a5c", leafLight: "#c4ad74", stem: "#8a7a52", glow: colors.glowB },
 } as const;
 
 interface LeafSpec {

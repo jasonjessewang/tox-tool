@@ -10,6 +10,7 @@ import { ReceiptCard } from "../components/ReceiptCard";
 import { UndoBar, useUndo } from "../components/UndoBar";
 import { TrendStrip } from "../components/TrendStrip";
 import { trendsFrom, type MetricTrend } from "../engine/readings";
+import { msg, tr, trn } from "../i18n";
 
 interface BiomarkerPreset {
   metric: string;
@@ -41,24 +42,24 @@ const BIOMARKER_EXAMPLES: Record<string, string> = {
 };
 
 const BIOMARKER_PRESETS: BiomarkerPreset[] = [
-  { metric: "Blood lead level", unit: "µg/dL", conceptNote: "Directly tracks lead exposure -- the single most specific biomarker this app can log." },
-  { metric: "Creatinine / eGFR", unit: "mL/min/1.73m²", conceptNote: "Kidney (renal) clearance -- how efficiently the body filters and excretes many flagged substances." },
-  { metric: "ALT (liver enzyme)", unit: "U/L", conceptNote: "Hepatic metabolism -- the liver's processing load, relevant to most chemical exposures." },
-  { metric: "Blood pressure (systolic)", unit: "mmHg" },
-  { metric: "Blood pressure (diastolic)", unit: "mmHg" },
-  { metric: "Waist circumference", unit: "cm" },
-  { metric: "Fasting glucose", unit: "mg/dL" },
-  { metric: "HbA1c", unit: "%" },
-  { metric: "hs-CRP (inflammation)", unit: "mg/L" },
-  { metric: "Vitamin D", unit: "ng/mL" },
-  { metric: "Resting heart rate", unit: "bpm" },
+  { metric: msg("Blood lead level"), unit: "µg/dL", conceptNote: msg("Directly tracks lead exposure -- the single most specific biomarker this app can log.") },
+  { metric: msg("Creatinine / eGFR"), unit: "mL/min/1.73m²", conceptNote: msg("Kidney (renal) clearance -- how efficiently the body filters and excretes many flagged substances.") },
+  { metric: msg("ALT (liver enzyme)"), unit: "U/L", conceptNote: msg("Hepatic metabolism -- the liver's processing load, relevant to most chemical exposures.") },
+  { metric: msg("Blood pressure (systolic)"), unit: "mmHg" },
+  { metric: msg("Blood pressure (diastolic)"), unit: "mmHg" },
+  { metric: msg("Waist circumference"), unit: "cm" },
+  { metric: msg("Fasting glucose"), unit: "mg/dL" },
+  { metric: msg("HbA1c"), unit: "%" },
+  { metric: msg("hs-CRP (inflammation)"), unit: "mg/L" },
+  { metric: msg("Vitamin D"), unit: "ng/mL" },
+  { metric: msg("Resting heart rate"), unit: "bpm" },
   { metric: "HRV", unit: "ms" },
-  { metric: "Sleep score", unit: "score" },
-  { metric: "Body fat %", unit: "%" },
-  { metric: "Grip strength", unit: "kg" },
-  { metric: "30s sit-to-stand", unit: "reps" },
+  { metric: msg("Sleep score"), unit: msg("score") },
+  { metric: msg("Body fat %"), unit: "%" },
+  { metric: msg("Grip strength"), unit: "kg" },
+  { metric: msg("30s sit-to-stand"), unit: msg("reps") },
   { metric: "VO2max", unit: "mL/kg/min" },
-  { metric: "Other", unit: "" },
+  { metric: msg("Other"), unit: "" },
 ];
 
 export default function LogBiomarkerScreen() {
@@ -90,7 +91,7 @@ export default function LogBiomarkerScreen() {
 
   async function submit() {
     if (!value.trim() || isNaN(Number(value.replace(",", ".")))) {
-      setError(`Enter the number from your result -- for ${metric.toLowerCase()}, something like ${BIOMARKER_EXAMPLES[metric] ?? "1.4"}.`);
+      setError(tr("Enter the number from your result -- for {metric}, something like {example}.", { metric: tr(metric).toLowerCase(), example: BIOMARKER_EXAMPLES[metric] ?? "1.4" }));
       return;
     }
     setError(null);
@@ -113,16 +114,15 @@ export default function LogBiomarkerScreen() {
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16 }}>
-      <Text accessibilityRole="header" style={styles.h1}>Log a Biomarker</Text>
+      <Text accessibilityRole="header" style={styles.h1}>{tr("Log a Biomarker")}</Text>
       <Subtitle>
-        Lab results, wearable readings, or field tests -- these validate your exposure picture against your own
-        body, not just what you've logged eating or using.
+        {tr("Lab results, wearable readings, or field tests -- these validate your exposure picture against your own body, not just what you've logged eating or using.")}
       </Subtitle>
 
       {receipt && <ReceiptCard receipt={receipt} />}
 
       <Card>
-        <Text style={styles.label}>Metric</Text>
+        <Text style={styles.label}>{tr("Metric")}</Text>
         <View style={styles.rowWrap}>
           {BIOMARKER_PRESETS.map((p, i) => (
             <Pressable
@@ -131,80 +131,80 @@ export default function LogBiomarkerScreen() {
               onPress={() => selectPreset(i)}
               aria-checked={!!(presetIndex === i)} style={[styles.chip, presetIndex === i && styles.chipActive]}
             >
-              <Text style={[styles.chipText, presetIndex === i && styles.chipTextActive]}>{p.metric}</Text>
+              <Text style={[styles.chipText, presetIndex === i && styles.chipTextActive]}>{tr(p.metric)}</Text>
             </Pressable>
           ))}
         </View>
 
         {activeNote && (
           <View style={styles.noteBox}>
-            <Text style={styles.note}>{activeNote}</Text>
+            <Text style={styles.note}>{tr(activeNote)}</Text>
           </View>
         )}
 
         {metric === "Other" && (
           <>
-            <Text style={styles.label}>Custom metric name</Text>
-            <TextInput style={styles.input} value={metric} onChangeText={setMetric} accessibilityLabel="Custom metric name" placeholder="e.g. Cortisol (AM)" />
+            <Text style={styles.label}>{tr("Custom metric name")}</Text>
+            <TextInput style={styles.input} value={metric} onChangeText={setMetric} accessibilityLabel={tr("Custom metric name")} placeholder={tr("e.g. Cortisol (AM)")} />
           </>
         )}
 
-        <Text style={styles.label}>Value</Text>
-        <TextInput style={styles.input} value={value} onChangeText={setValue} accessibilityLabel={`Value for ${metric}`} placeholder={BIOMARKER_EXAMPLES[metric] ? `e.g. ${BIOMARKER_EXAMPLES[metric]}` : "e.g. 72"} keyboardType="decimal-pad" />
+        <Text style={styles.label}>{tr("Value")}</Text>
+        <TextInput style={styles.input} value={value} onChangeText={setValue} accessibilityLabel={tr("Value for {metric}", { metric: tr(metric) })} placeholder={BIOMARKER_EXAMPLES[metric] ? tr("e.g. {example}", { example: BIOMARKER_EXAMPLES[metric] }) : tr("e.g. 72")} keyboardType="decimal-pad" />
 
-        <Text style={styles.label}>Unit</Text>
-        <TextInput style={styles.input} value={unit} onChangeText={setUnit} accessibilityLabel="Unit" placeholder="e.g. mg/dL" />
+        <Text style={styles.label}>{tr("Unit")}</Text>
+        <TextInput style={styles.input} value={unit} onChangeText={setUnit} accessibilityLabel={tr("Unit")} placeholder={tr("e.g. mg/dL")} />
 
-        <Text style={styles.label}>Source (optional)</Text>
-        <TextInput style={styles.input} value={source} onChangeText={setSource} accessibilityLabel="Source" placeholder="e.g. quarterly lab panel, wearable" />
+        <Text style={styles.label}>{tr("Source (optional)")}</Text>
+        <TextInput style={styles.input} value={source} onChangeText={setSource} accessibilityLabel={tr("Source")} placeholder={tr("e.g. quarterly lab panel, wearable")} />
 
         <FormError message={error} />
         <View style={{ marginTop: 12 }}>
-          <PrimaryButton title="Log it" onPress={submit} />
+          <PrimaryButton title={tr("Log it")} onPress={submit} />
         </View>
       </Card>
 
       {trends.length > 0 && (
         <>
-          <SectionTitle>Your readings</SectionTitle>
+          <SectionTitle>{tr("Your readings")}</SectionTitle>
           {trends.map((t) => (
             <Card key={t.metric.toLowerCase()}>
-              <Text accessibilityRole="header" aria-level={3} style={styles.trendName}>{t.metric}</Text>
+              <Text accessibilityRole="header" aria-level={3} style={styles.trendName}>{tr(t.metric)}</Text>
               <Text style={styles.trendValue}>
                 {t.latest.value}
-                {t.unit ? <Text style={styles.trendUnit}> {t.unit}</Text> : null}
+                {t.unit ? <Text style={styles.trendUnit}> {tr(t.unit)}</Text> : null}
               </Text>
-              <Text style={styles.recentDate}>{t.daysSince === 0 ? "today" : `${t.daysSince} day${t.daysSince === 1 ? "" : "s"} ago`} · {t.count} reading{t.count === 1 ? "" : "s"}</Text>
+              <Text style={styles.recentDate}>{t.daysSince === 0 ? tr("today") : trn(t.daysSince, "{n} day ago", "{n} days ago")} · {trn(t.count, "{n} reading", "{n} readings")}</Text>
               <Text style={styles.trendSentence}>{t.sentence}</Text>
-              <TrendStrip points={t.points} unit={t.unit} label={t.metric} />
+              <TrendStrip points={t.points} unit={tr(t.unit)} label={tr(t.metric)} />
             </Card>
           ))}
           <Text style={styles.trendNote}>
-            The app does not say whether a number is in range -- that depends on the test and on you, and your lab report or clinician has the range that fits. What it shows is which way your own numbers are moving.
+            {tr("The app does not say whether a number is in range -- that depends on the test and on you, and your lab report or clinician has the range that fits. What it shows is which way your own numbers are moving.")}
           </Text>
         </>
       )}
 
-      <SectionTitle>Recent</SectionTitle>
+      <SectionTitle>{tr("Recent")}</SectionTitle>
       <UndoBar undo={undo} />
       <Card>
         {recent.length === 0 ? (
-          <Text style={styles.emptyText}>Nothing logged yet.</Text>
+          <Text style={styles.emptyText}>{tr("Nothing logged yet.")}</Text>
         ) : (
           recent.map((e) => (
             <View key={e.id} style={styles.recentRow}>
               <Text style={styles.recentDate}>{e.log_date}</Text>
               <Text style={styles.recentText}>
-                {e.metric}: {e.value}
-                {e.unit ? ` ${e.unit}` : ""}
+                {tr(e.metric)}: {e.value}
+                {e.unit ? ` ${tr(e.unit)}` : ""}
                 {e.source ? ` — ${e.source}` : ""}
               </Text>
               <SecondaryButton
-                title="Delete"
-                label={`Delete ${e.metric} ${e.value}${e.unit ? ` ${e.unit}` : ""}, ${e.log_date}`}
+                title={tr("Delete")}
+                label={tr("Delete {metric} {value}{v}, {log_date}", { metric: tr(e.metric), value: e.value, v: e.unit ? ` ${tr(e.unit)}` : "", log_date: e.log_date })}
                 onPress={async () => {
                   const removed = await db.deleteLog<BiomarkerLog>("biomarkers", e.id);
-                  if (removed) undo.offer(`${removed.metric} ${removed.value}${removed.unit ? ` ${removed.unit}` : ""}`, async () => { await db.restoreLog("biomarkers", removed); refresh(); });
+                  if (removed) undo.offer(`${tr(removed.metric)} ${removed.value}${removed.unit ? ` ${tr(removed.unit)}` : ""}`, async () => { await db.restoreLog("biomarkers", removed); refresh(); });
                   refresh();
                 }}
               />
@@ -220,12 +220,12 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   h1: { fontSize: 22, fontWeight: "700", color: colors.ink, marginBottom: 4 },
   label: { fontSize: 12, fontWeight: "600", color: colors.muted, marginTop: 12, marginBottom: 6 },
-  input: { borderWidth: 1, borderColor: colors.line, borderRadius: radiusSm, padding: 10, fontSize: 15, backgroundColor: "#fff" },
+  input: { borderWidth: 1, borderColor: colors.line, borderRadius: radiusSm, padding: 10, fontSize: 15, backgroundColor: colors.surface },
   rowWrap: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
-  chip: { borderWidth: 1, borderColor: colors.line, borderRadius: 999, paddingVertical: 8, paddingHorizontal: 14, backgroundColor: "#fff" },
-  chipActive: { backgroundColor: colors.accent, borderColor: colors.accent },
+  chip: { borderWidth: 1, borderColor: colors.line, borderRadius: 999, paddingVertical: 8, paddingHorizontal: 14, backgroundColor: colors.surface },
+  chipActive: { backgroundColor: colors.accentFill, borderColor: colors.accentFill },
   chipText: { color: colors.ink, fontSize: 13 },
-  chipTextActive: { color: "#fff" },
+  chipTextActive: { color: colors.onAccent },
   noteBox: { marginTop: 10, padding: 10, borderRadius: radiusSm, backgroundColor: colors.bg, borderWidth: 1, borderColor: colors.line },
   note: { fontSize: 12, color: colors.muted, lineHeight: 18 },
   emptyText: { color: colors.muted, fontStyle: "italic", fontSize: 13 },

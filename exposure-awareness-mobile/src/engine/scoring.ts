@@ -36,6 +36,7 @@ import type {
   AdviceInputs,
   StandingExposure,
 } from "./types";
+import { msg, tr } from "../i18n";
 
 /**
  * What the lowest band says when too little was logged to mean anything. "Nothing flagged" is only
@@ -45,61 +46,55 @@ import type {
 const MIN_ENTRIES_FOR_ALL_CLEAR = 3;
 export const SPARSE_BAND: AwarenessBand = {
   key: "minimal",
-  label: "Not enough logged yet",
-  description: "Log a few meals, products or air readings and this fills in -- a quiet week here mostly means a quiet log.",
+  label: msg("Not enough logged yet"),
+  description: msg("Log a few meals, products or air readings and this fills in -- a quiet week here mostly means a quiet log."),
 };
 
 export const AWARENESS_BANDS: [number, number, AwarenessBand["key"], string, string][] = [
-  [0, 2, "minimal", "Dialed In", "Nothing notable flagged in this window."],
-  [2, 6, "low", "On Track", "A few things worth knowing about — nothing urgent."],
-  [6, 12, "moderate", "Some Room to Improve", "A pattern worth addressing when it's convenient."],
-  [12, 999, "priority", "Good Focus Area", "This is where your next change would matter most."],
+  [0, 2, "minimal", msg("Dialed In"), msg("Nothing notable flagged in this window.")],
+  [2, 6, "low", msg("On Track"), msg("A few things worth knowing about — nothing urgent.")],
+  [6, 12, "moderate", msg("Some Room to Improve"), msg("A pattern worth addressing when it's convenient.")],
+  [12, 999, "priority", msg("Good Focus Area"), msg("This is where your next change would matter most.")],
 ];
 
 export const NOVA_LABELS: Record<number, string> = {
-  1: "Unprocessed / minimally processed",
-  2: "Processed culinary ingredient",
-  3: "Processed food",
-  4: "Ultra-processed food",
+  1: msg("Unprocessed / minimally processed"),
+  2: msg("Processed culinary ingredient"),
+  3: msg("Processed food"),
+  4: msg("Ultra-processed food"),
 };
 
 export const GENERAL_TIPS: Record<Category, string[]> = {
   food: [
-    "Favor whole, minimally-processed breakfast foods (eggs, oats, fresh fruit, plain yogurt) over packaged/ultra-processed ones.",
-    "Rotate breakfast choices day-to-day rather than eating the identical processed product every morning, to avoid concentrating exposure to any single additive.",
+    msg("Favor whole, minimally-processed breakfast foods (eggs, oats, fresh fruit, plain yogurt) over packaged/ultra-processed ones."),
+    msg("Rotate breakfast choices day-to-day rather than eating the identical processed product every morning, to avoid concentrating exposure to any single additive."),
   ],
   personal_care: [
-    "Simplify your routine: fewer, well-chosen products reduce the number of ingredient streams you're exposed to daily.",
-    "Patch-test new products and give your skin/scalp days off from heavily fragranced items when possible.",
+    msg("Simplify your routine: fewer, well-chosen products reduce the number of ingredient streams you're exposed to daily."),
+    msg("Patch-test new products and give your skin/scalp days off from heavily fragranced items when possible."),
   ],
   environment: [
-    "Increase fresh-air ventilation where practical (exhaust fans, open windows) in the rooms you spend the most time in.",
-    "Track recurring symptoms (headache, congestion, skin irritation) alongside location/time to help spot environmental patterns worth raising with facilities management or a physician.",
+    msg("Increase fresh-air ventilation where practical (exhaust fans, open windows) in the rooms you spend the most time in."),
+    msg("Track recurring symptoms (headache, congestion, skin irritation) alongside location/time to help spot environmental patterns worth raising with facilities management or a physician."),
   ],
 };
 
-export const BEHAVIORAL_NOTE =
-  "If tracking exposures is driven by anxiety about health outcomes, or you notice the " +
-  "logging itself becoming stressful, that's worth mentioning to a therapist or counselor — " +
-  "behavioral strategies (e.g., CBT-based approaches to health anxiety) can help keep " +
-  "awareness useful rather than distressing.";
+export const BEHAVIORAL_NOTE = msg(
+  "If tracking exposures is driven by anxiety about health outcomes, or you notice the logging itself becoming stressful, that's worth mentioning to a therapist or counselor — behavioral strategies (e.g., CBT-based approaches to health anxiety) can help keep awareness useful rather than distressing."
+);
 
-export const RESILIENCE_NOTE =
-  "A note on 'detox': popular juice cleanses and similar products don't meaningfully speed " +
-  "up how your liver and kidneys clear chemicals — that's not something you need to do " +
-  "anything special to activate. What the practices below ARE well-supported for is general " +
-  "metabolic, cardiovascular, and mental resilience, and healthier day-to-day behavior " +
-  "patterns — which is a real and worthwhile goal on its own, just not literally a chemical " +
-  "'flush.' They're tracked separately from your exposure score for that reason.";
+export const RESILIENCE_NOTE = msg(
+  "A note on 'detox': popular juice cleanses and similar products don't meaningfully speed up how your liver and kidneys clear chemicals — that's not something you need to do anything special to activate. What the practices below ARE well-supported for is general metabolic, cardiovascular, and mental resilience, and healthier day-to-day behavior patterns — which is a real and worthwhile goal on its own, just not literally a chemical 'flush.' They're tracked separately from your exposure score for that reason."
+);
 
 export const PRACTICE_LABELS: Record<string, string> = {
-  sleep: "Sleep",
-  hydration: "Hydration",
-  fasting: "Fasting window",
-  exercise: "Exercise",
-  screen_free: "Screen-free / dopamine reset",
-  grounding_stretching: "Grounding / stretching",
-  other: "Other practice",
+  sleep: msg("Sleep"),
+  hydration: msg("Hydration"),
+  fasting: msg("Fasting window"),
+  exercise: msg("Exercise"),
+  screen_free: msg("Screen-free / dopamine reset"),
+  grounding_stretching: msg("Grounding / stretching"),
+  other: msg("Other practice"),
 };
 
 // The two-sided framing this app teaches during onboarding: Quick Wins/Focus items are
@@ -346,12 +341,10 @@ export function scoreLogs(
     const key = "processing:reduce_upf";
     extraTips.push({
       tip_key: key,
-      source: "Ultra-processed food pattern",
-      tip:
-        "You've logged multiple ultra-processed items this week. Swapping just one " +
-        "for a minimally-processed alternative (e.g. plain oats + fruit instead of a " +
-        "packaged pastry) is one of the higher-leverage changes available — it " +
-        "reduces many additives at once rather than targeting a single ingredient.",
+      source: msg("Ultra-processed food pattern"),
+      tip: msg(
+        "You've logged multiple ultra-processed items this week. Swapping just one for a minimally-processed alternative (e.g. plain oats + fruit instead of a packaged pastry) is one of the higher-leverage changes available — it reduces many additives at once rather than targeting a single ingredient."
+      ),
       concern_level: 2,
       weight: upfScore,
       completed: completedActionKeys.has(key),
@@ -363,7 +356,7 @@ export function scoreLogs(
     const key = "produce:diversify";
     extraTips.push({
       tip_key: key,
-      source: "Produce variety",
+      source: msg("Produce variety"),
       tip: produceSummary.tip,
       concern_level: 1,
       weight: produceSummary.watch_total,
@@ -377,8 +370,8 @@ export function scoreLogs(
       const key = `air_quality:${reading.pollutant}:${reading.category}`;
       extraTips.push({
         tip_key: key,
-        source: `Air quality (${reading.location})`,
-        tip: `${reading.category} ${reading.pollutant} reading logged (${reading.value} µg/m³). ${reading.guidance}`,
+        source: tr("Air quality ({location})", { location: reading.location }),
+        tip: tr("{category} {pollutant} reading logged ({value} µg/m³). {guidance}", { category: tr(reading.category), pollutant: reading.pollutant, value: reading.value, guidance: tr(reading.guidance) }),
         concern_level: reading.concern_level,
         weight: reading.concern_level * 2,
         completed: completedActionKeys.has(key),

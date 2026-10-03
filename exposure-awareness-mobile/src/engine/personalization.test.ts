@@ -1,4 +1,4 @@
-import { computeLifeStage, getPersonalReasons, personalizeReport, bodyWeightContextNote } from "./personalization";
+import { computeLifeStage, getPersonalReasons, personalRelevance, weightedExposure, bodyWeightContextNote } from "./personalization";
 import { loadHazardDb, scoreLogs } from "./scoring";
 import type { UserProfile, LogStore } from "./types";
 
@@ -87,29 +87,32 @@ test("reasons are de-duplicated -- kidney AND age 65+ both hitting renal_clearan
   expect(new Set(labels).size).toBe(2);
 });
 
-test("personalizeReport with no profile never changes the base score and reports profileApplied false", () => {
-  const logs: LogStore = {
-    food: [{ id: "1", log_date: "2026-01-01", meal: "breakfast", food_item: "canned juice", processing_level: null, notes: "", created_at: "" }],
-    products: [], environment: [], air_quality: [], practices: [],
-  };
-  const report = scoreLogs(logs);
-  const result = personalizeReport(report, null, byId);
-  expect(result.profileApplied).toBe(false);
-  expect(result.personalizedScore).toBe(report.overall_score);
-  expect(Object.keys(result.personalReasonsBySubstance).length).toBe(0);
+const BPA_LOG: LogStore = {
+  food: [{ id: "1", log_date: "2026-01-01", meal: "breakfast", food_item: "canned juice with BPA-lined packaging", processing_level: null, notes: "", created_at: "" }],
+  products: [], environment: [], air_quality: [], practices: [],
+};
+
+test("with no profile nothing is personalized", () => {
+  const weighted = weightedExposure(scoreLogs(BPA_LOG), [{ substanceId: "phthalates", weight: 5, via: ["Shampoo"] }]);
+  expect(personalRelevance(weighted, null, byId)).toEqual([]);
 });
 
-test("personalizeReport adds a positive bump on top of (never replacing) the base score when reasons apply", () => {
-  const logs: LogStore = {
-    food: [{ id: "1", log_date: "2026-01-01", meal: "breakfast", food_item: "canned juice with BPA-lined packaging", processing_level: null, notes: "", created_at: "" }],
-    products: [], environment: [], air_quality: [], practices: [],
-  };
-  const report = scoreLogs(logs);
-  const pregnantResult = personalizeReport(report, baseProfile({ pregnant: true }), byId);
-  expect(pregnantResult.profileApplied).toBe(true);
-  expect(pregnantResult.personalizedScore).toBeGreaterThan(report.overall_score);
-  // base score itself must be untouched by personalization -- verifiability guarantee
-  expect(report.overall_score).toBe(scoreLogs(logs).overall_score);
+test("personal relevance covers this week's log and what the shelf and places carry, heaviest first, and never touches the score", () => {
+  const report = scoreLogs(BPA_LOG);
+  const before = report.overall_score;
+  const weighted = weightedExposure(report, [
+    { substanceId: "phthalates", weight: 5, via: ["Shampoo"] },
+    { substanceId: "lead_exposure", weight: 2, via: [], viaPlaces: ["Home: built before 1978"], origin: "places" },
+    { substanceId: "phthalates", weight: 1, via: [], viaPlaces: ["Home: fragrance"], origin: "places" },
+  ]);
+  const personal = personalRelevance(weighted, baseProfile({ pregnant: true }), byId);
+  expect(personal.map((p) => [p.substanceId, p.from])).toEqual([
+    ["phthalates", ["shelf", "places"]],
+    ["lead_exposure", ["places"]],
+    ["bpa", ["log"]],
+  ]);
+  expect(personal.every((p) => p.reasons.some((r) => r.label === "Pregnancy"))).toBe(true);
+  expect(report.overall_score).toBe(before);
 });
 
 test("bodyWeightContextNote is educational, not a dose calculation, and never fabricates a number without weight", () => {

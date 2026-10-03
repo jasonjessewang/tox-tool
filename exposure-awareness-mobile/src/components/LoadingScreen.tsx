@@ -5,6 +5,7 @@ import { getLiteracy } from "../engine/literacyState";
 import { colors, shadowRaised } from "../theme";
 import BrandMark from "./BrandMark";
 import { useReduceMotion } from "../util/motion";
+import { tr } from "../i18n";
 
 const ROTATE_MS = 5500;
 
@@ -12,7 +13,7 @@ const ROTATE_MS = 5500;
  * toxicology quote / historical moment / concept at a time. Used at launch, between tabs,
  * and while the engine works. */
 export default function LoadingScreen({
-  message = "Preparing your view",
+  message = tr("Preparing your view"),
   minMs,
   onDone,
   onLearnMore,
@@ -101,10 +102,10 @@ export default function LoadingScreen({
       </View>
 
       <Animated.View style={[styles.card, { opacity: fade }]}>
-        <Text style={styles.kind}>{KIND_LABEL[w.kind].toUpperCase()}</Text>
+        <Text style={styles.kind}>{tr(KIND_LABEL[w.kind]).toUpperCase()}</Text>
         {w.year ? <Text style={styles.year}>{w.year}</Text> : null}
-        <Text style={styles.text}>{w.kind === "quote" ? `“${w.text}”` : w.text}</Text>
-        {w.attribution ? <Text style={styles.attribution}>{w.kind === "quote" ? `— ${w.attribution}` : w.attribution}</Text> : null}
+        <Text style={styles.text}>{w.kind === "quote" ? `“${tr(w.text)}”` : tr(w.text)}</Text>
+        {w.attribution ? <Text style={styles.attribution}>{w.kind === "quote" ? `— ${tr(w.attribution)}` : tr(w.attribution)}</Text> : null}
       </Animated.View>
 
       {interactive ? (
@@ -117,13 +118,13 @@ export default function LoadingScreen({
 
       {interactive && onLearnMore ? (
         <Pressable accessibilityRole="button" onPress={onLearnMore} hitSlop={10} style={styles.learnMore}>
-          <Text style={styles.learnMoreText}>Learn more {"›"}</Text>
+          <Text style={styles.learnMoreText}>{tr("Learn more ›")}</Text>
         </Pressable>
       ) : null}
 
       {interactive ? (
-        <Pressable accessibilityRole="button" accessibilityLabel="Skip this and continue" onPress={() => onDone!()} hitSlop={10} style={styles.skip}>
-          <Text style={styles.skipText}>Skip {"›"}</Text>
+        <Pressable accessibilityRole="button" accessibilityLabel={tr("Skip this and continue")} onPress={() => onDone!()} hitSlop={10} style={styles.skip}>
+          <Text style={styles.skipText}>{tr("Skip ›")}</Text>
         </Pressable>
       ) : null}
     </Wrapper>
@@ -131,10 +132,10 @@ export default function LoadingScreen({
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#f0f4ef", alignItems: "center", justifyContent: "center", padding: 28, overflow: "hidden" },
+  screen: { flex: 1, backgroundColor: colors.calmBg, alignItems: "center", justifyContent: "center", padding: 28, overflow: "hidden" },
   blob: { position: "absolute", borderRadius: 999 },
-  blobTop: { width: 380, height: 380, top: -140, right: -120, backgroundColor: "#e2ebe1" },
-  blobBottom: { width: 320, height: 320, bottom: -120, left: -110, backgroundColor: "#eaf0e6" },
+  blobTop: { width: 380, height: 380, top: -140, right: -120, backgroundColor: colors.calmBlobA },
+  blobBottom: { width: 320, height: 320, bottom: -120, left: -110, backgroundColor: colors.calmBlobB },
   brand: { position: "absolute", top: 20, left: 22, opacity: 0.55 },
   orbWrap: { width: 140, height: 140, alignItems: "center", justifyContent: "center", marginBottom: 28 },
   halo: { position: "absolute", width: 112, height: 112, borderRadius: 56, backgroundColor: colors.accent },
@@ -146,16 +147,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: "#d6e2d4",
+    borderColor: colors.orbLine,
     ...shadowRaised,
   },
-  orbIcon: { fontSize: 40 },
+  orbIcon: { fontSize: 40, color: colors.ink },
   card: { alignItems: "center", maxWidth: 340, minHeight: 190 },
   kind: { fontSize: 12, letterSpacing: 1.4, color: colors.accent, fontWeight: "700", marginBottom: 6 },
   year: { fontSize: 34, fontWeight: "300", color: colors.ink, marginBottom: 8 },
   text: { fontSize: 16, lineHeight: 24, color: colors.ink, textAlign: "center" },
   attribution: { fontSize: 12, color: colors.muted, marginTop: 10, textAlign: "center", fontStyle: "italic" },
-  bar: { position: "absolute", top: 12, left: 16, right: 16, height: 3, borderRadius: 2, backgroundColor: "rgba(63,107,82,0.2)", overflow: "hidden" },
+  bar: { position: "absolute", top: 12, left: 16, right: 16, height: 3, borderRadius: 2, backgroundColor: colors.calmTrack, overflow: "hidden" },
   barFill: { height: 3, borderRadius: 2, backgroundColor: colors.accent },
   message: { position: "absolute", bottom: 36, fontSize: 12, color: colors.muted, letterSpacing: 0.5 },
   learnMore: { position: "absolute", bottom: 34, paddingVertical: 6, paddingHorizontal: 12 },

@@ -13,10 +13,11 @@ import { Collapsible } from "../components/Collapsible";
 import { PrimaryButton, SecondaryButton } from "../components/ui";
 import { colors, radius, radiusPill, radiusSm, shadow } from "../theme";
 import { todayISO } from "../util/dates";
+import { msg, tr, trn } from "../i18n";
 
 type Filter = "all" | "attention" | "unknown";
 
-const NEXT_KICKER = { recheck: "YOU MARKED A TIP DONE -- HAS THIS CHANGED?", stale: "WORTH A FRESH LOOK", unanswered: "A GOOD NEXT QUESTION" } as const;
+const NEXT_KICKER = { recheck: msg("YOU MARKED A TIP DONE -- HAS THIS CHANGED?"), stale: msg("WORTH A FRESH LOOK"), unanswered: msg("A GOOD NEXT QUESTION") };
 
 export default function PlacesScreen({ onOpenScore }: { onOpenScore?: () => void }) {
   const [overview, setOverview] = useState<PlacesOverview | null>(null);
@@ -66,26 +67,26 @@ export default function PlacesScreen({ onOpenScore }: { onOpenScore?: () => void
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16 }}>
-      <Text accessibilityRole="header" style={styles.h1}>Your places</Text>
-      <Text style={styles.sub}>The spaces your days happen in. Each answer is compared with published guidance, so you can see what a small change would bring in line.</Text>
+      <Text accessibilityRole="header" style={styles.h1}>{tr("Your places")}</Text>
+      <Text style={styles.sub}>{tr("The spaces your days happen in. Each answer is compared with published guidance, so you can see what a small change would bring in line.")}</Text>
 
       {summary.compared > 0 && (
         <View style={styles.card}>
-          <Text style={styles.kicker}>WHAT YOU HAVE COMPARED SO FAR</Text>
+          <Text style={styles.kicker}>{tr("WHAT YOU HAVE COMPARED SO FAR")}</Text>
           <Text style={styles.big}>
-            {summary.meets} <Text style={styles.bigOf}>of {summary.compared} meet the reference</Text>
+            {summary.meets} <Text style={styles.bigOf}>{tr("of {compared} meet the reference", { compared: summary.compared })}</Text>
           </Text>
           {summary.attention > 0 ? (
             <Text style={styles.note}>
-              Worth a look first: {summary.worth.slice(0, 3).map((w) => `${w.placeLabel}: ${w.short}`).join("; ")}.
+              {tr("Worth a look first: {items}.", { items: summary.worth.slice(0, 3).map((w) => `${tr(w.placeLabel)}: ${tr(w.short)}`).join("; ") })}
             </Text>
           ) : (
-            <Text style={styles.note}>Everything you have compared meets its reference.</Text>
+            <Text style={styles.note}>{tr("Everything you have compared meets its reference.")}</Text>
           )}
-          {summary.unanswered > 0 && <Text style={styles.note}>{summary.unanswered} more question{summary.unanswered === 1 ? "" : "s"} would fill in the picture.</Text>}
+          {summary.unanswered > 0 && <Text style={styles.note}>{trn(summary.unanswered, "{n} more question would fill in the picture.", "{n} more questions would fill in the picture.")}</Text>}
           {onOpenScore && (
             <Pressable accessibilityRole="button" onPress={onOpenScore} style={{ marginTop: 8, paddingVertical: 8 }}>
-              <Text style={styles.link}>See how this counts in your score {"›"}</Text>
+              <Text style={styles.link}>{tr("See how this counts in your score ›")}</Text>
             </Pressable>
           )}
         </View>
@@ -93,8 +94,8 @@ export default function PlacesScreen({ onOpenScore }: { onOpenScore?: () => void
 
       {next && (
         <View style={styles.nextCard}>
-          <Text style={styles.nextKicker}>{NEXT_KICKER[next.reason]} {"·"} {next.place.label.toUpperCase()}</Text>
-          <Text style={styles.nextTitle}>{next.check.question}</Text>
+          <Text style={styles.nextKicker}>{tr(NEXT_KICKER[next.reason])} {"·"} {tr(next.place.label).toUpperCase()}</Text>
+          <Text style={styles.nextTitle}>{tr(next.check.question)}</Text>
           <Pressable
             accessibilityRole="button"
             onPress={() => {
@@ -103,7 +104,7 @@ export default function PlacesScreen({ onOpenScore }: { onOpenScore?: () => void
             }}
             style={({ pressed }) => [styles.nextButton, pressed && { opacity: 0.85 }]}
           >
-            <Text style={styles.nextButtonText}>Answer it {"\u203a"}</Text>
+            <Text style={styles.nextButtonText}>{tr("Answer it ›")}</Text>
           </Pressable>
         </View>
       )}
@@ -115,14 +116,14 @@ export default function PlacesScreen({ onOpenScore }: { onOpenScore?: () => void
           <Pressable key={p.id} accessibilityRole="button" onPress={() => setSelectedId(p.id)} style={({ pressed }) => [styles.placeCard, pressed && { opacity: 0.9 }]}>
             <Text style={styles.icon}>{info.icon}</Text>
             <View style={{ flex: 1 }}>
-              <Text style={styles.placeTitle}>{p.label}</Text>
+              <Text style={styles.placeTitle}>{tr(p.label)}</Text>
               <Text style={styles.placeMeta}>
-                About {placeHours(p)} hours a week {"·"} {c.answered} of {c.total} answered
+                {tr("About {hours} hours a week · {answered} of {total} answered", { hours: placeHours(p), answered: c.answered, total: c.total })}
               </Text>
               <Text style={styles.placeMeta}>
-                {c.attention > 0 ? `${c.meets} meet the reference · ${c.attention} worth a look` : c.meets > 0 ? `${c.meets} meet the reference` : "Nothing compared yet"}
+                {c.attention > 0 ? tr("{meets} meet the reference · {attention} worth a look", { meets: c.meets, attention: c.attention }) : c.meets > 0 ? tr("{meets} meet the reference", { meets: c.meets }) : tr("Nothing compared yet")}
               </Text>
-              {p.occupants.length > 0 && <Text style={styles.placeMeta}>With {p.occupants.map((o) => o.label).join(", ")}</Text>}
+              {p.occupants.length > 0 && <Text style={styles.placeMeta}>{tr("With {names}", { names: p.occupants.map((o) => tr(o.label)).join(", ") })}</Text>}
             </View>
             <Text style={styles.chevron}>{"›"}</Text>
           </Pressable>
@@ -133,10 +134,10 @@ export default function PlacesScreen({ onOpenScore }: { onOpenScore?: () => void
         <View key={kind} style={[styles.placeCard, styles.placeEmpty]}>
           <Text style={styles.icon}>{PLACE_INFO[kind].icon}</Text>
           <View style={{ flex: 1 }}>
-            <Text style={styles.placeTitle}>{PLACE_INFO[kind].label}</Text>
-            <Text style={styles.placeMeta}>{PLACE_INFO[kind].blurb}</Text>
+            <Text style={styles.placeTitle}>{tr(PLACE_INFO[kind].label)}</Text>
+            <Text style={styles.placeMeta}>{tr(PLACE_INFO[kind].blurb)}</Text>
             <View style={{ marginTop: 10, alignSelf: "flex-start" }}>
-              <SecondaryButton title={`Set up ${PLACE_INFO[kind].label.toLowerCase()}`} onPress={() => create(kind)} />
+              <SecondaryButton title={tr("Set up {label}", { label: tr(PLACE_INFO[kind].label).toLowerCase() })} onPress={() => create(kind)} />
             </View>
           </View>
         </View>
@@ -144,35 +145,35 @@ export default function PlacesScreen({ onOpenScore }: { onOpenScore?: () => void
 
       {adding ? (
         <View style={styles.card}>
-          <Text style={styles.kicker}>ANOTHER PLACE</Text>
+          <Text style={styles.kicker}>{tr("ANOTHER PLACE")}</Text>
           <View style={styles.chips}>
             {PLACE_KINDS.map((k) => (
               <Pressable key={k} accessibilityRole="radio" aria-checked={adding.kind === k} onPress={() => setAdding({ ...adding, kind: k })} style={[styles.chip, adding.kind === k && styles.chipOn]}>
-                <Text style={[styles.chipText, adding.kind === k && { color: colors.accent, fontWeight: "700" }]}>{PLACE_INFO[k].icon} {PLACE_INFO[k].label}</Text>
+                <Text style={[styles.chipText, adding.kind === k && { color: colors.accent, fontWeight: "700" }]}>{PLACE_INFO[k].icon} {tr(PLACE_INFO[k].label)}</Text>
               </Pressable>
             ))}
           </View>
-          <TextInput style={styles.input} value={adding.label} onChangeText={(label) => setAdding({ ...adding, label })} accessibilityLabel="Name for the new place" placeholder="Name it (e.g. Parents' house, the gym)" />
+          <TextInput style={styles.input} value={adding.label} onChangeText={(label) => setAdding({ ...adding, label })} accessibilityLabel={tr("Name for the new place")} placeholder={tr("Name it (e.g. Parents' house, the gym)")} />
           <View style={{ flexDirection: "row", gap: 10, marginTop: 12 }}>
-            <PrimaryButton title="Add" onPress={() => create(adding.kind, adding.label)} />
-            <SecondaryButton title="Cancel" onPress={() => setAdding(null)} />
+            <PrimaryButton title={tr("Add")} onPress={() => create(adding.kind, adding.label)} />
+            <SecondaryButton title={tr("Cancel")} onPress={() => setAdding(null)} />
           </View>
         </View>
       ) : (
         overview.places.length > 0 && (
           <View style={{ alignSelf: "flex-start", marginBottom: 12 }}>
-            <SecondaryButton title="Add another place" onPress={() => setAdding({ kind: "home", label: "" })} />
+            <SecondaryButton title={tr("Add another place")} onPress={() => setAdding({ kind: "home", label: "" })} />
           </View>
         )
       )}
 
       <View style={styles.card}>
-        <Collapsible title="How places are read" teaser="Every answer is a comparison">
+        <Collapsible title={tr("How places are read")} teaser={tr("Every answer is a comparison")}>
           <Text style={styles.note}>
-            Each question is compared with a published reference: the US EPA (radon, lead, mold, indoor air), the WHO air-quality guideline, the US Surgeon General on secondhand smoke. Where no authority publishes a number, the check says it is this app's own curated guidance.
+            {tr("Each question is compared with a published reference: the US EPA (radon, lead, mold, indoor air), the WHO air-quality guideline, the US Surgeon General on secondhand smoke. Where no authority publishes a number, the check says it is this app's own curated guidance.")}
           </Text>
           <Text style={styles.note}>
-            The hours you spend in a place set how much its findings count, and people who share it and for whom a finding matters more make it count a little more. Answers are dated and kept, so the score can be compared with an earlier you. Everything stays on this device.
+            {tr("The hours you spend in a place set how much its findings count, and people who share it and for whom a finding matters more make it count a little more. Answers are dated and kept, so the score can be compared with an earlier you. Everything stays on this device.")}
           </Text>
         </Collapsible>
       </View>
@@ -202,7 +203,7 @@ function PlaceDetail({
   const info = PLACE_INFO[place.kind];
   const [filter, setFilter] = useState<Filter>("all");
   const [renaming, setRenaming] = useState(false);
-  const [label, setLabel] = useState(place.label);
+  const [label, setLabel] = useState(tr(place.label));
   const [hoursText, setHoursText] = useState(String(placeHours(place)));
   const [confirmRemove, setConfirmRemove] = useState(false);
 
@@ -249,7 +250,7 @@ function PlaceDetail({
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16 }}>
       <Pressable accessibilityRole="button" onPress={onBack} style={{ paddingVertical: 8 }}>
-        <Text style={styles.link}>{"‹"} Your places</Text>
+        <Text style={styles.link}>{tr("‹ Your places")}</Text>
       </Pressable>
 
       <View style={styles.titleRow}>
@@ -257,7 +258,7 @@ function PlaceDetail({
         {renaming ? (
           <TextInput
             style={[styles.input, { flex: 1 }]}
-            accessibilityLabel="Name of this place"
+            accessibilityLabel={tr("Name of this place")}
             value={label}
             onChangeText={setLabel}
             autoFocus
@@ -274,21 +275,21 @@ function PlaceDetail({
           />
         ) : (
           <Pressable accessibilityRole="button" onPress={() => setRenaming(true)} style={{ flex: 1 }}>
-            <Text accessibilityRole="header" style={styles.h1}>{place.label}</Text>
-            <Text style={styles.linkSmall}>Rename</Text>
+            <Text accessibilityRole="header" style={styles.h1}>{tr(place.label)}</Text>
+            <Text style={styles.linkSmall}>{tr("Rename")}</Text>
           </Pressable>
         )}
       </View>
-      <Text style={styles.sub}>{info.blurb}</Text>
+      <Text style={styles.sub}>{tr(info.blurb)}</Text>
 
       <View style={styles.card}>
-        <Text style={styles.kicker}>TIME HERE</Text>
-        <Text style={styles.note}>About {placeHours(place)} hours a week. More time here means what you find here counts for more.</Text>
+        <Text style={styles.kicker}>{tr("TIME HERE")}</Text>
+        <Text style={styles.note}>{tr("About {hours} hours a week. More time here means what you find here counts for more.", { hours: placeHours(place) })}</Text>
         <View style={styles.chips}>
           {info.hourPresets.map((p) => (
             <Pressable key={p.hours} accessibilityRole="radio" aria-checked={placeHours(place) === p.hours} onPress={() => changeHours(p.hours)} style={[styles.chip, placeHours(place) === p.hours && styles.chipOn]}>
               <Text style={[styles.chipText, placeHours(place) === p.hours && { color: colors.accent, fontWeight: "700" }]}>
-                {p.label} ({p.hours} h)
+                {tr("{label} ({hours} h)", { label: tr(p.label), hours: p.hours })}
               </Text>
             </Pressable>
           ))}
@@ -303,16 +304,16 @@ function PlaceDetail({
               if (Number.isFinite(n) && n !== placeHours(place)) changeHours(n);
             }}
             keyboardType="number-pad"
-            accessibilityLabel="Hours a week"
+            accessibilityLabel={tr("Hours a week")}
           />
-          <Text style={[styles.note, { marginLeft: 8 }]}>hours a week</Text>
+          <Text style={[styles.note, { marginLeft: 8 }]}>{tr("hours a week")}</Text>
         </View>
         {receipts[`${place.id}:hours`] && <ReceiptCard receipt={receipts[`${place.id}:hours`]} />}
       </View>
 
       {place.kind === "home" && (
         <View style={styles.card}>
-          <Text style={styles.kicker}>WHO SHARES IT</Text>
+          <Text style={styles.kicker}>{tr("WHO SHARES IT")}</Text>
           <HouseholdEditor occupants={place.occupants} onSave={saveOne} onRemove={removeOne} />
           {receipts[`${place.id}:household`] && (
             <View style={{ marginTop: 10 }}>
@@ -325,9 +326,9 @@ function PlaceDetail({
       <View style={styles.segment}>
         {(
           [
-            ["all", `All (${counts.total})`],
-            ["attention", `Worth a look (${counts.attention})`],
-            ["unknown", `Not answered (${counts.total - counts.answered})`],
+            ["all", tr("All ({n})", { n: counts.total })],
+            ["attention", tr("Worth a look ({n})", { n: counts.attention })],
+            ["unknown", tr("Not answered ({n})", { n: counts.total - counts.answered })],
           ] as [Filter, string][]
         ).map(([k, text]) => (
           <Pressable key={k} accessibilityRole="tab" aria-selected={filter === k} onPress={() => setFilter(k)} style={[styles.segBtn, filter === k && styles.segOn]}>
@@ -336,7 +337,7 @@ function PlaceDetail({
         ))}
       </View>
 
-      {shown.length === 0 && <Text style={styles.note}>{filter === "attention" ? "Nothing here is worth a look right now." : "Everything here has been answered."}</Text>}
+      {shown.length === 0 && <Text style={styles.note}>{filter === "attention" ? tr("Nothing here is worth a look right now.") : tr("Everything here has been answered.")}</Text>}
       {shown.map((c) => {
         const reading = readings.find((r) => r.checkId === c.id)!;
         const substance = substances.get(reading.status === "attention" ? reading.substanceId : c.substanceId);
@@ -359,15 +360,15 @@ function PlaceDetail({
       <View style={{ marginTop: 16, marginBottom: 24 }}>
         {confirmRemove ? (
           <View>
-            <Text style={styles.note}>This removes {place.label} and every answer about it from this device.</Text>
+            <Text style={styles.note}>{tr("This removes {label} and every answer about it from this device.", { label: tr(place.label) })}</Text>
             <View style={{ flexDirection: "row", gap: 10, marginTop: 8 }}>
-              <SecondaryButton title="Yes, remove it" onPress={removeThis} />
-              <SecondaryButton title="Keep it" onPress={() => setConfirmRemove(false)} />
+              <SecondaryButton title={tr("Yes, remove it")} onPress={removeThis} />
+              <SecondaryButton title={tr("Keep it")} onPress={() => setConfirmRemove(false)} />
             </View>
           </View>
         ) : (
           <Pressable accessibilityRole="button" onPress={() => setConfirmRemove(true)} style={{ paddingVertical: 8 }}>
-            <Text style={styles.linkSmall}>Remove this place</Text>
+            <Text style={styles.linkSmall}>{tr("Remove this place")}</Text>
           </Pressable>
         )}
       </View>
@@ -386,15 +387,15 @@ const styles = StyleSheet.create({
   note: { fontSize: 12, color: colors.muted, marginTop: 6, lineHeight: 17 },
   link: { fontSize: 13, color: colors.accent, fontWeight: "600" },
   linkSmall: { fontSize: 12, color: colors.muted, textDecorationLine: "underline", marginTop: 2 },
-  nextCard: { backgroundColor: colors.accent, borderRadius: radius, padding: 16, marginBottom: 12 },
-  nextKicker: { fontSize: 12, fontWeight: "700", letterSpacing: 0.6, color: "#d9eadf" },
-  nextTitle: { fontSize: 16, fontWeight: "700", color: "#fff", marginTop: 4, lineHeight: 22 },
-  nextButton: { alignSelf: "flex-start", marginTop: 12, backgroundColor: "#fff", paddingVertical: 9, paddingHorizontal: 18, borderRadius: radiusPill },
-  nextButtonText: { fontSize: 13, fontWeight: "700", color: colors.accent },
+  nextCard: { backgroundColor: colors.accentFill, borderRadius: radius, padding: 16, marginBottom: 12 },
+  nextKicker: { fontSize: 12, fontWeight: "700", letterSpacing: 0.6, color: colors.onAccentMuted },
+  nextTitle: { fontSize: 16, fontWeight: "700", color: colors.onAccent, marginTop: 4, lineHeight: 22 },
+  nextButton: { alignSelf: "flex-start", marginTop: 12, backgroundColor: colors.onAccent, paddingVertical: 9, paddingHorizontal: 18, borderRadius: radiusPill },
+  nextButtonText: { fontSize: 13, fontWeight: "700", color: colors.accentFill },
   placeCard: { flexDirection: "row", alignItems: "center", backgroundColor: colors.card, borderWidth: 1, borderColor: colors.line, borderRadius: radius, padding: 16, marginBottom: 12, ...shadow },
   placeEmpty: { alignItems: "flex-start", borderStyle: "dashed", shadowOpacity: 0 },
-  icon: { fontSize: 26, marginRight: 14 },
-  iconBig: { fontSize: 30, marginRight: 12 },
+  icon: { fontSize: 26, marginRight: 14, color: colors.ink },
+  iconBig: { fontSize: 30, marginRight: 12, color: colors.ink },
   placeTitle: { fontSize: 16, fontWeight: "700", color: colors.ink },
   placeMeta: { fontSize: 12, color: colors.muted, marginTop: 2, lineHeight: 17 },
   chevron: { fontSize: 22, color: colors.muted, marginLeft: 8 },
@@ -405,7 +406,7 @@ const styles = StyleSheet.create({
   chipText: { fontSize: 12, color: colors.ink },
   input: { backgroundColor: colors.card, borderWidth: 1, borderColor: colors.line, borderRadius: radiusSm, padding: 10, fontSize: 14, color: colors.ink, marginTop: 10 },
   hoursRow: { flexDirection: "row", alignItems: "center" },
-  segment: { flexDirection: "row", backgroundColor: "#eee9dd", borderRadius: radiusSm, padding: 3, marginBottom: 12 },
+  segment: { flexDirection: "row", backgroundColor: colors.track, borderRadius: radiusSm, padding: 3, marginBottom: 12 },
   segBtn: { flex: 1, paddingVertical: 8, alignItems: "center", borderRadius: radiusSm - 2 },
   segOn: { backgroundColor: colors.card },
   segText: { fontSize: 12, fontWeight: "600", color: colors.muted },

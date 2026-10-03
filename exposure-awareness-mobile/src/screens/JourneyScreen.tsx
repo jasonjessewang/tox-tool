@@ -7,6 +7,7 @@ import { Card, SectionTitle, Subtitle } from "../components/ui";
 import { Collapsible } from "../components/Collapsible";
 import { BarChart } from "../components/BarChart";
 import { colors } from "../theme";
+import { tr } from "../i18n";
 
 type StarterRow = StarterQuest & { completed: boolean };
 
@@ -47,7 +48,7 @@ export default function JourneyScreen() {
   if (!starter) {
     return (
       <View style={styles.center}>
-        <Text style={{ color: colors.muted }}>Loading…</Text>
+        <Text style={{ color: colors.muted }}>{tr("Loading…")}</Text>
       </View>
     );
   }
@@ -57,28 +58,28 @@ export default function JourneyScreen() {
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16 }}>
-      <Text accessibilityRole="header" style={styles.h1}>Journey</Text>
+      <Text accessibilityRole="header" style={styles.h1}>{tr("Journey")}</Text>
 
       <Card style={{ borderColor: colors.accent }}>
         <Text style={styles.progressText}>
-          {starter.done} of {starter.total} first steps done
+          {tr("{done} of {total} first steps done", { done: starter.done, total: starter.total })}
         </Text>
-        <View style={styles.progressTrack} accessibilityLabel={`${starter.done} of ${starter.total} first steps done`}>
+        <View style={styles.progressTrack} accessibilityLabel={tr("{done} of {total} first steps done", { done: starter.done, total: starter.total })}>
           <View style={[styles.progressFill, { width: `${Math.min(100, progress * 100)}%` }]} />
         </View>
       </Card>
 
-      <SectionTitle>First steps, biggest sources first</SectionTitle>
-      {nextStep && <Subtitle>Next up: {nextStep.title}</Subtitle>}
+      <SectionTitle>{tr("First steps, biggest sources first")}</SectionTitle>
+      {nextStep && <Subtitle>{tr("Next up: {title}", { title: nextStep.title })}</Subtitle>}
       <Card>
         {starter.quests.map((q, i) => (
           <View key={q.id} style={i > 0 ? styles.divider : undefined}>
             <View style={styles.questRow}>
-              <StepCheckbox completed={q.completed} label={`${q.order}. ${q.title}`} onPress={() => toggleStarter(q.id, q.completed)} />
+              <StepCheckbox completed={q.completed} label={`${q.order}. ${tr(q.title)}`} onPress={() => toggleStarter(q.id, q.completed)} />
               <View style={{ flex: 1 }}>
-                <Collapsible title={`${q.order}. ${q.title}`} teaser={q.action}>
-                  <Text style={styles.questWhy}>{q.why}</Text>
-                  <Text style={styles.questAction}>→ {q.action}</Text>
+                <Collapsible title={`${q.order}. ${tr(q.title)}`} teaser={tr(q.action)}>
+                  <Text style={styles.questWhy}>{tr(q.why)}</Text>
+                  <Text style={styles.questAction}>→ {tr(q.action)}</Text>
                 </Collapsible>
               </View>
             </View>
@@ -86,17 +87,17 @@ export default function JourneyScreen() {
         ))}
       </Card>
 
-      <SectionTitle>Your Trend</SectionTitle>
+      <SectionTitle>{tr("Your Trend")}</SectionTitle>
       <Card>
-        <Collapsible title="Flagged mentions per week" defaultOpen>
-          <BarChart label="Flagged mentions per week" data={history.map((h) => ({ label: h.weekLabel, value: h.overallScore }))} barColor={colors.warn} />
-          <Text style={styles.note}>Not a dose-adjusted risk score. Down usually means fewer logged matches recently.</Text>
+        <Collapsible title={tr("Flagged mentions per week")} defaultOpen>
+          <BarChart label={tr("Flagged mentions per week")} data={history.map((h) => ({ label: h.weekLabel, value: h.overallScore }))} barColor={colors.warn} />
+          <Text style={styles.note}>{tr("Not a dose-adjusted risk score. Down usually means fewer logged matches recently.")}</Text>
         </Collapsible>
       </Card>
       <Card>
-        <Collapsible title="Resilience practices per week" defaultOpen>
-          <BarChart label="Resilience practices per week" data={history.map((h) => ({ label: h.weekLabel, value: h.practicesLogged }))} barColor={colors.accent} />
-          <Text style={styles.note}>Tracked separately, never netted against the chart above.</Text>
+        <Collapsible title={tr("Resilience practices per week")} defaultOpen>
+          <BarChart label={tr("Resilience practices per week")} data={history.map((h) => ({ label: h.weekLabel, value: h.practicesLogged }))} barColor={colors.accent} />
+          <Text style={styles.note}>{tr("Tracked separately, never netted against the chart above.")}</Text>
         </Collapsible>
       </Card>
     </ScrollView>
@@ -122,8 +123,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  checkboxDone: { backgroundColor: colors.accent, borderColor: colors.accent },
-  checkmark: { color: "#fff", fontSize: 13, fontWeight: "700" },
+  checkboxDone: { backgroundColor: colors.accentFill, borderColor: colors.accentFill },
+  checkmark: { color: colors.onAccent, fontSize: 13, fontWeight: "700" },
   questWhy: { fontSize: 12, color: colors.muted, marginTop: 4, lineHeight: 17 },
   questAction: { fontSize: 13, color: colors.ink, marginTop: 6, fontStyle: "italic" },
   divider: { borderTopWidth: 1, borderTopColor: colors.line, marginTop: 4, paddingTop: 4 },

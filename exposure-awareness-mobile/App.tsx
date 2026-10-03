@@ -27,9 +27,10 @@ import IntroScreen, { type IntroChoices } from "./src/screens/onboarding/IntroSc
 import * as db from "./src/storage/db";
 import * as notify from "./src/notifications/notify";
 import { refreshLiteratureIfStale, shouldRefreshLiterature } from "./src/services/pubmed";
-import { colors } from "./src/theme";
+import { colors, resolveTheme } from "./src/theme";
 import type { UserProfile } from "./src/engine/types";
 import { CALM_DEFAULTS, learningMomentsOn } from "./src/engine/calm";
+import { msg, tr } from "./src/i18n";
 
 // No login screen: this build is local-only by design -- fully usable with zero accounts.
 // The health-intake profile below is a DIFFERENT thing from login/SSO: it's stored purely
@@ -39,29 +40,29 @@ import { CALM_DEFAULTS, learningMomentsOn } from "./src/engine/calm";
 type Tab = "dashboard" | "daily" | "weekly" | "learn";
 
 const TABS: { key: Tab; label: string; icon: string }[] = [
-  { key: "dashboard", label: "Dashboard", icon: "" },
-  { key: "daily", label: "Daily", icon: "☀️" },
-  { key: "weekly", label: "Weekly", icon: "📅" },
-  { key: "learn", label: "Learn", icon: "📖" },
+  { key: "dashboard", label: msg("Dashboard"), icon: "" },
+  { key: "daily", label: msg("Daily"), icon: "☀️" },
+  { key: "weekly", label: msg("Weekly"), icon: "📅" },
+  { key: "learn", label: msg("Learn"), icon: "📖" },
 ];
 
 type Overlay = "journey" | "log_food" | "log_air" | "log_practice" | "log_biomarker" | "quests" | "roadmap" | "profile" | "evidence" | "scan" | "shelf" | "places" | "connections" | "score";
 
 const OVERLAY_TITLES: Record<Overlay, string> = {
-  journey: "Your Journey",
-  log_food: "Food",
-  log_air: "Air quality",
-  log_practice: "Sleep & resets",
-  log_biomarker: "Biomarkers",
-  quests: "Tutorial quests",
-  roadmap: "Roadmap",
-  profile: "About you",
-  evidence: "Research",
-  scan: "Scan a product",
-  shelf: "My shelf",
-  places: "Your places",
-  score: "Your score",
-  connections: "Connected sources",
+  journey: msg("Your Journey"),
+  log_food: msg("Food"),
+  log_air: msg("Air quality"),
+  log_practice: msg("Sleep & resets"),
+  log_biomarker: msg("Biomarkers"),
+  quests: msg("Tutorial quests"),
+  roadmap: msg("Roadmap"),
+  profile: msg("About you"),
+  evidence: msg("Research"),
+  scan: msg("Scan a product"),
+  shelf: msg("My shelf"),
+  places: msg("Your places"),
+  score: msg("Your score"),
+  connections: msg("Connected sources"),
 };
 
 const TAB_TARGETS: Partial<Record<JourneyTarget, Tab>> = { daily: "daily", weekly: "weekly", learn: "learn", dashboard: "dashboard" };
@@ -152,7 +153,7 @@ function AppInner() {
   }
 
   const backTo = trail.length > 0 ? trail[trail.length - 1] : null;
-  const backLabel = backTo === "journey" ? "Journey" : backTo ? OVERLAY_TITLES[backTo] : TABS.find((x) => x.key === tab)!.label;
+  const backLabel = tr(backTo === "journey" ? msg("Journey") : backTo ? OVERLAY_TITLES[backTo] : TABS.find((x) => x.key === tab)!.label);
 
   async function handleIntakeContinue(
     fields: Omit<UserProfile, "contentComplexity" | "completedAt" | "locationEnabled" | "checkInTime">
@@ -175,7 +176,7 @@ function AppInner() {
   if (bootPhase === "loading") {
     return (
       <SafeAreaView style={styles.safe}>
-        <LoadingScreen message="Welcome" minMs={LAUNCH_BEAT_MS} onDone={finishLaunch} />
+        <LoadingScreen message={tr("Welcome")} minMs={LAUNCH_BEAT_MS} onDone={finishLaunch} />
       </SafeAreaView>
     );
   }
@@ -183,7 +184,7 @@ function AppInner() {
   if (bootPhase === "intake") {
     return (
       <SafeAreaView style={styles.safe}>
-        <StatusBar style="dark" />
+        <StatusBar style={resolveTheme() === "dark" ? "light" : "dark"} />
         <IntakeScreen initial={null} onContinue={handleIntakeContinue} />
       </SafeAreaView>
     );
@@ -192,7 +193,7 @@ function AppInner() {
   if (bootPhase === "intro") {
     return (
       <SafeAreaView style={styles.safe}>
-        <StatusBar style="dark" />
+        <StatusBar style={resolveTheme() === "dark" ? "light" : "dark"} />
         <IntroScreen onDone={handleIntroDone} />
       </SafeAreaView>
     );
@@ -200,13 +201,13 @@ function AppInner() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style={resolveTheme() === "dark" ? "light" : "dark"} />
       {(overlay || !transitioning) && !detailOpen ? (
       <View style={styles.header}>
         {overlay ? (
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel={`Back to ${backLabel}`}
+            accessibilityLabel={tr("Back to {backLabel}", { backLabel })}
             onPress={goBack}
             hitSlop={8}
             style={{ paddingVertical: 6, marginVertical: -6 }}
@@ -216,10 +217,10 @@ function AppInner() {
         ) : (
           <View style={styles.brandRow}>
             <BrandMark size={20} />
-            <Text style={styles.brand}>Exposure Awareness</Text>
+            <Text style={styles.brand}>{tr("Exposure Awareness")}</Text>
           </View>
         )}
-        {overlay && <Text style={styles.headerTitle}>{OVERLAY_TITLES[overlay]}</Text>}
+        {overlay && <Text style={styles.headerTitle}>{tr(OVERLAY_TITLES[overlay])}</Text>}
       </View>
       ) : null}
 
@@ -250,7 +251,7 @@ function AppInner() {
         {TABS.map((t) => (
           <Pressable
             accessibilityRole="tab"
-            accessibilityLabel={t.label}
+            accessibilityLabel={tr(t.label)}
             aria-selected={!overlay && tab === t.key}
             key={t.key}
             onPress={() => {
@@ -269,7 +270,7 @@ function AppInner() {
             ) : (
               <Text aria-hidden importantForAccessibility="no-hide-descendants" style={[styles.tabIcon, !overlay && tab === t.key && styles.tabIconActive]}>{t.icon}</Text>
             )}
-            <Text style={[styles.tabLabel, !overlay && tab === t.key && styles.tabLabelActive]}>{t.label}</Text>
+            <Text style={[styles.tabLabel, !overlay && tab === t.key && styles.tabLabelActive]}>{tr(t.label)}</Text>
           </Pressable>
         ))}
       </View>
@@ -306,7 +307,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   tabItem: { flex: 1, alignItems: "center", paddingVertical: 4, gap: 2 },
-  tabIcon: { fontSize: 17, opacity: 0.55 },
+  tabIcon: { fontSize: 17, opacity: 0.55, color: colors.ink },
   tabIconActive: { opacity: 1 },
   tabIconDim: { opacity: 0.55 },
   tabLabel: { fontSize: 12, color: colors.muted },

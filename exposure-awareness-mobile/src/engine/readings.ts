@@ -7,6 +7,7 @@
  */
 import type { BiomarkerLog } from "./types";
 import { daysBetweenISO } from "../util/dates";
+import { tr } from "../i18n";
 
 export interface ReadingPoint {
   day: string;
@@ -67,12 +68,16 @@ export function trendsFrom(readings: BiomarkerLog[], asOf: string): MetricTrend[
       .reverse()
       .map((r) => ({ day: r.log_date, value: r.value }));
 
-    const withUnit = (v: number) => `${num(v)}${unit ? ` ${unit}` : ""}`;
-    let sentence = `${tidy(latest.metric)}: ${withUnit(latest.value)} on ${latest.log_date}`;
-    if (previous === null) sentence += ". Your first reading -- a second one lets the app show which way your own numbers are moving.";
-    else if (!comparable) sentence += `. Your earlier reading was in a different unit (${previous.unit.trim() || "none given"}), so the two are not compared.`;
-    else if (direction === "unchanged") sentence += `, the same as ${previous!.log_date}.`;
-    else sentence += `, ${direction} than your ${withUnit(previous!.value)} on ${previous!.log_date} (${change! > 0 ? "+" : ""}${num(change!)}).`;
+    const withUnit = (v: number) => `${num(v)}${unit ? ` ${tr(unit)}` : ""}`;
+    const head = { metric: tr(tidy(latest.metric)), value: withUnit(latest.value), date: latest.log_date };
+    let sentence: string;
+    if (previous === null) sentence = tr("{metric}: {value} on {date}. Your first reading -- a second one lets the app show which way your own numbers are moving.", head);
+    else if (!comparable) sentence = tr("{metric}: {value} on {date}. Your earlier reading was in a different unit ({unit}), so the two are not compared.", { ...head, unit: previous.unit.trim() || tr("none given") });
+    else if (direction === "unchanged") sentence = tr("{metric}: {value} on {date}, the same as {before}.", { ...head, before: previous!.log_date });
+    else {
+      const vs = { ...head, previous: withUnit(previous!.value), before: previous!.log_date, change: `${change! > 0 ? "+" : ""}${num(change!)}` };
+      sentence = direction === "higher" ? tr("{metric}: {value} on {date}, higher than your {previous} on {before} ({change}).", vs) : tr("{metric}: {value} on {date}, lower than your {previous} on {before} ({change}).", vs);
+    }
 
     out.push({ metric: tidy(latest.metric), unit, points, count: sorted.length, latest: { day: latest.log_date, value: latest.value }, previous: previous ? { day: previous.log_date, value: previous.value } : null, change, direction, daysSince, sentence });
   }

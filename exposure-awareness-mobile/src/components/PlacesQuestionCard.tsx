@@ -9,6 +9,7 @@ import { householdNotes, peopleIn, readPlace } from "../engine/places/evaluate";
 import { loadHazardDb } from "../engine/scoring";
 import { runActivity, type Receipt } from "../engine/receipts";
 import { todayISO } from "../util/dates";
+import { tr } from "../i18n";
 
 /**
  * One question a day about the places a person spends their days in, answered right where they already check in -- so the
@@ -42,11 +43,11 @@ export function PlacesQuestionCard({ onOpenPlaces }: { onOpenPlaces?: () => void
   if (overview.places.length === 0) {
     return (
       <View style={styles.card}>
-        <Text style={styles.kicker}>WHERE DO YOU SPEND YOUR DAYS?</Text>
-        <Text style={styles.text}>A few plain questions about home, work and everyday places, each compared with published guidance. One a day is plenty.</Text>
+        <Text style={styles.kicker}>{tr("WHERE DO YOU SPEND YOUR DAYS?")}</Text>
+        <Text style={styles.text}>{tr("A few plain questions about home, work and everyday places, each compared with published guidance. One a day is plenty.")}</Text>
         {onOpenPlaces && (
           <View style={{ marginTop: 10, alignSelf: "flex-start" }}>
-            <SecondaryButton title="Set up my places" onPress={onOpenPlaces} />
+            <SecondaryButton title={tr("Set up my places")} onPress={onOpenPlaces} />
           </View>
         )}
       </View>
@@ -58,8 +59,8 @@ export function PlacesQuestionCard({ onOpenPlaces }: { onOpenPlaces?: () => void
   if (!pinned || !place || !check) {
     return answeredEarlier ? (
       <View style={styles.card}>
-        <Text style={styles.kicker}>YOUR PLACES</Text>
-        <Text style={styles.text}>You answered a question about your places today. That is plenty for one day.</Text>
+        <Text style={styles.kicker}>{tr("YOUR PLACES")}</Text>
+        <Text style={styles.text}>{tr("You answered a question about your places today. That is plenty for one day.")}</Text>
       </View>
     ) : null;
   }
@@ -75,7 +76,7 @@ export function PlacesQuestionCard({ onOpenPlaces }: { onOpenPlaces?: () => void
 
   return (
     <View style={styles.card}>
-      <Text style={styles.kicker}>ONE QUESTION ABOUT {place.label.toUpperCase()}</Text>
+      <Text style={styles.kicker}>{tr("ONE QUESTION ABOUT {label}", { label: place.label.toUpperCase() })}</Text>
       <CheckCard
         check={check}
         reading={reading}
@@ -88,7 +89,7 @@ export function PlacesQuestionCard({ onOpenPlaces }: { onOpenPlaces?: () => void
       />
       {onOpenPlaces && (
         <View style={{ alignSelf: "flex-start" }}>
-          <SecondaryButton title="See all my places" onPress={onOpenPlaces} />
+          <SecondaryButton title={tr("See all my places")} onPress={onOpenPlaces} />
         </View>
       )}
     </View>

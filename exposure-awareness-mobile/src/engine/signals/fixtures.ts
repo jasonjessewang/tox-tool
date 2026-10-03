@@ -1,3 +1,4 @@
+// i18n-ignore-file: test fixtures, not imported by the app
 /**
  * Builds SignalData from a few plain lines, so the signals can be tested (and the score explored) without storage.
  * Not imported by the app.

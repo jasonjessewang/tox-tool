@@ -3,8 +3,9 @@ import { ScrollView, View, Text, StyleSheet, RefreshControl, Pressable } from "r
 import * as db from "../storage/db";
 import { scoreLogs, loadHazardDb, sourceOf } from "../engine/scoring";
 import * as notify from "../notifications/notify";
+import { airQualityNotificationsOn } from "../engine/calm";
 import { getFusionReport, TREND_LABELS, type FusionReport, type TrendDirection } from "../engine/fusion";
-import { personalizeReport, type PersonalizationResult } from "../engine/personalization";
+import { personalRelevance, weightedExposure, type PersonalRelevance } from "../engine/personalization";
 import type { ScoreReport, UserProfile } from "../engine/types";
 import { Card, Subtitle, PrimaryButton, SecondaryButton } from "../components/ui";
 import LoadingScreen from "../components/LoadingScreen";
@@ -27,6 +28,7 @@ import { getAdviceInputs, keepAdvice, KEEP_DAYS } from "../engine/adviceState";
 import { describeScore, showsNumber, type WellnessScore } from "../engine/wellnessScore";
 import { colors, bandColor, radiusLg, shadow, shadowRaised } from "../theme";
 import { daysAgoISO, daysBetweenISO, todayISO } from "../util/dates";
+import { tr, trn } from "../i18n";
 
 const SCORE_BAND_COLOR: Record<WellnessScore["band"], string> = { building: colors.warn, steady: colors.warn, strong: colors.accent, excellent: colors.accent };
 
@@ -35,13 +37,13 @@ const SCORE_BAND_COLOR: Record<WellnessScore["band"], string> = { building: colo
 const TREND_COLOR: Record<TrendDirection, string> = { improving: colors.accent, worsening: colors.warn, flat: colors.muted, not_enough_data: colors.muted };
 
 function changeLine(s: MetricSummary, unit: string, goodWhen: "up" | "down" | "either") {
-  if (s.thisWeekAvg === null) return { text: "Add today's numbers in Daily to start this chart.", color: colors.muted };
-  const base = `Avg ${s.thisWeekAvg}${unit}/day`;
-  if (s.changePct === null) return { text: `${base} - need a prior week to compare`, color: colors.muted };
-  if (s.changePct === 0) return { text: `${base} - same as last week`, color: colors.muted };
+  if (s.thisWeekAvg === null) return { text: tr("Add today's numbers in Daily to start this chart."), color: colors.muted };
+  const base = tr("Avg {avg}{unit}/day", { avg: s.thisWeekAvg, unit });
+  if (s.changePct === null) return { text: tr("{base} - need a prior week to compare", { base }), color: colors.muted };
+  if (s.changePct === 0) return { text: tr("{base} - same as last week", { base }), color: colors.muted };
   const up = s.changePct > 0;
   const good = goodWhen === "either" ? null : goodWhen === "up" ? up : !up;
-  return { text: `${base} - ${up ? "up" : "down"} ${Math.abs(s.changePct)}% vs last week`, color: good === null ? colors.muted : good ? colors.accent : colors.warn };
+  return { text: up ? tr("{base} - up {pct}% vs last week", { base, pct: Math.abs(s.changePct) }) : tr("{base} - down {pct}% vs last week", { base, pct: Math.abs(s.changePct) }), color: good === null ? colors.muted : good ? colors.accent : colors.warn };
 }
 
 function TrendCard({ title, icon, unit, summary, goodWhen }: { title: string; icon: string; unit: string; summary: MetricSummary; goodWhen: "up" | "down" | "either" }) {
@@ -50,7 +52,7 @@ function TrendCard({ title, icon, unit, summary, goodWhen }: { title: string; ic
     <View>
       <Text style={{ fontSize: 15, fontWeight: "700", color: colors.ink }}>{icon} {title}</Text>
       <Text style={{ fontSize: 12, fontWeight: "600", color: line.color, marginTop: 2 }}>{line.text}</Text>
-      <BarChart label={`${title}, the last seven days`} data={summary.days.map((d) => ({ label: d.label, value: d.value ?? 0 }))} maxHeight={90} />
+      <BarChart label={tr("{title}, the last seven days", { title })} data={summary.days.map((d) => ({ label: d.label, value: d.value ?? 0 }))} maxHeight={90} />
     </View>
   );
 }
@@ -60,7 +62,7 @@ function FreshLines({ lines, onOpen }: { lines: FreshLine[]; onOpen: (target: Jo
   if (lines.length === 0) return null;
   return (
     <View style={{ marginTop: 12 }}>
-      <Text style={styles.freshLead}>To keep the picture current</Text>
+      <Text style={styles.freshLead}>{tr("To keep the picture current")}</Text>
       {lines.map((l) => (
         <Pressable key={l.key} accessibilityRole="button" onPress={() => onOpen(l.target, l.segment)} style={styles.freshRow}>
           <Text style={styles.freshText}>{l.text} {"›"}</Text>
@@ -73,7 +75,7 @@ function FreshLines({ lines, onOpen }: { lines: FreshLine[]; onOpen: (target: Jo
 export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlaces, onOpen }: { onOpenJourney: () => void; onOpenScore: () => void; onOpenPlaces: () => void; onOpen: (target: JourneyTarget, segment?: "engine") => void }) {
   const [report, setReport] = useState<ScoreReport | null>(null);
   const [fusion, setFusion] = useState<FusionReport | null>(null);
-  const [personalization, setPersonalization] = useState<PersonalizationResult | null>(null);
+  const [personal, setPersonal] = useState<PersonalRelevance[]>([]);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [trends, setTrends] = useState<{ calories: MetricSummary; active: MetricSummary; screen: MetricSummary } | null>(null);
   const [plant, setPlant] = useState<PlantState | null>(null);
@@ -93,7 +95,8 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
     const end = todayISO();
     const logs = await db.getLogsForRange(start, end);
     const completedKeys = await db.getCompletedActionKeys(daysAgoISO(13));
-    const scored = scoreLogs(logs, undefined, completedKeys, await getAdviceInputs());
+    const adviceInputs = await getAdviceInputs();
+    const scored = scoreLogs(logs, undefined, completedKeys, adviceInputs);
     setReport(scored);
     setKept(await db.getKeptAdvice(end));
     setFusion(await getFusionReport());
@@ -126,7 +129,7 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
     const userProfile = await db.getUserProfile();
     setProfile(userProfile);
     const substancesById = Object.fromEntries(loadHazardDb().map((s) => [s.id, s]));
-    setPersonalization(personalizeReport(scored, userProfile, substancesById));
+    setPersonal(personalRelevance(weightedExposure(scored, adviceInputs.standing), userProfile, substancesById));
 
     setPermission(await notify.getPermissionState());
 
@@ -140,8 +143,11 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
   async function enableNotifications() {
     const result = await notify.requestPermission();
     setPermission(result);
-    if (result === "granted") {
-      notify.fireLocal("Notifications enabled", "Moderate-or-worse air quality events only.");
+    if (result === "granted" && profile) {
+      const next = { ...profile, airQualityNotifications: true };
+      await db.saveUserProfile(next);
+      setProfile(next);
+      notify.fireLocal(tr("Notifications enabled"), tr("Moderate-or-worse air quality events only."));
     }
   }
 
@@ -162,13 +168,13 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
 
   if (loading || !report || !fusion) {
     return (
-      <LoadingScreen message="Analyzing your week" />
+      <LoadingScreen message={tr("Analyzing your week")} />
     );
   }
 
   const practiceCount = Object.values(report.practice_summary).reduce((sum, s) => sum + (s?.count ?? 0), 0);
   const technicalDefault = profile?.contentComplexity === "technical";
-  const personalizedSubstances = personalization ? Object.entries(personalization.personalReasonsBySubstance) : [];
+  const personalizedSubstances = personal.map((p) => [p.substanceId, p.reasons] as const);
 
   return (
     <ScrollView
@@ -176,32 +182,32 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
       contentContainerStyle={{ padding: 16 }}
       refreshControl={<RefreshControl refreshing={loading} onRefresh={load} />}
     >
-      <Text accessibilityRole="header" style={styles.h1}>Dashboard</Text>
-      <Subtitle>Your picture this week, compared with published guidance and with you.</Subtitle>
+      <Text accessibilityRole="header" style={styles.h1}>{tr("Dashboard")}</Text>
+      <Subtitle>{tr("Your picture this week, compared with published guidance and with you.")}</Subtitle>
 
       {wellness && (
         <Pressable accessibilityRole="button" onPress={onOpenScore} style={styles.scoreCard}>
-          <ScoreGauge score={showsNumber(wellness) ? wellness.overall : null} color={SCORE_BAND_COLOR[wellness.band]} size={108} dim={wellness.provisional} caption={wellness.provisional ? (showsNumber(wellness) ? "early" : "not yet") : "/ 100"} />
+          <ScoreGauge score={showsNumber(wellness) ? wellness.overall : null} color={SCORE_BAND_COLOR[wellness.band]} size={108} dim={wellness.provisional} caption={wellness.provisional ? (showsNumber(wellness) ? tr("early") : tr("not yet")) : "/ 100"} />
           <View style={{ flex: 1, marginLeft: 4 }}>
-            <Text style={[styles.scoreBand, { color: SCORE_BAND_COLOR[wellness.band] }]}>{describeScore(wellness).label}</Text>
-            <Text style={styles.scoreDesc}>{describeScore(wellness).description}</Text>
+            <Text style={[styles.scoreBand, { color: SCORE_BAND_COLOR[wellness.band] }]}>{tr(describeScore(wellness).label)}</Text>
+            <Text style={styles.scoreDesc}>{tr(describeScore(wellness).description)}</Text>
             <Text style={styles.scoreMeta}>
-              Picture {wellness.coverage}% filled in
-              {wellness.vsBefore ? ` · ${wellness.vsBefore.change > 0 ? "+" : ""}${wellness.vsBefore.change} against ${wellness.vsBefore.window} ago` : ""}
+              {tr("Picture {coverage}% filled in", { coverage: wellness.coverage })}
+              {wellness.vsBefore ? tr(" · {change} against {window} ago", { change: `${wellness.vsBefore.change > 0 ? "+" : ""}${wellness.vsBefore.change}`, window: tr(wellness.vsBefore.window) }) : ""}
             </Text>
-            <Text style={styles.scoreLink}>See what it compares against {"›"}</Text>
+            <Text style={styles.scoreLink}>{tr("See what it compares against ›")}</Text>
           </View>
         </Pressable>
       )}
 
       <Pressable accessibilityRole="button" onPress={onOpenJourney} style={({ pressed }) => [styles.nextCard, pressed && { opacity: 0.9 }]}>
         <Text style={styles.nextKicker}>
-          {next ? `YOUR NEXT STEP \u00b7 ${next.stageTitle.toUpperCase()} ${next.done}/${next.total}` : "YOUR JOURNEY"}
+          {next ? tr("YOUR NEXT STEP · {stage} {done}/{total}", { stage: tr(next.stageTitle).toUpperCase(), done: next.done, total: next.total }) : tr("YOUR JOURNEY")}
         </Text>
-        <Text style={styles.nextTitle}>{next ? next.step.title : "You've finished every step"}</Text>
-        <Text style={styles.nextAction}>{next ? next.step.action : "Open your journey to keep your plant fruiting."}</Text>
+        <Text style={styles.nextTitle}>{next ? tr(next.step.title) : tr("You've finished every step")}</Text>
+        <Text style={styles.nextAction}>{next ? tr(next.step.action) : tr("Open your journey to keep your plant fruiting.")}</Text>
         <View style={styles.nextButton}>
-          <Text style={styles.nextButtonText}>{next ? "Continue" : "Open"} {"\u203a"}</Text>
+          <Text style={styles.nextButtonText}>{next ? tr("Continue") : tr("Open")} {"\u203a"}</Text>
         </View>
       </Pressable>
 
@@ -209,70 +215,70 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
 
       <Carousel
         icon={"\ud83e\uddee"}
-        title="Awareness"
+        title={tr("Awareness")}
         pages={[
           <View key="pos">
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-              <Text style={[styles.cardTitle, { fontSize: 18 }]}>{fusion.aggregate.position}</Text>
+              <Text style={[styles.cardTitle, { fontSize: 18 }]}>{tr(fusion.aggregate.position)}</Text>
             </View>
             <View style={{ flexDirection: "row", gap: 10, marginTop: 6, flexWrap: "wrap" }}>
               <Text style={[styles.pillText, { color: TREND_COLOR[fusion.aggregate.scoreTrend] }]}>
-                Exposure {TREND_LABELS.exposure[fusion.aggregate.scoreTrend]}
+                {tr("Exposure {exposure}", { exposure: tr(TREND_LABELS.exposure[fusion.aggregate.scoreTrend]) })}
               </Text>
               <Text style={[styles.pillText, { color: TREND_COLOR[fusion.aggregate.practiceTrend] }]}>
-                Practices {TREND_LABELS.practices[fusion.aggregate.practiceTrend]}
+                {tr("Practices {practices}", { practices: tr(TREND_LABELS.practices[fusion.aggregate.practiceTrend]) })}
               </Text>
             </View>
           </View>,
           <View key="level">
-            <Text style={[styles.tipSource, { marginBottom: 4 }]}>Awareness level</Text>
-            <Text style={{ fontSize: 24, fontWeight: "700", color: bandColor[report.awareness_band.key] }}>{report.awareness_band.label}</Text>
-            <Text style={[styles.note, { marginBottom: 12 }]}>{report.awareness_band.description}</Text>
+            <Text style={[styles.tipSource, { marginBottom: 4 }]}>{tr("Awareness level")}</Text>
+            <Text style={{ fontSize: 24, fontWeight: "700", color: bandColor[report.awareness_band.key] }}>{tr(report.awareness_band.label)}</Text>
+            <Text style={[styles.note, { marginBottom: 12 }]}>{tr(report.awareness_band.description)}</Text>
             {(["food", "personal_care", "environment"] as const).map((cat) => (
               <View key={cat} style={styles.catRow}>
-                <Text style={styles.tipText}>{cat === "personal_care" ? "Personal care" : cat[0].toUpperCase() + cat.slice(1)}</Text>
-                <Text style={styles.note}>{report.category_summary[cat]?.hit_count ?? 0} flagged</Text>
+                <Text style={styles.tipText}>{cat === "personal_care" ? tr("Personal care") : cat[0].toUpperCase() + cat.slice(1)}</Text>
+                <Text style={styles.note}>{tr("{hit_count} flagged", { hit_count: report.category_summary[cat]?.hit_count ?? 0 })}</Text>
               </View>
             ))}
           </View>,
           ...(ledger && ledger.itemCount > 0
             ? [
                 <View key="intake">
-                  <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{"\ud83d\uddc4\ufe0f"} Your running intake</Text>
-                  <Text style={styles.note}>{ledger.itemCount} product{ledger.itemCount === 1 ? "" : "s"} on your shelf {"\u00b7"} relative index {ledger.index}</Text>
+                  <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{tr("🗄️ Your running intake")}</Text>
+                  <Text style={styles.note}>{trn(ledger.itemCount, "{n} product on your shelf · relative index {index}", "{n} products on your shelf · relative index {index}", { index: ledger.index })}</Text>
                   {ledger.substances.slice(0, 2).map((sub) => (
                     <View key={sub.substanceId} style={styles.catRow}>
-                      <Text style={styles.tipText}>{sub.name}</Text>
-                      <Text style={styles.note}>{sub.servingsPerWeek}/week</Text>
+                      <Text style={styles.tipText}>{tr(sub.name)}</Text>
+                      <Text style={styles.note}>{tr("{n}/week", { n: sub.servingsPerWeek })}</Text>
                     </View>
                   ))}
                   {ledger.nutrients.filter((n) => n.limitNutrient).slice(0, 2).map((n) => (
                     <View key={n.key} style={styles.catRow}>
-                      <Text style={styles.tipText}>{n.label}</Text>
-                      <Text style={styles.note}>{n.pctDv}% of reference/day</Text>
+                      <Text style={styles.tipText}>{tr(n.label)}</Text>
+                      <Text style={styles.note}>{tr("{pct}% of reference/day", { pct: n.pctDv })}</Text>
                     </View>
                   ))}
-                  <Text style={[styles.note, { marginTop: 8 }]}>Full breakdown: Journey {"\u203a"} Shelf.</Text>
+                  <Text style={[styles.note, { marginTop: 8 }]}>{tr("Full breakdown: Journey › Shelf.")}</Text>
                 </View>,
               ]
             : []),
           ...(places
             ? [
                 <View key="places">
-                  <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{"\ud83c\udfe0"} Your places</Text>
+                  <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{tr("🏠 Your places")}</Text>
                   {places.summary.compared === 0 ? (
-                    <Text style={styles.note}>Where do you spend your days? A few plain questions about home, work and everyday places are each compared with published guidance -- and the same tips show up here when a small change would bring one in line.</Text>
+                    <Text style={styles.note}>{tr("Where do you spend your days? A few plain questions about home, work and everyday places are each compared with published guidance -- and the same tips show up here when a small change would bring one in line.")}</Text>
                   ) : (
                     <>
                       <Text style={styles.note}>
-                        {places.summary.meets} of {places.summary.compared} checks meet their reference
-                        {places.summary.attention > 0 ? `; worth a look first: ${places.summary.worth.slice(0, 2).map((w) => `${w.placeLabel}: ${w.short}`).join("; ")}.` : "."}
+                        {tr("{meets} of {compared} checks meet their reference", { meets: places.summary.meets, compared: places.summary.compared })}
+                        {places.summary.attention > 0 ? tr("; worth a look first: {items}.", { items: places.summary.worth.slice(0, 2).map((w) => `${tr(w.placeLabel)}: ${tr(w.short)}`).join("; ") }) : "."}
                       </Text>
-                      {places.next && <Text style={[styles.note, { marginTop: 4 }]}>Next question: {places.next.check.question}</Text>}
+                      {places.next && <Text style={[styles.note, { marginTop: 4 }]}>{tr("Next question: {question}", { question: tr(places.next.check.question) })}</Text>}
                     </>
                   )}
                   <View style={{ marginTop: 10, alignSelf: "flex-start" }}>
-                    <SecondaryButton title={places.summary.compared === 0 ? "Set up my places" : "Open places"} onPress={onOpenPlaces} />
+                    <SecondaryButton title={places.summary.compared === 0 ? tr("Set up my places") : tr("Open places")} onPress={onOpenPlaces} />
                   </View>
                 </View>,
               ]
@@ -280,14 +286,14 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
           ...(personalizedSubstances.length > 0
             ? [
                 <View key="personal">
-                  <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{"\ud83e\uddec"} Personalized for you</Text>
+                  <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{tr("🧬 Personalized for you")}</Text>
                   {personalizedSubstances.slice(0, 4).map(([substanceId, reasons]) => (
                     <View key={substanceId} style={{ marginBottom: 10 }}>
-                      <Text style={styles.tipText}>{substanceNames[substanceId] ?? substanceId}</Text>
+                      <Text style={styles.tipText}>{tr(substanceNames[substanceId] ?? substanceId)}</Text>
                       {reasons.map((r, i) => (
                         <Text key={i} style={styles.note}>
-                          <Text style={{ fontWeight: "700" }}>{r.label}: </Text>
-                          {r.reason}
+                          <Text style={{ fontWeight: "700" }}>{tr(r.label)}: </Text>
+                          {tr(r.reason)}
                         </Text>
                       ))}
                     </View>
@@ -300,12 +306,12 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
 
       <Carousel
         icon={"\u2705"}
-        title="Do next"
+        title={tr("Do next")}
         pages={[
           ...(report.focus_items.length > 0
             ? [
                 <View key="focus">
-                  <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>This week's focus</Text>
+                  <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{tr("This week's focus")}</Text>
                   {report.focus_items.map((item) => (
                     <ActionRow key={item.tip_key} tip={item.tip} source={item.source} via={item.via} viaPlaces={item.viaPlaces} onOpenPlaces={onOpenPlaces} completed={item.completed} onMarkDone={() => markDone(item.tip_key, item.tip)} onKeep={() => keepIt(item.tip_key, item.source)} keepDays={KEEP_DAYS} />
                   ))}
@@ -315,9 +321,9 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
           ...(report.quick_wins.length > 0
             ? [
                 <View key="wins">
-                  <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>Quick wins</Text>
+                  <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{tr("Quick wins")}</Text>
                   {report.quick_wins.map((item) => (
-                    <ActionRow key={item.tip_key} tip={item.tip} source={item.source} meta={`${item.action_impact} impact`} via={item.via} viaPlaces={item.viaPlaces} onOpenPlaces={onOpenPlaces} completed={item.completed} onMarkDone={() => markDone(item.tip_key, item.tip)} onKeep={() => keepIt(item.tip_key, item.source)} keepDays={KEEP_DAYS} />
+                    <ActionRow key={item.tip_key} tip={item.tip} source={item.source} meta={item.action_impact === "high" ? tr("high impact") : item.action_impact === "medium" ? tr("medium impact") : tr("low impact")} via={item.via} viaPlaces={item.viaPlaces} onOpenPlaces={onOpenPlaces} completed={item.completed} onMarkDone={() => markDone(item.tip_key, item.tip)} onKeep={() => keepIt(item.tip_key, item.source)} keepDays={KEEP_DAYS} />
                   ))}
                 </View>,
               ]
@@ -326,14 +332,14 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
             ? [
                 kept.length > 0 ? (
                   <View key="none">
-                    <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>All caught up</Text>
-                    <Text style={styles.note}>Everything on your list is something you decided to keep for now.</Text>
+                    <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{tr("All caught up")}</Text>
+                    <Text style={styles.note}>{tr("Everything on your list is something you decided to keep for now.")}</Text>
                     <FreshLines lines={fresh} onOpen={onOpen} />
                   </View>
                 ) : (
                   <View key="none">
-                    <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>Nothing flagged</Text>
-                    <Text style={styles.note}>Log food, products, or air quality from Your Journey and your next best actions will show up here.</Text>
+                    <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{tr("Nothing flagged")}</Text>
+                    <Text style={styles.note}>{tr("Log food, products, or air quality from Your Journey and your next best actions will show up here.")}</Text>
                     <FreshLines lines={fresh} onOpen={onOpen} />
                   </View>
                 ),
@@ -342,15 +348,15 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
           ...(kept.length > 0
             ? [
                 <View key="kept">
-                  <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>Kept for now</Text>
-                  <Text style={[styles.note, { marginBottom: 8 }]}>Things you looked at and decided to leave alone. They come back on their own, or any time you want.</Text>
+                  <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{tr("Kept for now")}</Text>
+                  <Text style={[styles.note, { marginBottom: 8 }]}>{tr("Things you looked at and decided to leave alone. They come back on their own, or any time you want.")}</Text>
                   {kept.map((k) => (
                     <View key={k.source_key} style={styles.keptRow}>
                       <View style={{ flex: 1 }}>
-                        <Text style={styles.tipText}>{k.label}</Text>
-                        <Text style={styles.note}>until {k.until}</Text>
+                        <Text style={styles.tipText}>{tr(k.label)}</Text>
+                        <Text style={styles.note}>{tr("until {until}", { until: k.until })}</Text>
                       </View>
-                      <SecondaryButton title="Bring back" label={`Bring back: ${k.label}`} onPress={() => bringBack(k.source_key)} />
+                      <SecondaryButton title={tr("Bring back")} label={tr("Bring back: {label}", { label: tr(k.label) })} onPress={() => bringBack(k.source_key)} />
                     </View>
                   ))}
                 </View>,
@@ -362,23 +368,23 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
       {trends && (
         <Carousel
           icon={"\ud83d\udcc8"}
-          title="Your trends"
+          title={tr("Your trends")}
           pages={[
-            <TrendCard key="c" title="Calories" icon={"\ud83c\udf7d\ufe0f"} unit=" kcal" summary={trends.calories} goodWhen="either" />,
-            <TrendCard key="a" title="Active time" icon={"\ud83c\udfc3"} unit=" min" summary={trends.active} goodWhen="up" />,
-            <TrendCard key="s" title="Screen time" icon={"\ud83d\udcf1"} unit=" h" summary={trends.screen} goodWhen="down" />,
+            <TrendCard key="c" title={tr("Calories")} icon={"\ud83c\udf7d\ufe0f"} unit={tr(" kcal")} summary={trends.calories} goodWhen="either" />,
+            <TrendCard key="a" title={tr("Active time")} icon={"\ud83c\udfc3"} unit={tr(" min")} summary={trends.active} goodWhen="up" />,
+            <TrendCard key="s" title={tr("Screen time")} icon={"\ud83d\udcf1"} unit={tr(" h")} summary={trends.screen} goodWhen="down" />,
           ]}
         />
       )}
 
       <Carousel
         icon={"\ud83c\udf19"}
-        title="Resilience"
+        title={tr("Resilience")}
         pages={[
           <View key="p">
-            <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>Added this week</Text>
+            <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{tr("Added this week")}</Text>
             {practiceCount === 0 ? (
-              <Text style={styles.emptyText}>Nothing logged yet -- try sleep, hydration, a walk, or a screen-free block.</Text>
+              <Text style={styles.emptyText}>{tr("Nothing logged yet -- try sleep, hydration, a walk, or a screen-free block.")}</Text>
             ) : (
               Object.entries(report.practice_summary).map(([pt, s]) => (
                 <View key={pt} style={styles.catRow}>
@@ -389,22 +395,22 @@ export default function DashboardScreen({ onOpenJourney, onOpenScore, onOpenPlac
             )}
           </View>,
           <View key="why">
-            <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>Why this is tracked separately</Text>
+            <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{tr("Why this is tracked separately")}</Text>
             <Text style={styles.note}>{report.resilience_note}</Text>
           </View>,
           <View key="calm">
-            <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{"\ud83d\udcac"} Feeling overwhelmed by tracking?</Text>
+            <Text accessibilityRole="header" aria-level={2} style={styles.cardTitle}>{tr("💬 Feeling overwhelmed by tracking?")}</Text>
             <Text style={styles.note}>{report.behavioral_note}</Text>
           </View>,
         ]}
       />
 
-      {permission !== "granted" && permission !== "unsupported" && (
+      {!airQualityNotificationsOn(profile) && permission !== "unsupported" && (
         <Card>
-          <Collapsible title="Get notified about air quality" icon={"\ud83d\udd14"} teaser="Moderate-or-worse air quality events only">
-            <Text style={styles.note}>No daily reminders, no "you haven't logged in" nudges, no badges -- only air quality near you, when location alerts are on.</Text>
+          <Collapsible title={tr("Get notified about air quality")} icon={"\ud83d\udd14"} teaser={tr("Moderate-or-worse air quality events only")}>
+            <Text style={styles.note}>{tr("No daily reminders, no \"you haven't logged in\" nudges, no badges -- only a moderate-or-worse reading, logged yourself or (with local alerts on) nearby. Change this anytime under About you › Notifications.")}</Text>
             <View style={{ marginTop: 8 }}>
-              <PrimaryButton title="Enable notifications" onPress={enableNotifications} />
+              <PrimaryButton title={tr("Enable notifications")} onPress={enableNotifications} />
             </View>
           </Collapsible>
         </Card>
@@ -434,7 +440,7 @@ const styles = StyleSheet.create({
   scoreMeta: { fontSize: 12, color: colors.muted, marginTop: 5 },
   scoreLink: { fontSize: 13, fontWeight: "600", color: colors.accent, marginTop: 6 },
   nextCard: {
-    backgroundColor: colors.accent,
+    backgroundColor: colors.accentFill,
     borderRadius: radiusLg,
     padding: 20,
     marginBottom: 14,
@@ -442,11 +448,11 @@ const styles = StyleSheet.create({
     shadowColor: colors.accent,
     shadowOpacity: 0.28,
   },
-  nextKicker: { fontSize: 12, fontWeight: "700", letterSpacing: 1.1, color: "#cfe3d6" },
-  nextTitle: { fontSize: 22, fontWeight: "700", color: "#fff", marginTop: 8, lineHeight: 28 },
-  nextAction: { fontSize: 14, color: "#e6f1ea", lineHeight: 21, marginTop: 8 },
-  nextButton: { alignSelf: "flex-start", backgroundColor: "#fff", borderRadius: 999, paddingVertical: 10, paddingHorizontal: 20, marginTop: 16 },
-  nextButtonText: { fontSize: 14, fontWeight: "700", color: colors.accent },
+  nextKicker: { fontSize: 12, fontWeight: "700", letterSpacing: 1.1, color: colors.onAccentMuted },
+  nextTitle: { fontSize: 22, fontWeight: "700", color: colors.onAccent, marginTop: 8, lineHeight: 28 },
+  nextAction: { fontSize: 14, color: colors.onAccentMuted, lineHeight: 21, marginTop: 8 },
+  nextButton: { alignSelf: "flex-start", backgroundColor: colors.onAccent, borderRadius: 999, paddingVertical: 10, paddingHorizontal: 20, marginTop: 16 },
+  nextButtonText: { fontSize: 14, fontWeight: "700", color: colors.accentFill },
   catRow: { flexDirection: "row", justifyContent: "space-between", paddingVertical: 8, borderTopWidth: 1, borderTopColor: colors.line },
   emptyText: { color: colors.muted, fontStyle: "italic", fontSize: 13 },
 });

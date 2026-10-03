@@ -133,6 +133,32 @@ const CURATED: Wisdom[] = [
     text: "Curiosity keeps this useful. Worry does not. If tracking starts to feel heavy, that's worth noticing too.",
     attribution: "A note on balance",
   },
+  // History of cancer and environment, checked against historical reviews on PubMed (Lancet Oncol 2019, PMID 30842048;
+  // J UOEH 2021, PMID 34483193) and standard biographies.
+  {
+    id: "pott_chimney_sweeps",
+    kind: "history",
+    icon: "\ud83e\uddf9",
+    year: "1775",
+    text: "Percivall Pott, a London surgeon, traced a cancer common among chimney sweeps to the soot they worked in -- one of the earliest recorded links between a cancer and an everyday working exposure.",
+    attribution: "Chimney sweeps' cancer",
+  },
+  {
+    id: "ramazzini_nuns",
+    kind: "history",
+    icon: "\ud83d\udcdc",
+    year: "1713",
+    text: "Bernardino Ramazzini, the founder of occupational medicine, noticed breast cancer was more common among nuns -- an early clue that childbearing and breastfeeding shape breast cancer odds, which large studies confirmed centuries later.",
+    attribution: "Diseases of Workers",
+  },
+  {
+    id: "carson_silent_spring",
+    kind: "history",
+    icon: "\ud83d\udcd6",
+    year: "1962",
+    text: "Rachel Carson finished Silent Spring while being treated for breast cancer. The book changed how people think about the chemicals in everyday life.",
+    attribution: "Rachel Carson",
+  },
 ];
 
 const GUIDELINE_ITEMS: Wisdom[] = GUIDELINES.map((g) => ({
@@ -166,13 +192,17 @@ const CONCEPT_ICONS: Record<string, string> = {
   mixtures: "🌀",
   nutrition_toxicity: "🥕",
   pathway_perturbation: "🔀",
+  carcinogen_classification: "🏷️",
+  dermal_absorption: "🧴",
+  exposome: "🌐",
 };
 
 const CONCEPT_TIERS: Record<string, WisdomTier> = {
   aggregate_exposure: 1, dose_response: 1, nova_classification: 1, relative_absolute_risk: 1, hepatic_metabolism: 1, renal_clearance: 1, nutrition_toxicity: 1,
   adme: 2, bioaccumulation_half_life: 2, endocrine_disruption: 2, sensitization: 2, dispersion: 2, particle_deposition: 2, alpha_radiation: 2,
   confounding: 2, safety_thresholds: 2, testing_hierarchy: 2, mixtures: 2,
-  causation_criteria: 3, pathway_perturbation: 3,
+  carcinogen_classification: 1, dermal_absorption: 1,
+  causation_criteria: 3, pathway_perturbation: 3, exposome: 3,
 };
 
 const CONCEPT_ITEMS: Wisdom[] = (conceptsData as { concepts: Concept[] }).concepts.map((c) => ({
@@ -197,6 +227,18 @@ const INSIGHTS: Wisdom[] = [
   { id: "insight_mechanism", kind: "insight", tier: 3, icon: "\ud83e\uddec", text: "A change in gene expression in cells is a clue about mechanism. It is not proof of harm at real-world exposures.", attribution: "Mechanism vs. outcome" },
   { id: "insight_aop_chain", kind: "insight", tier: 3, icon: "\ud83d\udd00", text: "'Binds a receptor' is one link in a chain, not the whole story. The adverse outcome pathway framework names every link from molecular event to health effect -- and asks which ones actually got shown.", attribution: "Tracing the whole pathway" },
   { id: "insight_nams", kind: "insight", tier: 3, icon: "\ud83d\udcbb", text: "Toxicology is combining cell assays, computer models and toxicokinetics to estimate safe doses faster, while still relying on human evidence to confirm.", attribution: "New approach methodologies" },
+  // Cancer, cosmetics and the exposome. Each number is from a source read on PubMed or the agency's own page on 2026-10-02
+  // (IARC Q&A 2019; CGHFBC Lancet 2001; FDA fragrance and hypoallergenic pages; UK panel Lancet 2012; Miglioretti 2016;
+  // Darbre 2004; Islami 2024; Lichtenstein 2000).
+  { id: "insight_group_not_size", kind: "insight", tier: 1, icon: "\ud83c\udff7\ufe0f", text: "Tobacco smoking, second-hand smoke and outdoor air pollution all sit in IARC's top cancer group. The group says how sure the evidence is -- smoking still carries a far larger chance of lung cancer than the other two.", attribution: "A group is not a size" },
+  { id: "insight_family_history", kind: "insight", tier: 1, icon: "\ud83d\udc6a", text: "Eight in nine women diagnosed with breast cancer have no mother, sister or daughter who had it. That is why screening is offered by age, with family history adding to it rather than replacing it.", attribution: "Family history, in proportion" },
+  { id: "insight_unscented", kind: "insight", tier: 1, icon: "\ud83c\udf38", text: "'Unscented' can still contain fragrance: FDA notes some products add just enough to mask other smells. If fragrance is what you're avoiding, the ingredient list is a better guide than the front label.", attribution: "Reading the label" },
+  { id: "insight_hypoallergenic", kind: "insight", tier: 1, icon: "\ud83d\udd0e", text: "'Hypoallergenic' has no federal definition in the US. In FDA's words, the term means whatever a particular company wants it to mean.", attribution: "Marketing words vs. defined terms" },
+  { id: "insight_overdiagnosis", kind: "insight", tier: 2, icon: "\ud83e\ude7a", text: "In the UK review of breast screening, for every 10,000 women invited from age 50 for 20 years, about 43 breast cancer deaths were prevented and about 129 cancers were found that would otherwise never have come to light. Both numbers belong in the decision.", attribution: "Counting benefits and overdiagnosis" },
+  { id: "insight_mammogram_dose", kind: "insight", tier: 2, icon: "\ud83d\udd2c", text: "Modeling estimates that yearly mammograms from 40 to 74 lead to about 125 breast cancers per 100,000 women through radiation, while preventing about 968 breast cancer deaths -- dose-response reasoning, applied to a screening choice.", attribution: "Dose matters in screening too" },
+  { id: "insight_detected_not_cause", kind: "insight", tier: 2, icon: "\ud83e\uddeb", text: "Finding a chemical in tissue shows exposure, not cause. A 2004 study measured parabens in 20 breast tumours but had no normal tissue to compare -- and named that comparison as the next question.", attribution: "Detected is not the same as caused" },
+  { id: "insight_attributable", kind: "insight", tier: 3, icon: "\ud83d\udc65", text: "'About 40% of cancers are attributable to modifiable factors' is a population estimate. It says where prevention has room across millions of people -- not why any one person's cancer happened.", attribution: "Population numbers, not personal verdicts" },
+  { id: "insight_exposome", kind: "insight", tier: 3, icon: "\ud83c\udf0d", text: "Genes are fixed at birth; the exposome -- everything you meet and how your body responds -- changes daily. A study of 44,788 twin pairs found inherited genes play a minor part in most common cancers.", attribution: "Genome and exposome" },
 ];
 
 // Round-robin so quotes/history, concepts and risk insights alternate instead of clumping.

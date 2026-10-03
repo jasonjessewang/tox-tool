@@ -15,18 +15,19 @@ import { runActivity, type Receipt } from "../engine/receipts";
 import { ReceiptCard } from "../components/ReceiptCard";
 import { PlacesQuestionCard } from "../components/PlacesQuestionCard";
 import { RecallQuestionCard } from "../components/RecallQuestionCard";
+import { msg, tr } from "../i18n";
 
 const MOODS: { key: Mood; label: string; icon: string }[] = [
-  { key: "good", label: "Good", icon: "\ud83d\ude42" },
-  { key: "okay", label: "Okay", icon: "\ud83d\ude10" },
-  { key: "rough", label: "Rough", icon: "\ud83d\ude2b" },
+  { key: "good", label: msg("Good"), icon: "\ud83d\ude42" },
+  { key: "okay", label: msg("Okay"), icon: "\ud83d\ude10" },
+  { key: "rough", label: msg("Rough"), icon: "\ud83d\ude2b" },
 ];
 
 const STEPS = [
-  { key: "learn", title: "Learn one thing", icon: "\ud83d\udcd6" },
-  { key: "add", title: "Add something good", icon: "\ud83d\udca7" },
-  { key: "numbers", title: "Today's numbers", icon: "\ud83d\udd22" },
-  { key: "reflect", title: "Reflect and plan", icon: "\u2600\ufe0f" },
+  { key: "learn", title: msg("Learn one thing"), icon: "\ud83d\udcd6" },
+  { key: "add", title: msg("Add something good"), icon: "\ud83d\udca7" },
+  { key: "numbers", title: msg("Today's numbers"), icon: "\ud83d\udd22" },
+  { key: "reflect", title: msg("Reflect and plan"), icon: "\u2600\ufe0f" },
 ] as const;
 
 /** One focus per screen: four short steps, one at a time. */
@@ -69,14 +70,14 @@ export default function DailyCheckInScreen({ onOpenPlaces }: { onOpenPlaces?: ()
   const toNum = (v: string) => (v.trim() && !isNaN(Number(v)) ? Number(v) : null);
 
   async function saveNumbers() {
-    const fields: [string, string, number][] = [["Calories", calories, 20000], ["Active minutes", activeMinutes, 1440], ["Screen hours", screenHours, 24]];
+    const fields: [string, string, number][] = [[msg("Calories"), calories, 20000], [msg("Active minutes"), activeMinutes, 1440], [msg("Screen hours"), screenHours, 24]];
     const bad = fields.find(([, v, max]) => v.trim() !== "" && (toNum(v) === null || (toNum(v) as number) < 0 || (toNum(v) as number) > max));
     if (bad) {
-      setNumbersError(`${bad[0]} needs a number between 0 and ${bad[2]} -- or leave it empty.`);
+      setNumbersError(tr("{field} needs a number between 0 and {max} -- or leave it empty.", { field: tr(bad[0]), max: bad[2] }));
       return;
     }
     if (fields.every(([, v]) => v.trim() === "")) {
-      setNumbersError("Add at least one number to save -- rough is fine.");
+      setNumbersError(tr("Add at least one number to save -- rough is fine."));
       return;
     }
     setNumbersError(null);
@@ -102,8 +103,8 @@ export default function DailyCheckInScreen({ onOpenPlaces }: { onOpenPlaces?: ()
       <View style={styles.header}>
         {plant && <PlantView stage={plant.stage} health={plant.health} fruits={plant.fruits} size={64} />}
         <View style={{ flex: 1, marginLeft: 8 }}>
-          <Text style={styles.stepKicker}>STEP {step + 1} OF {STEPS.length}</Text>
-          <Text accessibilityRole="header" style={styles.stepTitle}>{STEPS[step].icon} {STEPS[step].title}</Text>
+          <Text style={styles.stepKicker}>{tr("STEP {step} OF {total}", { step: step + 1, total: STEPS.length })}</Text>
+          <Text accessibilityRole="header" style={styles.stepTitle}>{STEPS[step].icon} {tr(STEPS[step].title)}</Text>
         </View>
       </View>
       <View style={styles.bars}>
@@ -117,13 +118,13 @@ export default function DailyCheckInScreen({ onOpenPlaces }: { onOpenPlaces?: ()
           <View style={styles.learnCard}>
             <Text style={styles.learnKind}>{learning.icon}  {KIND_LABEL[learning.kind].toUpperCase()}</Text>
             {learning.year ? <Text style={styles.learnYear}>{learning.year}</Text> : null}
-            <Text style={styles.learnText}>{learning.kind === "quote" ? `\u201c${learning.text}\u201d` : learning.text}</Text>
-            {learning.attribution ? <Text style={styles.learnAttr}>{learning.kind === "quote" ? `\u2014 ${learning.attribution}` : learning.attribution}</Text> : null}
+            <Text style={styles.learnText}>{learning.kind === "quote" ? `\u201c${tr(learning.text)}\u201d` : tr(learning.text)}</Text>
+            {learning.attribution ? <Text style={styles.learnAttr}>{learning.kind === "quote" ? `\u2014 ${tr(learning.attribution)}` : tr(learning.attribution)}</Text> : null}
             <View style={{ marginTop: 16, alignSelf: "flex-start" }}>
               {care?.learned ? (
-                <Text style={styles.done}>{"\u2713"} Learned today -- your plant thanks you</Text>
+                <Text style={styles.done}>{tr("✓ Learned today -- your plant thanks you")}</Text>
               ) : (
-                <SecondaryButton title="I read this" onPress={async () => { await db.recordLearning(`daily:${learning.id}`, todayISO()); refresh(); }} />
+                <SecondaryButton title={tr("I read this")} onPress={async () => { await db.recordLearning(`daily:${learning.id}`, todayISO()); refresh(); }} />
               )}
             </View>
           </View>
@@ -132,7 +133,7 @@ export default function DailyCheckInScreen({ onOpenPlaces }: { onOpenPlaces?: ()
 
         {step === 1 && (
           <View>
-            <Text style={styles.lead}>Tap anything you did today. Each one waters your plant.</Text>
+            <Text style={styles.lead}>{tr("Tap anything you did today. Each one waters your plant.")}</Text>
             <View style={styles.rowWrap}>
               {ADDING_GOOD_PRACTICE_TYPES.map((pt) => {
                 const on = loggedPractices.includes(pt);
@@ -147,7 +148,7 @@ export default function DailyCheckInScreen({ onOpenPlaces }: { onOpenPlaces?: ()
                     }}
                     aria-checked={!!(on)} style={[styles.chip, on && styles.chipOn]}
                   >
-                    <Text style={[styles.chipText, on && { color: "#fff" }]}>{on ? "\u2713 " : "+ "}{PRACTICE_LABELS[pt]}</Text>
+                    <Text style={[styles.chipText, on && { color: colors.onAccent }]}>{on ? "\u2713 " : "+ "}{PRACTICE_LABELS[pt]}</Text>
                   </Pressable>
                 );
               })}
@@ -162,20 +163,20 @@ export default function DailyCheckInScreen({ onOpenPlaces }: { onOpenPlaces?: ()
 
         {step === 2 && (
           <View>
-            <Text style={styles.lead}>Rough is fine. These feed the charts on your Dashboard.</Text>
+            <Text style={styles.lead}>{tr("Rough is fine. These feed the charts on your Dashboard.")}</Text>
             {[
-              ["Calories", calories, setCalories, "kcal", "number-pad"],
-              ["Active minutes", activeMinutes, setActiveMinutes, "minutes", "number-pad"],
-              ["Screen hours", screenHours, setScreenHours, "hours", "decimal-pad"],
+              [msg("Calories"), calories, setCalories, msg("kcal"), "number-pad"],
+              [msg("Active minutes"), activeMinutes, setActiveMinutes, msg("minutes"), "number-pad"],
+              [msg("Screen hours"), screenHours, setScreenHours, msg("hours"), "decimal-pad"],
             ].map(([label, value, setter, ph, kb]) => (
               <View key={label as string} style={{ marginTop: 12 }}>
-                <Text style={styles.label}>{label as string}</Text>
-                <TextInput style={styles.input} accessibilityLabel={label as string} value={value as string} onChangeText={(t) => { (setter as (v: string) => void)(t); setNumbersSaved(false); }} placeholder={ph as string} keyboardType={kb as "number-pad"} />
+                <Text style={styles.label}>{tr(label as string)}</Text>
+                <TextInput style={styles.input} accessibilityLabel={tr(label as string)} value={value as string} onChangeText={(t) => { (setter as (v: string) => void)(t); setNumbersSaved(false); }} placeholder={tr(ph as string)} keyboardType={kb as "number-pad"} />
               </View>
             ))}
             <FormError message={numbersError} />
             <View style={{ marginTop: 16 }}>
-              <PrimaryButton title={numbersSaved ? "Saved \u2713" : "Save numbers"} onPress={saveNumbers} />
+              <PrimaryButton title={numbersSaved ? tr("Saved ✓") : tr("Save numbers")} onPress={saveNumbers} />
             </View>
             {numbersSaved && receipt?.kind === "daily_numbers" && (
               <View style={{ marginTop: 14 }}>
@@ -188,12 +189,12 @@ export default function DailyCheckInScreen({ onOpenPlaces }: { onOpenPlaces?: ()
         {step === 3 &&
           (todayEntry ? (
             <View style={styles.summary}>
-              <Text style={styles.done}>{"\u2713"} Checked in today</Text>
-              {todayEntry.mood ? <Text style={styles.summaryMood}>{MOODS.find((m) => m.key === todayEntry.mood)?.icon} {MOODS.find((m) => m.key === todayEntry.mood)?.label}</Text> : null}
+              <Text style={styles.done}>{tr("✓ Checked in today")}</Text>
+              {todayEntry.mood ? <Text style={styles.summaryMood}>{MOODS.find((m) => m.key === todayEntry.mood)?.icon} {tr(MOODS.find((m) => m.key === todayEntry.mood)?.label ?? "")}</Text> : null}
               {todayEntry.reflection ? <Text style={styles.summaryText}>{todayEntry.reflection}</Text> : null}
-              {todayEntry.planForTomorrow ? <Text style={styles.summaryText}><Text style={{ fontWeight: "700" }}>Tomorrow: </Text>{todayEntry.planForTomorrow}</Text> : null}
+              {todayEntry.planForTomorrow ? <Text style={styles.summaryText}><Text style={{ fontWeight: "700" }}>{tr("Tomorrow:")}{" "}</Text>{todayEntry.planForTomorrow}</Text> : null}
               <View style={{ marginTop: 12, alignSelf: "flex-start" }}>
-                <SecondaryButton title="Delete & redo" onPress={async () => { await db.deleteLog("checkins", todayEntry.id); refresh(); }} />
+                <SecondaryButton title={tr("Delete & redo")} onPress={async () => { await db.deleteLog("checkins", todayEntry.id); refresh(); }} />
               </View>
               {receipt?.kind === "checkin_log" && (
                 <View style={{ marginTop: 14 }}>
@@ -206,16 +207,16 @@ export default function DailyCheckInScreen({ onOpenPlaces }: { onOpenPlaces?: ()
               <View style={styles.rowWrap}>
                 {MOODS.map((m) => (
                   <Pressable accessibilityRole="radio" key={m.key} onPress={() => setMood(m.key)} aria-checked={!!(mood === m.key)} style={[styles.chip, mood === m.key && styles.chipOn]}>
-                    <Text style={[styles.chipText, mood === m.key && { color: "#fff" }]}>{m.icon} {m.label}</Text>
+                    <Text style={[styles.chipText, mood === m.key && { color: colors.onAccent }]}>{m.icon} {tr(m.label)}</Text>
                   </Pressable>
                 ))}
               </View>
-              <Text style={styles.label}>How did today go?</Text>
-              <TextInput style={[styles.input, styles.multiline]} accessibilityLabel="How did today go?" value={reflection} onChangeText={setReflection} placeholder="Whatever's true" multiline />
-              <Text style={styles.label}>One thing for tomorrow</Text>
-              <TextInput style={[styles.input, styles.multiline]} accessibilityLabel="One thing for tomorrow" value={planForTomorrow} onChangeText={setPlanForTomorrow} placeholder="e.g. earlier bedtime, log lunch" multiline />
+              <Text style={styles.label}>{tr("How did today go?")}</Text>
+              <TextInput style={[styles.input, styles.multiline]} accessibilityLabel={tr("How did today go?")} value={reflection} onChangeText={setReflection} placeholder={tr("Whatever's true")} multiline />
+              <Text style={styles.label}>{tr("One thing for tomorrow")}</Text>
+              <TextInput style={[styles.input, styles.multiline]} accessibilityLabel={tr("One thing for tomorrow")} value={planForTomorrow} onChangeText={setPlanForTomorrow} placeholder={tr("e.g. earlier bedtime, log lunch")} multiline />
               <View style={{ marginTop: 16 }}>
-                <PrimaryButton title="Save check-in" onPress={saveCheckIn} />
+                <PrimaryButton title={tr("Save check-in")} onPress={saveCheckIn} />
               </View>
             </View>
           ))}
@@ -223,10 +224,10 @@ export default function DailyCheckInScreen({ onOpenPlaces }: { onOpenPlaces?: ()
       </ScrollView>
 
       <View style={styles.nav}>
-        <View style={{ flex: 1 }}>{step > 0 && <SecondaryButton title="Back" onPress={() => setStep(step - 1)} />}</View>
+        <View style={{ flex: 1 }}>{step > 0 && <SecondaryButton title={tr("Back")} onPress={() => setStep(step - 1)} />}</View>
         {!last && (
           <View style={{ flex: 1, marginLeft: 12 }}>
-            <PrimaryButton title="Next" onPress={() => setStep(step + 1)} />
+            <PrimaryButton title={tr("Next")} onPress={() => setStep(step + 1)} />
           </View>
         )}
       </View>
@@ -250,11 +251,11 @@ const styles = StyleSheet.create({
   learnAttr: { fontSize: 13, color: colors.muted, fontStyle: "italic", marginTop: 10 },
   done: { fontSize: 13, color: colors.accent, fontWeight: "700" },
   rowWrap: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
-  chip: { borderWidth: 1, borderColor: colors.line, borderRadius: 999, paddingVertical: 12, paddingHorizontal: 18, backgroundColor: "#fff" },
-  chipOn: { backgroundColor: colors.accent, borderColor: colors.accent },
+  chip: { borderWidth: 1, borderColor: colors.line, borderRadius: 999, paddingVertical: 12, paddingHorizontal: 18, backgroundColor: colors.surface },
+  chipOn: { backgroundColor: colors.accentFill, borderColor: colors.accentFill },
   chipText: { color: colors.ink, fontSize: 15 },
   label: { fontSize: 12, fontWeight: "600", color: colors.muted, marginTop: 16, marginBottom: 6 },
-  input: { borderWidth: 1, borderColor: colors.line, borderRadius: radiusSm, padding: 12, fontSize: 16, backgroundColor: "#fff" },
+  input: { borderWidth: 1, borderColor: colors.line, borderRadius: radiusSm, padding: 12, fontSize: 16, backgroundColor: colors.surface },
   multiline: { minHeight: 80, textAlignVertical: "top" },
   summary: { backgroundColor: colors.card, borderWidth: 1, borderColor: colors.accent, borderRadius: radius, padding: 16, ...shadow },
   summaryMood: { fontSize: 18, marginTop: 8 },

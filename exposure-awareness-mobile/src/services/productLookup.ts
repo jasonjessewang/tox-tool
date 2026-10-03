@@ -4,6 +4,7 @@
  */
 import { EMPTY_NUTRITION, type Nutrition } from "../engine/ingredients/parse";
 import type { ProductKind } from "../engine/ingredients/types";
+import { tr } from "../i18n";
 
 export type { ProductKind };
 
@@ -57,7 +58,7 @@ export function parseProduct(json: any, barcode: string, kind: ProductKind): Sca
   const nova = [1, 2, 3, 4].includes(Number(p.nova_group)) ? (Number(p.nova_group) as 1 | 2 | 3 | 4) : null;
   const servingGrams = n(p.serving_quantity) ?? (String(p.serving_size ?? "").match(/(\d+(?:\.\d+)?)\s*g\b/i) ? parseFloat(String(p.serving_size).match(/(\d+(?:\.\d+)?)\s*g\b/i)![1]) : null);
   return {
-    barcode, kind, name: name || "Unnamed product", brand: String(p.brands ?? "").split(",")[0].trim(), ingredients, nova,
+    barcode, kind, name: name || tr("Unnamed product"), brand: String(p.brands ?? "").split(",")[0].trim(), ingredients, nova,
     nutrition: nutrimentsAt(p.nutriments, "_serving"), nutritionPer100g: nutrimentsAt(p.nutriments, "_100g"), servingGrams,
   };
 }
@@ -66,7 +67,7 @@ export async function lookupProduct(barcode: string, kind: ProductKind): Promise
   const host = kind === "food" ? "world.openfoodfacts.org" : "world.openbeautyfacts.org";
   try {
     const res = await fetch(`https://${host}/api/v2/product/${barcode}.json?fields=product_name,brands,ingredients_text,ingredients_text_en,nova_group,nutriments,serving_size,serving_quantity`, {
-      headers: { "User-Agent": "exposure-awareness-mobile/1.0 (personal-use app)" },
+      headers: { "User-Agent": "exposure-awareness-mobile/1.0 (personal-use app)" }, // i18n-ignore
     });
     if (!res.ok) return null;
     return parseProduct(await res.json(), barcode, kind);

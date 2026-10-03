@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { colors, radius, radiusSm } from "../theme";
 import type { ConceptCheck } from "../data/conceptChecks";
+import { tr } from "../i18n";
 
 /**
  * One question: read it, choose, and see at once whether it landed and why. A wrong choice is answered with the idea, not a
@@ -33,7 +34,7 @@ export function ConceptCheckCard({
   return (
     <View style={styles.card}>
       {kicker ? <Text style={styles.kicker}>{kicker}</Text> : null}
-      <Text accessibilityRole="header" aria-level={2} style={styles.prompt}>{check.prompt}</Text>
+      <Text accessibilityRole="header" aria-level={2} style={styles.prompt}>{tr(check.prompt)}</Text>
       <View style={{ marginTop: 10 }} accessibilityRole="radiogroup">
         {check.options.map((option, i) => {
           const isAnswer = i === check.answer;
@@ -50,7 +51,7 @@ export function ConceptCheckCard({
               <View style={[styles.radio, answered && isAnswer && styles.radioRight, answered && isPicked && !isAnswer && styles.radioMissed]} />
               <Text style={styles.optionText}>
                 {answered && isAnswer ? "✓ " : ""}
-                {option}
+                {tr(option)}
               </Text>
             </Pressable>
           );
@@ -59,8 +60,8 @@ export function ConceptCheckCard({
       {answered && (
         <View style={styles.feedback}>
           <View accessibilityRole="alert" aria-live="polite">
-            <Text style={[styles.verdict, { color: correct ? colors.accent : colors.notice }]}>{correct ? "Right." : "Not quite -- that's what practice is for. It comes back tomorrow."}</Text>
-            <Text style={styles.explain}>{check.explain}</Text>
+            <Text style={[styles.verdict, { color: correct ? colors.accent : colors.notice }]}>{correct ? tr("Right.") : tr("Not quite -- that's what practice is for. It comes back tomorrow.")}</Text>
+            <Text style={styles.explain}>{tr(check.explain)}</Text>
           </View>
           {children}
         </View>
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
   card: { backgroundColor: colors.card, borderWidth: 1, borderColor: colors.line, borderRadius: radius, padding: 16 },
   kicker: { fontSize: 12, fontWeight: "700", letterSpacing: 0.6, color: colors.accent, marginBottom: 6 },
   prompt: { fontSize: 16, fontWeight: "700", color: colors.ink, lineHeight: 23 },
-  option: { flexDirection: "row", alignItems: "flex-start", padding: 12, borderRadius: radiusSm, borderWidth: 1, borderColor: colors.line, backgroundColor: "#fff", marginBottom: 8 },
+  option: { flexDirection: "row", alignItems: "flex-start", padding: 12, borderRadius: radiusSm, borderWidth: 1, borderColor: colors.line, backgroundColor: colors.surface, marginBottom: 8 },
   optionOn: { borderColor: colors.accent, backgroundColor: colors.accentSoft },
   optionRight: { borderColor: colors.accent, backgroundColor: colors.accentSoft },
   optionMissed: { borderColor: colors.notice, backgroundColor: colors.noticeSoft },

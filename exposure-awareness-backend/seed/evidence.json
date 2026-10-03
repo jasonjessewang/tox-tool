@@ -203,6 +203,90 @@
     "source": "curated"
   },
   {
+    "id": "pmid_10891514",
+    "pmid": "10891514",
+    "title": "Environmental and heritable factors in the causation of cancer--analyses of cohorts of twins from Sweden, Denmark, and Finland.",
+    "first_author": "Lichtenstein P",
+    "journal": "N Engl J Med",
+    "year": 2000,
+    "study_type": "Twin cohort study",
+    "evidence_level": "Observational cohort",
+    "topics": [
+      "cancer",
+      "exposome",
+      "genetics"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "exposome"
+    ],
+    "citation_count": 3051,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "In 44,788 twin pairs, inherited genes explained only part of most common cancers -- the environment, in the broadest sense, did most of the work.",
+    "summary_short": "Combining Swedish, Danish and Finnish twin registries, this study estimated how much of cancer at 11 sites came from heritable factors. Heritability was statistically significant for prostate (42%), colorectal (35%) and breast cancer (27%), and minor for most other types.",
+    "summary_detail": "Whether inherited genes drive ordinary (sporadic) cancer had been unclear. Twin studies help separate genes from environment: identical twins share all their genes and fraternal twins about half, while both usually grow up together. The authors combined 44,788 twin pairs from three Nordic registries, among whom 10,803 people developed at least one cancer, and modelled the relative importance of heritable and environmental factors at 11 cancer sites.\n\nThe twin of a person with cancer had higher odds of stomach, colorectal, lung, breast and prostate cancer. Statistically significant heritable effects were found for prostate (42%), colorectal (35%) and breast cancer (27%, with a wide interval of 4 to 41%). For most cancer types inherited genes made a minor contribution, and the authors concluded that the environment -- everything not inherited, including chance -- has the principal role in causing sporadic cancer.",
+    "key_findings": [
+      "Heritable share: prostate 42%, colorectal 35%, breast 27% -- each with wide confidence intervals",
+      "For most cancer types, inherited genes made a minor contribution",
+      "Everything not inherited, including chance, had the principal role"
+    ],
+    "limitations": [
+      "'Environment' here means everything not inherited, including chance; it does not say which exposures matter",
+      "Nordic populations of the 20th century; estimates may differ elsewhere",
+      "Estimates for individual cancer sites are imprecise"
+    ],
+    "practical": [
+      "Family history matters, but for most cancers it is not the main story",
+      "The exposome -- what you meet over a lifetime -- is where most of the room for change lies"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10891514/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_28632866",
+    "pmid": "28632866",
+    "title": "Risks of Breast, Ovarian, and Contralateral Breast Cancer for BRCA1 and BRCA2 Mutation Carriers.",
+    "first_author": "Kuchenbaecker KB",
+    "journal": "JAMA",
+    "year": 2017,
+    "study_type": "Prospective cohort study",
+    "evidence_level": "Observational cohort",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "genetics"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "relative_absolute_risk"
+    ],
+    "citation_count": 2265,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Following nearly 10,000 women with harmful BRCA1 or BRCA2 variants, about 7 in 10 developed breast cancer by age 80.",
+    "summary_short": "In a prospective cohort of 6,036 BRCA1 and 3,820 BRCA2 carriers, the cumulative chance of breast cancer by age 80 was 72% for BRCA1 and 69% for BRCA2, and of ovarian cancer 44% and 17%. Estimates rose with the number of affected relatives.",
+    "summary_detail": "Decisions for women with harmful BRCA1 or BRCA2 variants depend on reliable, prospective estimates. This study followed 9,856 carriers recruited in 1997-2011 through international cohorts, mostly in the UK, the Netherlands and France, for a median of five years.\n\nThe cumulative chance of breast cancer by age 80 was 72% for BRCA1 and 69% for BRCA2 carriers. Incidence rose quickly in early adulthood -- until ages 30 to 40 for BRCA1 and 40 to 50 for BRCA2 -- then stayed roughly constant. Ovarian cancer by 80 reached 44% (BRCA1) and 17% (BRCA2), and 20 years after a first breast cancer the chance of cancer in the other breast was 40% and 26%. Estimates were higher with more affected relatives and varied with where in the gene the variant sat.",
+    "key_findings": [
+      "Breast cancer by age 80: about 72% (BRCA1) and 69% (BRCA2)",
+      "Ovarian cancer by age 80: about 44% (BRCA1) and 17% (BRCA2)",
+      "More affected relatives, and the variant's position in the gene, shifted the estimates"
+    ],
+    "limitations": [
+      "94% of carriers were found through family clinics, which can over-represent families with many cancers",
+      "Median follow-up of five years; lifetime figures are projected from it",
+      "Applies to carriers of harmful variants -- about 1 in 300 to 500 women -- not the general population"
+    ],
+    "practical": [
+      "A strong family history is worth a conversation about genetic counseling",
+      "For carriers, screening and other options are planned with a specialist"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28632866/",
+    "source": "curated"
+  },
+  {
     "id": "pmid_22419778",
     "pmid": "22419778",
     "title": "Hormones and endocrine-disrupting chemicals: low-dose effects and nonmonotonic dose responses",
@@ -501,6 +585,45 @@
     "source": "curated"
   },
   {
+    "id": "pmid_25554788",
+    "pmid": "25554788",
+    "title": "Cancer etiology. Variation in cancer risk among tissues can be explained by the number of stem cell divisions.",
+    "first_author": "Tomasetti C",
+    "journal": "Science",
+    "year": 2015,
+    "study_type": "Statistical analysis across tissues",
+    "evidence_level": "Population modelling",
+    "topics": [
+      "cancer",
+      "methods"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 1319,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Across tissue types, lifetime cancer rates tracked the number of stem-cell divisions -- a reminder that chance copying errors play a real part.",
+    "summary_short": "Comparing many tissue types, lifetime cancer risk correlated strongly (0.81) with the total number of divisions of the stem cells that maintain each tissue. The authors estimated that only about a third of the variation between tissues is attributable to environment or inheritance.",
+    "summary_detail": "Some tissues give rise to cancer millions of times more often than others. Tomasetti and Vogelstein compared lifetime cancer risk across many tissue types with the total number of divisions made by the normal stem cells that renew each tissue, and found a strong correlation (0.81). They concluded that only about a third of the variation in cancer risk among tissues is attributable to environmental factors or inherited predispositions, with the majority reflecting random mutations as DNA is copied in normal stem cells.\n\nThe paper was widely misread as saying that most cancer cases are 'bad luck'. It addresses differences between tissues, not the share of cases that prevention could reach -- a different question, answered by estimates such as the American Cancer Society's. Both can be true: chance plays a real part in every tissue, and exposures still shift the odds.",
+    "key_findings": [
+      "Lifetime cancer risk across tissues correlated 0.81 with total stem-cell divisions",
+      "About a third of the variation between tissues was attributed to environment or inheritance",
+      "Random DNA-copying errors help explain why some tissues develop cancer far more often"
+    ],
+    "limitations": [
+      "About differences between tissues, not the preventable share of cancer cases",
+      "Stem-cell numbers for some tissues were uncertain estimates",
+      "Its interpretation was widely debated after publication"
+    ],
+    "practical": [
+      "A cancer can arise without anyone having done anything to cause it",
+      "Prevention still matters: exposures shift the odds on top of chance"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25554788/",
+    "source": "curated"
+  },
+  {
     "id": "pmid_16317692",
     "pmid": "16317692",
     "title": "Acetaminophen-induced acute liver failure: results of a United States multicenter, prospective study.",
@@ -627,6 +750,168 @@
     "source": "curated"
   },
   {
+    "id": "pmid_23117178",
+    "pmid": "23117178",
+    "title": "The benefits and harms of breast cancer screening: an independent review.",
+    "first_author": "Independent UK Panel on Breast Cancer Screening",
+    "journal": "Lancet",
+    "year": 2012,
+    "study_type": "Independent review with meta-analysis of randomised trials",
+    "evidence_level": "Systematic review",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "screening",
+      "statistics"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "relative_absolute_risk"
+    ],
+    "citation_count": 1107,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "For every 10,000 women invited to screening from age 50 for 20 years: about 43 breast cancer deaths prevented, and about 129 cancers overdiagnosed.",
+    "summary_short": "An independent panel reviewing 11 randomised trials estimated a 20% relative reduction in breast cancer mortality for women invited to screening, and roughly one death prevented for about every three cancers overdiagnosed -- cancers that would never otherwise have come to light.",
+    "summary_detail": "Whether breast screening does more good than harm had been debated for years. An independent panel, focused on the UK programme (women aged 50 to 70 invited every three years), reviewed published studies and expert evidence. In a meta-analysis of 11 randomised trials, women invited to screening had a relative risk of breast cancer death of 0.80 compared with controls -- a 20% relative reduction, which the panel judged still reasonable despite the trials' age.\n\nOverdiagnosis -- cancers found at screening that would not have become clinically apparent in a woman's lifetime -- was best estimated from three trials, at about 11% of cancers diagnosed in invited women over the long term. Applied to the UK, for every 10,000 women invited from age 50 for 20 years, about 43 breast cancer deaths would be prevented and 129 cancers overdiagnosed. The panel stressed the uncertainty and called for clear, objective information so women can make informed decisions.",
+    "key_findings": [
+      "Invitation to screening: 20% relative reduction in breast cancer mortality (relative risk 0.80)",
+      "Per 10,000 women invited from 50 for 20 years: about 43 deaths prevented and 129 cancers overdiagnosed",
+      "Roughly one death prevented for every three overdiagnosed cancers"
+    ],
+    "limitations": [
+      "The trials were done decades ago; screening and treatment have changed",
+      "Estimates of overdiagnosis vary widely by method",
+      "UK programme details (ages 50 to 70, every three years) differ from US recommendations"
+    ],
+    "practical": [
+      "Screening decisions deserve both numbers, out of the same number of people",
+      "Ask what is known about benefit and overdiagnosis at your age"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23117178/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_32997908",
+    "pmid": "32997908",
+    "title": "HPV Vaccination and the Risk of Invasive Cervical Cancer.",
+    "first_author": "Lei J",
+    "journal": "N Engl J Med",
+    "year": 2020,
+    "study_type": "Nationwide register cohort",
+    "evidence_level": "Observational cohort",
+    "topics": [
+      "cancer",
+      "prevention",
+      "infection"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 1086,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Among 1.7 million Swedish girls and women, HPV vaccination before age 17 was linked to about 88% fewer cervical cancers.",
+    "summary_short": "Following 1,672,983 girls and women aged 10 to 30 in Swedish registers (2006-2017), cervical cancer occurred in 47 per 100,000 vaccinated and 94 per 100,000 unvaccinated. After full adjustment the incidence rate ratio was 0.12 for vaccination before 17 and 0.47 for vaccination at 17 to 30.",
+    "summary_detail": "Trials had shown that the quadrivalent HPV vaccine prevents high-grade cervical lesions, but direct evidence on invasive cancer was lacking. Using nationwide demographic and health registers, this study followed 1,672,983 Swedish girls and women aged 10 to 30 from 2006 through 2017, up to their 31st birthday.\n\nCervical cancer was diagnosed in 19 vaccinated and 538 unvaccinated women -- a cumulative incidence of 47 versus 94 per 100,000. Adjusted for age, calendar year, county and parental characteristics, the incidence rate ratio was 0.37 overall, 0.12 for girls vaccinated before 17 and 0.47 for women vaccinated at 17 to 30. Infections are among the cancer causes prevention can reach most directly, and the earliest vaccination showed the largest difference.",
+    "key_findings": [
+      "Cumulative cervical cancer incidence: 47 vs 94 per 100,000 (vaccinated vs not)",
+      "Fully adjusted rate ratio 0.12 when vaccinated before age 17",
+      "Rate ratio 0.47 when vaccinated at 17 to 30"
+    ],
+    "limitations": [
+      "Observational: vaccinated and unvaccinated women may differ in ways registers cannot capture",
+      "Follow-up only to age 31, when cervical cancer is still uncommon",
+      "Quadrivalent vaccine in Sweden; other vaccines and settings may differ"
+    ],
+    "practical": [
+      "HPV vaccination is one of the most direct cancer-prevention steps available",
+      "Vaccination before exposure to the virus showed the largest difference"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32997908/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_27183032",
+    "pmid": "27183032",
+    "title": "Association of Leisure-Time Physical Activity With Risk of 26 Types of Cancer in 1.44 Million Adults.",
+    "first_author": "Moore SC",
+    "journal": "JAMA Intern Med",
+    "year": 2016,
+    "study_type": "Pooled analysis of 12 prospective cohorts",
+    "evidence_level": "Pooled cohorts",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "activity"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 1042,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Across 1.44 million adults, more leisure-time activity was linked to lower rates of 13 cancers, breast cancer included.",
+    "summary_short": "Pooling 12 US and European cohorts with 186,932 cancers, high versus low leisure-time physical activity was associated with lower risk of 13 cancer types, including breast (HR 0.90), colon (0.84) and endometrial (0.79), mostly regardless of body size or smoking.",
+    "summary_detail": "Physical activity was known to lower heart disease and overall mortality; its relation to specific cancers was less clear. This analysis pooled 12 prospective cohorts from the US and Europe -- 1.44 million adults with a median age of 59 -- and compared people at the 90th and 10th percentiles of moderate-to-vigorous leisure-time activity.\n\nHigher activity was associated with lower risk of 13 of 26 cancers, from esophageal adenocarcinoma (hazard ratio 0.58) and liver (0.73) to colon (0.84) and breast (0.90). Adjusting for body mass index weakened some associations, but 10 of 13 remained, and results were similar for normal-weight and overweight people. Activity was associated with higher risk of malignant melanoma (1.27) and, slightly, prostate cancer (1.05).",
+    "key_findings": [
+      "High vs low activity: lower risk of 13 cancers, including breast (HR 0.90) and colon (0.84)",
+      "10 of 13 associations held after adjusting for body mass index",
+      "Higher risk of melanoma (1.27) and, slightly, prostate cancer (1.05)"
+    ],
+    "limitations": [
+      "Self-reported activity, measured once at baseline",
+      "Observational: more active people may differ in other ways",
+      "Compares the 90th with the 10th percentile, a wide contrast"
+    ],
+    "practical": [
+      "Activity is a lever that shows up across many cancers, breast included",
+      "Associations held at any body size, so activity counts whether or not weight changes"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27183032/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_12133652",
+    "pmid": "12133652",
+    "title": "Breast cancer and breastfeeding: collaborative reanalysis of individual data from 47 epidemiological studies in 30 countries, including 50302 women with breast cancer and 96973 women without the disease.",
+    "first_author": "Collaborative Group on Hormonal Factors in Breast Cancer",
+    "journal": "Lancet",
+    "year": 2002,
+    "study_type": "Pooled reanalysis of 47 studies",
+    "evidence_level": "Pooled analysis",
+    "topics": [
+      "cancer",
+      "breast cancer"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 967,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Each 12 months of breastfeeding was linked to about 4% lower relative risk of breast cancer, on top of about 7% for each birth.",
+    "summary_short": "Pooling individual data from 47 studies in 30 countries, including 50,302 women with breast cancer, the relative risk of breast cancer fell 4.3% for every 12 months of breastfeeding, in addition to 7.0% for each birth, with similar effects across countries and personal characteristics.",
+    "summary_detail": "Childbearing was known to lower breast cancer risk, but the separate contribution of breastfeeding was unclear. The Collaborative Group gathered and reanalysed individual data from 47 studies in 30 countries -- 50,302 women with invasive breast cancer and 96,973 without.\n\nWomen with breast cancer had fewer births on average (2.2 vs 2.6), were less likely to have breastfed (71% vs 79% of mothers) and breastfed for less time in total (9.8 vs 15.6 months). Relative risk fell 4.3% for every 12 months of breastfeeding, in addition to 7.0% for each birth, with similar estimates by age, menopausal status, ethnic origin and country. The authors estimated that fewer births and shorter breastfeeding explain much of the higher breast cancer incidence in high-income countries.",
+    "key_findings": [
+      "4.3% lower relative risk per 12 months of breastfeeding",
+      "7.0% lower relative risk per birth, independently",
+      "Effects were similar across countries and personal characteristics"
+    ],
+    "limitations": [
+      "Breastfeeding history was mostly reported years later",
+      "Observational: breastfeeding can reflect other differences between women",
+      "Population estimates; they say nothing about why any one woman's cancer occurred"
+    ],
+    "practical": [
+      "Support for breastfeeding -- at work and at home -- is a population-level prevention lever",
+      "It is one factor among many; not breastfeeding is never a reason for blame"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12133652/",
+    "source": "curated"
+  },
+  {
     "id": "pmid_15613366",
     "pmid": "15613366",
     "title": "Radon in homes and risk of lung cancer: collaborative analysis of individual data from 13 European case-control studies",
@@ -667,6 +952,49 @@
       "If a test is high, a mitigation contractor can lower it"
     ],
     "url": "https://pubmed.ncbi.nlm.nih.gov/15613366/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_11705483",
+    "pmid": "11705483",
+    "title": "Familial breast cancer: collaborative reanalysis of individual data from 52 epidemiological studies including 58,209 women with breast cancer and 101,986 women without the disease.",
+    "first_author": "Collaborative Group on Hormonal Factors in Breast Cancer",
+    "journal": "Lancet",
+    "year": 2001,
+    "study_type": "Pooled reanalysis of 52 studies",
+    "evidence_level": "Pooled analysis",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "genetics",
+      "statistics"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "relative_absolute_risk"
+    ],
+    "citation_count": 773,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Eight in nine women who develop breast cancer have no affected mother, sister or daughter -- and most women with an affected relative never develop it.",
+    "summary_short": "In pooled data on 58,209 women with breast cancer, one, two or three affected first-degree relatives raised breast cancer risk 1.8, 2.9 and 3.9 times. Estimated cumulative incidence to age 80 was about 7.8%, 13.3% and 21.1% with zero, one and two affected relatives.",
+    "summary_detail": "Family history is a familiar factor in breast cancer, but no single study had been large enough to describe it reliably over a woman's life. The Collaborative Group reanalysed individual data from 52 studies: 58,209 women with breast cancer and 101,986 without.\n\nAbout 12.9% of women with breast cancer, and 7.3% of controls, had at least one affected mother, sister or daughter. Compared with no affected relative, risk ratios were 1.80 for one, 2.93 for two and 3.90 for three or more, and were highest at young ages. In absolute terms for high-income countries, the estimated cumulative incidence to age 80 was 7.8%, 13.3% and 21.1% for zero, one and two affected relatives. In the authors' summary, eight out of nine women who develop breast cancer have no affected first-degree relative, and most women who have one will never develop the disease.",
+    "key_findings": [
+      "Risk ratios 1.80, 2.93 and 3.90 for one, two and three or more affected relatives",
+      "Cumulative incidence to 80: 7.8% (none), 13.3% (one), 21.1% (two)",
+      "Eight in nine women who develop breast cancer have no affected first-degree relative"
+    ],
+    "limitations": [
+      "Family history was self-reported",
+      "Absolute figures are for high-income countries around 2000",
+      "Does not separate inherited variants such as BRCA1/2 from shared family environment"
+    ],
+    "practical": [
+      "Know your family's history -- it is where a risk assessment starts",
+      "Screening by age matters because most cases occur without a family history"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11705483/",
     "source": "curated"
   },
   {
@@ -712,6 +1040,133 @@
     "source": "curated"
   },
   {
+    "id": "pmid_35294043",
+    "pmid": "35294043",
+    "title": "American Cancer Society nutrition and physical activity guideline for cancer survivors.",
+    "first_author": "Rock CL",
+    "journal": "CA Cancer J Clin",
+    "year": 2022,
+    "study_type": "Clinical practice guideline",
+    "evidence_level": "Consensus statement",
+    "topics": [
+      "cancer",
+      "survivorship",
+      "activity",
+      "food"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 742,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "The American Cancer Society's guideline for survivors centres on body weight, physical activity, diet and alcohol, alongside treatment.",
+    "summary_short": "Written for survivors, their families and clinicians, this guideline gives cancer-specific recommendations on body weight, physical activity, diet and alcohol intake, drawn from systematic reviews, pooled cohorts and large trials published since 2012.",
+    "summary_detail": "With a five-year relative survival rate of 68% across all cancers and more than 16.9 million survivors in the United States, the American Cancer Society set out evidence-based recommendations for life after a diagnosis. The evidence -- systematic reviews, meta-analyses, pooled analyses of cohort studies and large randomised trials published since 2012 -- suggests that diet, physical activity and body weight may affect recurrence and survival, though much of it is observational.\n\nBeyond the recommendations themselves, the guideline covers nutrition and activity during treatment, long-term side effects, other health conditions, patient-reported outcomes and health disparities, with attention to what makes the advice possible to follow, and to care coordination and counseling after diagnosis.",
+    "key_findings": [
+      "Recommendations cover body weight, physical activity, diet and alcohol for survivors",
+      "Evidence suggests these may affect recurrence and survival; much of it is observational",
+      "Attention to side effects, other conditions and access, not only to targets"
+    ],
+    "limitations": [
+      "Much of the evidence for individual recommendations is observational",
+      "Population guidance; individual plans belong with the care team",
+      "The strength of evidence varies by cancer type"
+    ],
+    "practical": [
+      "Bring questions about activity, diet and alcohol to the care team",
+      "Practical support -- a walking partner, shared meals -- can make the advice easier to follow"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35294043/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_12439712",
+    "pmid": "12439712",
+    "title": "Alcohol, tobacco and breast cancer--collaborative reanalysis of individual data from 53 epidemiological studies, including 58,515 women with breast cancer and 95,067 women without the disease.",
+    "first_author": "Hamajima N",
+    "journal": "Br J Cancer",
+    "year": 2002,
+    "study_type": "Pooled reanalysis of 53 studies",
+    "evidence_level": "Pooled analysis",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "alcohol"
+    ],
+    "substance_ids": [
+      "alcohol"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "dose_response"
+    ],
+    "citation_count": 738,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Each daily drink was linked to about 7% higher relative risk of breast cancer -- and once alcohol was accounted for, smoking showed no independent link.",
+    "summary_short": "Pooling 53 studies with 58,515 women with breast cancer, relative risk rose 7.1% for each additional 10 g of alcohol a day, roughly one drink. Among women who did not drink, smoking was not associated with breast cancer. About 4% of breast cancers in high-income countries were estimated to be attributable to alcohol.",
+    "summary_detail": "Alcohol and tobacco use go together, and earlier studies had not always separated them. This collaborative reanalysis pooled individual data covering more than 80% of the relevant worldwide evidence: 58,515 women with invasive breast cancer and 95,067 controls from 53 studies.\n\nCompared with no alcohol, relative risk was 1.32 at 35 to 44 g a day and 1.46 at 45 g or more, rising 7.1% for every additional 10 g a day -- about one drink -- equally in smokers and non-smokers. Among the 22,255 cases and 40,832 controls who drank no alcohol, smoking was not associated with breast cancer (relative risk 1.03 for ever-smokers). If causal, alcohol would account for about 4% of breast cancers in high-income countries and very few where women drank little.",
+    "key_findings": [
+      "+7.1% relative risk per additional 10 g of alcohol a day (about one drink)",
+      "Relative risk 1.46 at 45 g a day or more, compared with none",
+      "Smoking had little or no independent effect on breast cancer once alcohol was accounted for"
+    ],
+    "limitations": [
+      "Drinking was self-reported, mostly in case-control studies",
+      "Relative figures; the absolute change depends on a woman's baseline",
+      "Alcohol's other effects -- on the liver, other cancers and the heart -- were outside this analysis"
+    ],
+    "practical": [
+      "Drinking less lowers alcohol's contribution at every level",
+      "Smoking still matters for many other cancers and for anyone breathing the smoke"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12439712/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_31974245",
+    "pmid": "31974245",
+    "title": "The exposome and health: Where chemistry meets biology.",
+    "first_author": "Vermeulen R",
+    "journal": "Science",
+    "year": 2020,
+    "study_type": "Review",
+    "evidence_level": "Expert review",
+    "topics": [
+      "exposome",
+      "methods",
+      "chemicals"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "exposome"
+    ],
+    "citation_count": 727,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Mapping the exposome on the scale of the human genome: why researchers argue it is now possible, and needed.",
+    "summary_short": "This review argues that research and regulation fail to address the chemical complexity of daily life, and that high-resolution mass spectrometry and network science now allow first steps toward a systematic, agnostic assessment of the exposome.",
+    "summary_detail": "Chemicals are usually studied one at a time, while people meet synthetic chemicals, dietary constituents, psychosocial stressors and physical factors together. The exposome concept tries to capture that whole range, along with the body's biological responses to it.\n\nThe authors describe the technologies that make a systematic approach plausible -- high-resolution mass spectrometry that detects many chemicals in a single sample, and network science that relates exposures to biology -- and argue that, given the increasingly recognised dominant role of non-genetic factors in disease, an effort to characterise the exposome at a scale comparable to that of the human genome is warranted.",
+    "key_findings": [
+      "Research and regulation still mostly address chemicals one at a time",
+      "High-resolution mass spectrometry and network science enable first steps toward measuring the exposome",
+      "Calls for an exposome effort on the scale of the human genome"
+    ],
+    "limitations": [
+      "A perspective review rather than new data",
+      "Measuring a lifetime of changing exposures remains far harder than reading a genome",
+      "The approach is still largely at the research stage"
+    ],
+    "practical": [
+      "Treat claims to 'measure everything you're exposed to' with care",
+      "Studying many exposures together is where this science is heading"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31974245/",
+    "source": "curated"
+  },
+  {
     "id": "pmid_26161749",
     "pmid": "26161749",
     "title": "Helping Doctors and Patients Make Sense of Health Statistics",
@@ -749,6 +1204,89 @@
       "Bring the absolute numbers, not just the headline, to any conversation with your care team"
     ],
     "url": "https://pubmed.ncbi.nlm.nih.gov/26161749/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_20966241",
+    "pmid": "20966241",
+    "title": "Epidemiology. Environment and disease risks.",
+    "first_author": "Rappaport SM",
+    "journal": "Science",
+    "year": 2010,
+    "study_type": "Perspective",
+    "evidence_level": "Concept paper",
+    "topics": [
+      "exposome",
+      "methods"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "exposome"
+    ],
+    "citation_count": 566,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "A call to measure exposure as systematically as genes are measured -- across a whole life, from inside the body.",
+    "summary_short": "This perspective argued that a new paradigm is needed to assess how a lifetime of exposure to environmental factors affects the risk of chronic disease -- a framing that helped move the exposome from a concept toward a research programme.",
+    "summary_detail": "Genome-wide studies had found that inherited variants explain only part of common chronic diseases. In this short perspective, Rappaport and Smith argued that environmental exposure -- in the broad sense of everything not inherited -- deserves measurement as systematic as the genome's, across a whole lifetime.\n\nThey made the case for characterising the exposome from inside the body, by measuring chemicals and their effects in blood, so that exposures from air, water, diet, drugs, infections and the body's own processes are captured together. The paper is widely cited as a turning point in treating the exposome as something to measure rather than only to describe.",
+    "key_findings": [
+      "Calls for a new paradigm to assess lifetime environmental exposure and chronic disease",
+      "Argues for measuring exposure inside the body, as systematically as the genome",
+      "Helped turn the exposome into a research programme"
+    ],
+    "limitations": [
+      "A perspective, not a study with new data",
+      "Only a one-sentence abstract is indexed on PubMed; this summary reflects the paper's widely cited argument"
+    ],
+    "practical": [
+      "Genes are part of the story; the exposome is the part that changes"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20966241/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_31474332",
+    "pmid": "31474332",
+    "title": "Type and timing of menopausal hormone therapy and breast cancer risk: individual participant meta-analysis of the worldwide epidemiological evidence.",
+    "first_author": "Collaborative Group on Hormonal Factors in Breast Cancer",
+    "journal": "Lancet",
+    "year": 2019,
+    "study_type": "Individual participant meta-analysis",
+    "evidence_level": "Pooled analysis",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "medications",
+      "statistics"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "relative_absolute_risk",
+      "dose_response"
+    ],
+    "citation_count": 549,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Five years of menopausal hormone therapy from age 50: about one extra breast cancer per 50 users of estrogen plus daily progestagen, and one per 200 with estrogen alone.",
+    "summary_short": "Pooling prospective studies of 108,647 postmenopausal women who developed breast cancer, every type of menopausal hormone therapy except vaginal estrogen was linked to excess risk, rising with duration and greater for estrogen-progestagen than estrogen-only preparations.",
+    "summary_detail": "Findings on breast cancer and menopausal hormone therapy (MHT) had been inconsistent, with little on long-term effects. The Collaborative Group brought together individual data from all eligible prospective studies, published and unpublished: 108,647 postmenopausal women who developed breast cancer, about half of whom had used MHT.\n\nEvery type except vaginal estrogen was associated with excess risk, rising with duration and higher for estrogen plus progestagen than estrogen alone; some excess persisted for more than ten years after stopping, with little after less than a year of use. If largely causal, five years of MHT from age 50 would add, at ages 50 to 69, about one breast cancer for every 50 users of estrogen plus daily progestagen, one per 70 with intermittent progestagen and one per 200 with estrogen alone, for women of average weight in high-income countries. These figures size one side of a decision that also involves MHT's benefits.",
+    "key_findings": [
+      "All MHT types except vaginal estrogen were linked to excess breast cancer risk",
+      "5 years from age 50: about 1 extra case per 50 (estrogen + daily progestagen), per 70 (intermittent), per 200 (estrogen alone)",
+      "Excess rose with duration and persisted for years after stopping"
+    ],
+    "limitations": [
+      "Observational studies; the absolute estimates assume the associations are largely causal",
+      "The benefits of MHT were outside this analysis",
+      "Figures are for women of average weight; they differ with body size"
+    ],
+    "practical": [
+      "Type, dose and duration are a conversation with a clinician -- never a reason for guilt about past use",
+      "Vaginal estrogen was not linked to higher risk"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31474332/",
     "source": "curated"
   },
   {
@@ -798,6 +1336,174 @@
     "source": "curated"
   },
   {
+    "id": "pmid_14745841",
+    "pmid": "14745841",
+    "title": "Concentrations of parabens in human breast tumours.",
+    "first_author": "Darbre PD",
+    "journal": "J Appl Toxicol",
+    "year": 2004,
+    "study_type": "Analytical study of tumour samples",
+    "evidence_level": "Exposure measurement",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "cosmetics",
+      "chemicals"
+    ],
+    "substance_ids": [
+      "parabens"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "endocrine_disruption"
+    ],
+    "citation_count": 451,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Parabens could be measured intact in 20 breast tumour samples -- which showed exposure, not cause, as the authors noted.",
+    "summary_short": "Using liquid chromatography and tandem mass spectrometry, this study measured parabens in 20 human breast tumours (mean 20.6 ng per gram of tissue, mostly methylparaben). It had no normal tissue to compare, and the authors named that comparison as the next question.",
+    "summary_detail": "Parabens are preservatives in many cosmetic, food and pharmaceutical products and show weak estrogen-like activity in laboratory studies. This study asked whether they can persist intact in human tissue at everyday exposure levels. Researchers extracted and measured parabens in samples from 20 human breast tumours, finding a mean of 20.6 ng per gram of tissue, with methylparaben the largest share (62%).\n\nThe study showed that parabens can be found intact in breast tissue. It did not compare tumour tissue with normal tissue, and it did not look at product use or cancer occurrence; the authors wrote that the method opens the way to learning whether body burdens differ between cancer and normal tissue. Finding a chemical in tissue is evidence of exposure; whether it plays any part in disease is a separate question this design cannot answer.",
+    "key_findings": [
+      "Parabens measured intact in 20 breast tumour samples, mean 20.6 ng/g",
+      "Methylparaben made up about 62% of the total",
+      "No normal-tissue comparison, so no conclusion about cause was possible"
+    ],
+    "limitations": [
+      "Only 20 samples, all from tumours",
+      "No comparison with normal tissue or with people's product use",
+      "Detection shows exposure, not effect"
+    ],
+    "practical": [
+      "'Found in tumours' headlines need the comparison: how much is in normal tissue?",
+      "Limiting parabens is easy with labels if you prefer to; harm at everyday levels has not been established"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/14745841/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_20505766",
+    "pmid": "20505766",
+    "title": "An Environment-Wide Association Study (EWAS) on type 2 diabetes mellitus.",
+    "first_author": "Patel CJ",
+    "journal": "PLoS One",
+    "year": 2010,
+    "study_type": "Environment-wide association study",
+    "evidence_level": "Cross-sectional study",
+    "topics": [
+      "exposome",
+      "methods",
+      "statistics"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "exposome",
+      "confounding"
+    ],
+    "citation_count": 420,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Screening 266 environmental factors at once, the way genome studies screen genes, flagged leads for type 2 diabetes -- and showed the limits of the method.",
+    "summary_short": "Using NHANES data from 1999 to 2006, this pilot environment-wide association study tested 266 factors against type 2 diabetes, controlled for multiple comparisons and checked findings across cohorts, flagging heptachlor epoxide, PCBs and gamma-tocopherol, with beta-carotenes inversely associated.",
+    "summary_detail": "Genome-wide association studies scan many genetic variants at once. This pilot applied the same logic to the environment: 266 environmental factors measured in US NHANES participants from 1999 to 2006 were each tested against type 2 diabetes (fasting glucose of 126 mg/dL or more), adjusted for age, sex, body mass index, ethnicity and socioeconomic status, with multiple comparisons controlled and findings checked in other cohorts.\n\nThe pesticide breakdown product heptachlor epoxide (odds ratio 1.7 per standard deviation), polychlorinated biphenyls such as PCB170 (2.2) and the vitamin E form gamma-tocopherol (1.5) were associated with diabetes, and beta-carotenes inversely (0.6). The authors stressed how hard it is to establish causality from such data and presented the findings as hypotheses about the environment's broad contribution to disease.",
+    "key_findings": [
+      "266 environmental factors screened against type 2 diabetes, with multiple-comparison control",
+      "Heptachlor epoxide (OR 1.7) and PCB170 (OR 2.2) associated; beta-carotenes inversely (OR 0.6)",
+      "Some environmental associations were as large as the strongest genetic findings"
+    ],
+    "limitations": [
+      "Cross-sectional: exposure and disease were measured at the same time",
+      "Single measurements may not reflect long-term exposure",
+      "Associations are hypotheses, not shown causes"
+    ],
+    "practical": [
+      "Screening many exposures at once produces leads to test, not conclusions"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20505766/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_38687503",
+    "pmid": "38687503",
+    "title": "Screening for Breast Cancer: US Preventive Services Task Force Recommendation Statement.",
+    "first_author": "US Preventive Services Task Force",
+    "journal": "JAMA",
+    "year": 2024,
+    "study_type": "Recommendation statement (systematic review and modelling)",
+    "evidence_level": "Consensus statement",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "screening"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 411,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "USPSTF 2024: a screening mammogram every two years for women aged 40 to 74 at average risk.",
+    "summary_short": "Based on a systematic review and collaborative modelling, the US Preventive Services Task Force recommends biennial screening mammography for women aged 40 to 74 (grade B), and found the evidence insufficient for women 75 and older and for supplemental ultrasound or MRI in dense breasts (I statements).",
+    "summary_detail": "Breast cancer is the second most common cancer and the second most common cause of cancer death among US women; an estimated 43,170 women died of it in 2023, and non-Hispanic Black women have the highest mortality. The Task Force commissioned a systematic review of mammography-based screening strategies -- when to start and stop, how often, which modality, supplemental imaging, personalisation -- together with collaborative modelling studies.\n\nIt concluded with moderate certainty that biennial screening mammography from 40 to 74 has a moderate net benefit (grade B). The evidence was insufficient to weigh benefits and harms of screening at 75 and older, or of supplemental ultrasound or MRI for women with dense breasts and an otherwise negative mammogram (I statements). The recommendation applies to people at average risk.",
+    "key_findings": [
+      "Biennial screening mammography for women aged 40 to 74 (grade B)",
+      "Insufficient evidence for women 75 and older (I statement)",
+      "Insufficient evidence for supplemental ultrasound or MRI in dense breasts (I statement)"
+    ],
+    "limitations": [
+      "Applies to people at average risk only",
+      "Modelling estimates depend on assumptions about tumour growth and treatment",
+      "Benefits and harms differ by age and individual history"
+    ],
+    "practical": [
+      "From 40, talk with a clinician about screening every two years",
+      "A family history of breast or ovarian cancer is worth raising -- the plan may differ"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38687503/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_31429903",
+    "pmid": "31429903",
+    "title": "Risk Assessment, Genetic Counseling, and Genetic Testing for BRCA-Related Cancer: US Preventive Services Task Force Recommendation Statement.",
+    "first_author": "US Preventive Services Task Force",
+    "journal": "JAMA",
+    "year": 2019,
+    "study_type": "Recommendation statement",
+    "evidence_level": "Consensus statement",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "genetics",
+      "screening"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 387,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "USPSTF: women whose family history or ancestry suggests a BRCA1/2 variant should be offered a brief assessment, then counseling and, if indicated, testing.",
+    "summary_short": "Harmful BRCA1/2 variants occur in about 1 in 300 to 500 women and account for 5 to 10% of breast cancers. The Task Force recommends a brief familial risk assessment for women with a relevant personal or family history or ancestry (grade B), and recommends against routine testing for others (grade D).",
+    "summary_detail": "Harmful variants in BRCA1 and BRCA2 raise the chance of breast, ovarian, fallopian tube and peritoneal cancer. They occur in an estimated 1 in 300 to 500 women and account for 5% to 10% of breast cancers and 15% of ovarian cancers. The Task Force reviewed evidence on risk assessment, genetic counseling, genetic testing and interventions -- intensive screening, medications and risk-reducing surgery -- for women never diagnosed and for those treated and considered cancer-free.\n\nFor women whose personal or family history, or ancestry, is associated with harmful variants, the benefits were judged moderate: primary care clinicians should use a brief familial risk assessment tool, followed by genetic counseling and, if indicated, testing (grade B). For women without such history or ancestry, benefits were small to none, and routine assessment, counseling or testing is not recommended (grade D).",
+    "key_findings": [
+      "BRCA1/2 variants: about 1 in 300 to 500 women; 5-10% of breast and 15% of ovarian cancers",
+      "Brief familial risk assessment, then counseling and testing if indicated, for women with relevant history or ancestry (B)",
+      "Routine testing is not recommended for women without such history or ancestry (D)"
+    ],
+    "limitations": [
+      "Focused on BRCA1/2-related cancers",
+      "Familial risk assessment tools are brief screens, not diagnoses",
+      "A recommendation statement, not a primary study"
+    ],
+    "practical": [
+      "Gather your family history -- cancers, relatives, ages at diagnosis -- before a clinician visit",
+      "Genetic counseling comes before testing, so results can be understood"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31429903/",
+    "source": "curated"
+  },
+  {
     "id": "pmid_29182464",
     "pmid": "29182464",
     "title": "Triclosan exposure, transformation, and human health effects.",
@@ -836,6 +1542,133 @@
       "This is exactly the kind of low-effort, well-documented swap the Personal care topic in Learn covers"
     ],
     "url": "https://pubmed.ncbi.nlm.nih.gov/29182464/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_19996398",
+    "pmid": "19996398",
+    "title": "Soy food intake and breast cancer survival.",
+    "first_author": "Shu XO",
+    "journal": "JAMA",
+    "year": 2009,
+    "study_type": "Prospective cohort study",
+    "evidence_level": "Observational cohort",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "survivorship",
+      "food"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 302,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Among 5,042 breast cancer survivors in Shanghai, those eating the most soy had lower recurrence and mortality.",
+    "summary_short": "In the Shanghai Breast Cancer Survival Study, the highest versus lowest quartile of soy protein intake after diagnosis was associated with lower total mortality (HR 0.71) and recurrence (HR 0.68), in both estrogen-receptor-positive and -negative cancers and with or without tamoxifen.",
+    "summary_detail": "Soy foods are rich in isoflavones, plant compounds with weak estrogen-like activity, which raised concern that soy might be harmful after breast cancer or interfere with tamoxifen. This population-based cohort followed 5,042 women in Shanghai diagnosed in 2002 to 2006, assessing diet repeatedly after diagnosis and checking medical records.\n\nOver a median of 3.9 years there were 444 deaths and 534 recurrences or breast cancer deaths. Compared with the lowest quartile of soy protein intake, the highest was associated with lower total mortality (hazard ratio 0.71) and recurrence (0.68): adjusted four-year mortality of 7.4% versus 10.3%, and recurrence of 8.0% versus 11.2%. The pattern held for estrogen-receptor-positive and -negative disease, and in tamoxifen users and non-users.",
+    "key_findings": [
+      "Highest vs lowest soy protein quartile: mortality HR 0.71, recurrence HR 0.68",
+      "Four-year mortality 7.4% vs 10.3%; recurrence 8.0% vs 11.2%",
+      "Similar in ER-positive and ER-negative cancers, with or without tamoxifen"
+    ],
+    "limitations": [
+      "Observational: women eating more soy may differ in other ways",
+      "Soy eaten as a traditional food in China; supplements were not studied",
+      "Median follow-up under four years"
+    ],
+    "practical": [
+      "Based on this cohort, soy foods need not be avoided after breast cancer",
+      "Questions about diet during treatment belong with the care team"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19996398/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_17938728",
+    "pmid": "17938728",
+    "title": "DDT and breast cancer in young women: new data on the significance of age at exposure.",
+    "first_author": "Cohn BA",
+    "journal": "Environ Health Perspect",
+    "year": 2007,
+    "study_type": "Nested case-control study",
+    "evidence_level": "Nested case-control",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "chemicals",
+      "children"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 295,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "High DDT levels predicted about five times the odds of breast cancer before 50 -- but only in women first exposed as children.",
+    "summary_short": "Using blood drawn from young mothers in Oakland, California, in 1959-1967, high p,p'-DDT predicted a five-fold increase in breast cancer before age 50 among women born after 1931 -- under 14 when DDT came into wide use -- and no association among women exposed only later.",
+    "summary_detail": "Earlier studies of DDT and breast cancer measured exposure late in life, after most DDT had been eliminated and long after its use had stopped, and mostly found no link. This study used blood samples saved by the Child Health and Development Studies, drawn one to three days after women gave birth in 1959-1967 (mean age 26), during the years of peak DDT use.\n\nComparing 129 women who developed breast cancer before 50 with 129 controls matched by birth year, high serum p,p'-DDT predicted a statistically significant five-fold increase in risk among women born after 1931, who were under 14 when DDT came into widespread use in 1945. Women not exposed before 14 showed no association. The study points to childhood and adolescence as a window of susceptibility, and shows how measuring exposure at the wrong time can hide an effect.",
+    "key_findings": [
+      "Five-fold higher odds of breast cancer before 50 with high p,p'-DDT -- for women exposed before age 14",
+      "No association for women first exposed later in life",
+      "The timing of exposure changed the result entirely"
+    ],
+    "limitations": [
+      "129 cases: a small study with wide uncertainty",
+      "A single blood measurement around childbirth",
+      "DDT is no longer in general use in the US, so today's exposures are far lower"
+    ],
+    "practical": [
+      "Exposures in childhood and adolescence deserve extra care",
+      "A 'no link' study that measured exposure late in life may have missed the window that mattered"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17938728/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_38990124",
+    "pmid": "38990124",
+    "title": "Proportion and number of cancer cases and deaths attributable to potentially modifiable risk factors in the United States, 2019.",
+    "first_author": "Islami F",
+    "journal": "CA Cancer J Clin",
+    "year": 2024,
+    "study_type": "Population attributable fraction analysis",
+    "evidence_level": "Population modelling",
+    "topics": [
+      "cancer",
+      "prevention",
+      "statistics"
+    ],
+    "substance_ids": [
+      "alcohol",
+      "tobacco_smoke"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "relative_absolute_risk"
+    ],
+    "citation_count": 220,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "40% of cancer cases and 44% of cancer deaths in US adults 30 and over were attributable to potentially modifiable factors in 2019.",
+    "summary_short": "Combining national cancer data, risk-factor prevalence and published relative risks, the American Cancer Society estimated that 713,340 cancer cases (40.0%) and 262,120 deaths (44.0%) in 2019 were attributable to factors led by smoking (19.3% of cases), excess body weight (7.6%) and alcohol (5.4%).",
+    "summary_detail": "Updating an estimate for 2014, the authors calculated how many invasive cancers (excluding non-melanoma skin cancer) and cancer deaths among US adults aged 30 and over in 2019 were attributable to cigarette smoking, second-hand smoke, excess body weight, alcohol, red and processed meat, low intake of fruits, vegetables, fiber and calcium, physical inactivity, ultraviolet radiation and seven carcinogenic infections.\n\nIn total, 40.0% of cases (713,340 of 1,781,649) and 44.0% of deaths (262,120 of 595,737) were attributable to these factors. Cigarette smoking contributed most (19.3% of cases, 28.5% of deaths), followed by excess body weight (7.6%, 7.3%) and alcohol (5.4%, 4.1%). For 19 of 30 cancer types more than half of cases were attributable, and female breast cancer had 83,840 attributable cases. These are population estimates of where prevention can help, not explanations of any individual's cancer.",
+    "key_findings": [
+      "40.0% of cases and 44.0% of deaths attributable to the factors evaluated",
+      "Smoking 19.3% of cases; excess body weight 7.6%; alcohol 5.4%",
+      "83,840 attributable female breast cancer cases"
+    ],
+    "limitations": [
+      "Depends on relative risks from other studies and on survey-based prevalence",
+      "Factors outside the list, including many occupational and environmental exposures, were not evaluated",
+      "A population fraction: it cannot say why a given person developed cancer"
+    ],
+    "practical": [
+      "The biggest levers are few: smoke-free air, alcohol, body weight, activity, vaccines, sun",
+      "Population estimates are for planning prevention, never for assigning blame"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38990124/",
     "source": "curated"
   },
   {
@@ -971,6 +1804,49 @@
     "source": "curated"
   },
   {
+    "id": "pmid_26756460",
+    "pmid": "26756460",
+    "title": "Radiation-Induced Breast Cancer Incidence and Mortality From Digital Mammography Screening: A Modeling Study.",
+    "first_author": "Miglioretti DL",
+    "journal": "Ann Intern Med",
+    "year": 2016,
+    "study_type": "Simulation modelling study",
+    "evidence_level": "Population modelling",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "screening",
+      "dose"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "dose_response"
+    ],
+    "citation_count": 122,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Yearly mammograms from 40 to 74: about 125 radiation-induced breast cancers per 100,000 women, against about 968 breast cancer deaths averted.",
+    "summary_short": "Two simulation models estimated that annual digital mammography for 100,000 women aged 40 to 74 would induce about 125 breast cancers and 16 deaths through radiation, while averting 968 breast cancer deaths; biennial screening from 50 cut radiation-induced cancers five-fold.",
+    "summary_detail": "Earlier estimates of radiation-induced breast cancer from mammography had not accounted for variation in dose between women or for the extra imaging that follows abnormal results. Using two simulation models of the US population, the authors estimated lifetime benefits and radiation harms of annual or biennial digital screening starting at 40, 45 or 50 and continuing to 74.\n\nAnnual screening of 100,000 women from 40 to 74 was projected to induce 125 breast cancers leading to 16 deaths, against 968 breast cancer deaths averted by early detection. Women receiving higher doses -- including the 8% with large breasts who need extra views -- had greater projected harm (266 cases and 35 deaths per 100,000). Biennial screening starting at 50 reduced radiation-induced cancers five-fold. Dose, frequency and starting age all shape the balance.",
+    "key_findings": [
+      "Annual screening 40-74: 125 radiation-induced cancers and 16 deaths vs 968 deaths averted, per 100,000",
+      "Higher-dose groups, such as women needing extra views, had greater projected harm",
+      "Biennial screening from 50 cut radiation-induced cancers five-fold"
+    ],
+    "limitations": [
+      "Model-based estimates, not observed cancers",
+      "Life-years lost from radiation-induced cancer could not be estimated",
+      "Results depend on dose assumptions that vary between women"
+    ],
+    "practical": [
+      "A mammogram's radiation dose is small and the benefit larger -- dose-response, applied",
+      "How often and from what age to screen are part of the decision to discuss with a clinician"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26756460/",
+    "source": "curated"
+  },
+  {
     "id": "pmid_25861095",
     "pmid": "25861095",
     "title": "Effect of organic diet intervention on pesticide exposures in young children living in low-income urban and agricultural communities",
@@ -1012,6 +1888,171 @@
       "Diet is one route; home and garden products are another, so the two add up"
     ],
     "url": "https://pubmed.ncbi.nlm.nih.gov/25861095/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_31498409",
+    "pmid": "31498409",
+    "title": "The IARC Monographs: Updated Procedures for Modern and Transparent Evidence Synthesis in Cancer Hazard Identification.",
+    "first_author": "Samet JM",
+    "journal": "J Natl Cancer Inst",
+    "year": 2020,
+    "study_type": "Methods paper",
+    "evidence_level": "Consensus statement",
+    "topics": [
+      "cancer",
+      "methods"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "carcinogen_classification"
+    ],
+    "citation_count": 104,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "How IARC decides whether something can cause cancer: three streams of evidence, integrated in one step -- and what the result does and does not mean.",
+    "summary_short": "This paper describes IARC's 2019 updated Preamble: stronger systematic review methods, more weight on mechanistic evidence organised by the key characteristics of carcinogens, closer scrutiny of exposure assessment in human studies, and single-step integration of human, animal and mechanistic evidence.",
+    "summary_detail": "The International Agency for Research on Cancer's Monographs identify agents that can cause cancer in humans -- hazard identification, the first step in cancer prevention. In 2019 the Preamble that governs the process was updated on the recommendation of an expert advisory group, the first major amendment in 12 years.\n\nThe update strengthens systematic review methods; gives more weight to mechanistic evidence organised around the key characteristics of carcinogens; looks harder at the quality and informativeness of epidemiological studies, including how exposure was assessed; harmonises evaluation criteria across evidence streams; and integrates evidence on cancer in humans, cancer in experimental animals and mechanisms in a single step to reach an overall classification. IARC states separately that the resulting groups indicate the strength of the evidence, not the level of risk at a given exposure.",
+    "key_findings": [
+      "IARC classifies the strength of evidence that an agent can cause cancer (hazard)",
+      "Three evidence streams -- human, animal, mechanistic -- integrated in one step",
+      "The 2019 update strengthened systematic review and the use of mechanistic evidence"
+    ],
+    "limitations": [
+      "Hazard identification only: it does not estimate risk at a given dose",
+      "A procedures paper; the classifications themselves are in the Monographs",
+      "Authors include IARC staff and working-group members"
+    ],
+    "practical": [
+      "When a headline says 'carcinogen', ask which group and what exposure the evidence involved",
+      "Agents in the same group can differ greatly in how much cancer they cause"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31498409/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_18243463",
+    "pmid": "18243463",
+    "title": "Exposure data for cosmetic products: facial cleanser, hair conditioner, and eye shadow.",
+    "first_author": "Loretz LJ",
+    "journal": "Food Chem Toxicol",
+    "year": 2008,
+    "study_type": "Consumer use diary study",
+    "evidence_level": "Exposure measurement",
+    "topics": [
+      "cosmetics",
+      "dose",
+      "methods"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "dermal_absorption",
+      "aggregate_exposure"
+    ],
+    "citation_count": 99,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "How much product do people actually use? In a US diary study, women used about 14 g of hair conditioner a day -- and 0.04 g of eye shadow.",
+    "summary_short": "360 US women aged 18 to 69 weighed and logged their usual facial cleanser, hair conditioner and eye shadow for two weeks. Mean daily use was about 4.1 g, 13.8 g and 0.04 g, at 1.1 to 1.6 applications a day -- the kind of data safety assessments use to estimate dose.",
+    "summary_detail": "Safety assessments of cosmetic ingredients need two numbers: how much product is applied and how often. To update them, 360 women aged 18 to 69 across the US who regularly used facial cleanser, hair conditioner or eye shadow were given a new container of their usual brand, kept diaries for two weeks, and had their products weighed before and after.\n\nMean use per application was 2.57 g for facial cleanser, 13.13 g for hair conditioner and 0.03 g for eye shadow; per day it was 4.06 g, 13.77 g and 0.04 g, with 1.6, 1.1 and 1.2 applications a day. The several-hundredfold spread between products is why exposure assessments start from real use patterns rather than from whether an ingredient is present.",
+    "key_findings": [
+      "Mean daily use: facial cleanser 4.06 g, hair conditioner 13.77 g, eye shadow 0.04 g",
+      "1.1 to 1.6 applications a day",
+      "Daily amounts differed several hundredfold between products"
+    ],
+    "limitations": [
+      "Three product types only",
+      "Industry-affiliated authors (a cosmetics trade association)",
+      "Regular users of these products, not a random population sample"
+    ],
+    "practical": [
+      "Products used in large amounts, and those left on the skin, are where swaps move the most",
+      "Amount and frequency matter as much as the ingredient list"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/18243463/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_12381712",
+    "pmid": "12381712",
+    "title": "Antiperspirant use and the risk of breast cancer.",
+    "first_author": "Mirick DK",
+    "journal": "J Natl Cancer Inst",
+    "year": 2002,
+    "study_type": "Population-based case-control study",
+    "evidence_level": "Observational case-control",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "cosmetics"
+    ],
+    "substance_ids": [
+      "aluminum_antiperspirant"
+    ],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 89,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "A rumour tested: among 1,606 women, antiperspirant and deodorant use were not linked to breast cancer -- shaving included.",
+    "summary_short": "This population-based case-control study compared 813 women with breast cancer and 793 controls aged 20 to 74. Breast cancer risk did not increase with antiperspirant (OR 0.9) or deodorant (OR 1.2) use, with blade shaving, or with application within an hour of shaving.",
+    "summary_detail": "The claim that antiperspirants cause breast cancer circulated widely online, but no epidemiological study had tested it. Researchers in the Seattle area interviewed 813 women diagnosed with breast cancer in 1992-1995 and 793 population controls of similar age, asking in person about their use of underarm products and their shaving habits.\n\nBreast cancer risk did not rise with antiperspirant use (odds ratio 0.9) or deodorant use (1.2, not statistically significant), among women who shaved with a blade razor, or with applying products within an hour of shaving. The authors concluded that the findings do not support the hypothesis that antiperspirant use increases breast cancer risk.",
+    "key_findings": [
+      "Antiperspirant use: odds ratio 0.9 -- no increase",
+      "Deodorant use: odds ratio 1.2, not statistically significant",
+      "No increase with blade shaving or application soon after shaving"
+    ],
+    "limitations": [
+      "Self-reported product use, recalled in interviews",
+      "Case-control design in one US region in the 1990s"
+    ],
+    "practical": [
+      "This study does not support the worry; skin irritation after shaving is the better-established issue"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12381712/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_21937270",
+    "pmid": "21937270",
+    "title": "The U.S. National Health and Nutrition Examination Survey and human exposure to environmental chemicals.",
+    "first_author": "Calafat AM",
+    "journal": "Int J Hyg Environ Health",
+    "year": 2012,
+    "study_type": "Program overview",
+    "evidence_level": "Expert review",
+    "topics": [
+      "exposome",
+      "methods",
+      "chemicals"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "exposome"
+    ],
+    "citation_count": 71,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "How the US measures what is in people: NHANES biomonitoring sets reference ranges and tracks trends in environmental chemicals.",
+    "summary_short": "This overview from CDC describes how NHANES, which examines a representative sample of the US population and collects blood and urine, is used to measure environmental chemicals -- setting reference ranges, providing exposure data for risk assessment and monitoring exposure trends.",
+    "summary_detail": "Human biomonitoring measures chemicals, their metabolites or reaction products in blood, urine and other specimens. NHANES, run by the US Centers for Disease Control and Prevention, combines a physical examination, a detailed medical history and the collection of biological specimens from people representing the non-institutionalised civilian US population.\n\nThose specimens allow CDC to measure environmental chemicals across the population: to set reference ranges that show what typical levels look like, to supply exposure data for risk assessment, and to follow trends over time -- for example, whether levels fall after a chemical is phased out. Biomonitoring shows exposure; on its own, it does not show harm.",
+    "key_findings": [
+      "NHANES collects blood and urine from a representative US sample",
+      "Biomonitoring data set reference ranges for environmental chemicals",
+      "Repeated surveys track exposure trends over time"
+    ],
+    "limitations": [
+      "A programme description rather than a study with results",
+      "Biomonitoring shows exposure, not effect",
+      "For short-lived chemicals, a single sample reflects only recent exposure"
+    ],
+    "practical": [
+      "'Detected in Americans' is a statement about exposure; meaning depends on amounts and comparisons"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21937270/",
     "source": "curated"
   },
   {
@@ -1057,6 +2098,90 @@
     "source": "curated"
   },
   {
+    "id": "pmid_31797377",
+    "pmid": "31797377",
+    "title": "Hair dye and chemical straightener use and breast cancer risk in a large US population of black and white women.",
+    "first_author": "Eberle CE",
+    "journal": "Int J Cancer",
+    "year": 2020,
+    "study_type": "Prospective cohort study",
+    "evidence_level": "Observational cohort",
+    "topics": [
+      "cancer",
+      "breast cancer",
+      "cosmetics",
+      "chemicals"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 67,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "In the Sister Study, permanent hair dye was linked to higher breast cancer risk, especially among Black women, and straighteners with more frequent use.",
+    "summary_short": "Following 46,709 women aged 35 to 74 who had a sister with breast cancer, permanent dye use was associated with 45% higher breast cancer risk in Black women (HR 1.45) and 7% in white women (HR 1.07), and personal straightener use with higher risk (HR 1.18) that rose with frequency.",
+    "summary_detail": "Many hair products contain compounds that may be relevant to breast cancer, and products used mainly by Black women may contain more hormonally active ingredients. The Sister Study enrolled 46,709 women aged 35 to 74 in 2003-2009, each free of breast cancer but with a sister who had been diagnosed, and asked about hair product use in the previous year.\n\nOver a mean of 8.3 years, 2,794 breast cancers were diagnosed. Permanent dye use was associated with 45% higher risk among Black women (hazard ratio 1.45) and 7% among white women (1.07, borderline). Personal straightener use was associated with higher risk (1.18) that increased with frequency, and applying semipermanent dye (1.28) or straighteners (1.27) to others outside a salon was also associated. These are observational associations that call for further study.",
+    "key_findings": [
+      "Permanent dye: HR 1.45 among Black women, 1.07 among white women",
+      "Personal straightener use: HR 1.18, rising with frequency",
+      "Non-professional application to others was also associated"
+    ],
+    "limitations": [
+      "All participants had a sister with breast cancer, so results may not generalise",
+      "Product use asked about only for the 12 months before enrolment",
+      "Observational; specific chemicals were not measured"
+    ],
+    "practical": [
+      "A real signal worth weighing, not settled proof",
+      "If you use these products often, frequency is one lever within reach"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31797377/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_32107776",
+    "pmid": "32107776",
+    "title": "Trends and current spectrum of contact allergy in Central Europe: results of the Information Network of Departments of Dermatology (IVDK) 2007-2018.",
+    "first_author": "Uter W",
+    "journal": "Br J Dermatol",
+    "year": 2020,
+    "study_type": "Clinical surveillance analysis",
+    "evidence_level": "Clinical surveillance",
+    "topics": [
+      "cosmetics",
+      "allergy"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [
+      "fragranced_laundry_products"
+    ],
+    "concept_tags": [
+      "sensitization"
+    ],
+    "citation_count": 52,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "Among 125,436 patch-tested patients, fragrance was the second most common contact allergen -- and an allergy wave fell after European regulation.",
+    "summary_short": "Analysing patch tests at 56 dermatology departments in three Central European countries (2007-2018), the most common allergens were nickel (14.7%), fragrance mix I (8.1%), Myroxylon pereirae resin (7.5%) and cobalt (5.2%); allergy to methylisothiazolinone rose and fell following European regulation.",
+    "summary_detail": "Surveillance of patch-test results shows how changing exposures change allergy patterns. The Information Network of Departments of Dermatology pooled results for 125,436 patients tested with the baseline series at 56 departments in three Central European countries between 2007 and 2018.\n\nThe most common allergens were nickel (14.7%), fragrance mix I (8.1%), Myroxylon pereirae resin (balsam of Peru, 7.5%) and cobalt (5.2%), with no conclusive trend. Allergy to the preservative methylchloroisothiazolinone/methylisothiazolinone rose and then fell, reflecting an epidemic and its decline after regulation and self-regulation in the European Union. The authors note that decreases in sensitization likely reflect reduced exposure, with some lag.",
+    "key_findings": [
+      "Nickel 14.7%, fragrance mix I 8.1%, balsam of Peru 7.5% among patch-tested patients",
+      "The methylisothiazolinone allergy epidemic rose and fell after EU action",
+      "Falling sensitization tends to follow reduced exposure, with a lag"
+    ],
+    "limitations": [
+      "Patients referred for patch testing, not the general population",
+      "Central Europe only",
+      "Descriptive surveillance"
+    ],
+    "practical": [
+      "Fragrance allergy is common; patch testing can identify the specific ingredient",
+      "Reducing exposure works, even for allergy"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32107776/",
+    "source": "curated"
+  },
+  {
     "id": "pmid_38363072",
     "pmid": "38363072",
     "title": "Ultra-processed food consumption and human health: an umbrella review of systematic reviews with meta-analyses.",
@@ -1097,6 +2222,88 @@
       "Pairs with the Hall et al. 2019 trial in this library, which shows a mechanism: people eat more calories, unprompted, on ultra-processed menus"
     ],
     "url": "https://pubmed.ncbi.nlm.nih.gov/38363072/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_30810228",
+    "pmid": "30810228",
+    "title": "The significance of batch and patch test method in establishing contact allergy to fragrance mix I-EDEN Fragrance Study Group.",
+    "first_author": "Bruze M",
+    "journal": "Contact Dermatitis",
+    "year": 2019,
+    "study_type": "General-population patch-test study",
+    "evidence_level": "Population survey",
+    "topics": [
+      "cosmetics",
+      "allergy",
+      "methods"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [
+      "fragranced_laundry_products"
+    ],
+    "concept_tags": [
+      "sensitization"
+    ],
+    "citation_count": 15,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "In a random sample of 3,119 European adults, between 0.7% and 2.6% were allergic to a standard fragrance mix -- depending on the test used.",
+    "summary_short": "The EDEN Fragrance Study patch-tested 3,119 people from the general population in five European countries with two batches of fragrance mix I and two test techniques. Allergy prevalence ranged from 0.7% to 2.6%, varying with the oak moss content of the mix and the testing method.",
+    "summary_detail": "Fragrance mix I, a blend of eight fragrance ingredients, is part of most baseline patch-test series. To see how much the batch of the mix and the test technique matter, the EDEN Fragrance Study patch-tested 3,119 people from the general population at six dermatology clinics in five European countries, using two batches and two techniques.\n\nThe prevalence of contact allergy to the mix ranged from 0.7% to 2.6%. Mixes whose oak moss (Evernia prunastri) contained more chloroatranol and atranol produced substantially more positive reactions, and the Finn Chamber technique detected more allergy than the TRUE Test. A prevalence figure is only as good as the test behind it -- and in the general population, fragrance allergy is real but far less common than among patients referred to dermatologists.",
+    "key_findings": [
+      "Fragrance mix I allergy in the general population: 0.7% to 2.6%",
+      "Oak moss content changed how many people reacted",
+      "The Finn Chamber method detected more allergy than the TRUE Test"
+    ],
+    "limitations": [
+      "Test method and batch strongly affect the estimate",
+      "Five European countries only",
+      "Fragrance mix I covers eight ingredients, not all fragrance chemicals"
+    ],
+    "practical": [
+      "How common an allergy looks depends on who is tested and how",
+      "A dermatologist's patch test is the way to find a personal fragrance allergy"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30810228/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_25192706",
+    "pmid": "25192706",
+    "title": "Bra wearing not associated with breast cancer risk: a population-based case-control study.",
+    "first_author": "Chen L",
+    "journal": "Cancer Epidemiol Biomarkers Prev",
+    "year": 2014,
+    "study_type": "Population-based case-control study",
+    "evidence_level": "Observational case-control",
+    "topics": [
+      "cancer",
+      "breast cancer"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [],
+    "citation_count": 11,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "No aspect of bra wearing -- cup size, hours a day, underwires, age at first wearing -- was linked to breast cancer in women aged 55 to 74.",
+    "summary_short": "Comparing 454 women with invasive ductal carcinoma and 590 with invasive lobular carcinoma against 469 controls aged 55 to 74 in the Seattle area, no aspect of bra wearing, including underwires, hours per day or age at first regular use, was associated with either cancer type.",
+    "summary_detail": "Lay media had suggested that wearing a bra might raise breast cancer risk, but credible studies were scarce. This population-based case-control study in the Seattle-Puget Sound area compared 454 women with invasive ductal carcinoma and 590 with invasive lobular carcinoma, diagnosed in 2000-2004, with 469 control women aged 55 to 74, collecting bra-wearing habits and other factors in in-person interviews.\n\nNo aspect of bra wearing -- cup size, how recently or how many hours a day bras were worn, underwires, or the age at which women began wearing them regularly -- was associated with the risk of either cancer type. The results did not support the claim that bra wearing increases breast cancer risk.",
+    "key_findings": [
+      "No association with cup size, hours worn per day or underwires",
+      "No association with age at first regular bra wearing",
+      "Held for both ductal and lobular breast cancers"
+    ],
+    "limitations": [
+      "Postmenopausal women aged 55 to 74 only",
+      "Self-reported habits",
+      "One US metropolitan area"
+    ],
+    "practical": [
+      "Based on this evidence, bra choice is about comfort, not breast cancer"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25192706/",
     "source": "curated"
   },
   {
@@ -1145,6 +2352,48 @@
       "Personal choices help, and shared measures such as labelling and regulation reach further -- both can be true at once"
     ],
     "url": "https://pubmed.ncbi.nlm.nih.gov/42001662/",
+    "source": "curated"
+  },
+  {
+    "id": "pmid_38494042",
+    "pmid": "38494042",
+    "title": "Review of the standards of proof (of safety) for FDA regulated consumer products and how the generally recognized as safe criteria could be applied to cosmetics.",
+    "first_author": "Burdock GA",
+    "journal": "Regul Toxicol Pharmacol",
+    "year": 2024,
+    "study_type": "Regulatory review",
+    "evidence_level": "Expert review",
+    "topics": [
+      "cosmetics",
+      "regulation",
+      "methods"
+    ],
+    "substance_ids": [],
+    "context_substance_ids": [],
+    "concept_tags": [
+      "safety_thresholds"
+    ],
+    "citation_count": 2,
+    "citations_as_of": "2026-10",
+    "citation_source": "NIH iCite",
+    "headline": "MoCRA raised the safety standard for US cosmetics to a 'reasonable certainty' of safety -- the same bar as food ingredients.",
+    "summary_short": "This review explains that the Modernization of Cosmetics Regulation Act of 2022 raises the standard of proof of safety for cosmetics to a 'reasonable certainty' that a product is safe, equal to that for food ingredients, and compares the standards across FDA-regulated product types.",
+    "summary_detail": "Different FDA-regulated products must meet different 'standards of proof' of safety. The Modernization of Cosmetics Regulation Act of 2022 amended the Federal Food, Drug and Cosmetic Act and raised the standard for cosmetics to a 'reasonable certainty' of safety -- the same standard that applies to food ingredients.\n\nThe author describes the standards for cosmetics, dietary supplements, food ingredients and foods, compares them with familiar legal terms such as 'a preponderance of the evidence' and 'beyond reasonable doubt', ranks them by how hard they are to meet, and suggests how the generally-recognised-as-safe approach used for food ingredients could help companies meet the higher bar for cosmetics.",
+    "key_findings": [
+      "MoCRA set a 'reasonable certainty' safety standard for cosmetics",
+      "That standard matches the one for food ingredients",
+      "Standards of proof differ across FDA-regulated product types"
+    ],
+    "limitations": [
+      "A single-author regulatory analysis, not a study with data",
+      "The author works for a regulatory consultancy",
+      "How FDA will apply the standard in practice is still developing"
+    ],
+    "practical": [
+      "Companies must now keep evidence that their products are safe",
+      "FDA still does not approve most cosmetics before sale; color additives are the exception"
+    ],
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38494042/",
     "source": "curated"
   }
 ]

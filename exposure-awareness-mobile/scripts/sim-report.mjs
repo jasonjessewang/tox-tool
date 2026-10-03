@@ -125,7 +125,8 @@ for (const id of PERSONAS) {
   check(recallWrongPart === 0, `${id}: every recall receipt is about the Understanding part`, `${recallWrongPart} not`);
   check(recallUnread === 0, `${id}: questions are only asked about lessons that were already read`, `${recallUnread} asked early`);
   check(understandingFalls === 0, `${id}: the Understanding part never falls from one day to the next`, `${understandingFalls} days`);
-  check(understandingBelowReading === 0 && understandingBonusMax <= 21, `${id}: recall adds to the curriculum share and never more than its cap`, `largest addition ${understandingBonusMax.toFixed(1)}`);
+  // Recall can add up to 20 points and the electives up to 10 (engine/signals/understanding.ts).
+  check(understandingBelowReading === 0 && understandingBonusMax <= 31, `${id}: recall and electives add to the curriculum share and never more than their caps`, `largest addition ${understandingBonusMax.toFixed(1)}`);
   check(recallRight === 0 || last.components.learning > last.literacyPct || last.components.learning >= 99.5, `${id}: answers given right reach the Understanding part`, `${recallRight} right answers`);
   check(retireDrops === 0, `${id}: retiring a product never lowers the shelf part`, `${retireDrops} times`);
   check(shelfFloor === 0, `${id}: the shelf part never sits on its floor while there are products to read`, `${shelfFloor} days`);

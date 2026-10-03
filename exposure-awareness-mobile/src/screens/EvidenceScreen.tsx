@@ -5,6 +5,7 @@ import { loadEvidence, evidenceById, evidenceLearningRef, type EvidenceItem } fr
 import { Collapsible } from "../components/Collapsible";
 import { colors, radius, shadow } from "../theme";
 import { todayISO as today } from "../util/dates";
+import { tr } from "../i18n";
 
 function Badge({ text }: { text: string }) {
   return <Text style={styles.badge}>{text}</Text>;
@@ -14,33 +15,33 @@ export function Detail({ item, onBack }: { item: EvidenceItem; onBack: () => voi
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16, paddingTop: 20 }}>
       <Pressable accessibilityRole="button" onPress={onBack} hitSlop={8} style={{ marginBottom: 12, paddingVertical: 8 }}>
-        <Text style={styles.back}>{"‹"} Research</Text>
+        <Text style={styles.back}>{tr("‹ Research")}</Text>
       </Pressable>
       <View style={styles.badges}>
         <Badge text={item.evidence_level} />
-        <Badge text={`${item.citation_count.toLocaleString()} citations`} />
+        <Badge text={tr("{citation_count} citations", { citation_count: item.citation_count.toLocaleString() })} />
       </View>
       <Text accessibilityRole="header" aria-level={1} style={styles.headline}>{item.headline}</Text>
       <Text style={styles.short}>{item.summary_short}</Text>
 
-      <Text accessibilityRole="header" aria-level={2} style={styles.label}>Key findings</Text>
+      <Text accessibilityRole="header" aria-level={2} style={styles.label}>{tr("Key findings")}</Text>
       {item.key_findings.map((f, i) => (
         <Text key={i} style={styles.bullet}>{"•"} {f}</Text>
       ))}
 
       {/* what the study could not show sits beside what it found, not behind a tap */}
-      <Text accessibilityRole="header" aria-level={2} style={styles.label}>Limits to keep in mind</Text>
+      <Text accessibilityRole="header" aria-level={2} style={styles.label}>{tr("Limits to keep in mind")}</Text>
       {item.limitations.map((f, i) => (
         <Text key={i} style={styles.bullet}>{"•"} {f}</Text>
       ))}
 
-      <Text accessibilityRole="header" aria-level={2} style={styles.label}>What you can do</Text>
+      <Text accessibilityRole="header" aria-level={2} style={styles.label}>{tr("What you can do")}</Text>
       {item.practical.map((f, i) => (
         <Text key={i} style={styles.bullet}>{"→"} {f}</Text>
       ))}
 
       <View style={{ marginTop: 18 }}>
-        <Collapsible title="Read the details">
+        <Collapsible title={tr("Read the details")}>
           {item.summary_detail.split("\n\n").map((p, i) => (
             <Text key={i} style={styles.detail}>{p}</Text>
           ))}
@@ -48,10 +49,10 @@ export function Detail({ item, onBack }: { item: EvidenceItem; onBack: () => voi
       </View>
 
       <Text style={styles.cite}>
-        {item.first_author} et al. {item.journal}, {item.year}. {item.study_type}. Citations via {item.citation_source} ({item.citations_as_of}).
+        {tr("{first_author} et al. {journal}, {year}. {study_type}. Citations via {citation_source} ({citations_as_of}).", { first_author: item.first_author, journal: item.journal, year: item.year, study_type: item.study_type, citation_source: item.citation_source, citations_as_of: item.citations_as_of })}
       </Text>
       <Pressable accessibilityRole="link" onPress={() => Linking.openURL(item.url)} style={{ paddingVertical: 8 }}>
-        <Text style={styles.link}>Open the original on PubMed {"›"}</Text>
+        <Text style={styles.link}>{tr("Open the original on PubMed ›")}</Text>
       </Pressable>
     </ScrollView>
   );
@@ -72,8 +73,8 @@ export default function EvidenceScreen({ onDetailChange, embedded = false }: { o
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16 }}>
-      <Text accessibilityRole="header" aria-level={embedded ? 2 : 1} style={styles.h1}>Research</Text>
-      <Text style={styles.sub}>The most-cited evidence, one vignette at a time. Tap one to read it.</Text>
+      <Text accessibilityRole="header" aria-level={embedded ? 2 : 1} style={styles.h1}>{tr("Research")}</Text>
+      <Text style={styles.sub}>{tr("The most-cited evidence, one vignette at a time. Tap one to read it.")}</Text>
       {items.map((e) => (
         <Pressable accessibilityRole="button" key={e.id} onPress={() => show(e)} style={({ pressed }) => [styles.card, pressed && { opacity: 0.7 }]}>
           <View style={styles.badges}>
@@ -81,7 +82,7 @@ export default function EvidenceScreen({ onDetailChange, embedded = false }: { o
             <Badge text={`${e.journal} ${e.year}`} />
           </View>
           <Text style={styles.cardHeadline}>{e.headline}</Text>
-          <Text style={styles.cardMeta}>{e.citation_count.toLocaleString()} citations {"·"} tap to read</Text>
+          <Text style={styles.cardMeta}>{tr("{citation_count} citations · tap to read", { citation_count: e.citation_count.toLocaleString() })}</Text>
         </Pressable>
       ))}
     </ScrollView>

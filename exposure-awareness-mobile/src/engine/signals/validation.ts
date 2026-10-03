@@ -7,6 +7,7 @@
 import type { BiomarkerLog } from "../types";
 import type { ComparisonRead, Signal, SignalContext, SignalResult } from "./types";
 import { ageOf, clamp } from "./decay";
+import { msg, tr, trn } from "../../i18n";
 
 export const CADENCE_DAYS = 90;
 export const STALE_DAYS = 270;
@@ -34,15 +35,19 @@ export function changeNote(readings: BiomarkerLog[]): string | null {
   }
   if (!best) return null;
   const { latest, previous } = best;
-  const direction = latest.value === previous.value ? "unchanged" : latest.value > previous.value ? "higher" : "lower";
-  return `${latest.metric}: ${previous.value} -> ${latest.value} ${latest.unit} (${previous.log_date} to ${latest.log_date}) -- ${direction} than your own previous reading; a comparison with yourself, not a verdict.`;
+  const vars = { metric: tr(latest.metric), before: previous.value, after: latest.value, unit: tr(latest.unit), from: previous.log_date, to: latest.log_date };
+  return latest.value === previous.value
+    ? tr("{metric}: {before} -> {after} {unit} ({from} to {to}) -- unchanged from your own previous reading; a comparison with yourself, not a verdict.", vars)
+    : latest.value > previous.value
+      ? tr("{metric}: {before} -> {after} {unit} ({from} to {to}) -- higher than your own previous reading; a comparison with yourself, not a verdict.", vars)
+      : tr("{metric}: {before} -> {after} {unit} ({from} to {to}) -- lower than your own previous reading; a comparison with yourself, not a verdict.", vars);
 }
 
 export const validationSignal: Signal = {
   key: "validation",
-  label: "Checked against your body",
-  blurb: "How recent your last biomarker is, against a check-in about every three months.",
-  valueMeans: "how up to date your readings are, not what they show",
+  label: msg("Checked against your body"),
+  blurb: msg("How recent your last biomarker is, against a check-in about every three months."),
+  valueMeans: msg("how up to date your readings are, not what they show"),
   defaultWeight: 10,
   sources: ["biomarker_log"],
   evaluate({ asOf, data }: SignalContext): SignalResult {
@@ -54,9 +59,9 @@ export const validationSignal: Signal = {
         key: "validation",
         value: 0,
         confidence: 0,
-        parts: [{ label: "Latest biomarker", basis: "cadence", measured: "none logged yet", against: "a check-in about every 3 months", ratio: null, read: "not_enough_yet" }],
-        summary: "No biomarker logged yet.",
-        notes: ["One real reading from your own body -- a lab result, resting heart rate, blood pressure -- anchors everything else."],
+        parts: [{ label: tr("Latest biomarker"), basis: "cadence", measured: tr("none logged yet"), against: tr("a check-in about every 3 months"), ratio: null, read: "not_enough_yet" }],
+        summary: tr("No biomarker logged yet."),
+        notes: [tr("One real reading from your own body -- a lab result, resting heart rate, blood pressure -- anchors everything else.")],
       };
     }
     const days = Math.max(0, ageOf(latest.log_date, asOf));
@@ -65,13 +70,13 @@ export const validationSignal: Signal = {
     const notes: string[] = [];
     const change = changeNote(known);
     if (change) notes.push(change);
-    if (days > CADENCE_DAYS) notes.push("A fresh reading brings this back up; a check-in every few months keeps your picture current.");
+    if (days > CADENCE_DAYS) notes.push(tr("A fresh reading brings this back up; a check-in every few months keeps your picture current."));
     return {
       key: "validation",
       value,
       confidence: evidenceFrom(Math.max(1, lastYear)),
-      parts: [{ label: "Latest biomarker", basis: "cadence", measured: days === 0 ? "logged today" : `${days} day${days === 1 ? "" : "s"} ago`, against: "a check-in about every 3 months (90 days)", ratio: value / 100, read }],
-      summary: days <= CADENCE_DAYS ? "Your latest reading is within the last quarter." : `Your latest reading is ${days} days old.`,
+      parts: [{ label: tr("Latest biomarker"), basis: "cadence", measured: days === 0 ? tr("logged today") : trn(days, "{n} day ago", "{n} days ago"), against: tr("a check-in about every 3 months (90 days)"), ratio: value / 100, read }],
+      summary: days <= CADENCE_DAYS ? tr("Your latest reading is within the last quarter.") : tr("Your latest reading is {n} days old.", { n: days }),
       notes,
     };
   },

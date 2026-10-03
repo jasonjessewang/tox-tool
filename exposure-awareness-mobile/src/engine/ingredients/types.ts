@@ -1,4 +1,5 @@
 import type { Nutrition } from "./parse";
+import { msg } from "../../i18n";
 
 export type LabelSource = "barcode" | "photo" | "text";
 
@@ -6,10 +7,10 @@ export type ProductKind = "food" | "personal_care";
 export type Frequency = "rare" | "weekly" | "few_week" | "daily";
 
 export const FREQUENCY_INFO: Record<Frequency, { label: string; perWeek: number; factor: number }> = {
-  rare: { label: "A couple of times a month", perWeek: 0.5, factor: 0.5 },
-  weekly: { label: "About weekly", perWeek: 1, factor: 0.75 },
-  few_week: { label: "A few times a week", perWeek: 3, factor: 1 },
-  daily: { label: "Daily", perWeek: 7, factor: 1.5 },
+  rare: { label: msg("A couple of times a month"), perWeek: 0.5, factor: 0.5 },
+  weekly: { label: msg("About weekly"), perWeek: 1, factor: 0.75 },
+  few_week: { label: msg("A few times a week"), perWeek: 3, factor: 1 },
+  daily: { label: msg("Every day"), perWeek: 7, factor: 1.5 }, // not "Daily": that is the tab's name, and other languages say the two differently
 };
 
 /** A product the user keeps around and uses habitually -- exposure science cares about repeated contact. */

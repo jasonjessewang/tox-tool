@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { colors } from "../theme";
 import type { ReadingPoint } from "../engine/readings";
+import { tr } from "../i18n";
 
 const FLOOR = 0.22;
 
@@ -20,7 +21,7 @@ export function TrendStrip({ points, unit, label, maxHeight = 64 }: { points: Re
   const values = points.map((p) => p.value);
   const min = Math.min(...values);
   const max = Math.max(...values);
-  const spoken = `${label}: ${points.map((p) => `${p.day} ${p.value}${unit ? ` ${unit}` : ""}`).join(", ")}. Scaled to your own lowest and highest.`;
+  const spoken = tr("{label}: {points}. Scaled to your own lowest and highest.", { label, points: points.map((p) => `${p.day} ${p.value}${unit ? ` ${unit}` : ""}`).join(", ") });
   return (
     <View accessible accessibilityRole="image" accessibilityLabel={spoken} style={styles.row}>
       {points.map((p, i) => (

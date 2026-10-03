@@ -5,6 +5,7 @@
  */
 import type { DailyMetricLog, PracticeLog } from "./types";
 import { daysAgoISO } from "../util/dates";
+import { weekdayNarrow } from "../i18n";
 
 export type MetricKey = "calories" | "active_minutes" | "screen_hours";
 
@@ -18,7 +19,7 @@ export interface MetricSummary {
 const ACTIVE_PRACTICES = new Set(["exercise", "grounding_stretching"]);
 
 function weekdayLabel(iso: string): string {
-  return ["S", "M", "T", "W", "T", "F", "S"][new Date(`${iso}T12:00:00Z`).getUTCDay()];
+  return weekdayNarrow(iso);
 }
 
 function valueFor(date: string, key: MetricKey, metrics: DailyMetricLog[], practices: PracticeLog[]): number | null {

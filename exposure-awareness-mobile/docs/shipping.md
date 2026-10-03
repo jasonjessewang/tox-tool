@@ -25,6 +25,34 @@ served the result.
 To export a local copy without the workflow: `npm run web:build` (writes `exposure-awareness-mobile/dist/`; serve it
 with any static file server).
 
+### Installing it from the browser (no store needed)
+
+The site carries a web app manifest and icons (`public/manifest.json`, `public/index.html`), so a phone can keep it on
+the home screen and open it full-screen like an app, today, with no account on either store:
+
+- **iPhone / iPad (Safari):** Share &rsaquo; Add to Home Screen.
+- **Android (Chrome):** menu &rsaquo; Install app (or Add to Home screen).
+- **Desktop Chrome / Edge:** the install icon at the right of the address bar.
+
+Everything still lives in that browser's storage on that device, exactly as in a tab. Three honest limits: there is no
+service worker, so it needs a connection to *open* (a cache that could hold back an update was not worth it for a first
+release); the scheduled daily reminder is the native app's (a web page cannot schedule one -- `notify.ts` makes it a
+no-op there, while a reading-triggered air-quality notice does work through the browser's own notifications); and
+"Scan with camera" has not been tried in a phone's browser, where barcode support varies -- typing the barcode number
+or pasting the label always works. Paths in the manifest and the page are relative on purpose, so the same build works under
+`/<repo-name>/` on GitHub Pages and at the root of a domain of its own; `src/theme.test.ts` holds that, and that the
+page opens on the theme's own background in light and dark.
+
+Verified 2026-10-03 on the exported bundle served under `/tox-tool/` exactly as Pages serves it: first run as a new
+person (setup, first steps, an empty Dashboard), the manifest and icons loading, no console errors, and the
+accessibility walk clean on every screen it reached.
+
+### A domain of its own (optional)
+
+Buy the domain, add it under Settings &rsaquo; Pages &rsaquo; Custom domain, and add a `public/CNAME` file containing
+just the domain. In `.github/workflows/pages.yml` the base path then has to be empty: the `case` there only treats
+`<name>.github.io` repos as root-served, so add the custom-domain case when that day comes.
+
 ## iOS and Android: the config is ready, the account is yours
 
 `eas.json` defines three build profiles (`development`, `preview` -- internal installs for testing, `production`),

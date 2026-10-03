@@ -3,6 +3,7 @@
  * regulatory recipe: RfD = NOAEL / (UF_interspecies x UF_human x any extra factors).
  * Values in the UI are illustrative, not a real chemical.
  */
+import { msg } from "../../i18n";
 export interface ExtraFactor {
   id: string;
   label: string;
@@ -10,9 +11,9 @@ export interface ExtraFactor {
 }
 
 export const EXTRA_FACTORS: ExtraFactor[] = [
-  { id: "loael", label: "Only a LOAEL was available", why: "The lowest dose tested still showed an effect, so the true no-effect dose is lower and unknown." },
-  { id: "subchronic", label: "Short study, lifetime exposure", why: "Effects that need long exposure may not show up in a short animal study." },
-  { id: "database", label: "Gaps in the data", why: "Missing studies (e.g. on development or reproduction) call for extra caution." },
+  { id: "loael", label: msg("Only a LOAEL was available"), why: msg("The lowest dose tested still showed an effect, so the true no-effect dose is lower and unknown.") },
+  { id: "subchronic", label: msg("Short study, lifetime exposure"), why: msg("Effects that need long exposure may not show up in a short animal study.") },
+  { id: "database", label: msg("Gaps in the data"), why: msg("Missing studies (e.g. on development or reproduction) call for extra caution.") },
 ];
 
 export interface ThresholdInput {

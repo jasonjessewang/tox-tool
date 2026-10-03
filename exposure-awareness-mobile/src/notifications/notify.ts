@@ -14,14 +14,15 @@
 import { Platform } from "react-native";
 import * as Notifications from "expo-notifications";
 import type { CheckInTime } from "../engine/types";
+import { tr } from "../i18n";
 
 export type PermissionState = "granted" | "denied" | "default" | "unsupported";
 
 export const CHECKIN_NOTIFICATION_ID = "daily-checkin";
 const CHECKIN_TIMES: Record<Exclude<CheckInTime, "off">, { hour: number; minute: number; label: string }> = {
-  morning: { hour: 7, minute: 30, label: "morning" },
-  midday: { hour: 12, minute: 0, label: "midday (around lunch)" },
-  dinner: { hour: 18, minute: 0, label: "dinner time" },
+  morning: { hour: 7, minute: 30, label: "morning" }, // i18n-ignore: log text
+  midday: { hour: 12, minute: 0, label: "midday (around lunch)" }, // i18n-ignore: log text
+  dinner: { hour: 18, minute: 0, label: "dinner time" }, // i18n-ignore: log text
 };
 
 let handlerSet = false;
@@ -126,8 +127,9 @@ export async function applyCheckInSchedule(checkInTime: CheckInTime): Promise<bo
   const { hour, minute, label } = CHECKIN_TIMES[checkInTime];
   return scheduleDaily(
     CHECKIN_NOTIFICATION_ID,
-    "Daily check-in",
-    "Two minutes: how today went, and one thing for tomorrow.",
+    // written in the language the app is in when scheduled; choosing another language reschedules it (ProfileScreen)
+    tr("Daily check-in"),
+    tr("Two minutes: how today went, and one thing for tomorrow."),
     hour,
     minute
   ).then((ok) => {

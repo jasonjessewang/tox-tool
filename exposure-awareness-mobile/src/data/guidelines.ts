@@ -25,6 +25,8 @@ export const GUIDELINES: Guideline[] = [
   { id: "smoke_free", icon: "🚬", authority: "US Surgeon General", year: "2006", text: "There is no risk-free level of secondhand smoke exposure -- even brief exposure can have measurable cardiovascular effects." },
   { id: "handwashing", icon: "🧼", authority: "CDC", year: "2023", text: "Handwashing with soap for 20 seconds is one of the most effective, lowest-cost ways to avoid spreading infection -- roughly the time it takes to hum a short tune twice." },
   { id: "produce_wash", icon: "🥬", authority: "USDA / FDA", year: "2023", text: "Rinsing fruits and vegetables under running water measurably reduces residues and surface bacteria, even without soap or produce wash." },
+  // USPSTF 2024 (JAMA, PubMed 38687503) and 2019 (JAMA, PubMed 31429903), both read on PubMed 2026-10-02.
+  { id: "uspstf_mammography", icon: "🎗️", authority: "US Preventive Services Task Force", year: "2024", text: "USPSTF recommends a screening mammogram every two years for women aged 40 to 74 at average risk. A family history of breast or ovarian cancer is worth raising with a clinician, who can offer a short risk assessment." },
 ];
 
 export const guidelineToWisdomId = (g: Guideline) => `guideline_${g.id}`;

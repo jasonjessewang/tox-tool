@@ -3,6 +3,7 @@ import { ScrollView, View, Text, TextInput, StyleSheet, Pressable } from "react-
 import * as db from "../storage/db";
 import * as aqiEngine from "../engine/aqi";
 import * as notify from "../notifications/notify";
+import { airQualityNotificationsOn } from "../engine/calm";
 import type { AirQualityLog } from "../engine/types";
 import { Card, FormError, PrimaryButton, SectionTitle, Subtitle, SecondaryButton } from "../components/ui";
 import { colors, radiusSm } from "../theme";
@@ -10,6 +11,7 @@ import { todayISO } from "../util/dates";
 import { runActivity, type Receipt } from "../engine/receipts";
 import { ReceiptCard } from "../components/ReceiptCard";
 import { UndoBar, useUndo } from "../components/UndoBar";
+import { tr } from "../i18n";
 
 const POLLUTANTS: AirQualityLog["pollutant"][] = ["PM2.5", "PM10"];
 
@@ -35,7 +37,7 @@ export default function LogAirQualityScreen() {
   async function submit() {
     const numeric = parseFloat(value.replace(",", "."));
     if (!location.trim() || isNaN(numeric)) {
-      setError(!location.trim() && isNaN(numeric) ? "Add where the reading is from and the number, like Home and 12.4." : !location.trim() ? "Add where the reading is from, like Home or Downtown office." : "Enter the reading as a number, like 12.4.");
+      setError(!location.trim() && isNaN(numeric) ? tr("Add where the reading is from and the number, like Home and 12.4.") : !location.trim() ? tr("Add where the reading is from, like Home or Downtown office.") : tr("Enter the reading as a number, like 12.4."));
       return;
     }
     setError(null);
@@ -57,10 +59,10 @@ export default function LogAirQualityScreen() {
 
     // Event-driven notification: only Moderate+ fires, matching the daily-cycle design
     // -- a "Good" reading is not signal, same rule engine/scoring.ts uses for scoring.
-    if (classification && classification.concern_level >= 2) {
+    if (classification && classification.concern_level >= 2 && airQualityNotificationsOn(await db.getUserProfile())) {
       notify.fireLocal(
-        `${classification.category} air quality`,
-        `${numeric} µg/m³ ${pollutant} in ${location.trim()}. ${classification.guidance}`
+        tr("{category} air quality", { category: tr(classification.category) }),
+        tr("{value} µg/m³ {pollutant} in {location}. {guidance}", { value: numeric, pollutant, location: location.trim(), guidance: tr(classification.guidance) })
       );
     }
 
@@ -70,29 +72,27 @@ export default function LogAirQualityScreen() {
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16 }}>
-      <Text accessibilityRole="header" style={styles.h1}>Log Air Quality</Text>
+      <Text accessibilityRole="header" style={styles.h1}>{tr("Log Air Quality")}</Text>
       <Subtitle>
-        A reading from AirNow, a personal monitor, or a workplace display. Classified automatically against the
-        EPA's 2024 AQI breakpoints. A Moderate-or-worse reading fires a real notification (if enabled) --
-        "Good" days stay quiet, same rule the dashboard score already uses.
+        {tr("A reading from AirNow, a personal monitor, or a workplace display. Classified automatically against the EPA's 2024 AQI breakpoints. A Moderate-or-worse reading fires a real notification (if enabled) -- \"Good\" days stay quiet, same rule the dashboard score already uses.")}
       </Subtitle>
 
       {lastClassification && (
         <Card style={{ borderColor: lastClassification.color }}>
           <Text style={{ color: lastClassification.color, fontWeight: "700" }}>
-            Last reading: {lastClassification.category} (AQI ~{lastClassification.aqi_estimate})
+            {tr("Last reading: {category} (AQI ~{aqi_estimate})", { category: tr(lastClassification.category), aqi_estimate: lastClassification.aqi_estimate })}
           </Text>
-          <Text style={styles.body}>{lastClassification.guidance}</Text>
+          <Text style={styles.body}>{tr(lastClassification.guidance)}</Text>
         </Card>
       )}
 
       {receipt && <ReceiptCard receipt={receipt} />}
 
       <Card>
-        <Text style={styles.label}>Location</Text>
-        <TextInput style={styles.input} value={location} onChangeText={setLocation} accessibilityLabel="Location" placeholder="e.g. Home, Downtown office" />
+        <Text style={styles.label}>{tr("Location")}</Text>
+        <TextInput style={styles.input} value={location} onChangeText={setLocation} accessibilityLabel={tr("Location")} placeholder={tr("e.g. Home, Downtown office")} />
 
-        <Text style={styles.label}>Pollutant</Text>
+        <Text style={styles.label}>{tr("Pollutant")}</Text>
         <View style={styles.rowWrap}>
           {POLLUTANTS.map((p) => (
             <Pressable
@@ -106,30 +106,30 @@ export default function LogAirQualityScreen() {
           ))}
         </View>
 
-        <Text style={styles.label}>Reading (µg/m³)</Text>
-        <TextInput style={styles.input} value={value} onChangeText={setValue} accessibilityLabel="Reading in micrograms per cubic meter" placeholder="e.g. 12.4" keyboardType="decimal-pad" />
+        <Text style={styles.label}>{tr("Reading (µg/m³)")}</Text>
+        <TextInput style={styles.input} value={value} onChangeText={setValue} accessibilityLabel={tr("Reading in micrograms per cubic meter")} placeholder={tr("e.g. 12.4")} keyboardType="decimal-pad" />
 
         <FormError message={error} />
         <View style={{ marginTop: 12 }}>
-          <PrimaryButton title="Log reading" onPress={submit} />
+          <PrimaryButton title={tr("Log reading")} onPress={submit} />
         </View>
       </Card>
 
-      <SectionTitle>Recent air quality entries</SectionTitle>
+      <SectionTitle>{tr("Recent air quality entries")}</SectionTitle>
       <UndoBar undo={undo} />
       <Card>
         {recent.length === 0 ? (
-          <Text style={{ color: colors.muted, fontStyle: "italic" }}>No air quality entries yet.</Text>
+          <Text style={{ color: colors.muted, fontStyle: "italic" }}>{tr("No air quality entries yet.")}</Text>
         ) : (
           recent.map((e) => (
             <View key={e.id} style={styles.recentRow}>
               <Text style={styles.recentDate}>{e.log_date}</Text>
               <Text style={styles.recentText}>
-                {e.location}: {e.value} µg/m³ {e.pollutant}
+                {tr("{location}: {value} µg/m³ {pollutant}", { location: e.location, value: e.value, pollutant: e.pollutant })}
               </Text>
               <SecondaryButton
-                title="Delete"
-                label={`Delete ${e.location} ${e.value} ${e.pollutant} reading, ${e.log_date}`}
+                title={tr("Delete")}
+                label={tr("Delete {location} {value} {pollutant} reading, {log_date}", { location: e.location, value: e.value, pollutant: e.pollutant, log_date: e.log_date })}
                 onPress={async () => {
                   const removed = await db.deleteLog<AirQualityLog>("air_quality", e.id);
                   if (removed) undo.offer(`${removed.location} ${removed.value} ${removed.pollutant}`, async () => { await db.restoreLog("air_quality", removed); refresh(); });
@@ -149,12 +149,12 @@ const styles = StyleSheet.create({
   h1: { fontSize: 22, fontWeight: "700", color: colors.ink, marginBottom: 4 },
   body: { fontSize: 13, color: colors.ink, marginTop: 6 },
   label: { fontSize: 12, fontWeight: "600", color: colors.muted, marginTop: 12, marginBottom: 6 },
-  input: { borderWidth: 1, borderColor: colors.line, borderRadius: radiusSm, padding: 10, fontSize: 15, backgroundColor: "#fff" },
+  input: { borderWidth: 1, borderColor: colors.line, borderRadius: radiusSm, padding: 10, fontSize: 15, backgroundColor: colors.surface },
   rowWrap: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
-  chip: { borderWidth: 1, borderColor: colors.line, borderRadius: 999, paddingVertical: 6, paddingHorizontal: 14, backgroundColor: "#fff" },
-  chipActive: { backgroundColor: colors.accent, borderColor: colors.accent },
+  chip: { borderWidth: 1, borderColor: colors.line, borderRadius: 999, paddingVertical: 6, paddingHorizontal: 14, backgroundColor: colors.surface },
+  chipActive: { backgroundColor: colors.accentFill, borderColor: colors.accentFill },
   chipText: { color: colors.ink, fontSize: 13 },
-  chipTextActive: { color: "#fff" },
+  chipTextActive: { color: colors.onAccent },
   recentRow: { borderTopWidth: 1, borderTopColor: colors.line, paddingTop: 10, marginTop: 10 },
   recentDate: { fontSize: 12, color: colors.muted },
   recentText: { fontSize: 14, color: colors.ink, marginVertical: 4 },

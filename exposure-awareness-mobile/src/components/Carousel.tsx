@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { View, Text, ScrollView, Pressable, StyleSheet, useWindowDimensions, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
 import { colors, radius, shadow } from "../theme";
+import { tr } from "../i18n";
 
 const GAP = 12;
 const SIDE = 16;
@@ -35,7 +36,7 @@ export function Carousel({ icon, title, pages }: { icon: string; title: string; 
         {pages.length > 1 && (
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel={`${title}: page ${index + 1} of ${pages.length}. Show ${index + 1 === pages.length ? "the first" : "the next"} page`}
+            accessibilityLabel={index + 1 === pages.length ? tr("{title}: page {page} of {count}. Show the first page", { title, page: index + 1, count: pages.length }) : tr("{title}: page {page} of {count}. Show the next page", { title, page: index + 1, count: pages.length })}
             onPress={() => show(index + 1)}
             hitSlop={12}
             style={styles.countButton}

@@ -10,6 +10,7 @@ import * as db from "../storage/db";
 import { loadHazardDb } from "./scoring";
 import { tally as produceTally } from "./produce";
 import { daysAgoISO } from "../util/dates";
+import { msg } from "../i18n";
 
 export interface Achievement {
   key: string;
@@ -31,14 +32,14 @@ interface Stats {
 }
 
 export const CATALOG: Achievement[] = [
-  { key: "first_log", name: "First Step", icon: "🌱", description: "Logged your first entry.", check: (s) => s.total_all >= 1 },
-  { key: "full_picture", name: "Full Picture", icon: "🧩", description: "Logged all 5 categories at least once.", check: (s) => s.categories_logged.size >= 5 },
-  { key: "focused_1", name: "First Action", icon: "✅", description: "Marked a recommendation as done for the first time.", check: (s) => s.total_completed_actions >= 1 },
-  { key: "focused_10", name: "Action Taker", icon: "💪", description: "Marked 10 recommendations as done.", check: (s) => s.total_completed_actions >= 10 },
-  { key: "quick_win_5", name: "Low-Hanging Fruit", icon: "🍎", description: "Completed 5 low-effort Quick Win actions.", check: (s) => s.quick_wins_completed >= 5 },
-  { key: "produce_diversifier", name: "Produce Diversifier", icon: "🥦", description: "Logged 5 different lower-typical-residue produce items.", check: (s) => s.distinct_lower_tier_produce >= 5 },
-  { key: "reset_regular", name: "Reset Regular", icon: "🧘", description: "Logged 10 resilience practices.", check: (s) => s.total_practices >= 10 },
-  { key: "air_aware", name: "Air Aware", icon: "🌬️", description: "Logged 5 air quality readings.", check: (s) => s.total_air_quality >= 5 },
+  { key: "first_log", name: msg("First Step"), icon: "🌱", description: msg("Logged your first entry."), check: (s) => s.total_all >= 1 },
+  { key: "full_picture", name: msg("Full Picture"), icon: "🧩", description: msg("Logged all 5 categories at least once."), check: (s) => s.categories_logged.size >= 5 },
+  { key: "focused_1", name: msg("First Action"), icon: "✅", description: msg("Marked a recommendation as done for the first time."), check: (s) => s.total_completed_actions >= 1 },
+  { key: "focused_10", name: msg("Action Taker"), icon: "💪", description: msg("Marked 10 recommendations as done."), check: (s) => s.total_completed_actions >= 10 },
+  { key: "quick_win_5", name: msg("Low-Hanging Fruit"), icon: "🍎", description: msg("Completed 5 low-effort Quick Win actions."), check: (s) => s.quick_wins_completed >= 5 },
+  { key: "produce_diversifier", name: msg("Produce Diversifier"), icon: "🥦", description: msg("Logged 5 different lower-typical-residue produce items."), check: (s) => s.distinct_lower_tier_produce >= 5 },
+  { key: "reset_regular", name: msg("Reset Regular"), icon: "🧘", description: msg("Logged 10 resilience practices."), check: (s) => s.total_practices >= 10 },
+  { key: "air_aware", name: msg("Air Aware"), icon: "🌬️", description: msg("Logged 5 air quality readings."), check: (s) => s.total_air_quality >= 5 },
 ];
 
 /**

@@ -15,6 +15,7 @@ import { validationSignal } from "./validation";
 import { shelfSignal } from "./shelf";
 import { placesSignal } from "./places";
 import { understandingSignal } from "./understanding";
+import { msg } from "../../i18n";
 
 /** In display order. */
 export const SIGNALS: Signal[] = [exposureSignal, habitsSignal, validationSignal, shelfSignal, placesSignal, understandingSignal];
@@ -36,11 +37,11 @@ export const ACTIVITY_ROLE: Record<ActivityKind, ActivityRole> = {
   shelf_change: { feeds: ["shelf"] },
   place_check: { feeds: ["places"] },
   place_context: { feeds: ["places"] },
-  advice_decision: { unscored: "Deciding on a tip changes what the app suggests, not what you are exposed to: the effect shows up when the shelf or your places change." },
-  profile_update: { unscored: "Your profile tailors which items matter for you; it is context for every signal, not an activity to be scored." },
-  score_setting: { unscored: "Choosing how much each part counts is a preference about the score itself, not something you did." },
-  achievement: { unscored: "Badges are derived from the other activities, so scoring them would count the same thing twice." },
-  notification_state: { unscored: "Bookkeeping about which alerts were already shown." },
+  advice_decision: { unscored: msg("Deciding on a tip changes what the app suggests, not what you are exposed to: the effect shows up when the shelf or your places change.") },
+  profile_update: { unscored: msg("Your profile tailors which items matter for you; it is context for every signal, not an activity to be scored.") },
+  score_setting: { unscored: msg("Choosing how much each part counts is a preference about the score itself, not something you did.") },
+  achievement: { unscored: msg("Badges are derived from the other activities, so scoring them would count the same thing twice.") },
+  notification_state: { unscored: msg("Bookkeeping about which alerts were already shown.") },
 };
 
 /** Every table the person's activity is stored in, and the kind of activity it holds. */
@@ -63,12 +64,12 @@ export const STORAGE_ACTIVITY: Record<keyof typeof KEYS, ActivityKind> = {
   profile: "profile_update",
 };
 
-/** Storage that is not the person's activity at all: caches, connection settings, alert bookkeeping. */
+/** Storage that is not the person's activity at all: caches, connection settings, alert bookkeeping. Developer notes, never shown. */
 export const SERVICE_STORAGE: Record<string, string> = {
-  "exposure:location_alert_state": "Bookkeeping about which alerts were already shown.",
-  "exposure:literature_cache": "A cache of recent literature, re-fetched on demand.",
-  "exposure:last_coords": "A cache of the last known location, used only for local air-quality lookups.",
-  "exposure:backend_config": "Connection settings for the optional backend.",
+  "exposure:location_alert_state": "Bookkeeping about which alerts were already shown.", // i18n-ignore: developer note
+  "exposure:literature_cache": "A cache of recent literature, re-fetched on demand.", // i18n-ignore: developer note
+  "exposure:last_coords": "A cache of the last known location, used only for local air-quality lookups.", // i18n-ignore: developer note
+  "exposure:backend_config": "Connection settings for the optional backend.", // i18n-ignore: developer note
 };
 
 /** The signals an activity feeds; empty when it is deliberately unscored. */

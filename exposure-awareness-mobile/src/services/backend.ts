@@ -29,11 +29,11 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   if (!cfg) throw new Error("Backend is not configured");
   const res = await fetch(`${cfg.baseUrl}${path}`, {
     ...init,
-    headers: { authorization: `Bearer ${cfg.apiKey}`, "content-type": "application/json", ...(init.headers ?? {}) },
+    headers: { authorization: `Bearer ${cfg.apiKey}`, "content-type": "application/json", ...(init.headers ?? {}) }, // i18n-ignore: protocol / technical detail
   });
   if (res.status === 204) return undefined as T;
   const body = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error((body as { error?: string }).error ?? `Request failed (${res.status})`);
+  if (!res.ok) throw new Error((body as { error?: string }).error ?? `Request failed (${res.status})`); // i18n-ignore: protocol / technical detail
   return body as T;
 }
 

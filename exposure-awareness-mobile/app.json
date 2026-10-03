@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.exposureawareness.mobile"
@@ -36,8 +36,25 @@
           "locationWhenInUsePermission": "Used only to check local air quality and significant weather/fire alerts near you. Never leaves your device except as a coordinate sent to the National Weather Service and Open-Meteo, both free public data sources with no account."
         }
       ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Used to scan a barcode or photograph a product's label. A live barcode scan never leaves your device -- only the number it reads is sent to Open Food Facts or Open Beauty Facts (free public databases, no account). A label photo is sent only if you've connected your own backend for label reading; otherwise nothing leaves your device.",
+          "microphonePermission": "Not used by this app -- the camera framework can record audio, but nothing here asks it to.",
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Used only if you pick an existing photo of a product's label instead of taking a new one. Sent only if you've connected your own backend for label reading; otherwise nothing leaves your device.",
+          "cameraPermission": "Used to scan a barcode or photograph a product's label. A live barcode scan never leaves your device -- only the number it reads is sent to Open Food Facts or Open Beauty Facts (free public databases, no account). A label photo is sent only if you've connected your own backend for label reading; otherwise nothing leaves your device.",
+          "microphonePermission": false
+        }
+      ],
       "expo-notifications",
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-localization"
     ],
     "description": "A private, on-device way to see what you're exposed to, compare it with published guidance, and make your own changes."
   }

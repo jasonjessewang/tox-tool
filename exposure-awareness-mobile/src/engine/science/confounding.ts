@@ -3,6 +3,7 @@
  * drinkers look like they have ~3x the outcome rate, but the whole gap is because more of
  * them smoke. Within each smoking group the rates are identical.
  */
+import { msg } from "../../i18n";
 export interface Stratum {
   label: string;
   exposed: { n: number; cases: number };
@@ -10,8 +11,8 @@ export interface Stratum {
 }
 
 export const ILLUSTRATIVE_STRATA: Stratum[] = [
-  { label: "Smokers", exposed: { n: 800, cases: 80 }, unexposed: { n: 200, cases: 20 } },
-  { label: "Non-smokers", exposed: { n: 200, cases: 2 }, unexposed: { n: 800, cases: 8 } },
+  { label: msg("Smokers"), exposed: { n: 800, cases: 80 }, unexposed: { n: 200, cases: 20 } },
+  { label: msg("Non-smokers"), exposed: { n: 200, cases: 2 }, unexposed: { n: 800, cases: 8 } },
 ];
 
 const rate = (g: { n: number; cases: number }) => g.cases / g.n;

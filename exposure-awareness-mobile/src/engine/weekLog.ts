@@ -7,6 +7,7 @@ import { PRACTICE_LABELS } from "./scoring";
 import { isScanEntry } from "./scanNotes";
 import type { CheckInLog, DailyMetricLog, LogStore, Mood } from "./types";
 import { daysAgoISO } from "../util/dates";
+import { weekdayShort } from "../i18n";
 
 export interface DayRow {
   date: string;
@@ -31,7 +32,6 @@ export interface WeekLog {
   totals: { checkIns: number; practices: number; actions: number; daysActive: number };
 }
 
-const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export function buildWeekLog(
   input: { logs: LogStore; checkins: CheckInLog[]; metrics: DailyMetricLog[]; actions: { completed_date: string }[] },
@@ -49,7 +49,7 @@ export function buildWeekLog(
     const actions = input.actions.filter((a) => a.completed_date === date).length;
     const row: DayRow = {
       date,
-      weekday: WEEKDAYS[new Date(`${date}T12:00:00Z`).getUTCDay()],
+      weekday: weekdayShort(date),
       isToday: i === 6,
       checkedIn: !!checkin,
       mood: checkin?.mood ?? null,

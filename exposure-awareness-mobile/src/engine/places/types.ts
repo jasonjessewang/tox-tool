@@ -5,6 +5,7 @@
  * feed advice and the score's comparisons rather than the weekly log.
  */
 import type { Condition } from "../types";
+import { msg } from "../../i18n";
 
 export type PlaceKind = "home" | "work" | "daily";
 
@@ -12,19 +13,19 @@ export const PLACE_KINDS: PlaceKind[] = ["home", "work", "daily"];
 
 export const PLACE_INFO: Record<PlaceKind, { label: string; icon: string; blurb: string; defaultHours: number; hourPresets: { label: string; hours: number }[] }> = {
   home: {
-    label: "Home", icon: "🏠", defaultHours: 100,
-    blurb: "Where you sleep, cook and spend most of your hours -- and who shares it with you.",
-    hourPresets: [{ label: "Away a lot", hours: 60 }, { label: "About average", hours: 100 }, { label: "Home most days", hours: 130 }],
+    label: msg("Home"), icon: "🏠", defaultHours: 100,
+    blurb: msg("Where you sleep, cook and spend most of your hours -- and who shares it with you."),
+    hourPresets: [{ label: msg("Away a lot"), hours: 60 }, { label: msg("About average"), hours: 100 }, { label: msg("Home most days"), hours: 130 }],
   },
   work: {
-    label: "Work or school", icon: "🏢", defaultHours: 40,
-    blurb: "The place you spend a working week: the air, the building and what's been done to it.",
-    hourPresets: [{ label: "Part-time", hours: 20 }, { label: "Full-time", hours: 40 }, { label: "Long weeks", hours: 55 }],
+    label: msg("Work or school"), icon: "🏢", defaultHours: 40,
+    blurb: msg("The place you spend a working week: the air, the building and what's been done to it."),
+    hourPresets: [{ label: msg("Part-time"), hours: 20 }, { label: msg("Full-time"), hours: 40 }, { label: msg("Long weeks"), hours: 55 }],
   },
   daily: {
-    label: "Everyday places", icon: "🚌", defaultHours: 8,
-    blurb: "What you pass through every day: the commute, the air outside, what you carry and drink from.",
-    hourPresets: [{ label: "A few hours", hours: 4 }, { label: "About 8", hours: 8 }, { label: "Most of a day", hours: 15 }],
+    label: msg("Everyday places"), icon: "🚌", defaultHours: 8,
+    blurb: msg("What you pass through every day: the commute, the air outside, what you carry and drink from."),
+    hourPresets: [{ label: msg("A few hours"), hours: 4 }, { label: msg("About 8"), hours: 8 }, { label: msg("Most of a day"), hours: 15 }],
   },
 };
 

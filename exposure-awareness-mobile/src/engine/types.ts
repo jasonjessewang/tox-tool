@@ -249,6 +249,15 @@ export interface UserProfile {
    * means off (calm defaults, engine/calm.ts).
    */
   learningMoments?: boolean;
+  /**
+   * Moderate-or-worse air quality (logged or nearby) and significant weather/fire alerts. Off unless the person turns it on
+   * under About you -- absent means off (calm defaults, engine/calm.ts).
+   */
+  airQualityNotifications?: boolean;
+  /** light, dark, or the device's own setting (absent means the device's setting) */
+  theme?: "system" | "light" | "dark";
+  /** the app's language, or the device's (absent means the device's); see src/i18n */
+  language?: "system" | "en" | "ko" | "zh-Hans" | "zh-Hant" | "ja";
 }
 
 export type Mood = "good" | "okay" | "rough";

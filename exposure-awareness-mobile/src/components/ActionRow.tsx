@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { SecondaryButton } from "./ui";
 import { colors } from "../theme";
+import { tr } from "../i18n";
 
 /**
  * Compact-by-default recommendation row: one line visible (the tip itself, truncated),
@@ -42,24 +43,24 @@ export function ActionRow({
       <Pressable accessibilityRole="button" aria-expanded={open} onPress={() => setOpen(!open)} style={styles.row}>
         <View style={[styles.dot, completed && styles.dotDone]} />
         <Text style={styles.tip} numberOfLines={open ? undefined : 1}>
-          {tip}
+          {tr(tip)}
         </Text>
         <Text style={styles.chevron}>{open ? "▾" : "▸"}</Text>
       </Pressable>
       {open && (
         <View style={styles.detail}>
           <Text style={styles.source}>
-            re: {source}
+            {tr("re: {source}", { source: tr(source) })}
             {meta ? ` · ${meta}` : ""}
           </Text>
-          {via && via.length > 0 && <Text style={styles.via}>On your shelf: {via.join(", ")}</Text>}
-          {viaPlaces && viaPlaces.length > 0 && <Text style={styles.via}>In your places: {viaPlaces.join("; ")}</Text>}
+          {via && via.length > 0 && <Text style={styles.via}>{tr("On your shelf: {via}", { via: via.map((v) => tr(v)).join(", ") })}</Text>}
+          {viaPlaces && viaPlaces.length > 0 && <Text style={styles.via}>{tr("In your places: {places}", { places: viaPlaces.map((v) => tr(v)).join("; ") })}</Text>}
           <View style={{ marginTop: 6, gap: 6 }}>
-            <SecondaryButton title={completed ? "Mark done again" : "Mark as done"} onPress={onMarkDone} />
-            {onKeep && <SecondaryButton title="I'm keeping this" onPress={onKeep} />}
-            {onOpenPlaces && viaPlaces && viaPlaces.length > 0 && <SecondaryButton title="Update my answer in Places" onPress={onOpenPlaces} />}
+            <SecondaryButton title={completed ? tr("Mark done again") : tr("Mark as done")} onPress={onMarkDone} />
+            {onKeep && <SecondaryButton title={tr("I'm keeping this")} onPress={onKeep} />}
+            {onOpenPlaces && viaPlaces && viaPlaces.length > 0 && <SecondaryButton title={tr("Update my answer in Places")} onPress={onOpenPlaces} />}
           </View>
-          {onKeep && <Text style={styles.keepNote}>Keeping it is a fine answer. It stays out of your focus{keepDays ? ` for ${keepDays} days` : ""} -- you can bring it back any time.</Text>}
+          {onKeep && <Text style={styles.keepNote}>{keepDays ? tr("Keeping it is a fine answer. It stays out of your focus for {days} days -- you can bring it back any time.", { days: keepDays }) : tr("Keeping it is a fine answer. It stays out of your focus -- you can bring it back any time.")}</Text>}
         </View>
       )}
     </View>

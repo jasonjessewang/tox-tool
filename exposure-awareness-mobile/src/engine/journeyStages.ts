@@ -5,6 +5,7 @@
  * to game. Stages unlock in order. `next` is always exactly one step -- the single focus.
  */
 import { STARTER_JOURNEY } from "../data/starterJourney";
+import { msg } from "../i18n";
 
 export type JourneyTarget =
   | "log_food"
@@ -79,24 +80,24 @@ interface AutoStepDef {
 }
 
 export const AUTO_STEPS: AutoStepDef[] = [
-  { id: "explore_read_research", stage: "explore", title: "Read a research summary", why: "These are the papers scientists cite most, boiled down to one page you can actually finish.", action: "Open any summary in Research and read the headline and key findings.", cta: "evidence", ctaLabel: "Open Research", check: (c) => c.evidenceRead >= 1 },
-  { id: "explore_scan_food", stage: "explore", title: "Scan a packaged food you eat often", why: "Seeing an ingredient list you've never read makes the abstract concrete.", action: "Scan the barcode (or type the number) on something in your pantry.", cta: "scan", ctaLabel: "Scan a food", check: (c) => c.foodScans >= 1 },
-  { id: "explore_scan_care", stage: "explore", title: "Scan a shampoo, lotion or cleaner", why: "Personal care products touch your skin daily, often for years.", action: "Scan one you use every day and add it to your log.", cta: "scan", ctaLabel: "Scan a product", check: (c) => c.careScans >= 1 },
-  { id: "explore_home", stage: "explore", title: "Check your home against published guidance", why: "Home is where most of your hours go, so what's in the air and the walls counts the most: radon, damp and how you cook.", action: "Answer three plain questions about your home. Each one is compared with EPA guidance.", cta: "places", ctaLabel: "Open Places", check: (c) => c.homeChecks >= 3 },
-  { id: "explore_biomarker", stage: "explore", title: "Log your first biomarker", why: "One real reading from your own body anchors everything else.", action: "Add any number you have: a lab result, resting heart rate, blood pressure.", cta: "log_biomarker", ctaLabel: "Log a biomarker", check: (c) => c.biomarkers >= 1 },
-  { id: "explore_checkins", stage: "explore", title: "Try the check-in three times", why: "A two-minute look at how the day went, whenever it suits you. Three tries is enough to know whether it helps.", action: "Do the check-in under Daily on three different days, any days you like.", cta: "daily", ctaLabel: "Go to Daily", check: (c) => c.checkIns >= 3 },
-  { id: "mastery_read5", stage: "mastery", title: "Read 5 research summaries", why: "Five papers in, you'll start recognizing patterns in how evidence is built.", action: "Keep going in Research -- pick the topics that matter to you.", cta: "evidence", ctaLabel: "Open Research", check: (c) => c.evidenceRead >= 5 },
-  { id: "mastery_scan10", stage: "mastery", title: "Scan 10 products", why: "A full picture of your pantry and bathroom shelf beats guessing.", action: "Scan the things you use most; the engine will flag what's worth knowing.", cta: "scan", ctaLabel: "Scan more", check: (c) => c.foodScans + c.careScans >= 10 },
-  { id: "mastery_places", stage: "mastery", title: "Look at home, work and the places in between", why: "Exposure follows you through the day. Seeing all three places is what makes advice yours rather than generic.", action: "Answer at least three questions for your home, your work or school, and your everyday places.", cta: "places", ctaLabel: "Open Places", check: (c) => c.placesChecked >= 3 },
-  { id: "mastery_decide", stage: "mastery", title: "Decide on three recommendations", why: "Every suggestion deserves an answer, and \"I'm keeping this\" is one. Deciding is what turns a list into a plan, and it keeps the list short.", action: "On the Dashboard, mark three recommendations as done or keep them.", cta: "dashboard", ctaLabel: "Open the Dashboard", check: (c) => c.decisions >= 3 },
-  { id: "mastery_recall", stage: "mastery", title: "Come back to what you've learned", why: "An idea you recall a few days after reading it is one that stays. A couple of questions on a lesson, spread over days, is how it sticks.", action: "Answer a question on a lesson you've read on three different days -- after a lesson, in Daily, or in the review under Learn.", cta: "learn", ctaLabel: "Open Learn", check: (c) => c.recallDays >= 3 },
-  { id: "mastery_fruit", stage: "mastery", title: "Grow fruit on your plant", why: "Fruit means you're still learning, not just logging.", action: "Learn something on two or more days in a week, once your plant is full-grown.", cta: "learn", ctaLabel: "Go to Learn", check: (c) => c.plantFruits >= 1 },
+  { id: "explore_read_research", stage: "explore", title: msg("Read a research summary"), why: msg("These are the papers scientists cite most, boiled down to one page you can actually finish."), action: msg("Open any summary in Research and read the headline and key findings."), cta: "evidence", ctaLabel: msg("Open Research"), check: (c) => c.evidenceRead >= 1 },
+  { id: "explore_scan_food", stage: "explore", title: msg("Scan a packaged food you eat often"), why: msg("Seeing an ingredient list you've never read makes the abstract concrete."), action: msg("Scan the barcode (or type the number) on something in your pantry."), cta: "scan", ctaLabel: msg("Scan a food"), check: (c) => c.foodScans >= 1 },
+  { id: "explore_scan_care", stage: "explore", title: msg("Scan a shampoo, lotion or cleaner"), why: msg("Personal care products touch your skin daily, often for years."), action: msg("Scan one you use every day and add it to your log."), cta: "scan", ctaLabel: msg("Scan a product"), check: (c) => c.careScans >= 1 },
+  { id: "explore_home", stage: "explore", title: msg("Check your home against published guidance"), why: msg("Home is where most of your hours go, so what's in the air and the walls counts the most: radon, damp and how you cook."), action: msg("Answer three plain questions about your home. Each one is compared with EPA guidance."), cta: "places", ctaLabel: msg("Open Places"), check: (c) => c.homeChecks >= 3 },
+  { id: "explore_biomarker", stage: "explore", title: msg("Log your first biomarker"), why: msg("One real reading from your own body anchors everything else."), action: msg("Add any number you have: a lab result, resting heart rate, blood pressure."), cta: "log_biomarker", ctaLabel: msg("Log a biomarker"), check: (c) => c.biomarkers >= 1 },
+  { id: "explore_checkins", stage: "explore", title: msg("Try the check-in three times"), why: msg("A two-minute look at how the day went, whenever it suits you. Three tries is enough to know whether it helps."), action: msg("Do the check-in under Daily on three different days, any days you like."), cta: "daily", ctaLabel: msg("Go to Daily"), check: (c) => c.checkIns >= 3 },
+  { id: "mastery_read5", stage: "mastery", title: msg("Read 5 research summaries"), why: msg("Five papers in, you'll start recognizing patterns in how evidence is built."), action: msg("Keep going in Research -- pick the topics that matter to you."), cta: "evidence", ctaLabel: msg("Open Research"), check: (c) => c.evidenceRead >= 5 },
+  { id: "mastery_scan10", stage: "mastery", title: msg("Scan 10 products"), why: msg("A full picture of your pantry and bathroom shelf beats guessing."), action: msg("Scan the things you use most; the engine will flag what's worth knowing."), cta: "scan", ctaLabel: msg("Scan more"), check: (c) => c.foodScans + c.careScans >= 10 },
+  { id: "mastery_places", stage: "mastery", title: msg("Look at home, work and the places in between"), why: msg("Exposure follows you through the day. Seeing all three places is what makes advice yours rather than generic."), action: msg("Answer at least three questions for your home, your work or school, and your everyday places."), cta: "places", ctaLabel: msg("Open Places"), check: (c) => c.placesChecked >= 3 },
+  { id: "mastery_decide", stage: "mastery", title: msg("Decide on three recommendations"), why: msg("Every suggestion deserves an answer, and \"I'm keeping this\" is one. Deciding is what turns a list into a plan, and it keeps the list short."), action: msg("On the Dashboard, mark three recommendations as done or keep them."), cta: "dashboard", ctaLabel: msg("Open the Dashboard"), check: (c) => c.decisions >= 3 },
+  { id: "mastery_recall", stage: "mastery", title: msg("Come back to what you've learned"), why: msg("An idea you recall a few days after reading it is one that stays. A couple of questions on a lesson, spread over days, is how it sticks."), action: msg("Answer a question on a lesson you've read on three different days -- after a lesson, in Daily, or in the review under Learn."), cta: "learn", ctaLabel: msg("Open Learn"), check: (c) => c.recallDays >= 3 },
+  { id: "mastery_fruit", stage: "mastery", title: msg("Grow fruit on your plant"), why: msg("Fruit means you're still learning, not just logging."), action: msg("Learn something on two or more days in a week, once your plant is full-grown."), cta: "learn", ctaLabel: msg("Go to Learn"), check: (c) => c.plantFruits >= 1 },
 ];
 
 const STAGE_META: Record<StageId, { title: string; blurb: string }> = {
-  tutorial: { title: "Tutorial", blurb: "First steps, biggest sources first." },
-  explore: { title: "Explore", blurb: "Go deeper: real research, real products." },
-  mastery: { title: "Mastery", blurb: "Make it a lasting practice." },
+  tutorial: { title: msg("Tutorial"), blurb: msg("First steps, biggest sources first.") },
+  explore: { title: msg("Explore"), blurb: msg("Go deeper: real research, real products.") },
+  mastery: { title: msg("Mastery"), blurb: msg("Make it a lasting practice.") },
 };
 
 export function buildJourney(ctx: JourneyContext): { stages: Stage[]; next: Step | null; done: number; total: number } {
@@ -109,7 +110,7 @@ export function buildJourney(ctx: JourneyContext): { stages: Stage[]; next: Step
       why: q.why,
       action: q.action,
       cta: "quests" as const,
-      ctaLabel: "Show me",
+      ctaLabel: msg("Show me"),
       manual: true,
       completed: ctx.starterDone.has(q.id),
     }));

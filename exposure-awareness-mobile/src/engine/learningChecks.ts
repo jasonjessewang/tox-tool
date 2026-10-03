@@ -10,8 +10,9 @@
  * Nothing here punishes: a wrong answer shows the explanation and brings the question back the next day, and no score ever falls
  * because of one. Answers are stored as ordinary learning events (`check:<question id>:<1|0>`), so there is no new table.
  */
-import { CONCEPT_CHECKS, checksForLesson, type ConceptCheck } from "../data/conceptChecks";
+import { ALL_CHECKS, CONCEPT_CHECKS, checksForLesson, type ConceptCheck } from "../data/conceptChecks";
 import { daysAgoISO } from "../util/dates";
+import { tr, trn } from "../i18n";
 
 /** Days until a question returns, by how many times in a row it has been answered right. */
 export const REVIEW_STEPS = [1, 3, 7, 14, 30, 60, 90] as const;
@@ -87,10 +88,14 @@ export interface Recall {
   unanswered: number;
 }
 
-/** How much of what has been read has been checked, and how much stuck -- as of a day, from the recorded answers. */
-export function recallSummary(readLessonIds: Set<string>, attempts: CheckAttempt[], asOf: string): Recall {
+/**
+ * How much of what has been read has been checked, and how much stuck -- as of a day, from the recorded answers. `checks` is the
+ * question set to count: the core curriculum's by default (what the Understanding part's recall share is measured against), or
+ * every question, core and elective, for what the screens show.
+ */
+export function recallSummary(readLessonIds: Set<string>, attempts: CheckAttempt[], asOf: string, checks: ConceptCheck[] = CONCEPT_CHECKS): Recall {
   const upTo = attempts.filter((a) => a.day <= asOf);
-  const mine = CONCEPT_CHECKS.filter((c) => readLessonIds.has(c.lessonId));
+  const mine = checks.filter((c) => readLessonIds.has(c.lessonId));
   let attempted = 0;
   let recalled = 0;
   let due = 0;
@@ -111,7 +116,7 @@ export function nextChecks(readLessonIds: Set<string>, attempts: CheckAttempt[],
   const upTo = attempts.filter((a) => a.day <= asOf);
   const due: { check: ConceptCheck; overdue: number; streak: number }[] = [];
   const fresh: ConceptCheck[] = [];
-  for (const c of CONCEPT_CHECKS) {
+  for (const c of ALL_CHECKS) {
     if (!readLessonIds.has(c.lessonId)) continue;
     const s = statusOf(c.id, upTo);
     if (s.attempts === 0) fresh.push(c);
@@ -125,9 +130,11 @@ const daysBetween = (from: string, to: string) => Math.round((new Date(`${to}T12
 
 /** What to say once the questions on a lesson are done: what stuck, and when the rest comes back. Never a grade. */
 export function wrapUp(right: number, total: number): string {
-  if (right === total) return `${total === 1 ? "You got it" : "You got them all"}. ${total === 1 ? "It comes" : "They come"} back in a day, then a few days later, then further apart -- that spacing is what makes an idea last.`;
-  if (right === 0) return `${total === 1 ? "That one is a new idea" : "These are new ideas"}, and that is what the questions are for. ${total === 1 ? "It comes" : "They come"} back tomorrow, explained again.`;
-  return `${right} of ${total} the first time. The rest come back tomorrow, explained again.`;
+  if (right === total)
+    return trn(total, "You got it. It comes back in a day, then a few days later, then further apart -- that spacing is what makes an idea last.", "You got them all. They come back in a day, then a few days later, then further apart -- that spacing is what makes an idea last.");
+  if (right === 0)
+    return trn(total, "That one is a new idea, and that is what the questions are for. It comes back tomorrow, explained again.", "These are new ideas, and that is what the questions are for. They come back tomorrow, explained again.");
+  return tr("{right} of {total} the first time. The rest come back tomorrow, explained again.", { right, total });
 }
 
 /** Lessons that have questions, for the lesson screen. */

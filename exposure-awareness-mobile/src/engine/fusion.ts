@@ -27,6 +27,7 @@ import { getStarterJourneyStatus } from "./quests";
 import { getAdviceInputs } from "./adviceState";
 import type { BiomarkerLog, ScoreReport } from "./types";
 import { daysAgoISO, todayISO } from "../util/dates";
+import { msg } from "../i18n";
 
 export type TrendDirection = "improving" | "flat" | "worsening" | "not_enough_data";
 
@@ -55,8 +56,8 @@ export interface FusionReport {
 /** How the Dashboard words each direction. Exposure: lower is better; practices: higher is better.
  * A direction is information, not a verdict, so the wording stays neutral. */
 export const TREND_LABELS: Record<"exposure" | "practices", Record<TrendDirection, string>> = {
-  exposure: { improving: "↓ easing", worsening: "↑ picking up", flat: "→ steady", not_enough_data: "no trend yet" },
-  practices: { improving: "↑ growing", worsening: "↓ tapering", flat: "→ steady", not_enough_data: "no trend yet" },
+  exposure: { improving: msg("↓ easing"), worsening: msg("↑ picking up"), flat: msg("→ steady"), not_enough_data: msg("no trend yet") },
+  practices: { improving: msg("↑ growing"), worsening: msg("↓ tapering"), flat: msg("→ steady"), not_enough_data: msg("no trend yet") },
 };
 
 /** Smallest week-over-week change worth naming, in the metric's own units (points, practices). */
@@ -107,9 +108,9 @@ export function directionFrom(history: WeeklyPoint[], key: "overallScore" | "pra
 
 /** Where the person is in the first steps, by how many are done (no points or levels behind it). */
 export function journeyPosition(journeyProgressPct: number): JourneyPosition {
-  if (journeyProgressPct < 20) return "Getting Started";
-  if (journeyProgressPct < 60) return "Building Momentum";
-  return "Maintaining";
+  if (journeyProgressPct < 20) return msg("Getting Started");
+  if (journeyProgressPct < 60) return msg("Building Momentum");
+  return msg("Maintaining");
 }
 
 export async function getFusionReport(): Promise<FusionReport> {
@@ -157,8 +158,8 @@ export async function getFusionReport(): Promise<FusionReport> {
       hasValidationData: recentBiomarkers.length > 0,
       note:
         recentBiomarkers.length > 0
-          ? "Shown alongside your exposure trend for your own eyeballing, deliberately not correlated into a single number -- that would need real statistical rigor a handful of self-tracked points can't support."
-          : "No biomarkers logged yet. Optional -- see the Biomarkers tab if you track HRV, grip strength, lab results, or similar.",
+          ? msg("Shown alongside your exposure trend for your own eyeballing, deliberately not correlated into a single number -- that would need real statistical rigor a handful of self-tracked points can't support.")
+          : msg("No biomarkers logged yet. Optional -- see the Biomarkers tab if you track HRV, grip strength, lab results, or similar."),
     },
   };
 }

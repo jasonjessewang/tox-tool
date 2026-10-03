@@ -8,6 +8,7 @@
  *    older stored states and the drawing code keep compiling; computePlant never returns them.)
  *  - Fruit appears on a full-grown plant in a week with learning on two or more days.
  */
+import { msg, tr, trn } from "../i18n";
 export type PlantStage = "seed" | "sprout" | "seedling" | "sapling" | "mature";
 export type PlantHealth = "thriving" | "thirsty" | "wilting";
 export type PlantNeed = "water" | "learn" | "checkin";
@@ -32,11 +33,11 @@ export interface PlantState {
 }
 
 export const STAGE_LABELS: Record<PlantStage, string> = {
-  seed: "Seed",
-  sprout: "Sprout",
-  seedling: "Seedling",
-  sapling: "Sapling",
-  mature: "Full-grown",
+  seed: msg("Seed"),
+  sprout: msg("Sprout"),
+  seedling: msg("Seedling"),
+  sapling: msg("Sapling"),
+  mature: msg("Full-grown"),
 };
 
 export function stageFor(done: number, total: number): PlantStage {
@@ -59,10 +60,10 @@ export function computePlant(i: PlantInputs): PlantState {
   // Both places that show this (JourneyHubScreen, PlantCard) already print stageLabel right next to it, so the mature
   // messages below do not restate "Full-grown" themselves -- that collided into "Full-grown · Full-grown. ..." before.
   let message: string;
-  if (mature && fruits > 0) message = `Fruiting -- ${fruits} fruit${fruits > 1 ? "s" : ""} from your recent learning.`;
-  else if (mature) message = "It bears fruit in a week when you learn something new on two or more days.";
-  else if (stage === "seed") message = "A seed, waiting. It sprouts when you finish your first step.";
-  else message = `Growing -- ${i.starterDone} of ${i.starterTotal} first steps done.`;
+  if (mature && fruits > 0) message = trn(fruits, "Fruiting -- {n} fruit from your recent learning.", "Fruiting -- {n} fruits from your recent learning.");
+  else if (mature) message = tr("It bears fruit in a week when you learn something new on two or more days.");
+  else if (stage === "seed") message = tr("A seed, waiting. It sprouts when you finish your first step.");
+  else message = tr("Growing -- {done} of {total} first steps done.", { done: i.starterDone, total: i.starterTotal });
 
   return { stage, stageLabel: STAGE_LABELS[stage], health, fruits, needs, message, starterDone: i.starterDone, starterTotal: i.starterTotal };
 }

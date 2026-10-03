@@ -12,6 +12,7 @@ import { getPersonalReasons } from "../personalization";
 import type { Substance, UserProfile, PersonalReason } from "../types";
 import type { MatchedSubstance } from "./match";
 import { FREQUENCY_INFO, type Frequency, type ProductKind } from "./types";
+import { msg, tr, trn } from "../../i18n";
 
 export type Stance = "everyday_ok" | "moderation" | "consider_swap";
 
@@ -49,20 +50,21 @@ export interface Assessment {
 }
 
 const TIER_WEIGHT = { major: 1, minor: 0.5, trace: 0.2 } as const;
-const TIER_TEXT = { major: "a main ingredient", minor: "a smaller ingredient", trace: "listed near the end (small amount)" } as const;
-const CONCERN_TEXT: Record<number, string> = { 1: "lightly flagged", 2: "moderately flagged", 3: "consistently flagged" };
+const TIER_TEXT = { major: msg("a main ingredient"), minor: msg("a smaller ingredient"), trace: msg("listed near the end (small amount)") } as const;
+const CONCERN_TEXT: Record<number, string> = { 1: msg("lightly flagged"), 2: msg("moderately flagged"), 3: msg("consistently flagged") };
 
 /** Where a product's frequency-adjusted signal crosses from one stance to the next. Shared with the score, which
  *  compares every shelf product against these same reference rules. */
 export const STANCE_THRESHOLDS = { moderation: 1.2, swap: 3.5 } as const;
 
 export const STANCE_INFO: Record<Stance, { headline: string; color: "accent" | "warn" | "danger" }> = {
-  everyday_ok: { headline: "Reasonable as an everyday item", color: "accent" },
-  moderation: { headline: "Fine in moderation -- mind how often", color: "warn" },
-  consider_swap: { headline: "Worth swapping when it's convenient", color: "danger" },
+  everyday_ok: { headline: msg("Reasonable as an everyday item"), color: "accent" },
+  moderation: { headline: msg("Fine in moderation -- mind how often"), color: "warn" },
+  consider_swap: { headline: msg("Worth swapping when it's convenient"), color: "danger" },
 };
 
-const firstSentence = (s: string) => (s.split(/(?<=[.!?])\s/)[0] ?? s).trim();
+// a sentence ends at . ! ? and a space, or at the full-width 。！？ that Chinese and Japanese use without one
+const firstSentence = (s: string) => (s.split(/(?<=[.!?])\s|(?<=[。！？])/)[0] ?? s).trim();
 
 export function assessProduct(input: {
   matches: MatchedSubstance[];
@@ -79,14 +81,14 @@ export function assessProduct(input: {
   const reasons: Reason[] = input.matches.map((m) => {
     const weight = m.concernLevel * TIER_WEIGHT[m.tier] * (m.confidence === "possible" ? 0.6 : 1);
     const s = byId.get(m.substanceId);
-    const how = m.confidence === "possible" ? `"${m.ingredient}" is listed, but the label doesn't say what's in it` : `${TIER_TEXT[m.tier]} ("${m.ingredient}")`;
-    const lead = `${CONCERN_TEXT[m.concernLevel] ?? "flagged"}; ${how}.`;
+    const how = m.confidence === "possible" ? tr("\"{ingredient}\" is listed, but the label doesn't say what's in it", { ingredient: m.ingredient }) : tr("{tier} (\"{ingredient}\")", { tier: tr(TIER_TEXT[m.tier]), ingredient: m.ingredient });
+    const lead = tr("{concern}; {how}.", { concern: tr(CONCERN_TEXT[m.concernLevel] ?? msg("flagged")), how });
     return {
       substanceId: m.substanceId,
       name: m.name,
       weight,
-      line: `${lead} ${s ? firstSentence(s.summary) : ""}`.trim(),
-      linePlain: `${lead} ${s ? firstSentence(s.summary_plain ?? s.summary) : ""}`.trim(),
+      line: `${lead} ${s ? firstSentence(tr(s.summary)) : ""}`.trim(),
+      linePlain: `${lead} ${s ? firstSentence(tr(s.summary_plain ?? s.summary)) : ""}`.trim(),
     };
   });
   reasons.sort((a, b) => b.weight - a.weight);
@@ -94,8 +96,8 @@ export function assessProduct(input: {
   let signal = reasons.reduce((sum, r) => sum + r.weight, 0);
   if (input.kind === "food" && input.nova === 4) {
     signal += 1;
-    const nova4 = "Ultra-processed food (NOVA 4): a formulation with many industrial ingredients. The concern is the overall pattern, not a single ingredient.";
-    reasons.push({ substanceId: "nova4", name: "Ultra-processed", weight: 1, line: nova4, linePlain: nova4 });
+    const nova4 = msg("Ultra-processed food (NOVA 4): a formulation with many industrial ingredients. The concern is the overall pattern, not a single ingredient.");
+    reasons.push({ substanceId: "nova4", name: msg("Ultra-processed"), weight: 1, line: nova4, linePlain: nova4 });
   }
 
   const personal: Assessment["personal"] = [];
@@ -121,12 +123,12 @@ export function assessProduct(input: {
       }
     }
   }
-  if (input.kind === "food" && input.nova === 4) suggestions.push("A minimally processed alternative (e.g. whole-food versions) trims many additives at once.");
+  if (input.kind === "food" && input.nova === 4) suggestions.push(msg("A minimally processed alternative (e.g. whole-food versions) trims many additives at once."));
 
-  const caveats = ["Based on ingredient names and their order on the label (most abundant first). It cannot know actual amounts."];
-  if (input.unmatchedCount > 0) caveats.push(`${input.unmatchedCount} other ingredient${input.unmatchedCount === 1 ? "" : "s"} aren't in our database -- that's not the same as being safe.`);
-  if (input.matches.length === 0) caveats.push("Nothing was flagged, but we can only recognize what's in our database.");
-  caveats.push("Education, not medical advice.");
+  const caveats = [tr("Based on ingredient names and their order on the label (most abundant first). It cannot know actual amounts.")];
+  if (input.unmatchedCount > 0) caveats.push(trn(input.unmatchedCount, "{n} other ingredient isn't in our database -- that's not the same as being safe.", "{n} other ingredients aren't in our database -- that's not the same as being safe."));
+  if (input.matches.length === 0) caveats.push(tr("Nothing was flagged, but we can only recognize what's in our database."));
+  caveats.push(tr("Education, not medical advice."));
 
   // "Regrettable substitution": a matched ingredient is a documented close relative of a
   // more well-known substance (e.g. bisphenol S standing in for BPA). The substitute's own
@@ -144,7 +146,7 @@ export function assessProduct(input: {
 
   return {
     stance,
-    headline: input.matches.length === 0 && stance === "everyday_ok" ? "Nothing in our database flagged" : STANCE_INFO[stance].headline,
+    headline: input.matches.length === 0 && stance === "everyday_ok" ? msg("Nothing in our database flagged") : STANCE_INFO[stance].headline,
     signal: Math.round(signal * 100) / 100,
     reasons,
     suggestions,

@@ -2,20 +2,21 @@
  * Three stylized dose-response shapes on a log-dose axis, dose expressed as multiples of the
  * study's NOAEL. Illustrative shapes for teaching -- not a fit to any chemical.
  */
+import { msg } from "../../i18n";
 export type DoseModel = "threshold" | "linear" | "nonmonotonic";
 
 export const MODEL_INFO: Record<DoseModel, { label: string; blurb: string }> = {
   threshold: {
-    label: "Threshold",
-    blurb: "Nothing detectable until a dose is reached, then response climbs. The classic 'dose makes the poison' shape, and what most safety thresholds assume.",
+    label: msg("Threshold"),
+    blurb: msg("Nothing detectable until a dose is reached, then response climbs. The classic 'dose makes the poison' shape, and what most safety thresholds assume."),
   },
   linear: {
-    label: "Linear, no threshold",
-    blurb: "Any dose adds some risk, in proportion. Used conservatively for some cancer-causing agents (e.g. radon in the pooled home studies showed no safe threshold).",
+    label: msg("Linear, no threshold"),
+    blurb: msg("Any dose adds some risk, in proportion. Used conservatively for some cancer-causing agents (e.g. radon in the pooled home studies showed no safe threshold)."),
   },
   nonmonotonic: {
-    label: "Non-monotonic",
-    blurb: "A low dose can have an effect that a middle dose doesn't. Debated, but documented for some hormone-active chemicals -- why high-dose-only testing can miss things.",
+    label: msg("Non-monotonic"),
+    blurb: msg("A low dose can have an effect that a middle dose doesn't. Debated, but documented for some hormone-active chemicals -- why high-dose-only testing can miss things."),
   },
 };
 

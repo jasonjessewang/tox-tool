@@ -20,6 +20,8 @@ import { checkById } from "../data/placeChecks";
 import { runActivity } from "../engine/receipts";
 import { getJourney, SCAN_NOTE_PREFIX } from "../engine/journeyState";
 import { getLiteracy } from "../engine/literacyState";
+import { nextModuleLesson } from "../engine/literacy";
+import { ALL_LESSONS } from "../data/modules";
 import { computeStreak, evaluateAndUnlock, CATALOG } from "../engine/achievements";
 import { getStarterJourneyStatus, completeStarterQuest } from "../engine/quests";
 import { buildLedger, matchesFor } from "../engine/ingredients/ledger";
@@ -166,6 +168,8 @@ export async function simulate(p: Persona, opt: SimOptions): Promise<SimResult> 
   const behR = root.fork("behavior");
   const placesR = root.fork("places");
   const recallR = root.fork("recall");
+  // Electives get their own stream, so choosing one never shifts what any other stream decides.
+  const moduleR = root.fork("modules");
 
   const [ey, em, ed] = opt.endLocalDate.split("-").map(Number);
   const startDate = new Date(ey, em - 1, ed - (opt.days - 1));
@@ -269,10 +273,19 @@ export async function simulate(p: Persona, opt: SimOptions): Promise<SimResult> 
   const learnOne = async () => {
     const lit = await getLiteracy();
     const r = miscR.next();
-    if (r < 0.65 && lit.next) {
-      await db.recordLearning(curriculumRef(lit.next.id), stamp("learn"));
-      events.push({ day: curDay, type: "lesson", detail: lit.next.id });
-      if (recallR.chance(p.recall.inlineProb)) for (const c of checksForLesson(lit.next.id)) await tryQuestion(c, "lesson");
+    let lesson: { id: string } | null = null;
+    if (r < 0.65) {
+      // An elective some days, and always once the core curriculum is done (when one is open).
+      if (!lit.next || moduleR.chance(0.25)) {
+        const refs = new Set(await db.getLearningRefs("curriculum:"));
+        lesson = nextModuleLesson(new Set(ALL_LESSONS.filter((l) => refs.has(curriculumRef(l.id))).map((l) => l.id)));
+      }
+      lesson = lesson ?? lit.next;
+    }
+    if (lesson) {
+      await db.recordLearning(curriculumRef(lesson.id), stamp("learn"));
+      events.push({ day: curDay, type: "lesson", detail: lesson.id });
+      if (recallR.chance(p.recall.inlineProb)) for (const c of checksForLesson(lesson.id)) await tryQuestion(c, "lesson");
     } else if (r < 0.85) {
       const pool = loadEvidence().filter((e) => !readEvidence.has(e.id));
       const e = pool.length ? (miscR.chance(0.7) ? pool[0] : miscR.pick(pool)) : null;

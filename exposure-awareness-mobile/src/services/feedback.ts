@@ -6,14 +6,16 @@
  * taps the button, through their own mail app, and they can read and edit it first.
  */
 import { Linking, Platform } from "react-native";
+import { getLanguage, tr } from "../i18n";
 
 const FEEDBACK_EMAIL = "jasonjessewang@gmail.com";
 
 export function feedbackMailtoUrl(detail?: string): string {
-  const subject = "Exposure Awareness feedback";
-  const lines = ["What happened, and what were you expecting instead?", "", ""];
+  // the subject stays English (and names the language) so feedback is easy to find; the prompt is for the person writing
+  const subject = `Exposure Awareness feedback (${getLanguage()})`; // i18n-ignore: read by the developer
+  const lines = [tr("What happened, and what were you expecting instead?"), "", ""];
   if (detail) lines.push("---", detail, "");
-  lines.push(`Platform: ${Platform.OS}`);
+  lines.push(`Platform: ${Platform.OS}`); // i18n-ignore: read by the developer
   return `mailto:${FEEDBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
 }
 

@@ -14,6 +14,7 @@
 import type { CheckInLog } from "../types";
 import type { ComparisonPart, ComparisonRead, Signal, SignalContext, SignalData, SignalResult } from "./types";
 import { ageOf, clamp, decay, observedDays, perWeek } from "./decay";
+import { msg, tr } from "../../i18n";
 
 export interface HabitTargets {
   exerciseMinPerWeek: number;
@@ -24,12 +25,12 @@ export interface HabitTargets {
 
 export function habitTargets(ageYears: number | null): HabitTargets {
   const age = ageYears ?? 30;
-  if (age <= 12) return { exerciseMinPerWeek: 420, exerciseSource: "US Physical Activity Guidelines and WHO: about 60 minutes a day", sleepMinPerNight: 540, sleepSource: "CDC: 9-12 hours a night (ages 6-12)" };
-  if (age <= 17) return { exerciseMinPerWeek: 420, exerciseSource: "US Physical Activity Guidelines and WHO: about 60 minutes a day", sleepMinPerNight: 480, sleepSource: "CDC: 8-10 hours a night (ages 13-17)" };
-  const exercise = { exerciseMinPerWeek: 150, exerciseSource: "US Physical Activity Guidelines and WHO: 150 minutes a week of moderate activity" };
-  if (age <= 60) return { ...exercise, sleepMinPerNight: 420, sleepSource: "CDC: 7 or more hours a night (ages 18-60)" };
-  if (age <= 64) return { ...exercise, sleepMinPerNight: 420, sleepSource: "CDC: 7-9 hours a night (ages 61-64)" };
-  return { ...exercise, sleepMinPerNight: 420, sleepSource: "CDC: 7-8 hours a night (ages 65 and over)" };
+  if (age <= 12) return { exerciseMinPerWeek: 420, exerciseSource: tr("US Physical Activity Guidelines and WHO: about 60 minutes a day"), sleepMinPerNight: 540, sleepSource: tr("CDC: 9-12 hours a night (ages 6-12)") };
+  if (age <= 17) return { exerciseMinPerWeek: 420, exerciseSource: tr("US Physical Activity Guidelines and WHO: about 60 minutes a day"), sleepMinPerNight: 480, sleepSource: tr("CDC: 8-10 hours a night (ages 13-17)") };
+  const exercise = { exerciseMinPerWeek: 150, exerciseSource: tr("US Physical Activity Guidelines and WHO: 150 minutes a week of moderate activity") };
+  if (age <= 60) return { ...exercise, sleepMinPerNight: 420, sleepSource: tr("CDC: 7 or more hours a night (ages 18-60)") };
+  if (age <= 64) return { ...exercise, sleepMinPerNight: 420, sleepSource: tr("CDC: 7-9 hours a night (ages 61-64)") };
+  return { ...exercise, sleepMinPerNight: 420, sleepSource: tr("CDC: 7-8 hours a night (ages 65 and over)") };
 }
 
 const HYDRATION_DAYS_PER_WEEK = 5;
@@ -77,7 +78,7 @@ function byDay(data: SignalData): Map<string, Day> {
   return days;
 }
 
-const hours = (minutes: number) => `${Math.floor(minutes / 60)} h ${String(Math.round(minutes % 60)).padStart(2, "0")} min`;
+const hours = (minutes: number) => tr("{h} h {m} min", { h: Math.floor(minutes / 60), m: String(Math.round(minutes % 60)).padStart(2, "0") });
 
 function readOf(ratio: number, confidence: number): ComparisonRead {
   return confidence < 0.15 ? "not_enough_yet" : ratio >= 0.95 ? "on_target" : ratio >= 0.6 ? "close" : "room_to_grow";
@@ -90,14 +91,15 @@ export function moodNote(checkins: CheckInLog[], asOf: string): string | null {
   if (recent.length < 3) return null;
   const good = (list: CheckInLog[]) => list.filter((c) => c.mood === "good").length;
   const before = inWeek(7, 13);
-  const base = `Check-ins: ${good(recent)} of the last ${recent.length} felt good`;
-  return before.length >= 3 ? `${base}, compared with ${good(before)} of the ${before.length} the week before.` : `${base}.`;
+  return before.length >= 3
+    ? tr("Check-ins: {good} of the last {n} felt good, compared with {goodBefore} of the {nBefore} the week before.", { good: good(recent), n: recent.length, goodBefore: good(before), nBefore: before.length })
+    : tr("Check-ins: {good} of the last {n} felt good.", { good: good(recent), n: recent.length });
 }
 
 export const habitsSignal: Signal = {
   key: "resilience",
-  label: "Adding good",
-  blurb: "Sleep, movement, hydration and resets, each compared with the guideline that fits you (or a plain habit rhythm where none exists).",
+  label: msg("Adding good"),
+  blurb: msg("Sleep, movement, hydration and resets, each compared with the guideline that fits you (or a plain habit rhythm where none exists)."),
   defaultWeight: 20,
   sources: ["practice_log", "daily_numbers", "checkin_log"],
   evaluate({ asOf, data }: SignalContext): SignalResult {
@@ -145,46 +147,46 @@ export const habitsSignal: Signal = {
     const at = Object.fromEntries(habits.map((h) => [h.key, h])) as Record<(typeof habits)[number]["key"], (typeof habits)[number]>;
     const parts: ComparisonPart[] = [
       {
-        label: "Sleep",
+        label: tr("Sleep"),
         basis: "guideline",
-        measured: sleepNightsW > 0 ? `${hours(sleepDurW / sleepNightsW)} on the nights you logged (about ${sleepNights.toFixed(1)} nights a week)` : "no sleep hours logged lately",
+        measured: sleepNightsW > 0 ? tr("{duration} on the nights you logged (about {nights} nights a week)", { duration: hours(sleepDurW / sleepNightsW), nights: sleepNights.toFixed(1) }) : tr("no sleep hours logged lately"),
         against: targets.sleepSource,
         ratio: sleepNightsW > 0 ? at.sleep.att : null,
         read: readOf(at.sleep.att, at.sleep.cov),
       },
       {
-        label: "Movement",
+        label: tr("Movement"),
         basis: "guideline",
-        measured: at.exercise.cov > 0 ? `${Math.round(exercisePerWeek)} minutes a week` : "no activity minutes recorded lately",
+        measured: at.exercise.cov > 0 ? tr("{n} minutes a week", { n: Math.round(exercisePerWeek) }) : tr("no activity minutes recorded lately"),
         against: targets.exerciseSource,
         ratio: at.exercise.cov > 0 ? at.exercise.att : null,
         read: readOf(at.exercise.att, at.exercise.cov),
       },
       {
-        label: "Hydration",
+        label: tr("Hydration"),
         basis: "cadence",
-        measured: at.hydration.cov > 0 ? `${hydrationDays.toFixed(1)} days a week logged` : "none logged lately",
-        against: `the app's habit rhythm: ${HYDRATION_DAYS_PER_WEEK} days a week`,
+        measured: at.hydration.cov > 0 ? tr("{n} days a week logged", { n: hydrationDays.toFixed(1) }) : tr("none logged lately"),
+        against: tr("the app's habit rhythm: {n} days a week", { n: HYDRATION_DAYS_PER_WEEK }),
         ratio: at.hydration.cov > 0 ? at.hydration.att : null,
         read: readOf(at.hydration.att, at.hydration.cov),
       },
       {
-        label: "Resets",
+        label: tr("Resets"),
         basis: "cadence",
-        measured: at.resets.cov > 0 ? `${resetDays.toFixed(1)} days a week of stretching or grounding` : "none logged lately",
-        against: `the app's habit rhythm: ${RESET_DAYS_PER_WEEK} days a week`,
+        measured: at.resets.cov > 0 ? tr("{n} days a week of stretching or grounding", { n: resetDays.toFixed(1) }) : tr("none logged lately"),
+        against: tr("the app's habit rhythm: {n} days a week", { n: RESET_DAYS_PER_WEEK }),
         ratio: at.resets.cov > 0 ? at.resets.att : null,
         read: readOf(at.resets.att, at.resets.cov),
       },
     ];
 
-    const notes = ["Recent weeks count more than older ones. A habit you haven't recorded is left out of the picture, not scored as zero."];
+    const notes = [tr("Recent weeks count more than older ones. A habit you haven't recorded is left out of the picture, not scored as zero.")];
     const mood = moodNote(data.checkins.filter((c) => c.log_date <= asOf), asOf);
     if (mood) notes.push(mood);
 
     const counted = parts.filter((p) => p.read !== "not_enough_yet");
     const near = counted.filter((p) => p.read === "on_target" || p.read === "close").length;
-    const summary = counted.length === 0 ? "No sleep, movement or reset records to compare yet." : `${near} of ${counted.length} habits are at or near their reference.`;
+    const summary = counted.length === 0 ? tr("No sleep, movement or reset records to compare yet.") : tr("{near} of {total} habits are at or near their reference.", { near, total: counted.length });
 
     return { key: "resilience", value, confidence, parts, summary, notes };
   },

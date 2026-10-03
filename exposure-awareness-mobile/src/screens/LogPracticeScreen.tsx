@@ -10,6 +10,7 @@ import { todayISO } from "../util/dates";
 import { runActivity, type Receipt } from "../engine/receipts";
 import { ReceiptCard } from "../components/ReceiptCard";
 import { UndoBar, useUndo } from "../components/UndoBar";
+import { tr } from "../i18n";
 
 // "Adding good" comes first, visually and in ordering -- sleep and hydration are just as
 // legitimate a practice as exercise, not an afterthought bolted onto a fitness list.
@@ -37,7 +38,7 @@ export default function LogPracticeScreen() {
     // Sleep is thought of in hours ("7.5"); anything else in minutes. "7h30", "7:30" and "90 min" mean what they say.
     const parsed = duration.trim() ? parseDuration(duration, practiceType === "sleep" ? "hours-if-small" : "minutes") : null;
     if (duration.trim() && !parsed) {
-      setError(practiceType === "sleep" ? "Try hours like 7.5 or 7h30, or minutes like 450 -- or leave it empty." : "Try minutes like 30, or 1h15 -- or leave it empty.");
+      setError(practiceType === "sleep" ? tr("Try hours like 7.5 or 7h30, or minutes like 450 -- or leave it empty.") : tr("Try minutes like 30, or 1h15 -- or leave it empty."));
       return;
     }
     setError(null);
@@ -58,16 +59,15 @@ export default function LogPracticeScreen() {
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16 }}>
-      <Text accessibilityRole="header" style={styles.h1}>Log a Reset</Text>
+      <Text accessibilityRole="header" style={styles.h1}>{tr("Log a Reset")}</Text>
       <Subtitle>
-        "Adding good" -- sleep, hydration, movement, screen-free time. Tracked separately from your exposure
-        score, never netted against it.
+        {tr("\"Adding good\" -- sleep, hydration, movement, screen-free time. Tracked separately from your exposure score, never netted against it.")}
       </Subtitle>
 
       {receipt && <ReceiptCard receipt={receipt} />}
 
       <Card>
-        <Text style={styles.label}>What did you do?</Text>
+        <Text style={styles.label}>{tr("What did you do?")}</Text>
         <View style={styles.rowWrap}>
           {PRACTICE_TYPES.map((pt) => (
             <Pressable
@@ -76,56 +76,56 @@ export default function LogPracticeScreen() {
               onPress={() => setPracticeType(pt)}
               aria-checked={!!(practiceType === pt)} style={[styles.chip, practiceType === pt && styles.chipActive]}
             >
-              <Text style={[styles.chipText, practiceType === pt && styles.chipTextActive]}>{PRACTICE_LABELS[pt]}</Text>
+              <Text style={[styles.chipText, practiceType === pt && styles.chipTextActive]}>{tr(PRACTICE_LABELS[pt])}</Text>
             </Pressable>
           ))}
         </View>
 
-        <Text style={styles.label}>{practiceType === "sleep" ? "How long (optional) -- hours or minutes" : "Duration in minutes (optional)"}</Text>
+        <Text style={styles.label}>{practiceType === "sleep" ? tr("How long (optional) -- hours or minutes") : tr("Duration in minutes (optional)")}</Text>
         <TextInput
           style={styles.input}
-          accessibilityLabel={practiceType === "sleep" ? "How long you slept" : "Duration in minutes"}
+          accessibilityLabel={practiceType === "sleep" ? tr("How long you slept") : tr("Duration in minutes")}
           value={duration}
           onChangeText={setDuration}
-          placeholder={practiceType === "sleep" ? "e.g. 7.5 or 7h30" : "e.g. 30"}
+          placeholder={practiceType === "sleep" ? tr("e.g. 7.5 or 7h30") : tr("e.g. 30")}
           keyboardType={practiceType === "sleep" ? "default" : "number-pad"}
         />
 
-        <Text style={styles.label}>Detail (optional)</Text>
+        <Text style={styles.label}>{tr("Detail (optional)")}</Text>
         <TextInput
           style={styles.input}
-          accessibilityLabel="Detail"
+          accessibilityLabel={tr("Detail")}
           value={detail}
           onChangeText={setDetail}
-          placeholder="e.g. 16:8 window, evening walk, phone-free dinner"
+          placeholder={tr("e.g. 16:8 window, evening walk, phone-free dinner")}
         />
 
         <FormError message={error} />
         <View style={{ marginTop: 12 }}>
-          <PrimaryButton title="Log it" onPress={submit} />
+          <PrimaryButton title={tr("Log it")} onPress={submit} />
         </View>
       </Card>
 
-      <SectionTitle>Recent</SectionTitle>
+      <SectionTitle>{tr("Recent")}</SectionTitle>
       <UndoBar undo={undo} />
       <Card>
         {recent.length === 0 ? (
-          <Text style={styles.emptyText}>Nothing logged yet.</Text>
+          <Text style={styles.emptyText}>{tr("Nothing logged yet.")}</Text>
         ) : (
           recent.map((e) => (
             <View key={e.id} style={styles.recentRow}>
               <Text style={styles.recentDate}>{e.log_date}</Text>
               <Text style={styles.recentText}>
-                {PRACTICE_LABELS[e.practice_type] ?? e.practice_type}
-                {e.duration_minutes ? ` — ${e.duration_minutes} min` : ""}
-                {e.detail ? ` (${e.detail})` : ""}
+                {tr(PRACTICE_LABELS[e.practice_type] ?? e.practice_type)}
+                {e.duration_minutes ? tr(" — {minutes} min", { minutes: e.duration_minutes }) : ""}
+                {e.detail ? ` (${tr(e.detail)})` : ""}
               </Text>
               <SecondaryButton
-                title="Delete"
-                label={`Delete ${PRACTICE_LABELS[e.practice_type] ?? e.practice_type}, ${e.log_date}`}
+                title={tr("Delete")}
+                label={tr("Delete {practice}, {log_date}", { practice: tr(PRACTICE_LABELS[e.practice_type] ?? e.practice_type), log_date: e.log_date })}
                 onPress={async () => {
                   const removed = await db.deleteLog<PracticeLog>("practices", e.id);
-                  if (removed) undo.offer(PRACTICE_LABELS[removed.practice_type] ?? removed.practice_type, async () => { await db.restoreLog("practices", removed); refresh(); });
+                  if (removed) undo.offer(tr(PRACTICE_LABELS[removed.practice_type] ?? removed.practice_type), async () => { await db.restoreLog("practices", removed); refresh(); });
                   refresh();
                 }}
               />
@@ -141,12 +141,12 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bg },
   h1: { fontSize: 22, fontWeight: "700", color: colors.ink, marginBottom: 4 },
   label: { fontSize: 12, fontWeight: "600", color: colors.muted, marginTop: 12, marginBottom: 6 },
-  input: { borderWidth: 1, borderColor: colors.line, borderRadius: radiusSm, padding: 10, fontSize: 15, backgroundColor: "#fff" },
+  input: { borderWidth: 1, borderColor: colors.line, borderRadius: radiusSm, padding: 10, fontSize: 15, backgroundColor: colors.surface },
   rowWrap: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
-  chip: { borderWidth: 1, borderColor: colors.line, borderRadius: 999, paddingVertical: 8, paddingHorizontal: 14, backgroundColor: "#fff" },
-  chipActive: { backgroundColor: colors.accent, borderColor: colors.accent },
+  chip: { borderWidth: 1, borderColor: colors.line, borderRadius: 999, paddingVertical: 8, paddingHorizontal: 14, backgroundColor: colors.surface },
+  chipActive: { backgroundColor: colors.accentFill, borderColor: colors.accentFill },
   chipText: { color: colors.ink, fontSize: 13 },
-  chipTextActive: { color: "#fff" },
+  chipTextActive: { color: colors.onAccent },
   emptyText: { color: colors.muted, fontStyle: "italic", fontSize: 13 },
   recentRow: { borderTopWidth: 1, borderTopColor: colors.line, paddingTop: 10, marginTop: 10 },
   recentDate: { fontSize: 12, color: colors.muted },

@@ -2,6 +2,7 @@
  * "What healthy running looks like": how much the engine has to work with, not a judgement
  * of the person. Six components, each 0..1, each with a concrete way to improve it.
  */
+import { msg, tr, trn } from "../../i18n";
 export interface EngineHealthInput {
   daysLoggedThisWeek: number;
   inputTypesThisWeek: number; // of 5: food, products, environment, air, practices
@@ -43,14 +44,14 @@ export function computeEngineHealth(i: EngineHealthInput, now: Date = new Date()
   const biomarker = biomarkerFreshnessScore(i.daysSinceBiomarker) / 100;
 
   const components: EngineComponent[] = [
-    { key: "freshness", label: "Fresh inputs", score: clamp(i.daysLoggedThisWeek / 4), detail: `${i.daysLoggedThisWeek} of the last 7 days have entries.`, improve: "Log something on 4 of 7 days -- a meal, a reset, anything." },
-    { key: "breadth", label: "Breadth", score: clamp(i.inputTypesThisWeek / 4), detail: `${i.inputTypesThisWeek} of 5 input types used this week.`, improve: "Add a different kind of input: scan a product, log air quality, add sleep." },
-    { key: "validation", label: "Checked against your body", score: biomarker, detail: i.daysSinceBiomarker === null ? "No biomarker yet." : `Last biomarker ${i.daysSinceBiomarker} days ago.`, improve: "Log a lab value or wearable reading at least every 3 months." },
-    { key: "fit", label: "Personal fit", score: clamp(i.profileFieldsFilled / 4), detail: `${i.profileFieldsFilled} of 4 profile details filled in.`, improve: "Add age, sex, weight and health conditions so relevance is tailored." },
-    { key: "learning", label: "Your understanding", score: clamp(i.learningDaysLast7 / 3), detail: `Learned on ${i.learningDaysLast7} of the last 7 days.`, improve: "Read one lesson or research summary on 3 days a week." },
-    { key: "evidence", label: "Evidence currency", score: i.evidenceItems === 0 ? 0 : clamp(1 - (evidenceAge ?? 5) / 15), detail: `${i.evidenceItems} evidence items; newest from ${i.evidenceNewestYear ?? "n/a"}.`, improve: "Library refreshes from PubMed; new summaries appear after review." },
+    { key: "freshness", label: msg("Fresh inputs"), score: clamp(i.daysLoggedThisWeek / 4), detail: tr("{n} of the last 7 days have entries.", { n: i.daysLoggedThisWeek }), improve: msg("Log something on 4 of 7 days -- a meal, a reset, anything.") },
+    { key: "breadth", label: msg("Breadth"), score: clamp(i.inputTypesThisWeek / 4), detail: tr("{n} of 5 input types used this week.", { n: i.inputTypesThisWeek }), improve: msg("Add a different kind of input: scan a product, log air quality, add sleep.") },
+    { key: "validation", label: msg("Checked against your body"), score: biomarker, detail: i.daysSinceBiomarker === null ? tr("No biomarker yet.") : trn(i.daysSinceBiomarker, "Last biomarker {n} day ago.", "Last biomarker {n} days ago."), improve: msg("Log a lab value or wearable reading at least every 3 months.") },
+    { key: "fit", label: msg("Personal fit"), score: clamp(i.profileFieldsFilled / 4), detail: tr("{n} of 4 profile details filled in.", { n: i.profileFieldsFilled }), improve: msg("Add age, sex, weight and health conditions so relevance is tailored.") },
+    { key: "learning", label: msg("Your understanding"), score: clamp(i.learningDaysLast7 / 3), detail: tr("Learned on {n} of the last 7 days.", { n: i.learningDaysLast7 }), improve: msg("Read one lesson or research summary on 3 days a week.") },
+    { key: "evidence", label: msg("Evidence currency"), score: i.evidenceItems === 0 ? 0 : clamp(1 - (evidenceAge ?? 5) / 15), detail: tr("{n} evidence items; newest from {year}.", { n: i.evidenceItems, year: i.evidenceNewestYear ?? tr("n/a") }), improve: msg("Library refreshes from PubMed; new summaries appear after review.") },
   ];
 
   const overall = Math.round((components.reduce((s, c) => s + c.score, 0) / components.length) * 100);
-  return { overall, label: overall >= 75 ? "Strong" : overall >= 40 ? "Running well" : "Warming up", components };
+  return { overall, label: overall >= 75 ? msg("Strong") : overall >= 40 ? msg("Running well") : msg("Warming up"), components };
 }

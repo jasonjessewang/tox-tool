@@ -4,9 +4,10 @@ import { ConceptCheckCard } from "./ConceptCheckCard";
 import { ReceiptCard } from "./ReceiptCard";
 import { colors, radiusLg } from "../theme";
 import type { ConceptCheck } from "../data/conceptChecks";
-import { LESSONS } from "../data/curriculum";
+import { anyLessonById } from "../data/modules";
 import { answerConceptCheck, getRecallState } from "../engine/learningChecksState";
 import type { Receipt } from "../engine/receipts";
+import { tr } from "../i18n";
 
 /**
  * One question a day from lessons already read -- a due one first, then one not yet tried -- answered right where the day's learning
@@ -41,17 +42,17 @@ export function RecallQuestionCard() {
     // Nothing read yet, or nothing due: say nothing. When something was answered today, say that is plenty.
     return answeredEarlier ? (
       <View style={styles.card}>
-        <Text style={styles.kicker}>KEEPING IT FRESH</Text>
+        <Text style={styles.kicker}>{tr("KEEPING IT FRESH")}</Text>
         <Text style={styles.text}>
-          You checked in on an idea today. That is plenty for one day.
-          {waiting > 0 ? " More are ready whenever you want them, under Learn › Engine." : ""}
+          {tr("You checked in on an idea today. That is plenty for one day.")}
+          {waiting > 0 ? tr(" More are ready whenever you want them, under Learn › Engine.") : ""}
         </Text>
       </View>
     ) : null;
   }
 
-  const title = LESSONS.find((l) => l.id === pinned.check.lessonId)?.title ?? "";
-  const kicker = pinned.reason === "due" ? `COMING BACK TO AN IDEA · ${title.toUpperCase()}` : `A QUESTION ON WHAT YOU READ · ${title.toUpperCase()}`;
+  const title = tr(anyLessonById(pinned.check.lessonId)?.title ?? "");
+  const kicker = pinned.reason === "due" ? tr("COMING BACK TO AN IDEA · {title}", { title: title.toUpperCase() }) : tr("A QUESTION ON WHAT YOU READ · {title}", { title: title.toUpperCase() });
 
   return (
     <View style={styles.card}>
@@ -65,7 +66,7 @@ export function RecallQuestionCard() {
             <ReceiptCard receipt={receipt} />
           </View>
         )}
-        {waiting > 0 && <Text style={[styles.text, { marginTop: 4 }]}>More are ready whenever you want them, under Learn › Engine.</Text>}
+        {waiting > 0 && <Text style={[styles.text, { marginTop: 4 }]}>{tr("More are ready whenever you want them, under Learn › Engine.")}</Text>}
       </ConceptCheckCard>
     </View>
   );

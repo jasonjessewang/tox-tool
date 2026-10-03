@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="%LANG_ISO_CODE%">
+  <head>
+    <meta charset="utf-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>%WEB_TITLE%</title>
+    <!--
+      Installable from the browser ("Add to Home Screen" / "Install app"): the manifest and icons below. Every path is
+      relative on purpose: the site is served from /<repo-name>/ on GitHub Pages and from / on a domain of its own, and a
+      relative link is right in both. No service worker: the app keeps its data on the device already, and a cache that
+      could hold back an update is not worth that for a first release.
+    -->
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Exposure" />
+    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
+    <style id="expo-reset">
+      /* These styles make the body full-height */
+      html,
+      body {
+        height: 100%;
+      }
+      /* These styles disable body scrolling if you are using <ScrollView> */
+      body {
+        overflow: hidden;
+      }
+      /* These styles make the root element full-height */
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+      /* The page's own colour before the app has loaded, so a device in dark mode does not open on a white flash.
+         The same two values as `bg` in src/theme.ts; the app's theme takes over as soon as it starts. */
+      html,
+      body {
+        background-color: #f7f5f0;
+      }
+      @media (prefers-color-scheme: dark) {
+        html,
+        body {
+          background-color: #121411;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript>
+      Exposure Awareness needs JavaScript to run. Everything you enter stays on this device.
+    </noscript>
+    <!-- The root element for your Expo app. -->
+    <div id="root"></div>
+  </body>
+</html>

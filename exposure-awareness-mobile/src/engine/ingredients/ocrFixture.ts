@@ -1,2 +1,3 @@
+// i18n-ignore-file: OCR test data, not shown by the app
 // Verbatim tesseract.js output for a rendered label image (backend/tests/fixtures/label.png), including its real misreads.
 export const REAL_OCR_TEXT = "INGREDIENTS: SUGAR, ENRICHED FLOUR (WHEAT FLOUR,\nNIACIN), VEGETABLE OIL (PALM), HIGH FRUCTOSE CORN\nSYRUP, SALT, RED 40, YELLOW 5, BHT ADDED TO\nPRESERVE FRESHNESS. CONTAINS WHEAT.\n\nNutrition Facts\n\nServing size 1 cup (559)\n\nCalories 230\n\nTotal Fat 8g\n\nSodium 160mg\n\nTotal Carbohydrate 37g\n\nIncludes 10g Added Sugars\n\nProtein 3g\n";

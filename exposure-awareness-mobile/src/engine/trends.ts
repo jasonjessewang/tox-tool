@@ -11,6 +11,7 @@
 import * as db from "../storage/db";
 import { scoreLogs } from "./scoring";
 import { daysAgoISO } from "../util/dates";
+import { monthDay } from "../i18n";
 
 export interface WeeklyPoint {
   weekLabel: string; // e.g. "Sep 1"
@@ -24,8 +25,7 @@ export interface WeeklyPoint {
 }
 
 function shortLabel(iso: string) {
-  const d = new Date(iso + "T00:00:00");
-  return d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  return monthDay(new Date(iso + "T00:00:00"));
 }
 
 export async function getWeeklyHistory(weeks = 6): Promise<WeeklyPoint[]> {

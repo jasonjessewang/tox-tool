@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { colors, radiusSm } from "../theme";
+import { tr } from "../i18n";
 
 /**
  * Removing an entry is one tap; taking it back is one more. The bar stays until it is used, dismissed, or another entry is removed --
@@ -24,11 +25,11 @@ export function UndoBar({ undo }: { undo: ReturnType<typeof useUndo> }) {
   if (!undo.pending) return null;
   return (
     <View style={styles.bar} accessibilityRole="alert" aria-live="polite">
-      <Text style={styles.text}>Removed: {undo.pending.what}</Text>
-      <Pressable accessibilityRole="button" accessibilityLabel={`Undo: put back ${undo.pending.what}`} onPress={undo.undo} style={styles.action}>
-        <Text style={styles.actionText}>Undo</Text>
+      <Text style={styles.text}>{tr("Removed: {what}", { what: undo.pending.what })}</Text>
+      <Pressable accessibilityRole="button" accessibilityLabel={tr("Undo: put back {what}", { what: undo.pending.what })} onPress={undo.undo} style={styles.action}>
+        <Text style={styles.actionText}>{tr("Undo")}</Text>
       </Pressable>
-      <Pressable accessibilityRole="button" accessibilityLabel="Dismiss" onPress={undo.dismiss} style={styles.action}>
+      <Pressable accessibilityRole="button" accessibilityLabel={tr("Dismiss")} onPress={undo.dismiss} style={styles.action}>
         <Text style={styles.dismissText}>{"×"}</Text>
       </Pressable>
     </View>

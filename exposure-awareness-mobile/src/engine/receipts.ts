@@ -11,6 +11,7 @@ import { ACTIVITY_ROLE, signalsFedBy } from "./signals/registry";
 import type { ActivityKind, ComparisonPart, SignalKey } from "./signals/types";
 import { getWellnessScore } from "./wellnessState";
 import type { ScoreComponent, WellnessScore } from "./wellnessScore";
+import { tr } from "../i18n";
 
 export interface ReceiptLine {
   key: SignalKey;
@@ -38,15 +39,18 @@ const pct = (n: number) => `${Math.round(n * 100)}%`;
 const r0 = (n: number) => Math.round(n);
 
 function describeLine(before: ScoreComponent, after: ScoreComponent): string {
-  const label = after.label;
-  const means = after.valueMeans ? ` (${after.valueMeans})` : "";
+  const label = tr(after.label);
+  const means = after.valueMeans ? ` (${tr(after.valueMeans)})` : "";
   // A first reading rests on very little; say so in the same breath, so the number is not taken for a verdict on a breakfast.
-  if (before.confidence === 0 && after.confidence > 0) return `${label}: a first reading -- ${r0(after.value)} out of 100${means}${after.confidence < 0.5 ? ", from very little so far, so it will settle as more comes in" : ""}.`;
-  if (after.confidence === 0) return `${label}: nothing to read yet.`;
+  if (before.confidence === 0 && after.confidence > 0)
+    return after.confidence < 0.5
+      ? tr("{label}: a first reading -- {value} out of 100{means}, from very little so far, so it will settle as more comes in.", { label, value: r0(after.value), means })
+      : tr("{label}: a first reading -- {value} out of 100{means}.", { label, value: r0(after.value), means });
+  if (after.confidence === 0) return tr("{label}: nothing to read yet.", { label });
   const delta = after.value - before.value;
-  if (Math.abs(delta) >= 1) return `${label}: ${r0(before.value)} -> ${r0(after.value)} out of 100${means}.`;
-  if (after.confidence - before.confidence >= 0.02) return `${label}: about the same (${r0(after.value)}), and the app can see it better now (${pct(before.confidence)} -> ${pct(after.confidence)}).`;
-  return `${label}: no change.`;
+  if (Math.abs(delta) >= 1) return tr("{label}: {before} -> {after} out of 100{means}.", { label, before: r0(before.value), after: r0(after.value), means });
+  if (after.confidence - before.confidence >= 0.02) return tr("{label}: about the same ({value}), and the app can see it better now ({before} -> {after}).", { label, value: r0(after.value), before: pct(before.confidence), after: pct(after.confidence) });
+  return tr("{label}: no change.", { label });
 }
 
 export function buildReceipt(kind: ActivityKind, before: WellnessScore, after: WellnessScore, extraNotes: string[] = []): Receipt {
@@ -63,11 +67,11 @@ export function buildReceipt(kind: ActivityKind, before: WellnessScore, after: W
   const fuller = after.coverage - before.coverage;
   const unscored = "unscored" in role ? role.unscored : null;
   let headline: string;
-  if (unscored) headline = "Saved. This one doesn't move your score directly.";
-  else if (after.provisional) headline = `Saved. Your picture is ${after.coverage}% filled in so far -- this is an early reading.`;
-  else if (moved !== 0) headline = `Your score went from ${before.overall} to ${after.overall}.`;
-  else if (fuller >= 1) headline = `Your score stays at ${after.overall}, and the picture is a little fuller (${before.coverage}% -> ${after.coverage}%).`;
-  else headline = `Saved. Your score stays at ${after.overall}.`;
+  if (unscored) headline = tr("Saved. This one doesn't move your score directly.");
+  else if (after.provisional) headline = tr("Saved. Your picture is {coverage}% filled in so far -- this is an early reading.", { coverage: after.coverage });
+  else if (moved !== 0) headline = tr("Your score went from {before} to {after}.", { before: before.overall, after: after.overall });
+  else if (fuller >= 1) headline = tr("Your score stays at {score}, and the picture is a little fuller ({before}% -> {after}%).", { score: after.overall, before: before.coverage, after: after.coverage });
+  else headline = tr("Saved. Your score stays at {score}.", { score: after.overall });
 
   const notes = [...lines.flatMap((l) => after.components.find((c) => c.key === l.key)!.notes.slice(0, 2)), ...extraNotes];
   return { kind, headline, score: { before: before.overall, after: after.overall, coverageBefore: before.coverage, coverageAfter: after.coverage, provisional: after.provisional }, lines, unscored, notes };

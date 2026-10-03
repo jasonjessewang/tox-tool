@@ -1,5 +1,12 @@
+import * as fs from "fs";
+import * as path from "path";
 import { loadEvidence, evidenceForSubstance, contextEvidenceForSubstance, evidenceForConcept, evidenceById } from "./evidence";
 import { loadHazardDb, loadConcepts } from "./scoring";
+
+test("the app's copy of the library and the backend's seed are byte-for-byte the same file", () => {
+  const read = (p: string) => fs.readFileSync(path.join(__dirname, "..", "..", p), "utf8");
+  expect(read("src/data/evidence.json")).toBe(read("../exposure-awareness-backend/seed/evidence.json"));
+});
 
 test("every item has a headline, a short vignette AND a detailed write-up, with a real PMID link", () => {
   for (const e of loadEvidence()) {

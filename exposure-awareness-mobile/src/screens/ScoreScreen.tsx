@@ -8,6 +8,7 @@ import { getWellnessScore, getScoreWeights, saveScoreWeights, getScoreHistory, t
 import { describeScore, showsNumber, DEFAULT_WEIGHTS, type WeightKey, type WellnessScore } from "../engine/wellnessScore";
 import { SecondaryButton } from "../components/ui";
 import { colors, radius, radiusSm, shadow } from "../theme";
+import { tr } from "../i18n";
 
 const KEYS = Object.keys(DEFAULT_WEIGHTS) as WeightKey[];
 export const BAND_COLOR: Record<WellnessScore["band"], string> = { building: colors.warn, steady: colors.warn, strong: colors.accent, excellent: colors.accent };
@@ -65,7 +66,7 @@ export default function ScoreScreen() {
   if (!score || !weights) {
     return (
       <View style={styles.center}>
-        <Text style={{ color: colors.muted }}>Loading...</Text>
+        <Text style={{ color: colors.muted }}>{tr("Loading...")}</Text>
       </View>
     );
   }
@@ -75,20 +76,20 @@ export default function ScoreScreen() {
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16, paddingTop: 20 }}>
-      <Text accessibilityRole="header" style={styles.h1}>Your score</Text>
+      <Text accessibilityRole="header" style={styles.h1}>{tr("Your score")}</Text>
       <Text style={styles.sub}>
-        Every part is a comparison: something you did, measured against a guideline, the app's own rules, or your earlier self. A personal dashboard reading, not a diagnosis.
+        {tr("Every part is a comparison: something you did, measured against a guideline, the app's own rules, or your earlier self. A personal dashboard reading, not a diagnosis.")}
       </Text>
 
       <View style={styles.gaugeWrap}>
-        <ScoreGauge score={showsNumber(score) ? score.overall : null} color={color} size={220} dim={score.provisional} caption={score.provisional ? (showsNumber(score) ? "early reading" : "not yet") : "/ 100"} />
+        <ScoreGauge score={showsNumber(score) ? score.overall : null} color={color} size={220} dim={score.provisional} caption={score.provisional ? (showsNumber(score) ? tr("early reading") : tr("not yet")) : "/ 100"} />
       </View>
-      <Text style={[styles.bandLabel, { color }]}>{shown.label}</Text>
-      <Text style={styles.bandDesc}>{shown.description}</Text>
+      <Text style={[styles.bandLabel, { color }]}>{tr(shown.label)}</Text>
+      <Text style={styles.bandDesc}>{tr(shown.description)}</Text>
 
       <View style={styles.card}>
         <View style={styles.rowBetween}>
-          <Text style={styles.compLabel}>How much of the picture is visible</Text>
+          <Text style={styles.compLabel}>{tr("How much of the picture is visible")}</Text>
           <Text style={styles.compValue}>
             {score.coverage}
             <Text style={styles.of100}>%</Text>
@@ -98,46 +99,46 @@ export default function ScoreScreen() {
           <View style={[styles.fill, { width: `${score.coverage}%`, backgroundColor: colors.accent }]} />
         </View>
         <Text style={styles.detail}>
-          The score is an average of the parts we can see, each counting in proportion to its weight and to how much evidence stands behind it. Logging fills the picture in, and logging more never counts against you. The Places part reads what you find (and fix) against published guidance, so it can move either way.
+          {tr("The score is an average of the parts we can see, each counting in proportion to its weight and to how much evidence stands behind it. Logging fills the picture in, and logging more never counts against you. The Places part reads what you find (and fix) against published guidance, so it can move either way.")}
         </Text>
         {score.vsBefore ? (
           <Text style={styles.vs}>
-            {signed(score.vsBefore.change)} against yourself {score.vsBefore.window} ago
+            {tr("{signed} against yourself {window} ago", { signed: signed(score.vsBefore.change), window: tr(score.vsBefore.window) })}
           </Text>
         ) : (
-          <Text style={styles.detail}>Once you have a few weeks of history, this compares you with your own earlier self.</Text>
+          <Text style={styles.detail}>{tr("Once you have a few weeks of history, this compares you with your own earlier self.")}</Text>
         )}
       </View>
 
-      <Text accessibilityRole="header" aria-level={2} style={styles.section}>How it has moved</Text>
+      <Text accessibilityRole="header" aria-level={2} style={styles.section}>{tr("How it has moved")}</Text>
       <View style={styles.card}>
-        <BarChart label="Wellness score at the end of each of the last eight weeks (empty weeks had too little to read)" data={history.map((h) => ({ label: shortDay(h.asOf), value: h.provisional ? 0 : h.overall }))} barColor={color} maxHeight={90} />
-        <Text style={styles.detail}>The score at the end of each of the last eight weeks, read from the same records. Empty bars are weeks before there was enough to read.</Text>
+        <BarChart label={tr("Wellness score at the end of each of the last eight weeks (empty weeks had too little to read)")} data={history.map((h) => ({ label: shortDay(h.asOf), value: h.provisional ? 0 : h.overall }))} barColor={color} maxHeight={90} />
+        <Text style={styles.detail}>{tr("The score at the end of each of the last eight weeks, read from the same records. Empty bars are weeks before there was enough to read.")}</Text>
       </View>
 
       <View style={styles.headerRow}>
-        <Text accessibilityRole="header" aria-level={2} style={styles.section}>Breakdown</Text>
+        <Text accessibilityRole="header" aria-level={2} style={styles.section}>{tr("Breakdown")}</Text>
         <Pressable accessibilityRole="button" onPress={() => setEditing(!editing)} style={{ paddingVertical: 8 }}>
-          <Text style={styles.editLink}>{editing ? "Done" : "Adjust weights"}</Text>
+          <Text style={styles.editLink}>{editing ? tr("Done") : tr("Adjust weights")}</Text>
         </Pressable>
       </View>
 
       {score.components.map((c) => (
         <View key={c.key} style={styles.card}>
           <View style={styles.rowBetween}>
-            <Text style={styles.compLabel}>{c.label}</Text>
+            <Text style={styles.compLabel}>{tr(c.label)}</Text>
             <Text style={styles.compValue}>
               {c.confidence > 0 ? Math.round(c.value) : "--"}
               <Text style={styles.of100}>{c.confidence > 0 ? "/100" : ""}</Text>
             </Text>
           </View>
-          <Text style={styles.blurb}>{c.blurb}</Text>
+          <Text style={styles.blurb}>{tr(c.blurb)}</Text>
           <View style={styles.track}>
             <View style={[styles.fill, { width: `${c.confidence > 0 ? c.value : 0}%`, backgroundColor: color }]} />
           </View>
           <Text style={styles.detail}>{c.detail}</Text>
-          {c.valueMeans && c.confidence > 0 ? <Text style={styles.detail}>This number is {c.valueMeans}.</Text> : null}
-          {c.vsBefore && c.vsBefore.change !== 0 ? <Text style={styles.vs}>{signed(c.vsBefore.change)} against yourself {c.vsBefore.window} ago</Text> : null}
+          {c.valueMeans && c.confidence > 0 ? <Text style={styles.detail}>{tr("This number is {valueMeans}.", { valueMeans: c.valueMeans })}</Text> : null}
+          {c.vsBefore && c.vsBefore.change !== 0 ? <Text style={styles.vs}>{tr("{signed} against yourself {window} ago", { signed: signed(c.vsBefore.change), window: tr(c.vsBefore.window) })}</Text> : null}
 
           {c.parts.map((p) => (
             <ComparisonRow key={p.label} part={p} />
@@ -145,20 +146,20 @@ export default function ScoreScreen() {
 
           {c.notes.length > 0 && (
             <View style={{ marginTop: 10 }}>
-              <Collapsible title="More detail" teaser={c.notes[0]}>
+              <Collapsible title={tr("More detail")} teaser={c.notes[0]}>
                 {c.notes.map((n, i) => (
                   <Text key={i} style={styles.note}>
                     {n}
                   </Text>
                 ))}
-                <Text style={styles.note}>What feeds this part: {c.sources.map((s) => s.replace(/_/g, " ")).join(", ")}.</Text>
+                <Text style={styles.note}>{tr("What feeds this part: {map}.", { map: c.sources.map((s) => s.replace(/_/g, " ")).join(", ") })}</Text>
               </Collapsible>
             </View>
           )}
 
           {editing ? (
             <View style={styles.weightRow}>
-              <Text style={styles.weightLabel}>Weight in your score: {Math.round(c.weight)}%</Text>
+              <Text style={styles.weightLabel}>{tr("Weight in your score: {weight}%", { weight: Math.round(c.weight) })}</Text>
               <View style={{ flexDirection: "row", gap: 8 }}>
                 <Pressable accessibilityRole="button" onPress={() => bump(c.key, -STEP)} style={styles.stepBtn}>
                   <Text style={styles.stepText}>{"−"}</Text>
@@ -170,7 +171,7 @@ export default function ScoreScreen() {
             </View>
           ) : (
             <Text style={styles.weightStatic}>
-              {Math.round(c.weight)}% weight · counts for {Math.round(c.influence)}% of your score right now ({Math.round(c.confidence * 100)}% of it visible)
+              {tr("{weight}% weight · counts for {influence}% of your score right now ({confidence}% of it visible)", { weight: Math.round(c.weight), influence: Math.round(c.influence), confidence: Math.round(c.confidence * 100) })}
             </Text>
           )}
         </View>
@@ -178,9 +179,9 @@ export default function ScoreScreen() {
 
       {editing && (
         <View style={{ marginTop: 8, marginBottom: 30, gap: 10 }}>
-          <Text style={styles.note}>Weights are rebalanced automatically so they always total 100% -- push one up and the others make room.</Text>
-          <SecondaryButton title={saved ? "Saved ✓" : "Save these weights"} onPress={save} />
-          <SecondaryButton title="Reset to default" onPress={reset} />
+          <Text style={styles.note}>{tr("Weights are rebalanced automatically so they always total 100% -- push one up and the others make room.")}</Text>
+          <SecondaryButton title={saved ? tr("Saved ✓") : tr("Save these weights")} onPress={save} />
+          <SecondaryButton title={tr("Reset to default")} onPress={reset} />
         </View>
       )}
       <View style={{ height: 24 }} />
@@ -205,14 +206,14 @@ const styles = StyleSheet.create({
   compValue: { fontSize: 16, fontWeight: "700", color: colors.ink },
   of100: { fontSize: 12, color: colors.muted, fontWeight: "400" },
   blurb: { fontSize: 12, color: colors.muted, marginTop: 2 },
-  track: { height: 7, borderRadius: radiusSm, backgroundColor: "#eee9dd", marginTop: 10, overflow: "hidden" },
+  track: { height: 7, borderRadius: radiusSm, backgroundColor: colors.track, marginTop: 10, overflow: "hidden" },
   fill: { height: 7, borderRadius: radiusSm },
   detail: { fontSize: 12, color: colors.muted, marginTop: 8, lineHeight: 17 },
   vs: { fontSize: 12, fontWeight: "600", color: colors.accent, marginTop: 6 },
   weightRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: 12, paddingTop: 10, borderTopWidth: 1, borderTopColor: colors.line },
   weightLabel: { fontSize: 12, fontWeight: "600", color: colors.ink },
   weightStatic: { fontSize: 12, color: colors.muted, marginTop: 10, fontStyle: "italic" },
-  stepBtn: { width: 32, height: 32, borderRadius: 16, borderWidth: 1, borderColor: colors.line, alignItems: "center", justifyContent: "center", backgroundColor: "#fff" },
+  stepBtn: { width: 32, height: 32, borderRadius: 16, borderWidth: 1, borderColor: colors.line, alignItems: "center", justifyContent: "center", backgroundColor: colors.surface },
   stepText: { fontSize: 18, fontWeight: "700", color: colors.ink },
   note: { fontSize: 12, color: colors.muted, lineHeight: 18, fontStyle: "italic", marginBottom: 4 },
 });

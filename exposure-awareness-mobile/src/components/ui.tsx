@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet, ViewStyle } from "react-native";
-import { colors, radius, radiusPill, spacing, shadow, concernPill } from "../theme";
+import { colors, radius, radiusPill, spacing, shadow, concernPill, ACCENT_SHADOW } from "../theme";
 
 export function Card({ children, style }: { children: React.ReactNode; style?: ViewStyle }) {
   return <View style={[styles.card, style]}>{children}</View>;
@@ -80,19 +80,19 @@ const styles = StyleSheet.create({
   pill: { paddingHorizontal: 9, paddingVertical: 2, borderRadius: radiusPill, alignSelf: "flex-start" },
   pillText: { fontSize: 12, fontWeight: "600" },
   button: {
-    backgroundColor: colors.accent,
+    backgroundColor: colors.accentFill,
     paddingVertical: 14,
     paddingHorizontal: 22,
     borderRadius: radiusPill,
     alignItems: "center",
-    shadowColor: colors.accent,
+    shadowColor: ACCENT_SHADOW,
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.22,
     shadowRadius: 10,
     elevation: 3,
   },
   buttonDisabled: { opacity: 0.5, shadowOpacity: 0 },
-  buttonText: { color: "#fff", fontWeight: "700", fontSize: 15 },
+  buttonText: { color: colors.onAccent, fontWeight: "700", fontSize: 15 },
   secondaryButton: {
     borderWidth: 1.5,
     borderColor: colors.accent,

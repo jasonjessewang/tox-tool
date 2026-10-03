@@ -3,6 +3,7 @@ import { ScrollView, View, Text, StyleSheet } from "react-native";
 import { getJourney } from "../engine/journeyState";
 import type { Stage } from "../engine/journeyStages";
 import { colors, radius, shadow } from "../theme";
+import { tr } from "../i18n";
 
 export default function RoadmapScreen() {
   const [stages, setStages] = useState<Stage[]>([]);
@@ -12,22 +13,22 @@ export default function RoadmapScreen() {
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16 }}>
-      <Text accessibilityRole="header" style={styles.h1}>Your roadmap</Text>
-      <Text style={styles.sub}>Three stages, unlocked in order. Only your next step is shown on the main Journey page.</Text>
+      <Text accessibilityRole="header" style={styles.h1}>{tr("Your roadmap")}</Text>
+      <Text style={styles.sub}>{tr("Three stages, unlocked in order. Only your next step is shown on the main Journey page.")}</Text>
       {stages.map((s) => (
         <View key={s.id} style={[styles.stage, !s.unlocked && { opacity: 0.55 }]}>
           <View style={styles.stageHead}>
             <Text style={styles.stageTitle}>
               {s.unlocked ? "" : "🔒 "}
-              {s.title}
+              {tr(s.title)}
             </Text>
             <Text style={styles.count}>{s.done}/{s.total}</Text>
           </View>
-          <Text style={styles.blurb}>{s.blurb}</Text>
+          <Text style={styles.blurb}>{tr(s.blurb)}</Text>
           {s.steps.map((st) => (
             <View key={st.id} style={styles.step}>
               <Text style={[styles.mark, st.completed && { color: colors.accent }]}>{st.completed ? "✓" : "○"}</Text>
-              <Text style={[styles.stepText, st.completed && { color: colors.muted, textDecorationLine: "line-through" }]}>{st.title}</Text>
+              <Text style={[styles.stepText, st.completed && { color: colors.muted, textDecorationLine: "line-through" }]}>{tr(st.title)}</Text>
             </View>
           ))}
         </View>

@@ -21,6 +21,7 @@
  */
 import { SIGNALS } from "./signals/registry";
 import type { ActivityKind, ComparisonPart, SignalKey, SignalResult } from "./signals/types";
+import { msg } from "../i18n";
 
 export type WeightKey = SignalKey;
 
@@ -31,16 +32,16 @@ export const COMPONENT_INFO = Object.fromEntries(SIGNALS.map((s) => [s.key, { la
 export type ScoreBand = "building" | "steady" | "strong" | "excellent";
 
 export const BAND_INFO: Record<ScoreBand, { label: string; description: string }> = {
-  building: { label: "Building", description: "Room to grow -- every log, swap and lesson moves this." },
-  steady: { label: "Steady", description: "A real pattern is forming." },
-  strong: { label: "Strong", description: "Consistently feeding and validating the engine." },
-  excellent: { label: "Excellent", description: "About as complete and as good a picture as this app can build." },
+  building: { label: msg("Building"), description: msg("Room to grow -- every log, swap and lesson moves this.") },
+  steady: { label: msg("Steady"), description: msg("A real pattern is forming.") },
+  strong: { label: msg("Strong"), description: msg("Consistently feeding and validating the engine.") },
+  excellent: { label: msg("Excellent"), description: msg("About as complete and as good a picture as this app can build.") },
 };
 
 /** Below this share of the picture visible, a number would over-claim. */
 export const PROVISIONAL_COVERAGE = 40;
 
-export const EARLY_PICTURE = { label: "Early picture", description: "This firms up as you log -- right now it rests on only part of what the app can see." };
+export const EARLY_PICTURE = { label: msg("Early picture"), description: msg("This firms up as you log -- right now it rests on only part of what the app can see.") };
 
 export interface Change {
   window: string;
@@ -159,7 +160,7 @@ export function composeWellnessScore(results: SignalResult[], weights: Partial<R
 const MIN_CONFIDENCE_FOR_CHANGE = 0.3;
 
 /** Fills in how every part, and the whole, compares with the person's own earlier self. */
-export function compareWithEarlier(current: WellnessScore, earlier: WellnessScore, window = "4 weeks"): WellnessScore {
+export function compareWithEarlier(current: WellnessScore, earlier: WellnessScore, window: string = msg("4 weeks")): WellnessScore {
   const components = current.components.map((c) => {
     const before = earlier.components.find((e) => e.key === c.key);
     const vsBefore = before && c.confidence >= MIN_CONFIDENCE_FOR_CHANGE && before.confidence >= MIN_CONFIDENCE_FOR_CHANGE ? { window, change: Math.round(c.value - before.value) } : null;

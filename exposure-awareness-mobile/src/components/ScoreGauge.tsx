@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { View, Text, Animated, Easing, StyleSheet } from "react-native";
 import { colors } from "../theme";
 import { useReduceMotion } from "../util/motion";
+import { tr } from "../i18n";
 
 const TICKS = 28;
 const START_DEG = -110;
@@ -27,7 +28,7 @@ export default function ScoreGauge({ score, color, size = 200, caption = "/ 100"
     <View
       accessible
       accessibilityRole="image"
-      accessibilityLabel={score === null ? "Wellness score: not enough recorded yet to give a number" : `Wellness score ${Math.round(score)} out of 100${dim ? ", an early reading" : ""}`}
+      accessibilityLabel={score === null ? tr("Wellness score: not enough recorded yet to give a number") : (dim ? tr("Wellness score {score} out of 100, an early reading", { score: Math.round(score) }) : tr("Wellness score {score} out of 100", { score: Math.round(score) }))}
       style={{ width: size, height: size, alignItems: "center", justifyContent: "center" }}
     >
       <View style={[styles.rim, { width: size, height: size, borderRadius: size / 2 }]} />

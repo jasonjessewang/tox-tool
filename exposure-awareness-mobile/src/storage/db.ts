@@ -529,10 +529,10 @@ export async function exportAllData(now: Date = new Date()): Promise<DataExport>
     data[key.replace(/^exposure:/, "")] = value;
   }
   return {
-    app: "Exposure Awareness",
+    app: "Exposure Awareness", // i18n-ignore: the export file's fixed format
     format: 1,
     exportedAt: now.toISOString(),
-    note: "Everything here was stored only on your device. Dates are your local calendar days.",
+    note: "Everything here was stored only on your device. Dates are your local calendar days.", // i18n-ignore: the export file's fixed format
     data,
   };
 }

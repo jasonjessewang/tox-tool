@@ -16,6 +16,7 @@ import type { ShelfItem, ProductKind } from "../ingredients/types";
 import type { Stance } from "../ingredients/assess";
 import type { DayTally } from "../scoring";
 import type { Place } from "../places/types";
+import { msg } from "../../i18n";
 
 /** Everything a person can do that the app records or keeps. */
 export type ActivityKind =
@@ -51,10 +52,10 @@ export type ComparisonBasis =
 export type ComparisonRead = "on_target" | "close" | "room_to_grow" | "not_enough_yet";
 
 export const READ_LABEL: Record<ComparisonRead, string> = {
-  on_target: "On target",
-  close: "Getting close",
-  room_to_grow: "Room to grow",
-  not_enough_yet: "Not enough yet",
+  on_target: msg("On target"),
+  close: msg("Getting close"),
+  room_to_grow: msg("Room to grow"),
+  not_enough_yet: msg("Not enough yet"),
 };
 
 export interface ComparisonPart {

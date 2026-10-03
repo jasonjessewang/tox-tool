@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { colors } from "../theme";
+import { tr } from "../i18n";
 
 export interface BarChartDatum {
   label: string;
@@ -19,7 +20,7 @@ export function BarChart({
   barColor = colors.accent,
   maxHeight = 120,
   suffix = "",
-  label = "Chart",
+  label = tr("Chart"),
 }: {
   data: BarChartDatum[];
   barColor?: string;

@@ -230,5 +230,151 @@ export const CONCEPT_CHECKS: ConceptCheck[] = [
     "A well-documented first link with no shown downstream key events is a mechanistic hypothesis, not a shown health effect. Asking how many links the study covered is the habit."),
 ];
 
-export const checksForLesson = (lessonId: string) => CONCEPT_CHECKS.filter((c) => c.lessonId === lessonId);
-export const checkById = (id: string) => CONCEPT_CHECKS.find((c) => c.id === id);
+/**
+ * Questions on the elective modules (data/modules.ts). Kept apart from CONCEPT_CHECKS so that the core recall share, which the
+ * Understanding part divides by CONCEPT_CHECKS.length, does not shrink when a module is added; they join the same spaced review.
+ */
+export const MODULE_CHECKS: ConceptCheck[] = [
+  // ------------------------------------------------------------------------------------------------ Cancer & prevention
+  q("c_classification", 1, "A news story says a food additive was just classified as \"possibly carcinogenic\" (Group 2B). What does that classification tell you?",
+    "Limited evidence it can cause cancer under some conditions -- not the chance at the amounts people eat",
+    ["That a known share of the people who eat it regularly will go on to develop cancer from it", "That it causes more cancer than anything in Group 3, because the groups rank how potent agents are", "That regulators have banned it, so every product that contains it must be taken off shop shelves at once"],
+    "IARC groups rate how strong the evidence is that something can cause cancer; in IARC's own words they do not measure the likelihood that cancer will occur at a particular level of exposure. How much, how often and for whom still decide what it means."),
+  q("c_classification", 2, "Tobacco smoking and outdoor air pollution are both in IARC Group 1. What follows from that?",
+    "Both have strong evidence behind them, but their effects at everyday exposures can differ greatly",
+    ["Breathing city air for a year is about as likely to cause lung cancer as smoking for a year", "Neither can be compared with anything outside Group 1, because the group sets the size of the effect", "Air pollution must be the more serious of the two, because far more people around the world breathe it"],
+    "The same group means equally strong evidence, not an equal effect. IARC notes that smoking carries a far larger chance of lung cancer than second-hand smoke or outdoor air pollution, although all three are in Group 1."),
+
+  q("c_where_prevention_works", 1, "A friend reads that \"40% of cancers are linked to modifiable factors\" and says a relative's cancer must have been preventable. What is the careful reply?",
+    "That figure describes a whole population; it cannot say why any one person's cancer happened",
+    ["Four in ten people with cancer could each have avoided it by changing two or three habits", "The figure only applies to smokers, so for everyone else cancer is entirely a matter of their genes", "If the relative never smoked, the cancer must have come from their diet or their body weight"],
+    "Attributable shares are population numbers: they show where prevention can do the most across millions of people. Many cancers arise with no identifiable cause, partly from chance copying errors as healthy cells divide -- a cancer is never a verdict on anyone's choices."),
+  q("c_where_prevention_works", 2, "In the 2024 American Cancer Society analysis, which factors accounted for the largest shares of US cancer cases, in order?",
+    "Cigarette smoking, then excess body weight, then alcohol",
+    ["Alcohol, then outdoor air pollution, then processed meat", "Excess body weight, then sun exposure, then cigarette smoking", "Processed meat, then cigarette smoking, then alcohol"],
+    "Cigarette smoking accounted for about 19% of cases, excess body weight about 8% and alcohol about 5%, followed by diet, physical inactivity, sun exposure and infections -- a short list where prevention has the most room."),
+
+  q("c_breast_background", 1, "A woman's mother had breast cancer. Based on the pooled data in this lesson, which statement is closest?",
+    "Her odds are higher than average, but most women with one affected relative never develop it",
+    ["She will almost certainly develop breast cancer at some point, most likely before the age of 50", "Her odds are no different from anyone else's, because family history matters only for BRCA carriers", "She should assume she carries a BRCA variant, since nearly all family clusters come from one"],
+    "One affected mother, sister or daughter raised the odds about 1.8 times; the estimated chance by age 80 was about 13% with one affected relative, against about 8% with none. Most women with a family history never develop breast cancer."),
+  q("c_breast_background", 2, "Who does the US Preventive Services Task Force say should be offered a brief assessment for harmful BRCA1/2 variants?",
+    "Women whose personal or family history, or whose ancestry, is linked to harmful BRCA1/2 variants",
+    ["Every woman over 40, whether or not anyone in her family has had breast or ovarian cancer", "Only women who have already been diagnosed with breast cancer and have since finished their treatment", "No one -- genetic testing for BRCA1/2 is kept for research studies and is not offered in clinics"],
+    "The Task Force recommends a short family-history assessment for women whose family or ancestry suggests a harmful variant, then genetic counseling and, if indicated, testing -- not routine testing for everyone."),
+
+  q("c_breast_levers", 1, "A headline says each daily drink raises breast cancer odds \"by 7%\". What is the most useful next question?",
+    "Seven percent of what baseline -- what is the chance with and without that drink, out of how many women?",
+    ["Whether 7% means that one in every fourteen women who drink daily will go on to develop breast cancer later", "Whether the effect disappears completely once a person switches to wine instead of beer or spirits", "Whether the study was published recently, since older findings about alcohol no longer apply today"],
+    "About 7% higher relative odds per daily drink is a ratio; absolute numbers need the baseline. In pooled data from 53 studies, alcohol accounted for around 4% of breast cancers in high-income countries."),
+  q("c_breast_levers", 2, "In the pooled analysis in this lesson, which kind of menopausal hormone therapy was not linked to higher breast cancer odds?",
+    "Vaginal estrogen",
+    ["Estrogen plus daily progestagen", "Estrogen plus intermittent progestagen", "Estrogen-only tablets taken daily"],
+    "Every type except vaginal estrogen was linked to some excess -- largest for estrogen plus daily progestagen (about one extra breast cancer per 50 users over five years from 50) and smallest for estrogen alone (about one per 200)."),
+
+  q("c_screening", 1, "For every 10,000 women invited to screening from age 50 for 20 years, the UK review estimated about 43 breast cancer deaths prevented. What other number belongs beside it?",
+    "About 129 cancers found that would otherwise never have come to light",
+    ["About 10,000 women who will never need to think about breast cancer again", "About 43 cancers caused by the X-rays used over the twenty years of screening", "Nothing else -- the number of deaths prevented is the whole story of screening"],
+    "The honest version gives benefits and harms out of the same number of people: about 43 breast cancer deaths prevented, and about 129 cancers found by screening that would otherwise never have come to light."),
+  q("c_screening", 2, "Mammograms use a small X-ray dose. How does the modeling in this lesson put that in proportion?",
+    "About 125 radiation-linked cancers per 100,000 women screened yearly, against about 968 deaths prevented",
+    ["The dose is so small that no breast cancers at all can come from it, whatever the number of mammograms taken", "Radiation-linked cancers outnumber the deaths prevented, so screening should not begin before age 60", "About 968 radiation-linked cancers per 100,000 women screened yearly, against about 125 deaths prevented"],
+    "Dose-response applies to screening too: modeling of yearly mammograms from 40 to 74 estimated about 125 radiation-linked breast cancers per 100,000 women, against about 968 breast cancer deaths prevented."),
+
+  q("c_common_worries", 1, "A post says antiperspirants cause breast cancer. What does the evidence in this lesson show?",
+    "A population study of 1,606 women found no link with antiperspirant or deodorant use",
+    ["Antiperspirants were shown to cause it in the 2004 study that measured chemicals in tumours", "No one has ever studied the question, so neither a link nor its absence can be claimed", "The link is clear, but only for women who apply them within an hour of shaving"],
+    "A case-control study of 1,606 women found no higher odds with antiperspirant or deodorant use, including use soon after shaving. 'Not borne out so far' is the honest summary."),
+  q("c_common_worries", 2, "Parabens were measured in breast tumour tissue in 2004. Why doesn't that show they caused the tumours?",
+    "Finding a chemical shows exposure; with no normal tissue to compare, cause could not be judged",
+    ["Because parabens break down within minutes and could not have stayed in the tissue for long", "Because the tumours were removed in surgery, which adds parabens to the tissue during the operation", "Because chemicals cannot be measured in human tissue at all, so the results must be a lab mistake"],
+    "Detection shows exposure, not cause. The study had no normal tissue to compare, and the authors themselves named that comparison as the next question."),
+
+  q("c_timing", 1, "In the California DDT study, which women showed higher breast cancer odds with high DDT levels?",
+    "Women first exposed before age 14",
+    ["Women first exposed after age 30", "All exposed women, whatever their age", "Only women who had never given birth"],
+    "High DDT levels predicted about five times the odds of breast cancer before 50 -- but only among women first exposed before age 14. Women exposed only later showed no link: timing matters as much as amount."),
+  q("c_timing", 2, "A study measures a chemical in 60-year-olds and finds no link with a cancer. What should a careful reader ask?",
+    "Whether the exposure that mattered happened decades earlier, in a window this study could not see",
+    ["Nothing further -- a study of older adults settles the question for every age and every exposure", "Whether the chemical is natural, since natural chemicals cannot change cancer odds at any age", "Whether the cancer was found by screening, since screen-detected cancers never relate to any exposure"],
+    "Cancers usually appear decades after the exposures that contributed, and some windows -- before birth, childhood, puberty, pregnancy -- count for more. Measuring late in life can miss the window that counted."),
+
+  q("c_after_treatment", 1, "People who are more active after a cancer diagnosis tend to do better in observational studies. What can such studies not fully show?",
+    "That activity itself causes the difference, apart from everything else that differs between people",
+    ["That being more active is linked with doing better at all, since the studies found no pattern", "That survivors can be active safely, since none of the participants were followed after treatment", "That diet matters too, because these studies only ever counted how many steps people took each day of the week"],
+    "Much of the survivorship evidence is observational: more active people tend to do better, but these studies cannot fully separate cause from everything else that differs between people."),
+  q("c_after_treatment", 2, "A cancer comes back in someone who followed every guideline closely. What does the lesson say about that?",
+    "It is not a verdict on effort; tumour biology and treatment matter more than any single choice",
+    ["It means they must have missed a guideline, since following all of them reliably prevents a recurrence", "It shows the guidelines are useless and that daily habits have no connection to health after cancer", "It means the first diagnosis must have been mistaken, because a treated cancer cannot come back"],
+    "Survivorship advice is not a promise, and a recurrence is not a verdict on effort: the biology of the tumour and its treatment matter more than any single choice."),
+
+  // ------------------------------------------------------------------------------------------ Cosmetics & personal care
+  q("m_label", 1, "On a US cosmetics label, what does the order of the ingredients tell you?",
+    "Above 1%, they run from most to least; at 1% or below, they can appear in any order",
+    ["Nothing at all -- makers may list every ingredient in whatever order they like", "Ingredients are listed alphabetically, so their position says nothing about amount", "The last ingredient on the list is always the one present in the very largest amount"],
+    "Ingredients must be declared in descending order of predominance, but those at 1% or less may be listed in any order after the rest. The first few tell you what most of the product is."),
+  q("m_label", 2, "A lotion says \"hypoallergenic\" on the front. What does that word guarantee in the US?",
+    "Nothing in particular -- it has no federal definition; the ingredient list says more",
+    ["That it passed an FDA allergy test before it could be sold with that word printed on it", "That it contains no fragrance, no dyes and no preservatives of any kind whatsoever", "That a dermatologist reviewed it and found it suitable for people with sensitive skin"],
+    "FDA says there are no federal standards or definitions for 'hypoallergenic' -- the term means whatever a particular company wants it to mean. The ingredient list is the more reliable guide."),
+
+  q("m_fragrance", 1, "Someone's skin reacts to a scented body wash. Which explanation does the evidence in this lesson make most likely?",
+    "An allergy to one specific ingredient, which a dermatologist's patch test can identify",
+    ["A buildup of toxins from years of product use, which a cleanse would then flush back out", "A reaction to the water in the product, since water is the first ingredient listed", "Long-term harm from the dose of fragrance, which always shows up first as a rash"],
+    "Fragrance mixes are among the most common skin allergens -- second only to nickel among 125,436 people patch-tested in Central Europe. Allergy follows its own rules, and patch testing can name the ingredient."),
+  q("m_fragrance", 2, "After European action on the preservative methylisothiazolinone, what happened to allergy to it?",
+    "The wave of allergy to it rose and then fell",
+    ["It kept rising, because sensitization never fades", "It vanished within a month of the new rules", "It simply moved on to a different preservative"],
+    "Reducing exposure works even for allergy: after European action on methylisothiazolinone, the wave of contact allergy to it rose and then fell in clinic data."),
+
+  q("m_regulation", 1, "A cosmetic's ad says it is \"FDA-approved\". What is true?",
+    "Apart from color additives, FDA does not approve cosmetics before they go on the market",
+    ["Every cosmetic sold in the US passes an FDA safety review before it reaches the shelf", "FDA approval is optional, and products that have it passed a full panel of human tests", "Only cosmetics sold online need FDA approval; products sold in stores are exempt from it"],
+    "FDA states that the law does not require cosmetic products and ingredients, other than color additives, to have FDA approval before they go on the market."),
+  q("m_regulation", 2, "What did the Modernization of Cosmetics Regulation Act of 2022 add?",
+    "Facility registration, product listing, safety records, serious adverse event reports and recall power",
+    ["Pre-market FDA approval for every product, with a full ingredient review before any product is sold", "A ban on all fragrance ingredients and on every preservative named in the European cosmetics annexes", "A rule that labels may no longer say 'fragrance' and must instead name every chemical in the blend"],
+    "The 2022 law added duties -- registering facilities, listing products and ingredients, keeping safety evidence, reporting serious adverse events within 15 business days -- and gave FDA the power to order recalls."),
+
+  q("m_skin_dose", 1, "A body lotion and a shampoo contain the same ingredient at the same concentration. Which usually delivers more through skin?",
+    "The lotion, because a leave-on product stays in contact for hours instead of seconds",
+    ["The shampoo, because hot water opens the skin and lets everything through at once", "Neither -- the same concentration always means the same dose, however it is used", "The shampoo, because rinse-off products are spread over a larger area of the body"],
+    "Through skin, the dose depends on contact time, amount and frequency, not only on what's in a product. A leave-on cream stays for hours and a rinse-off wash for seconds, which is why safety panels treat the two uses differently."),
+  q("m_skin_dose", 2, "Teenagers switched for three days to products labelled free of certain parabens, phthalates, triclosan and benzophenone-3. What happened?",
+    "Most of those chemicals in their urine fell by a quarter to a half",
+    ["Nothing measurable changed, because skin products never reach the bloodstream", "Every one of those chemicals disappeared from their urine within a single day", "Levels rose at first, because switching products releases chemicals stored in fat"],
+    "In three days most of the targeted chemicals in urine fell by a quarter to a half, though two other parabens unexpectedly rose -- what reaches you through products can be measured, and it moves within days."),
+
+  // ---------------------------------------------------------------------------------------------------- The exposome
+  q("e_exposome", 1, "What did Christopher Wild mean by the \"exposome\" when he coined the term in 2005?",
+    "Everything a person is exposed to from conception onward, together with the body's responses",
+    ["The full set of genes a person inherits, read from a single blood sample taken at birth", "The chemicals in one person's home, measured once with a set of air and water tests", "The share of a disease explained by genes, estimated from studies of identical twins"],
+    "Wild coined the term to complement the genome: diet, air, water, products, work, infections, stress and social conditions from conception onward, together with the body's responses to them."),
+  q("e_exposome", 2, "A study of 44,788 twin pairs found that inherited genes made a minor contribution to most common cancers. What does that suggest?",
+    "Much of the variation lies with environment and chance -- which is where change is possible",
+    ["Genes play no part in any cancer, including the ones linked to BRCA1 and BRCA2 variants", "Cancer is mostly decided at birth, so measuring exposures later in life adds very little", "Twins share all of their exposures, so the study cannot tell us anything about environment"],
+    "Inherited genes made a minor contribution to most common cancers, leaving much of the variation to environment and chance. That is encouraging, because the exposome is where change is possible."),
+
+  q("e_measuring", 1, "A report says a chemical was \"detected in\" most people's urine in a national survey. What is the careful reading?",
+    "It shows exposure is common; what it means depends on how much, compared with what",
+    ["It proves most people are being harmed, since any detectable amount is above a safe level", "It means the lab made a mistake, because chemicals cannot be measured in urine samples", "It shows the chemical is harmless, because surveys only report chemicals with no effects"],
+    "Detection depends on how sensitive the lab is; meaning depends on how much, compared with what. Surveys like NHANES measure chemicals in blood and urine to set reference ranges and track trends."),
+  q("e_measuring", 2, "An environment-wide study tested 266 factors against type 2 diabetes and flagged a few. Why are those flags leads rather than proof?",
+    "Testing hundreds of things at once guarantees some chance findings, and one sample is a snapshot",
+    ["Because diabetes cannot be influenced by anything in the environment, only by a person's genes", "Because 266 factors is far too few to find anything real, so every one of the flags must be a mistake", "Because the study used blood samples, and blood never contains any environmental chemicals"],
+    "Screening hundreds of exposures together finds some associations by chance, and a single blood sample is only a snapshot of a lifetime -- so flagged factors are leads to test, not proof."),
+
+  q("e_your_week", 1, "What slice of the exposome does this app measure?",
+    "What you log, your shelf, the places you spend time and your air -- not what is in your blood",
+    ["Everything you are exposed to, including the chemicals in your blood, worked out from your logs", "Only your genes, read from the products you scan and the places you describe in the app", "Nothing at all, since an exposome can only ever be measured inside a research laboratory"],
+    "This app measures a small, honest slice: what you log, what is on your shelf, the places you spend time and your air. It does not measure what is in your blood, and it does not try."),
+  q("e_your_week", 2, "Why is a one-week swap a reasonable experiment to run?",
+    "Swap studies saw urinary levels fall within days, and a week shows whether a change fits a routine",
+    ["Because every exposure takes exactly seven days to leave the body, whatever the chemical is", "Because one week is long enough to show a change in a person's own cancer odds afterwards", "Because anything that does not work within a week has been shown to make no difference"],
+    "Product and food swap studies saw urinary levels of several chemicals fall within days, and a week is long enough to see whether a change fits your routine. One swap, one week, then look again."),
+];
+
+export const ALL_CHECKS: ConceptCheck[] = [...CONCEPT_CHECKS, ...MODULE_CHECKS];
+
+export const checksForLesson = (lessonId: string) => ALL_CHECKS.filter((c) => c.lessonId === lessonId);
+export const checkById = (id: string) => ALL_CHECKS.find((c) => c.id === id);

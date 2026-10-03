@@ -3,6 +3,7 @@
 import produceTiers from "../data/produceTiers.json";
 import type { FoodLog, ProduceSummary } from "./types";
 import { phraseMatcher } from "./textMatch";
+import { listWords, tr } from "../i18n";
 
 // One compiled matcher per produce item ("bananas" also finds "banana", and "doorbell" no longer finds "bell").
 const watchMatchers = produceTiers.watch_list.map((i) => ({ item: i.item, mentions: phraseMatcher([i.item.split("/")[0].split(" & ")[0], i.item]) }));
@@ -30,17 +31,14 @@ export function tally(foodEntries: Pick<FoodLog, "food_item" | "notes">[]): Prod
   if (total >= 3 && watchTotal / total >= 0.7) {
     const distinctWatch = Object.keys(watchHits).length;
     if (distinctWatch <= 2) {
-      tip =
-        `Your logged produce leans heavily on ${Object.keys(watchHits).join(", ")} specifically. ` +
-        "Rotating in a wider variety (including some lower-tier items like avocado, " +
-        "banana, cabbage, or citrus) is a simple way to avoid concentrating exposure " +
-        "to any one item's typical residue profile — not a reason to cut what you're eating now.";
+      tip = tr(
+        "Your logged produce leans heavily on {items} specifically. Rotating in a wider variety (including some lower-tier items like avocado, banana, cabbage, or citrus) is a simple way to avoid concentrating exposure to any one item's typical residue profile — not a reason to cut what you're eating now.",
+        { items: listWords(Object.keys(watchHits).map((item) => tr(item))) }
+      );
     } else {
-      tip =
-        "Several of your produce picks this week are from the historically " +
-        "higher-residue-detection group. A quick produce-wash soak (not just a rinse) " +
-        "for these items, or occasionally swapping in a lower-typical item, are both " +
-        "low-effort ways to broaden your aggregate exposure profile.";
+      tip = tr(
+        "Several of your produce picks this week are from the historically higher-residue-detection group. A quick produce-wash soak (not just a rinse) for these items, or occasionally swapping in a lower-typical item, are both low-effort ways to broaden your aggregate exposure profile."
+      );
     }
   }
 

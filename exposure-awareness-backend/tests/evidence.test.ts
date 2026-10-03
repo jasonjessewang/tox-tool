@@ -1,12 +1,16 @@
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { startApp } from "./harness.ts";
+
+/** however many items the seed file holds -- the tests are about seeding and paging, not a fixed count */
+const SEEDED = (JSON.parse(readFileSync(new URL("../seed/evidence.json", import.meta.url), "utf8")) as unknown[]).length;
 
 let ctx: Awaited<ReturnType<typeof startApp>>;
 before(async () => {
   ctx = await startApp("test-evidence");
   const { seedEvidence } = await import("../src/seed-evidence.ts");
-  assert.equal(seedEvidence(), 27);
+  assert.equal(seedEvidence(), SEEDED);
 });
 after(async () => ctx.stop());
 
@@ -14,7 +18,7 @@ test("seeding is idempotent", async () => {
   const { seedEvidence } = await import("../src/seed-evidence.ts");
   seedEvidence();
   const n = (ctx.db.prepare("SELECT COUNT(*) AS n FROM evidence").get() as { n: number }).n;
-  assert.equal(n, 27);
+  assert.equal(n, SEEDED);
 });
 
 test("list is ranked by citation count and pages by keyset cursor without gaps or repeats", async () => {
@@ -26,7 +30,7 @@ test("list is ranked by citation count and pages by keyset cursor without gaps o
     seen.push(...body.data.map((d) => d.citation_count));
     cursor = body.next_cursor;
   } while (cursor);
-  assert.equal(seen.length, 27);
+  assert.equal(seen.length, SEEDED);
   assert.deepEqual(seen, [...seen].sort((a, b) => b - a));
 });
 

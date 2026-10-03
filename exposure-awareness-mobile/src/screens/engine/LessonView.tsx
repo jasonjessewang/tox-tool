@@ -7,6 +7,7 @@ import { ConceptCheckRunner } from "../../components/ConceptCheckRunner";
 import { wrapUp } from "../../engine/learningChecks";
 import type { ConceptCheck } from "../../data/conceptChecks";
 import { colors, radius, radiusSm, shadow } from "../../theme";
+import { tr, trn } from "../../i18n";
 
 /** One idea per screen: the point, the misleading pattern to watch for, and a conversation to have. */
 export default function LessonView({
@@ -18,8 +19,11 @@ export default function LessonView({
   onOpenEvidence,
   checks = [],
   onCheckAnswer,
+  kicker,
 }: {
   lesson: Lesson;
+  /** what sits above the title; the lesson's tier unless it says otherwise (an elective names its module) */
+  kicker?: string;
   completed: boolean;
   onComplete: () => void;
   onBack: () => void;
@@ -32,48 +36,48 @@ export default function LessonView({
   const [phase, setPhase] = useState<"idle" | "running" | "done">("idle");
   const [summary, setSummary] = useState<{ right: number; total: number } | null>(null);
   const share = () =>
-    Share.share({ message: `${lesson.title}\n\n${lesson.headline}\n\nWatch for: ${lesson.watchFor}\n\nWorth talking about: ${lesson.talkAbout}` });
+    Share.share({ message: tr("{title}\n\n{headline}\n\nWatch for: {watchFor}\n\nWorth talking about: {talkAbout}", { title: tr(lesson.title), headline: tr(lesson.headline), watchFor: tr(lesson.watchFor), talkAbout: tr(lesson.talkAbout) }) });
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ padding: 16, paddingTop: 20 }}>
       <Pressable accessibilityRole="button" onPress={onBack} hitSlop={8} style={{ marginBottom: 14, paddingVertical: 8 }}>
-        <Text style={styles.back}>{"‹"} Engine</Text>
+        <Text style={styles.back}>{tr("‹ Engine")}</Text>
       </Pressable>
-      <Text style={styles.kicker}>{TIER_INFO[lesson.tier].label.toUpperCase()} {"·"} LESSON</Text>
-      <Text accessibilityRole="header" style={styles.title}>{lesson.title}</Text>
-      <Text style={styles.headline}>{lesson.headline}</Text>
+      <Text style={styles.kicker}>{(kicker ?? tr("{tier} · Lesson", { tier: tr(TIER_INFO[lesson.tier].label) })).toUpperCase()}</Text>
+      <Text accessibilityRole="header" style={styles.title}>{tr(lesson.title)}</Text>
+      <Text style={styles.headline}>{tr(lesson.headline)}</Text>
       {lesson.body.map((p, i) => (
-        <Text key={i} style={styles.body}>{p}</Text>
+        <Text key={i} style={styles.body}>{tr(p)}</Text>
       ))}
 
       <View style={styles.watch}>
-        <Text style={styles.watchLabel}>WATCH FOR</Text>
-        <Text style={styles.watchText}>{lesson.watchFor}</Text>
+        <Text style={styles.watchLabel}>{tr("WATCH FOR")}</Text>
+        <Text style={styles.watchText}>{tr(lesson.watchFor)}</Text>
       </View>
 
       <View style={styles.talk}>
-        <Text style={styles.talkLabel}>TALK ABOUT IT</Text>
-        <Text style={styles.talkText}>{lesson.talkAbout}</Text>
+        <Text style={styles.talkLabel}>{tr("TALK ABOUT IT")}</Text>
+        <Text style={styles.talkText}>{tr(lesson.talkAbout)}</Text>
         <View style={{ marginTop: 12, alignSelf: "flex-start" }}>
-          <SecondaryButton title="Share with someone" onPress={share} />
+          <SecondaryButton title={tr("Share with someone")} onPress={share} />
         </View>
       </View>
 
       {lesson.tool && (
         <View style={{ marginTop: 16 }}>
-          <PrimaryButton title={`Try it: ${TOOL_INFO[lesson.tool].title}`} onPress={() => onOpenTool(lesson.tool!)} />
+          <PrimaryButton title={tr("Try it: {title}", { title: tr(TOOL_INFO[lesson.tool].title) })} onPress={() => onOpenTool(lesson.tool!)} />
         </View>
       )}
 
       {lesson.evidenceIds && lesson.evidenceIds.length > 0 && (
         <View style={{ marginTop: 20 }}>
-          <Text style={styles.sectionLabel}>The research behind this</Text>
+          <Text style={styles.sectionLabel}>{tr("The research behind this")}</Text>
           {lesson.evidenceIds.map((id) => {
             const e = evidenceById(id);
             return e ? (
               <Pressable accessibilityRole="button" key={id} onPress={() => onOpenEvidence(id)} style={styles.evidence}>
-                <Text style={styles.evidenceHeadline}>{e.headline}</Text>
-                <Text style={styles.evidenceMeta}>{e.journal} {e.year} {"·"} read the summary {"›"}</Text>
+                <Text style={styles.evidenceHeadline}>{tr(e.headline)}</Text>
+                <Text style={styles.evidenceMeta}>{tr("{journal} {year} · read the summary ›", { journal: e.journal, year: e.year })}</Text>
               </Pressable>
             ) : null;
           })}
@@ -82,12 +86,12 @@ export default function LessonView({
 
       {checks.length > 0 && onCheckAnswer && (
         <View style={styles.check}>
-          <Text style={styles.checkLabel}>CHECK WHAT STUCK</Text>
+          <Text style={styles.checkLabel}>{tr("CHECK WHAT STUCK")}</Text>
           {phase === "idle" && (
             <>
-              <Text style={styles.checkText}>{checks.length} quick question{checks.length === 1 ? "" : "s"} on this lesson. Nothing is scored against you: a miss just brings the question back tomorrow, and each one you get right comes back further apart.</Text>
+              <Text style={styles.checkText}>{trn(checks.length, "{n} quick question on this lesson. Nothing is scored against you: a miss just brings the question back tomorrow, and each one you get right comes back further apart.", "{n} quick questions on this lesson. Nothing is scored against you: a miss just brings the question back tomorrow, and each one you get right comes back further apart.")}</Text>
               <View style={{ marginTop: 12, alignSelf: "flex-start" }}>
-                <SecondaryButton title="Try the questions" onPress={() => setPhase("running")} />
+                <SecondaryButton title={tr("Try the questions")} onPress={() => setPhase("running")} />
               </View>
             </>
           )}
@@ -96,7 +100,7 @@ export default function LessonView({
               <ConceptCheckRunner
                 checks={checks}
                 onAnswer={onCheckAnswer}
-                kickerFor={() => "ON THIS LESSON"}
+                kickerFor={() => tr("ON THIS LESSON")}
                 onDone={(results) => {
                   setSummary({ right: results.filter((r) => r.correct).length, total: results.length });
                   setPhase("done");
@@ -111,7 +115,7 @@ export default function LessonView({
       )}
 
       <View style={{ marginTop: 24, marginBottom: 28 }}>
-        {completed ? <Text style={styles.done}>{"✓"} Lesson complete</Text> : <PrimaryButton title="Got it" onPress={onComplete} />}
+        {completed ? <Text style={styles.done}>{tr("✓ Lesson complete")}</Text> : <PrimaryButton title={tr("Got it")} onPress={onComplete} />}
       </View>
     </ScrollView>
   );

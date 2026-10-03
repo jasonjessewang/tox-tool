@@ -8,8 +8,9 @@ import type { HouseholdNote } from "../engine/places/evaluate";
 import type { AnswerStatus, CheckReading, PlaceCheck } from "../engine/places/types";
 import type { Receipt } from "../engine/receipts";
 import type { Substance } from "../engine/types";
+import { msg, tr, trn } from "../i18n";
 
-const STATUS_LABEL: Record<AnswerStatus, string> = { meets: "Meets the reference", attention: "Worth a look", unknown: "Not answered yet", na: "Doesn't apply here" };
+const STATUS_LABEL: Record<AnswerStatus, string> = { meets: msg("Meets the reference"), attention: msg("Worth a look"), unknown: msg("Not answered yet"), na: msg("Doesn't apply here") };
 const STATUS_COLOR: Record<AnswerStatus, string> = { meets: colors.accent, attention: colors.warn, unknown: colors.muted, na: colors.muted };
 
 /**
@@ -51,9 +52,9 @@ export function CheckCard({
       <Pressable accessibilityRole="button" aria-expanded={open} onPress={() => setOpen(!open)} style={styles.head}>
         <View style={[styles.dot, { backgroundColor: STATUS_COLOR[status] }]} />
         <View style={{ flex: 1 }}>
-          <Text style={styles.question}>{check.question}</Text>
+          <Text style={styles.question}>{tr(check.question)}</Text>
           <Text style={[styles.status, { color: STATUS_COLOR[status] }]}>
-            {reading.answerLabel ? (status === "unknown" ? reading.answerLabel : `${STATUS_LABEL[status]} · ${reading.answerLabel}`) : STATUS_LABEL[status]}
+            {reading.answerLabel ? (status === "unknown" ? tr(reading.answerLabel) : `${tr(STATUS_LABEL[status])} · ${tr(reading.answerLabel)}`) : tr(STATUS_LABEL[status])}
           </Text>
         </View>
         <Text style={styles.chevron}>{open ? "▾" : "▸"}</Text>
@@ -61,62 +62,62 @@ export function CheckCard({
 
       {open && (
         <View style={styles.body}>
-          {recheck && <Text style={styles.recheck}>You marked a tip about this done since you answered. If something changed, choose the answer that fits now.</Text>}
-          {check.help ? <Text style={styles.help}>{check.help}</Text> : null}
+          {recheck && <Text style={styles.recheck}>{tr("You marked a tip about this done since you answered. If something changed, choose the answer that fits now.")}</Text>}
+          {check.help ? <Text style={styles.help}>{tr(check.help)}</Text> : null}
           <View style={{ marginTop: 6 }}>
             {check.options.map((o) => {
               const selected = reading.answerLabel === o.label;
               return (
                 <Pressable key={o.value} accessibilityRole="radio" aria-checked={selected} onPress={() => onAnswer(o.value)} style={[styles.option, selected && styles.optionOn]}>
                   <View style={[styles.radio, selected && styles.radioOn]} />
-                  <Text style={[styles.optionText, selected && { color: colors.accent, fontWeight: "600" }]}>{o.label}</Text>
+                  <Text style={[styles.optionText, selected && { color: colors.accent, fontWeight: "600" }]}>{tr(o.label)}</Text>
                 </Pressable>
               );
             })}
           </View>
 
           <View style={styles.reference}>
-            <Text style={styles.kicker}>COMPARED WITH</Text>
-            <Text style={styles.refText}>{check.reference.text}</Text>
-            <Text style={styles.refSource}>{check.reference.source}</Text>
+            <Text style={styles.kicker}>{tr("COMPARED WITH")}</Text>
+            <Text style={styles.refText}>{tr(check.reference.text)}</Text>
+            <Text style={styles.refSource}>{tr(check.reference.source)}</Text>
           </View>
 
-          <Text style={styles.why}>{check.why}</Text>
+          <Text style={styles.why}>{tr(check.why)}</Text>
 
           {household.length > 0 && (
             <Text style={styles.household}>
-              Matters a little more for {household.map((h) => `${h.who === "You" ? "you" : h.who} (${h.reasons[0].label.toLowerCase()})`).join(", ")}.
+              {tr("Matters a little more for {people}.", { people: household.map((h) => `${h.who === "You" ? tr("you") : tr(h.who)} (${tr(h.reasons[0].label).toLowerCase()})`).join(", ") })}
             </Text>
           )}
 
           {tips.length > 0 && (
             <View style={styles.tips}>
-              <Text style={styles.kicker}>A SMALL CHANGE</Text>
+              <Text style={styles.kicker}>{tr("A SMALL CHANGE")}</Text>
               {tips.map((t, i) => (
                 <Text key={i} style={styles.tip}>
-                  {"•"} {t}
+                  {"•"} {tr(t)}
                 </Text>
               ))}
-              <Text style={styles.refSource}>This also appears in This week's focus on your Dashboard until you change it or decide to keep it.</Text>
+              <Text style={styles.refSource}>{tr("This also appears in This week's focus on your Dashboard until you change it or decide to keep it.")}</Text>
             </View>
           )}
 
           {level !== "simple" && studies.length > 0 && (
             <View style={{ marginTop: 10 }}>
-              <Collapsible title="The science behind this" defaultOpen={level === "technical"} teaser={`From PubMed · ${studies.length} stud${studies.length === 1 ? "y" : "ies"}`}>
-                <Text style={styles.refSource}>Real citations from PubMed (US National Library of Medicine), fetched for {substance!.name}.</Text>
+              <Collapsible title={tr("The science behind this")} defaultOpen={level === "technical"} teaser={trn(studies.length, "From PubMed · {n} study", "From PubMed · {n} studies")}>
+                <Text style={styles.refSource}>{tr("Real citations from PubMed (US National Library of Medicine), fetched for {name}.", { name: tr(substance!.name) })}</Text>
                 {studies.map((r) => (
                   <View key={r.pmid} style={styles.study}>
                     <Text style={styles.studyTitle}>{r.title}</Text>
                     <Text style={styles.refSource}>{[r.journal, r.year].filter(Boolean).join(" · ")}</Text>
                     <View style={styles.links}>
                       {/* With more than one study, a bare "PubMed" link repeats for each -- name which study it opens. */}
-                      <Pressable accessibilityRole="link" accessibilityLabel={studies.length > 1 ? `PubMed: ${r.title}` : undefined} onPress={() => Linking.openURL(r.url)} style={{ paddingVertical: 8 }}>
-                        <Text style={styles.link}>PubMed {"›"}</Text>
+                      <Pressable accessibilityRole="link" accessibilityLabel={studies.length > 1 ? tr("PubMed: {title}", { title: r.title }) : undefined} onPress={() => Linking.openURL(r.url)} style={{ paddingVertical: 8 }}>
+                        <Text style={styles.link}>{tr("PubMed ›")}</Text>
                       </Pressable>
                       {r.doi ? (
-                        <Pressable accessibilityRole="link" accessibilityLabel={studies.length > 1 ? `DOI: ${r.title}` : undefined} onPress={() => Linking.openURL(`https://doi.org/${r.doi}`)} style={{ paddingVertical: 8 }}>
-                          <Text style={styles.link}>DOI {"›"}</Text>
+                        <Pressable accessibilityRole="link" accessibilityLabel={studies.length > 1 ? tr("DOI: {title}", { title: r.title }) : undefined} onPress={() => Linking.openURL(`https://doi.org/${r.doi}`)} style={{ paddingVertical: 8 }}>
+                          <Text style={styles.link}>{tr("DOI ›")}</Text>
                         </Pressable>
                       ) : null}
                     </View>
@@ -124,7 +125,7 @@ export function CheckCard({
                 ))}
                 {comptox ? (
                   <Pressable accessibilityRole="link" onPress={() => Linking.openURL(comptox)} style={{ marginTop: 8, paddingVertical: 8 }}>
-                    <Text style={styles.link}>EPA CompTox Chemicals Dashboard {"›"}</Text>
+                    <Text style={styles.link}>{tr("EPA CompTox Chemicals Dashboard ›")}</Text>
                   </Pressable>
                 ) : null}
               </Collapsible>
@@ -135,7 +136,7 @@ export function CheckCard({
 
           {reading.answerLabel !== null && (
             <Pressable accessibilityRole="button" onPress={onClear} style={{ marginTop: 6, paddingVertical: 8 }}>
-              <Text style={styles.clear}>Take my answer back</Text>
+              <Text style={styles.clear}>{tr("Take my answer back")}</Text>
             </Pressable>
           )}
         </View>
@@ -160,7 +161,7 @@ const styles = StyleSheet.create({
   radio: { width: 16, height: 16, borderRadius: 8, borderWidth: 2, borderColor: colors.line, marginRight: 10 },
   radioOn: { borderColor: colors.accent, backgroundColor: colors.accent },
   optionText: { flex: 1, fontSize: 13, color: colors.ink, lineHeight: 18 },
-  reference: { marginTop: 10, padding: 10, borderRadius: radiusSm, backgroundColor: "#f3efe4" },
+  reference: { marginTop: 10, padding: 10, borderRadius: radiusSm, backgroundColor: colors.panel },
   kicker: { fontSize: 12, fontWeight: "700", letterSpacing: 0.6, color: colors.muted },
   refText: { fontSize: 12, color: colors.ink, marginTop: 4, lineHeight: 17 },
   refSource: { fontSize: 12, color: colors.muted, marginTop: 4, lineHeight: 15 },
