@@ -145,14 +145,14 @@ if (WEB && typeof document !== "undefined" && !document.getElementById("app-them
 }
 
 export const bandColor: Record<string, string> = {};
-export const concernPill: Record<number, { bg: string; fg: string; label: string }> = {};
+export const concernPill: Record<number, { bg: string; fg: string }> = {};
 
 function deriveMaps() {
   Object.assign(bandColor, { minimal: colors.accent, low: colors.accent, moderate: colors.warn, priority: colors.notice });
   Object.assign(concernPill, {
-    1: { bg: colors.accentSoft, fg: colors.accent, label: "low" },
-    2: { bg: colors.warnSoft, fg: colors.warn, label: "moderate" },
-    3: { bg: colors.noticeSoft, fg: colors.notice, label: "higher" },
+    1: { bg: colors.accentSoft, fg: colors.accent },
+    2: { bg: colors.warnSoft, fg: colors.warn },
+    3: { bg: colors.noticeSoft, fg: colors.notice },
   });
 }
 deriveMaps();

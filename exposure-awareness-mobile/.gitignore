@@ -42,3 +42,10 @@ yarn-error.*
 
 # Engine soak run output (npm run sim)
 .sim-out/
+
+# Native projects are generated from app.json (npx expo prebuild / EAS Build), never edited by hand
+/ios
+/android
+
+# Translation work files (numbered source lists, batches in progress); the catalogs themselves are in src/i18n/locales
+.i18n-work/

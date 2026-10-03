@@ -55,10 +55,10 @@ just the domain. In `.github/workflows/pages.yml` the base path then has to be e
 
 ## iOS and Android: the config is ready, the account is yours
 
-`eas.json` defines three build profiles (`development`, `preview` -- internal installs for testing, `production`),
-and `app.json` already has a bundle identifier / package name (`com.exposureawareness.mobile`, both platforms) and a
-1024&times;1024, alpha-free icon (the one thing the App Store icon spec is strict about). None of that needed an
-account to set up. What does:
+`eas.json` defines four build profiles (`development`, `simulator` -- an iOS Simulator build that needs no Apple
+account, `preview` -- internal installs for testing, `production`), and `app.json` already has a bundle identifier /
+package name (`com.exposureawareness.mobile`, both platforms) and a 1024&times;1024, alpha-free icon (the one thing the
+App Store icon spec is strict about). None of that needed an account to set up. What does:
 
 1. **Create a free account at [expo.dev](https://expo.dev/)** (this has to be you -- an assistant creating accounts
    on your behalf is out of scope here on purpose). Then, from `exposure-awareness-mobile`:
@@ -71,9 +71,12 @@ account to set up. What does:
 
 2. **Build.** Cloud-compiled either way; no local Xcode or Android Studio needed.
    ```bash
-   npx eas-cli build --platform android --profile preview   # an installable APK, shareable immediately
+   npx eas-cli build --platform ios --profile simulator      # runs in the iOS Simulator on a Mac; no Apple account
+   npx eas-cli build --platform android --profile preview    # an installable APK, shareable immediately
    npx eas-cli build --platform ios --profile preview        # needs step 3 below to install on a real iPhone
    ```
+   The first two need nothing but the Expo account: a Simulator build is unsigned, and EAS creates and keeps the
+   Android signing key itself. `npx eas-cli build:run -p ios --latest` installs the Simulator build and opens it.
 
 3. **Apple specifically** requires a paid **Apple Developer Program** membership ($99/year) before a build can go on
    a real device or the App Store -- a free Apple ID alone only reaches the iOS Simulator, which needs a Mac with
@@ -103,6 +106,47 @@ account to set up. What does:
   learning tool, not a diagnostic one -- the in-app scope note and the redirect to a poison centre or emergency
   number for anything urgent (`src/data/safety.ts`, shown at setup and under About&nbsp;you) are exactly the kind of
   thing a health-adjacent app's review benefits from pointing at explicitly.
+
+### Checked before the first build (2026-10-03)
+
+Without an account, the native projects can still be generated locally (`npx expo prebuild --no-install`, run in a
+scratch copy so nothing lands in the repo; `/ios` and `/android` are git-ignored because they are always generated).
+Doing that and reading the results found, and fixed, things a reviewer or this app's own privacy stance would object to:
+
+- **iOS purpose strings.** Three were a framework's stock sentence ("Allow Exposure Awareness to access your
+  location", Face ID, motion). Each now says what this app does, or that it does not use it; the keys stay because the
+  App Store rejects a binary that links an API without one. `src/appConfig.test.ts` holds the wording.
+- **Android permissions.** `SYSTEM_ALERT_WINDOW` (draw over other apps; only development needs it) is blocked, and
+  audio recording was already removed. What remains: camera, location, internet, vibrate, and photo access on
+  Android 12 and earlier.
+- **Launch screen.** `expo-splash-screen` with the theme's own light and dark backgrounds and a leaf that shows on
+  each, instead of a white flash in dark mode. Android's primary colour is the app's green, not the template's blue.
+- **Safe areas.** The app drew its own status-bar padding and used React Native's old `SafeAreaView`; on Android,
+  where apps now draw edge to edge, the tab bar would have sat under the system's navigation buttons. It now uses
+  `react-native-safe-area-context` (`Frame` in `App.tsx`).
+- `npx expo-doctor`: 21 of 21 checks, after bringing six Expo packages to the patch versions SDK 57 expects.
+
+None of this has been *seen* on a phone or a simulator yet: the first build is the first look.
+
+### Decisions that are yours before a store submission
+
+- **Export compliance.** The app uses only HTTPS and the system keychain. If you agree that is all it uses, add
+  `"ios": { "config": { "usesNonExemptEncryption": false } }` to `app.json`, and App Store Connect stops asking on
+  every upload. It is a declaration made in your name, so it is not set for you.
+- **iPad.** `ios.supportsTablet` is `true`: Apple will review on an iPad and ask for iPad screenshots. The layout is
+  a phone layout. Either set it to `false` for the first release, or check the app on the iPad simulator first.
+- **Precise location.** Android asks for precise *and* approximate location; local air quality only needs
+  approximate. Dropping `ACCESS_FINE_LOCATION` would match the app's stance, but changes what the permission dialog
+  offers, so it wants a device test first.
+- **Age rating, content questionnaire, and the stores' privacy forms** (App Privacy on iOS, Data safety on Play):
+  answered by you. The facts they ask about are in About&nbsp;you &rsaquo; What leaves this device and in
+  `public/privacy.html`.
+- **Google Play, personal accounts.** A personal developer account created after 13 November 2023 has to run a
+  closed test with at least 12 testers opted in continuously for 14 days before the app can go to production
+  ([Play Console Help](https://support.google.com/googleplay/android-developer/answer/14151465), read 2026-10-03).
+  That is the longest fixed wait on the Android side, so starting it early matters more than anything in the code.
+  The rule is written for personal accounts; an organization account has its own requirements (a D-U-N-S number), so
+  read the Play Console's current terms for whichever you register.
 
 ### Native paths not exercised here
 

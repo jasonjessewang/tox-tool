@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Platform, View } from "react-native";
 import * as SystemUI from "expo-system-ui";
+import { SafeAreaProvider, initialWindowMetrics } from "react-native-safe-area-context";
 import { getUserProfile } from "./storage/db";
 import { applyTheme, colors } from "./theme";
 import { getLanguage, onLanguageChange, resolveLanguage, setLanguage } from "./i18n";
@@ -36,5 +37,5 @@ export default function Root() {
     };
   }, []);
 
-  return App ? <App /> : <View style={{ flex: 1, backgroundColor: colors.bg }} />;
+  return <SafeAreaProvider initialMetrics={initialWindowMetrics}>{App ? <App /> : <View style={{ flex: 1, backgroundColor: colors.bg }} />}</SafeAreaProvider>;
 }

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { View, Text, Pressable, StyleSheet, SafeAreaView, Platform, StatusBar as RNStatusBar } from "react-native";
+import { View, Text, Pressable, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import DashboardScreen from "./src/screens/DashboardScreen";
 import LogFoodScreen from "./src/screens/LogFoodScreen";
 import LogAirQualityScreen from "./src/screens/LogAirQualityScreen";
@@ -80,7 +81,24 @@ export default function App() {
   );
 }
 
+/**
+ * The app's frame on every platform: content stays clear of the status bar, a notch, the home indicator and Android's own
+ * navigation buttons (which the app now draws behind, edge to edge). Each strip takes the colour of what sits next to it,
+ * so there is no seam. With the tab bar showing, the bar itself reaches the bottom edge instead (`bottomInset={false}`).
+ */
+function Frame({ topColor = colors.bg, bottomColor = colors.bg, bottomInset = true, children }: { topColor?: string; bottomColor?: string; bottomInset?: boolean; children: React.ReactNode }) {
+  const insets = useSafeAreaInsets();
+  return (
+    <View style={[styles.safe, { paddingLeft: insets.left, paddingRight: insets.right }]}>
+      <View style={{ height: insets.top, backgroundColor: topColor }} />
+      {children}
+      {bottomInset ? <View style={{ height: insets.bottom, backgroundColor: bottomColor }} /> : null}
+    </View>
+  );
+}
+
 function AppInner() {
+  const insets = useSafeAreaInsets();
   const [tab, setTab] = useState<Tab>("dashboard");
   const [overlay, setOverlay] = useState<Overlay | null>(null);
   // Where each screen was opened from, so "back" goes back to that (null is the tab the person was on) rather than always to the Journey.
@@ -175,34 +193,38 @@ function AppInner() {
 
   if (bootPhase === "loading") {
     return (
-      <SafeAreaView style={styles.safe}>
+      <Frame topColor={colors.calmBg} bottomColor={colors.calmBg}>
         <LoadingScreen message={tr("Welcome")} minMs={LAUNCH_BEAT_MS} onDone={finishLaunch} />
-      </SafeAreaView>
+      </Frame>
     );
   }
 
   if (bootPhase === "intake") {
     return (
-      <SafeAreaView style={styles.safe}>
+      <Frame>
         <StatusBar style={resolveTheme() === "dark" ? "light" : "dark"} />
         <IntakeScreen initial={null} onContinue={handleIntakeContinue} />
-      </SafeAreaView>
+      </Frame>
     );
   }
 
   if (bootPhase === "intro") {
     return (
-      <SafeAreaView style={styles.safe}>
+      <Frame>
         <StatusBar style={resolveTheme() === "dark" ? "light" : "dark"} />
         <IntroScreen onDone={handleIntroDone} />
-      </SafeAreaView>
+      </Frame>
     );
   }
 
+  const headerShown = (overlay || !transitioning) && !detailOpen;
+  const tabBarShown = !(overlay || detailOpen || transitioning);
+  const bodyColor = transitioning ? colors.calmBg : colors.bg;
+
   return (
-    <SafeAreaView style={styles.safe}>
+    <Frame topColor={headerShown ? colors.card : bodyColor} bottomColor={bodyColor} bottomInset={!tabBarShown}>
       <StatusBar style={resolveTheme() === "dark" ? "light" : "dark"} />
-      {(overlay || !transitioning) && !detailOpen ? (
+      {headerShown ? (
       <View style={styles.header}>
         {overlay ? (
           <Pressable
@@ -246,8 +268,8 @@ function AppInner() {
         {!transitioning && !overlay && tab === "learn" && <LearnScreen onDetailChange={setDetailOpen} initialSegment={learnSegment} />}
       </View>
 
-      {overlay || detailOpen || transitioning ? null : (
-      <View style={styles.tabbar} accessibilityRole="tablist">
+      {!tabBarShown ? null : (
+      <View style={[styles.tabbar, { paddingBottom: 8 + insets.bottom }]} accessibilityRole="tablist">
         {TABS.map((t) => (
           <Pressable
             accessibilityRole="tab"
@@ -275,16 +297,12 @@ function AppInner() {
         ))}
       </View>
       )}
-    </SafeAreaView>
+    </Frame>
   );
 }
 
 const styles = StyleSheet.create({
-  safe: {
-    flex: 1,
-    backgroundColor: colors.bg,
-    paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
-  },
+  safe: { flex: 1, backgroundColor: colors.bg },
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
   header: {
     paddingHorizontal: 16,
@@ -302,7 +320,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.card,
     borderTopWidth: 1,
     borderTopColor: colors.line,
-    paddingBottom: Platform.OS === "ios" ? 20 : 8,
     paddingTop: 10,
     flexDirection: "row",
   },

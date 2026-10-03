@@ -12,6 +12,11 @@
       "distribution": "internal",
       "channel": "preview"
     },
+    "simulator": {
+      "ios": {
+        "simulator": true
+      }
+    },
     "production": {
       "autoIncrement": true,
       "channel": "production"

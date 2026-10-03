@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
+    "primaryColor": "#3f6b52",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.exposureawareness.mobile"
@@ -18,7 +19,8 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "blockedPermissions": ["android.permission.SYSTEM_ALERT_WINDOW"]
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -33,7 +35,12 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Used only to check local air quality and significant weather/fire alerts near you. Never leaves your device except as a coordinate sent to the National Weather Service and Open-Meteo, both free public data sources with no account."
+          "locationWhenInUsePermission": "Used only to check local air quality and significant weather/fire alerts near you. Never leaves your device except as a coordinate sent to the National Weather Service and Open-Meteo, both free public data sources with no account.",
+          "locationAlwaysAndWhenInUsePermission": "This app never asks for your location in the background. Location is used only while the app is open, to check local air quality and significant weather/fire alerts near you.",
+          "locationAlwaysPermission": "This app never asks for your location in the background. Location is used only while the app is open, to check local air quality and significant weather/fire alerts near you.",
+          "motionUsagePermission": "Not used by this app -- the location framework can read motion activity, but nothing here asks it to.",
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false
         }
       ],
       [
@@ -53,8 +60,25 @@
         }
       ],
       "expo-notifications",
-      "expo-secure-store",
-      "expo-localization"
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": "Not used by this app -- the secure storage framework can use Face ID, but nothing here asks it to."
+        }
+      ],
+      "expo-localization",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#f7f5f0",
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 200,
+          "dark": {
+            "backgroundColor": "#121411",
+            "image": "./assets/splash-icon-dark.png"
+          }
+        }
+      ]
     ],
     "description": "A private, on-device way to see what you're exposed to, compare it with published guidance, and make your own changes."
   }

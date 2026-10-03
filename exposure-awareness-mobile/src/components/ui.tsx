@@ -1,16 +1,21 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet, ViewStyle } from "react-native";
 import { colors, radius, radiusPill, spacing, shadow, concernPill, ACCENT_SHADOW } from "../theme";
+import { msg, tr } from "../i18n";
 
 export function Card({ children, style }: { children: React.ReactNode; style?: ViewStyle }) {
   return <View style={[styles.card, style]}>{children}</View>;
 }
 
+/** How consistently a substance is flagged, in a word. The colours are the theme's; the words are text, so they live here. */
+const CONCERN_LABEL: Record<number, string> = { 1: msg("low"), 2: msg("moderate"), 3: msg("higher") };
+
 export function Pill({ concernLevel }: { concernLevel: number }) {
-  const p = concernPill[concernLevel] ?? concernPill[2];
+  const level = concernLevel in concernPill ? concernLevel : 2;
+  const p = concernPill[level];
   return (
     <View style={[styles.pill, { backgroundColor: p.bg }]}>
-      <Text style={[styles.pillText, { color: p.fg }]}>{p.label}</Text>
+      <Text style={[styles.pillText, { color: p.fg }]}>{tr(CONCERN_LABEL[level])}</Text>
     </View>
   );
 }

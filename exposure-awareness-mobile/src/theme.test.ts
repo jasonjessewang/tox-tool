@@ -58,6 +58,17 @@ test("the web page opens on the theme's own background in both modes, before the
   expect(manifest.start_url).toBe(".");
 });
 
+test("the phone app's launch screen is the theme's background in both modes, with a leaf that shows on each", () => {
+  const app = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "app.json"), "utf8")).expo;
+  const splash = (app.plugins as unknown[]).find((p) => Array.isArray(p) && p[0] === "expo-splash-screen") as [string, { backgroundColor: string; image: string; dark: { backgroundColor: string; image: string } }];
+  expect(splash[1].backgroundColor).toBe(PALETTES.light.bg);
+  expect(splash[1].dark.backgroundColor).toBe(PALETTES.dark.bg);
+  for (const image of [splash[1].image, splash[1].dark.image]) expect(fs.existsSync(path.join(__dirname, "..", image))).toBe(true);
+  // the leaf is the accent of its own theme: 3:1 against its background is the bar for a graphic (WCAG 1.4.11)
+  expect(contrast(PALETTES.light.accent, PALETTES.light.bg)).toBeGreaterThanOrEqual(3);
+  expect(contrast(PALETTES.dark.accent, PALETTES.dark.bg)).toBeGreaterThanOrEqual(3);
+});
+
 test("screens and components take their colours from the theme, not from hex values the theme cannot switch", () => {
   const root = path.join(__dirname);
   // the plant's own illustration (pot, leaves, fruit) and the camera's black viewfinder are images, the same in either theme
